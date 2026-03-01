@@ -422,26 +422,6 @@ details[open] summary {
     color: #fff;
 }
 
-.skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 40px;
-}
-
-.skill-category h4 {
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    margin-bottom: 15px;
-    color: var(--muted-color);
-    letter-spacing: 0.1em;
-}
-
-.skill-list {
-    font-family: var(--font-mono);
-    font-size: 0.9rem;
-    color: #ccc;
-}
-
 /* Cursor effect */
 .cursor {
     display: inline-block;
