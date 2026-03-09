@@ -49,13 +49,13 @@
         .centered-page.active { display: flex; }
         /* App buttons (install/download) */
         .app-buttons {
-            position: absolute;
+            position: fixed;
             top: 20px;
             right: 20px;
             display: flex;
             flex-direction: column;
             gap: 10px;
-            z-index: 100;
+            z-index: 1000;
         }
         .app-btn {
             padding: 10px 18px;
@@ -403,7 +403,6 @@
         </div>
         <div class="container">
             <h1>🎌 Kana Practice</h1>
-            <p style="text-align: center; color: #a0a0a0; margin-bottom: 20px;">Select character sets and rows to practice:</p>
             
             <div class="section-title">Practice Mode</div>
             <div class="checkbox-grid" style="margin-bottom: 20px;">
