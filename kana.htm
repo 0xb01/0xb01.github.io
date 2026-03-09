@@ -47,14 +47,22 @@
             position: relative;
         }
         .centered-page.active { display: flex; }
-        /* App buttons (install/download) */
+        .container {
+            background: #2a2a3e;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            max-width: 700px;
+            width: 100%;
+        }
+        /* App buttons (install/download) - bottom center */
         .app-buttons {
-            position: fixed;
-            top: 20px;
-            right: 20px;
             display: flex;
             gap: 10px;
-            z-index: 1000;
+            justify-content: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #3a3a5a;
         }
         .app-btn {
             padding: 10px 18px;
@@ -78,14 +86,6 @@
         .app-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-        }
-        .container {
-            background: #2a2a3e;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-            max-width: 700px;
-            width: 100%;
         }
         h1, h2 {
             text-align: center;
@@ -369,12 +369,13 @@
         /* Mobile */
         @media (max-width: 600px) {
             .app-buttons {
-                top: 10px;
-                right: 10px;
+                flex-direction: column;
+                align-items: center;
             }
             .app-btn {
-                padding: 8px 14px;
-                font-size: 12px;
+                width: 100%;
+                max-width: 200px;
+                justify-content: center;
             }
             .character { font-size: 100px; }
             .practice-stats { padding: 10px 15px; }
@@ -392,14 +393,6 @@
 <body>
     <!-- Setup Page -->
     <div class="centered-page active" id="setupPage">
-        <div class="app-buttons">
-            <button class="app-btn app-btn-download" onclick="downloadApp()" title="Download HTML file">
-                ⬇️ Download
-            </button>
-            <button class="app-btn app-btn-install" onclick="installApp()" title="Add to home screen">
-                📲 Install
-            </button>
-        </div>
         <div class="container">
             <h1>🎌 Kana Practice</h1>
             
@@ -473,6 +466,14 @@
             </div>
 
             <button class="btn-primary" onclick="startPractice()" style="margin-top: 20px;">Start Practice</button>
+            <div class="app-buttons">
+                <button class="app-btn app-btn-download" onclick="downloadApp()" title="Download HTML file">
+                    ⬇️ Download
+                </button>
+                <button class="app-btn app-btn-install" onclick="installApp()" title="Add to home screen">
+                    📲 Install
+                </button>
+            </div>
         </div>
     </div>
 
