@@ -80,25 +80,39 @@ def print_row_table():
 
 def get_user_selection():
     """Get user's selection for which kana sets and rows to practice."""
-    print("Select practice mode:")
-    print("  [1] Character → Romaji (see kana, type pronunciation)")
-    print("  [2] Romaji → Character (see romaji, select kana)")
-    print("  [3] Both modes mixed")
+    print("Select practice mode (you can select multiple, e.g., '1 2 3'):")
+    print("  [1] Kana → Romaji (type pronunciation)")
+    print("  [2] Romaji → Kana (type character)")
+    print("  [3] Romaji → Kana (multiple choice)")
     print()
     
     while True:
-        mode_choice = input("Enter your choice (1/2/3): ").strip()
-        if mode_choice == '1':
-            practice_mode = 'normal'
+        mode_input = input("Enter your choice(s): ").strip()
+        mode_choices = mode_input.replace(',', ' ').split()
+        
+        if not mode_choices:
+            print("Please select at least one mode.")
+            continue
+        
+        practice_modes = []
+        valid = True
+        for choice in mode_choices:
+            if choice == '1':
+                practice_modes.append('normal')
+            elif choice == '2':
+                practice_modes.append('reverse_type')
+            elif choice == '3':
+                practice_modes.append('reverse_multi')
+            else:
+                print(f"Invalid choice: '{choice}'. Please enter 1, 2, or 3.")
+                valid = False
+                break
+        
+        if valid and practice_modes:
             break
-        elif mode_choice == '2':
-            practice_mode = 'reverse'
-            break
-        elif mode_choice == '3':
-            practice_mode = 'both'
-            break
-        else:
-            print("Invalid choice. Please enter 1, 2, or 3.")
+    
+    # If multiple modes selected, use 'all', otherwise use the single mode
+    practice_mode = 'all' if len(practice_modes) > 1 else practice_modes[0]
     
     print()
     print("Select character type:")
@@ -170,33 +184,39 @@ def build_practice_queue(practice_mode, char_type, selected_rows):
     """Build the queue of characters to practice."""
     queue = []
     
+    # Build base queue
     if char_type in ('hiragana', 'both'):
         for row in selected_rows:
             row_data = HIRAGANA_BY_ROW.get(row, {})
             for kana, romaji in row_data.items():
-                queue.append({'character': kana, 'answer': romaji, 'type': 'Hiragana', 'mode': 'normal'})
+                queue.append({'character': kana, 'answer': romaji, 'type': 'Hiragana'})
     
     if char_type in ('katakana', 'both'):
         for row in selected_rows:
             row_data = KATAKANA_BY_ROW.get(row, {})
             for kana, romaji in row_data.items():
-                queue.append({'character': kana, 'answer': romaji, 'type': 'Katakana', 'mode': 'normal'})
+                queue.append({'character': kana, 'answer': romaji, 'type': 'Katakana'})
     
-    # If reverse or both modes, add reverse items
-    if practice_mode in ('reverse', 'both'):
-        reverse_queue = []
+    # Create mode-specific queues
+    final_queue = []
+    
+    if practice_mode == 'normal':
         for item in queue:
-            reverse_item = item.copy()
-            reverse_item['mode'] = 'reverse'
-            reverse_queue.append(reverse_item)
-        
-        if practice_mode == 'reverse':
-            queue = reverse_queue
-        else:
-            queue = queue + reverse_queue
+            final_queue.append({**item, 'mode': 'normal'})
+    elif practice_mode == 'reverse_type':
+        for item in queue:
+            final_queue.append({**item, 'mode': 'reverse_type'})
+    elif practice_mode == 'reverse_multi':
+        for item in queue:
+            final_queue.append({**item, 'mode': 'reverse_multi'})
+    elif practice_mode == 'all':
+        for item in queue:
+            final_queue.append({**item, 'mode': 'normal'})
+            final_queue.append({**item, 'mode': 'reverse_type'})
+            final_queue.append({**item, 'mode': 'reverse_multi'})
     
-    random.shuffle(queue)
-    return queue
+    random.shuffle(final_queue)
+    return final_queue
 
 
 def generate_multiple_choice(correct_item, queue):
@@ -225,11 +245,17 @@ def run_practice(queue):
     for i, item in enumerate(queue, 1):
         clear_screen()
         print()
-        print(f"  [{i}/{total}]  Type: {item['type']}  |  Mode: {'Romaji→Kana' if item['mode'] == 'reverse' else 'Kana→Romaji'}")
+        
+        mode_display = {
+            'normal': 'Kana→Romaji',
+            'reverse_type': 'Romaji→Kana (type)',
+            'reverse_multi': 'Romaji→Kana (choice)'
+        }
+        print(f"  [{i}/{total}]  Type: {item['type']}  |  Mode: {mode_display.get(item['mode'], 'Unknown')}")
         print()
         
-        if item['mode'] == 'reverse':
-            # Reverse mode: show romaji, select kana
+        if item['mode'] == 'reverse_multi':
+            # Reverse multiple choice: show romaji, select kana
             print()
             print(f"          {item['answer']}")
             print()
@@ -246,19 +272,43 @@ def run_practice(queue):
                 answer = input("  Your choice (1-4): ").strip()
                 if answer in ['1', '2', '3', '4']:
                     selected_idx = int(answer) - 1
-                    if choices[selected_idx]['character'] == item['character']:
+                    selected_char = choices[selected_idx]['character']
+                    if selected_char == item['character']:
                         print("  ✓ Correct!")
                         correct += 1
                     else:
                         print(f"  ✗ Wrong! The answer was: {item['character']}")
                         wrong += 1
-                        wrong_answers.append(item)
+                        wrong_answers.append({**item, 'userTyped': selected_char})
                     break
                 elif answer.lower() == 'quit':
                     print(f"\nEnding practice early. You completed {i-1} of {total} characters.")
                     return correct, wrong, wrong_answers
                 else:
                     print("  Please enter 1-4")
+        
+        elif item['mode'] == 'reverse_type':
+            # Reverse type: show romaji, type the kana character
+            print()
+            print()
+            print(f"          {item['answer']}")
+            print()
+            print()
+            
+            answer = input("Type the kana character: ").strip()
+            
+            if answer == 'quit':
+                print(f"\nEnding practice early. You completed {i-1} of {total} characters.")
+                break
+            
+            if answer == item['character']:
+                print("✓ Correct!")
+                correct += 1
+            else:
+                print(f"✗ Wrong! The answer was: {item['character']}")
+                wrong += 1
+                wrong_answers.append({**item, 'userTyped': answer})
+        
         else:
             # Normal mode: show kana, type romaji
             print()
@@ -279,7 +329,7 @@ def run_practice(queue):
             else:
                 print(f"✗ Wrong! The answer was: {item['answer']}")
                 wrong += 1
-                wrong_answers.append(item)
+                wrong_answers.append({**item, 'userTyped': answer})
     
     return correct, wrong, wrong_answers
 
@@ -314,8 +364,15 @@ def show_results(correct, wrong, total_attempted, wrong_answers):
             print("  Characters to Review:")
             print("-" * 50)
             for item in wrong_answers:
-                mode_str = "R→K" if item['mode'] == 'reverse' else "K→R"
-                print(f"    [{mode_str}]  {item['character']}  ({item['type']})  →  {item['answer']}")
+                mode_str = {
+                    'normal': 'K→R',
+                    'reverse_type': 'R→K (type)',
+                    'reverse_multi': 'R→K (choice)'
+                }.get(item['mode'], '?')
+                
+                user_typed = item.get('userTyped', '?')
+                print(f"    [{mode_str}]  {item['character']}  ({item['type']})")
+                print(f"      Expected: {item['answer']}  |  You: {user_typed}")
             print("-" * 50)
     else:
         print("\n  No characters were practiced.")

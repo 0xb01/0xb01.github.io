@@ -1,9 +1,13 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "wow 67 42069" "http://example.com/wala-lang.dtd">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kana Practice</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#1e1e2e">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%23667eea' width='100' height='100' rx='15'/%3E%3Ctext y='50%' x='50%' dy='.35em' text-anchor='middle' font-size='50'%3E🎌%3C/text%3E%3C/svg%3E">
     <style>
         * {
             box-sizing: border-box;
@@ -31,12 +35,8 @@
             transition: width 0.3s;
         }
         /* Pages */
-        .page {
-            display: none;
-        }
-        .page.active {
-            display: block;
-        }
+        .page { display: none; }
+        .page.active { display: block; }
         /* Setup & Results pages - centered */
         .centered-page {
             display: none;
@@ -44,9 +44,41 @@
             align-items: center;
             min-height: 100vh;
             padding: 20px;
+            position: relative;
         }
-        .centered-page.active {
+        .centered-page.active { display: flex; }
+        /* App buttons (install/download) */
+        .app-buttons {
+            position: absolute;
+            top: 20px;
+            right: 20px;
             display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 100;
+        }
+        .app-btn {
+            padding: 10px 18px;
+            font-size: 14px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .app-btn-install {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .app-btn-download {
+            background: #4a4a6a;
+            color: #e0e0e0;
+        }
+        .app-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
         }
         .container {
             background: #2a2a3e;
@@ -98,9 +130,7 @@
             cursor: pointer;
             transition: background 0.2s;
         }
-        .checkbox-item:hover {
-            background: #4a4a6a;
-        }
+        .checkbox-item:hover { background: #4a4a6a; }
         .checkbox-item input {
             width: 18px;
             height: 18px;
@@ -239,12 +269,8 @@
             color: #e0e0e0;
             text-align: center;
         }
-        #answerInput:focus {
-            border-color: #8b85ff;
-        }
-        #answerInput::placeholder {
-            color: #555577;
-        }
+        #answerInput:focus { border-color: #8b85ff; }
+        #answerInput::placeholder { color: #555577; }
         .submit-btn {
             width: 100%;
             padding: 15px;
@@ -343,6 +369,14 @@
         }
         /* Mobile */
         @media (max-width: 600px) {
+            .app-buttons {
+                top: 10px;
+                right: 10px;
+            }
+            .app-btn {
+                padding: 8px 14px;
+                font-size: 12px;
+            }
             .character { font-size: 100px; }
             .practice-stats { padding: 10px 15px; }
             .stat-value { font-size: 20px; }
@@ -359,6 +393,14 @@
 <body>
     <!-- Setup Page -->
     <div class="centered-page active" id="setupPage">
+        <div class="app-buttons">
+            <button class="app-btn app-btn-download" onclick="downloadApp()" title="Download HTML file">
+                ⬇️ Download
+            </button>
+            <button class="app-btn app-btn-install" onclick="installApp()" title="Add to home screen">
+                📲 Install
+            </button>
+        </div>
         <div class="container">
             <h1>🎌 Kana Practice</h1>
             <p style="text-align: center; color: #a0a0a0; margin-bottom: 20px;">Select character sets and rows to practice:</p>
@@ -366,15 +408,21 @@
             <div class="section-title">Practice Mode</div>
             <div class="checkbox-grid" style="margin-bottom: 20px;">
                 <div class="checkbox-item">
-                    <input type="checkbox" id="normalMode" checked onchange="toggleModeSelection()">
+                    <input type="checkbox" id="normalMode" checked>
                     <label for="normalMode">
-                        <span style="color: #8b85ff; font-weight: bold;">→</span> Character to Romaji
+                        <span style="color: #8b85ff; font-weight: bold;">→</span> Character to Romaji (type)
                     </label>
                 </div>
                 <div class="checkbox-item">
-                    <input type="checkbox" id="reverseMode" onchange="toggleModeSelection()">
-                    <label for="reverseMode">
-                        <span style="color: #8b85ff; font-weight: bold;">←</span> Romaji to Character
+                    <input type="checkbox" id="reverseTypeMode">
+                    <label for="reverseTypeMode">
+                        <span style="color: #8b85ff; font-weight: bold;">←</span> Romaji to Character (type)
+                    </label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="reverseMultiMode">
+                    <label for="reverseMultiMode">
+                        <span style="color: #8b85ff; font-weight: bold;">←</span> Romaji to Character (choice)
                     </label>
                 </div>
             </div>
@@ -382,13 +430,13 @@
             <div class="section-title">Character Type</div>
             <div class="checkbox-grid">
                 <div class="checkbox-item">
-                    <input type="checkbox" id="hiraganaCheck" checked>
+                    <input type="checkbox" id="hiraganaCheck" checked onchange="updateKanaSamples()">
                     <label for="hiraganaCheck">
                         <span class="kana-sample">あいうえお</span> Hiragana
                     </label>
                 </div>
                 <div class="checkbox-item">
-                    <input type="checkbox" id="katakanaCheck" checked>
+                    <input type="checkbox" id="katakanaCheck" checked onchange="updateKanaSamples()">
                     <label for="katakanaCheck">
                         <span class="kana-sample">アイウエオ</span> Katakana
                     </label>
@@ -409,21 +457,21 @@
             </div>
 
             <div class="checkbox-grid" id="rowCheckboxes">
-                <div class="checkbox-item"><input type="checkbox" id="rowA" value="a" checked><label for="rowA"><span class="row-label">A</span><span class="kana-sample"> あ</span></label></div>
-                <div class="checkbox-item"><input type="checkbox" id="rowK" value="k" checked><label for="rowK"><span class="row-label">K</span><span class="kana-sample"> か</span></label></div>
-                <div class="checkbox-item"><input type="checkbox" id="rowS" value="s" checked><label for="rowS"><span class="row-label">S</span><span class="kana-sample"> さ</span></label></div>
-                <div class="checkbox-item"><input type="checkbox" id="rowT" value="t" checked><label for="rowT"><span class="row-label">T</span><span class="kana-sample"> た</span></label></div>
-                <div class="checkbox-item"><input type="checkbox" id="rowN" value="n" checked><label for="rowN"><span class="row-label">N</span><span class="kana-sample"> な</span></label></div>
-                <div class="checkbox-item"><input type="checkbox" id="rowH" value="h" checked><label for="rowH"><span class="row-label">H</span><span class="kana-sample"> は</span></label></div>
-                <div class="checkbox-item"><input type="checkbox" id="rowM" value="m" checked><label for="rowM"><span class="row-label">M</span><span class="kana-sample"> ま</span></label></div>
-                <div class="checkbox-item"><input type="checkbox" id="rowY" value="y" checked><label for="rowY"><span class="row-label">Y</span><span class="kana-sample"> や</span></label></div>
-                <div class="checkbox-item"><input type="checkbox" id="rowR" value="r" checked><label for="rowR"><span class="row-label">R</span><span class="kana-sample"> ら</span></label></div>
-                <div class="checkbox-item"><input type="checkbox" id="rowW" value="w" checked><label for="rowW"><span class="row-label">W</span><span class="kana-sample"> わ</span></label></div>
-                <div class="checkbox-item"><input type="checkbox" id="rowG" value="g" checked><label for="rowG"><span class="row-label">G</span><span class="kana-sample"> が</span></label></div>
-                <div class="checkbox-item"><input type="checkbox" id="rowZ" value="z" checked><label for="rowZ"><span class="row-label">Z</span><span class="kana-sample"> ざ</span></label></div>
-                <div class="checkbox-item"><input type="checkbox" id="rowD" value="d" checked><label for="rowD"><span class="row-label">D</span><span class="kana-sample"> だ</span></label></div>
-                <div class="checkbox-item"><input type="checkbox" id="rowB" value="b" checked><label for="rowB"><span class="row-label">B</span><span class="kana-sample"> ば</span></label></div>
-                <div class="checkbox-item"><input type="checkbox" id="rowP" value="p" checked><label for="rowP"><span class="row-label">P</span><span class="kana-sample"> ぱ</span></label></div>
+                <div class="checkbox-item"><input type="checkbox" id="rowA" value="a" checked><label for="rowA"><span class="row-label">A </span><span class="kana-sample" data-hira="あ" data-kata="ア">あ</span></label></div>
+                <div class="checkbox-item"><input type="checkbox" id="rowK" value="k" checked><label for="rowK"><span class="row-label">K </span><span class="kana-sample" data-hira="か" data-kata="カ">か</span></label></div>
+                <div class="checkbox-item"><input type="checkbox" id="rowS" value="s" checked><label for="rowS"><span class="row-label">S </span><span class="kana-sample" data-hira="さ" data-kata="サ">さ</span></label></div>
+                <div class="checkbox-item"><input type="checkbox" id="rowT" value="t" checked><label for="rowT"><span class="row-label">T </span><span class="kana-sample" data-hira="た" data-kata="タ">た</span></label></div>
+                <div class="checkbox-item"><input type="checkbox" id="rowN" value="n" checked><label for="rowN"><span class="row-label">N </span><span class="kana-sample" data-hira="な" data-kata="ナ">な</span></label></div>
+                <div class="checkbox-item"><input type="checkbox" id="rowH" value="h" checked><label for="rowH"><span class="row-label">H </span><span class="kana-sample" data-hira="は" data-kata="ハ">は</span></label></div>
+                <div class="checkbox-item"><input type="checkbox" id="rowM" value="m" checked><label for="rowM"><span class="row-label">M </span><span class="kana-sample" data-hira="ま" data-kata="マ">ま</span></label></div>
+                <div class="checkbox-item"><input type="checkbox" id="rowY" value="y" checked><label for="rowY"><span class="row-label">Y </span><span class="kana-sample" data-hira="や" data-kata="ヤ">や</span></label></div>
+                <div class="checkbox-item"><input type="checkbox" id="rowR" value="r" checked><label for="rowR"><span class="row-label">R </span><span class="kana-sample" data-hira="ら" data-kata="ラ">ら</span></label></div>
+                <div class="checkbox-item"><input type="checkbox" id="rowW" value="w" checked><label for="rowW"><span class="row-label">W</span><span class="kana-sample" data-hira="わ" data-kata="ワ">わ</span></label></div>
+                <div class="checkbox-item"><input type="checkbox" id="rowG" value="g" checked><label for="rowG"><span class="row-label">G </span><span class="kana-sample" data-hira="が" data-kata="ガ">が</span></label></div>
+                <div class="checkbox-item"><input type="checkbox" id="rowZ" value="z" checked><label for="rowZ"><span class="row-label">Z </span><span class="kana-sample" data-hira="ざ" data-kata="ザ">ざ</span></label></div>
+                <div class="checkbox-item"><input type="checkbox" id="rowD" value="d" checked><label for="rowD"><span class="row-label">D </span><span class="kana-sample" data-hira="だ" data-kata="ダ">だ</span></label></div>
+                <div class="checkbox-item"><input type="checkbox" id="rowB" value="b" checked><label for="rowB"><span class="row-label">B </span><span class="kana-sample" data-hira="ば" data-kata="バ">ば</span></label></div>
+                <div class="checkbox-item"><input type="checkbox" id="rowP" value="p" checked><label for="rowP"><span class="row-label">P </span><span class="kana-sample" data-hira="ぱ" data-kata="パ">ぱ</span></label></div>
             </div>
 
             <button class="btn-primary" onclick="startPractice()" style="margin-top: 20px;">Start Practice</button>
@@ -516,7 +564,7 @@
         let wrong = 0;
         let waitingForNext = false;
         let wrongAnswers = [];
-        let isReverseMode = false;
+        let reverseMode = 'none'; // 'none', 'type', 'multiple', 'mixed'
         let currentMultipleChoice = [];
 
         function shuffle(array) {
@@ -526,14 +574,6 @@
                 [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
             }
             return shuffled;
-        }
-
-        function toggleModeSelection() {
-            const normalMode = document.getElementById('normalMode');
-            const reverseMode = document.getElementById('reverseMode');
-            if (!normalMode.checked && !reverseMode.checked) {
-                normalMode.checked = true;
-            }
         }
 
         function toggleAllRows(checked) {
@@ -548,23 +588,47 @@
             });
         }
 
+        function updateKanaSamples() {
+            const hiraganaCheck = document.getElementById('hiraganaCheck');
+            const katakanaCheck = document.getElementById('katakanaCheck');
+            
+            // Update all kana samples in row checkboxes
+            document.querySelectorAll('#rowCheckboxes .kana-sample').forEach(sample => {
+                const hira = sample.getAttribute('data-hira');
+                const kata = sample.getAttribute('data-kata');
+                
+                if (hiraganaCheck.checked && katakanaCheck.checked) {
+                    // Both selected: show both
+                    sample.textContent = hira + kata;
+                } else if (hiraganaCheck.checked) {
+                    // Only hiragana
+                    sample.textContent = hira;
+                } else if (katakanaCheck.checked) {
+                    // Only katakana
+                    sample.textContent = kata;
+                } else {
+                    // Neither - default to hiragana
+                    sample.textContent = hira;
+                }
+            });
+        }
+
         function startPractice() {
             const useHiragana = document.getElementById('hiraganaCheck').checked;
             const useKatakana = document.getElementById('katakanaCheck').checked;
             const normalMode = document.getElementById('normalMode').checked;
-            const reverseMode = document.getElementById('reverseMode').checked;
+            const reverseTypeMode = document.getElementById('reverseTypeMode').checked;
+            const reverseMultiMode = document.getElementById('reverseMultiMode').checked;
 
             if (!useHiragana && !useKatakana) {
                 alert('Please select at least one character type!');
                 return;
             }
 
-            if (!normalMode && !reverseMode) {
+            if (!normalMode && !reverseTypeMode && !reverseMultiMode) {
                 alert('Please select at least one practice mode!');
                 return;
             }
-
-            isReverseMode = reverseMode && !normalMode;
 
             const selectedRows = [];
             document.querySelectorAll('#rowCheckboxes input[type="checkbox"]:checked').forEach(cb => {
@@ -578,26 +642,76 @@
 
             practiceQueue = [];
 
-            if (useHiragana) {
-                selectedRows.forEach(row => {
-                    const rowData = hiraganaByRow[row];
-                    if (rowData) {
-                        for (const [kana, romaji] of Object.entries(rowData)) {
-                            practiceQueue.push({ character: kana, answer: romaji, type: useHiragana && useKatakana ? 'Hiragana' : '' });
+            // Add normal mode items
+            if (normalMode) {
+                if (useHiragana) {
+                    selectedRows.forEach(row => {
+                        const rowData = hiraganaByRow[row];
+                        if (rowData) {
+                            for (const [kana, romaji] of Object.entries(rowData)) {
+                                practiceQueue.push({ character: kana, answer: romaji, type: useHiragana && useKatakana ? 'Hiragana' : '', mode: 'normal' });
+                            }
                         }
-                    }
-                });
+                    });
+                }
+                if (useKatakana) {
+                    selectedRows.forEach(row => {
+                        const rowData = katakanaByRow[row];
+                        if (rowData) {
+                            for (const [kana, romaji] of Object.entries(rowData)) {
+                                practiceQueue.push({ character: kana, answer: romaji, type: useHiragana && useKatakana ? 'Katakana' : '', mode: 'normal' });
+                            }
+                        }
+                    });
+                }
             }
 
-            if (useKatakana) {
-                selectedRows.forEach(row => {
-                    const rowData = katakanaByRow[row];
-                    if (rowData) {
-                        for (const [kana, romaji] of Object.entries(rowData)) {
-                            practiceQueue.push({ character: kana, answer: romaji, type: useHiragana && useKatakana ? 'Katakana' : '' });
+            // Add reverse type mode items
+            if (reverseTypeMode) {
+                if (useHiragana) {
+                    selectedRows.forEach(row => {
+                        const rowData = hiraganaByRow[row];
+                        if (rowData) {
+                            for (const [kana, romaji] of Object.entries(rowData)) {
+                                practiceQueue.push({ character: kana, answer: romaji, type: useHiragana && useKatakana ? 'Hiragana' : '', mode: 'reverse_type' });
+                            }
                         }
-                    }
-                });
+                    });
+                }
+                if (useKatakana) {
+                    selectedRows.forEach(row => {
+                        const rowData = katakanaByRow[row];
+                        if (rowData) {
+                            for (const [kana, romaji] of Object.entries(rowData)) {
+                                practiceQueue.push({ character: kana, answer: romaji, type: useHiragana && useKatakana ? 'Katakana' : '', mode: 'reverse_type' });
+                            }
+                        }
+                    });
+                }
+            }
+
+            // Add reverse multiple choice mode items
+            if (reverseMultiMode) {
+                if (useHiragana) {
+                    selectedRows.forEach(row => {
+                        const rowData = hiraganaByRow[row];
+                        if (rowData) {
+                            for (const [kana, romaji] of Object.entries(rowData)) {
+                                practiceQueue.push({ character: kana, answer: romaji, type: useHiragana && useKatakana ? 'Hiragana' : '', mode: 'reverse_multi' });
+                            }
+                        }
+                    });
+                }
+                if (useKatakana) {
+                    selectedRows.forEach(row => {
+                        const rowData = katakanaByRow[row];
+                        if (rowData) {
+                            for (const [kana, romaji] of Object.entries(rowData)) {
+                                practiceQueue.push({ character: kana, answer: romaji, type: useHiragana && useKatakana ? 'Katakana' : '', mode: 'reverse_multi' });
+                            }
+                        }
+                    });
+                }
             }
 
             practiceQueue = shuffle(practiceQueue);
@@ -624,26 +738,37 @@
             const multipleChoice = document.getElementById('multipleChoice');
             const characterDisplay = document.getElementById('characterDisplay');
             const characterType = document.getElementById('characterType');
+            const answerInput = document.getElementById('answerInput');
 
-            if (isReverseMode) {
-                // Reverse mode: show romaji, select kana
+            if (current.mode === 'reverse_multi') {
+                // Reverse multiple choice: show romaji, select kana from options
                 characterDisplay.textContent = current.answer;
                 characterDisplay.style.fontSize = '60px';
                 characterType.textContent = 'Romaji';
                 inputWrapper.style.display = 'none';
                 
-                // Generate multiple choice options
                 generateMultipleChoice(current);
                 multipleChoice.style.display = 'flex';
+            } else if (current.mode === 'reverse_type') {
+                // Reverse type: show romaji, type the kana character
+                characterDisplay.textContent = current.answer;
+                characterDisplay.style.fontSize = '60px';
+                characterType.textContent = 'Romaji - Type the character';
+                inputWrapper.style.display = 'flex';
+                multipleChoice.style.display = 'none';
+                answerInput.value = '';
+                answerInput.placeholder = 'Type the kana character (e.g., あ)';
+                answerInput.focus();
             } else {
                 // Normal mode: show kana, type romaji
                 characterDisplay.textContent = current.character;
                 characterDisplay.style.fontSize = '140px';
-                characterType.textContent = current.type;
+                characterType.textContent = current.type || 'Kana';
                 inputWrapper.style.display = 'flex';
                 multipleChoice.style.display = 'none';
-                document.getElementById('answerInput').value = '';
-                document.getElementById('answerInput').focus();
+                answerInput.value = '';
+                answerInput.placeholder = 'Type pronunciation (e.g., ka)';
+                answerInput.focus();
             }
             
             waitingForNext = false;
@@ -684,7 +809,13 @@
                 buttons[index].classList.add('correct');
             } else {
                 wrong++;
-                wrongAnswers.push({ character: current.character, answer: current.answer, type: current.type });
+                wrongAnswers.push({ 
+                    character: current.character, 
+                    answer: current.answer, 
+                    type: current.type, 
+                    mode: current.mode,
+                    userTyped: selected.character
+                });
                 buttons[index].classList.add('incorrect');
                 
                 // Highlight correct answer
@@ -707,15 +838,33 @@
 
             const input = document.getElementById('answerInput');
             const current = practiceQueue[currentIndex];
-            const userAnswer = input.value.trim().toLowerCase();
+            const userAnswer = input.value.trim();
 
             if (!userAnswer) return;
 
-            if (userAnswer === current.answer.toLowerCase()) {
+            let isCorrect = false;
+            let userTyped = userAnswer;
+            
+            if (current.mode === 'reverse_type') {
+                // Reverse type: user typed kana, compare with character
+                isCorrect = (userAnswer === current.character);
+            } else {
+                // Normal mode: user typed romaji, compare with answer
+                isCorrect = (userAnswer.toLowerCase() === current.answer.toLowerCase());
+                userTyped = userAnswer.toLowerCase();
+            }
+
+            if (isCorrect) {
                 correct++;
             } else {
                 wrong++;
-                wrongAnswers.push({ character: current.character, answer: current.answer, type: current.type });
+                wrongAnswers.push({ 
+                    character: current.character, 
+                    answer: current.answer, 
+                    type: current.type, 
+                    mode: current.mode,
+                    userTyped: userTyped
+                });
             }
 
             updateStats();
@@ -754,13 +903,33 @@
 
             if (wrongAnswers.length > 0) {
                 wrongAnswersSection.style.display = 'block';
-                wrongAnswersList.innerHTML = wrongAnswers.map(item =>
-                    `<div style="background: #3a3a5a; padding: 10px; border-radius: 8px; text-align: center;">
+                wrongAnswersList.innerHTML = wrongAnswers.map(item => {
+                    let modeLabel = '';
+                    let expectedLabel = '';
+                    let userLabel = '';
+                    
+                    if (item.mode === 'reverse_type') {
+                        modeLabel = 'Romaji→Kana (type)';
+                        expectedLabel = 'Character';
+                        userLabel = 'You typed';
+                    } else if (item.mode === 'reverse_multi') {
+                        modeLabel = 'Romaji→Kana (choice)';
+                        expectedLabel = 'Character';
+                        userLabel = 'You chose';
+                    } else {
+                        modeLabel = 'Kana→Romaji';
+                        expectedLabel = 'Romaji';
+                        userLabel = 'You typed';
+                    }
+                    
+                    return `<div style="background: #3a3a5a; padding: 10px; border-radius: 8px; text-align: center;">
+                        <div style="font-size: 11px; color: #8b85ff; margin-bottom: 5px;">${modeLabel}</div>
                         <div style="font-size: 32px; color: #e0e0e0;">${item.character}</div>
-                        <div style="font-size: 12px; color: #a0a0a0;">${item.type}</div>
-                        <div style="font-size: 14px; color: #ff6b6b; font-weight: bold;">${item.answer}</div>
-                    </div>`
-                ).join('');
+                        <div style="font-size: 12px; color: #a0a0a0; margin: 5px 0;">${item.type}</div>
+                        <div style="font-size: 13px; color: #74c69d; margin: 5px 0;">${expectedLabel}: <strong>${item.answer}</strong></div>
+                        <div style="font-size: 13px; color: #ff6b6b;">${userLabel}: <strong>${item.userTyped}</strong></div>
+                    </div>`;
+                }).join('');
             } else {
                 wrongAnswersSection.style.display = 'none';
             }
@@ -777,13 +946,40 @@
             document.getElementById('resultsPage').classList.remove('active');
             document.getElementById('setupPage').classList.add('active');
             wrongAnswers = [];
-            isReverseMode = false;
+            reverseMode = 'none';
             currentMultipleChoice = [];
         }
 
         document.getElementById('answerInput').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') checkAnswer();
         });
+
+        // Initialize kana samples on page load
+        updateKanaSamples();
+
+        // Download the HTML file
+        function downloadApp() {
+            const html = document.documentElement.outerHTML;
+            const blob = new Blob([html], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'kana-practice.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Install/Add to home screen
+        function installApp() {
+            // Try PWA install if service worker is available
+            if ('serviceWorker' in navigator) {
+                alert('To install this app:\n\n📱 Mobile: Tap \"Share\" → \"Add to Home Screen\"\n🖥️ Desktop: Click the install icon in your browser address bar');
+            } else {
+                alert('To save this app for offline use:\n\n1. Press Ctrl+S (or Cmd+S on Mac)\n2. Save the page to your device\n3. Open the saved file anytime - it works completely offline!');
+            }
+        }
     </script>
 </body>
 </html>
