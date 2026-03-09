@@ -53,7 +53,6 @@
             top: 20px;
             right: 20px;
             display: flex;
-            flex-direction: column;
             gap: 10px;
             z-index: 1000;
         }
@@ -465,7 +464,7 @@
                 <div class="checkbox-item"><input type="checkbox" id="rowM" value="m" checked><label for="rowM"><span class="row-label">M </span><span class="kana-sample" data-hira="ま" data-kata="マ">ま</span></label></div>
                 <div class="checkbox-item"><input type="checkbox" id="rowY" value="y" checked><label for="rowY"><span class="row-label">Y </span><span class="kana-sample" data-hira="や" data-kata="ヤ">や</span></label></div>
                 <div class="checkbox-item"><input type="checkbox" id="rowR" value="r" checked><label for="rowR"><span class="row-label">R </span><span class="kana-sample" data-hira="ら" data-kata="ラ">ら</span></label></div>
-                <div class="checkbox-item"><input type="checkbox" id="rowW" value="w" checked><label for="rowW"><span class="row-label">W</span><span class="kana-sample" data-hira="わ" data-kata="ワ">わ</span></label></div>
+                <div class="checkbox-item"><input type="checkbox" id="rowW" value="w" checked><label for="rowW"><span class="row-label">W </span><span class="kana-sample" data-hira="わ" data-kata="ワ">わ</span></label></div>
                 <div class="checkbox-item"><input type="checkbox" id="rowG" value="g" checked><label for="rowG"><span class="row-label">G </span><span class="kana-sample" data-hira="が" data-kata="ガ">が</span></label></div>
                 <div class="checkbox-item"><input type="checkbox" id="rowZ" value="z" checked><label for="rowZ"><span class="row-label">Z </span><span class="kana-sample" data-hira="ざ" data-kata="ザ">ざ</span></label></div>
                 <div class="checkbox-item"><input type="checkbox" id="rowD" value="d" checked><label for="rowD"><span class="row-label">D </span><span class="kana-sample" data-hira="だ" data-kata="ダ">だ</span></label></div>
@@ -963,7 +962,7 @@
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'kana.htm';
+            a.download = 'kana-practice.htm';
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
