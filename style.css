@@ -438,6 +438,39 @@ details[open] summary {
     50% { opacity: 1; }
 }
 
+.project-item {
+    margin-bottom: 30px;
+    padding-left: 30px;
+    position: relative;
+}
+
+.project-item h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.project-item h3 a {
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid transparent;
+}
+
+.project-item h3 a:hover {
+    color: var(--accent-color);
+    border-bottom: 1px solid var(--accent-color);
+    text-shadow: 0 0 10px rgba(255, 68, 68, 0.4);
+}
+
+.project-item .summary-text {
+    font-size: 0.9rem;
+    color: #aaa;
+    max-width: 600px;
+    line-height: 1.6;
+}
+
 footer {
     margin-top: 150px;
     border-top: 1px solid #222;
