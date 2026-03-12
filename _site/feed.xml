@@ -1,29 +1,20 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-03-12T18:02:11+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">John Nichols Ranara</title><subtitle>Solution-oriented programmer with 10 years of experience in creating software  for desktop platforms, mobile development, and hardware.</subtitle><entry><title type="html">Getting Started with Jekyll</title><link href="http://localhost:4000/tutorial/jekyll/2026/03/12/getting-started-with-jekyll.html" rel="alternate" type="text/html" title="Getting Started with Jekyll" /><published>2026-03-12T10:00:00+08:00</published><updated>2026-03-12T10:00:00+08:00</updated><id>http://localhost:4000/tutorial/jekyll/2026/03/12/getting-started-with-jekyll</id><content type="html" xml:base="http://localhost:4000/tutorial/jekyll/2026/03/12/getting-started-with-jekyll.html">&lt;p&gt;Welcome to my new blog! This is the first post in my Jekyll-powered site hosted on GitHub Pages.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-03-12T19:31:00+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">John Nichols Ranara</title><subtitle>Solution-oriented programmer with 10 years of experience in creating software  for desktop platforms, mobile development, and hardware.</subtitle><entry><title type="html">The Amira Elfeky Blend</title><link href="http://localhost:4000/music/thoughts/2026/03/12/amira-elfeky-blend/" rel="alternate" type="text/html" title="The Amira Elfeky Blend" /><published>2026-03-12T07:26:00+08:00</published><updated>2026-03-12T07:26:00+08:00</updated><id>http://localhost:4000/music/thoughts/2026/03/12/amira-elfeky-blend</id><content type="html" xml:base="http://localhost:4000/music/thoughts/2026/03/12/amira-elfeky-blend/">&lt;p&gt;If you’ve heard &lt;strong&gt;Amira Elfeky’s&lt;/strong&gt; track &lt;em&gt;“Everything I Do Is For You,”&lt;/em&gt; you probably felt a massive wave of nostalgia hit you. It’s getting a lot of buzz lately, and for good reason—it sounds like the perfect “lost track” from the early 2000s.&lt;/p&gt;
 
-&lt;h2 id=&quot;why-jekyll&quot;&gt;Why Jekyll?&lt;/h2&gt;
+&lt;p&gt;Here’s why it feels so much like a mix of &lt;strong&gt;Evanescence&lt;/strong&gt; and &lt;strong&gt;Linkin Park&lt;/strong&gt;:&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt; is a simple, blog-aware, static site generator perfect for personal, project, or organization sites. Think of it like a file-based CMS, without all the complexity. Jekyll takes your content, renders Markdown or Liquid templates, and spits out a complete, static website ready to be served by Apache, Nginx or another web server.&lt;/p&gt;
+&lt;h2 id=&quot;the-ghostly-vocals-the-evanescence-side&quot;&gt;The “Ghostly” Vocals (The Evanescence Side)&lt;/h2&gt;
+&lt;p&gt;Amira has that haunting, airy voice that reminds everyone of Amy Lee. It’s pretty and soft, but it feels heavy with emotion. Like the best Evanescence songs, she sounds like she’s singing from the middle of a dark, foggy room. It’s moody, dramatic, and really catches your ear.&lt;/p&gt;
 
-&lt;h2 id=&quot;key-features&quot;&gt;Key Features&lt;/h2&gt;
+&lt;h2 id=&quot;the-heavy-crunch-the-linkin-park-side&quot;&gt;The Heavy Crunch (The Linkin Park Side)&lt;/h2&gt;
+&lt;p&gt;While her voice is soft, the music behind her is loud and gritty. The guitars have that thick, distorted “crunch” that was all over Linkin Park’s Meteora album. It has that same “quiet verse, explosive chorus” energy that makes you want to turn the volume all the way up.&lt;/p&gt;
 
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;Simple&lt;/strong&gt;: No more databases, comment moderation, or pesky updates to install—just your content.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Static&lt;/strong&gt;: Markdown, Liquid, HTML &amp;amp; CSS go in. Static sites come out ready for hosting.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Blog-aware&lt;/strong&gt;: Permalinks, categories, pages, posts, and custom layouts are all first-class citizens.&lt;/li&gt;
-&lt;/ul&gt;
+&lt;h2 id=&quot;why-it-blends-so-well&quot;&gt;Why it Blends So Well&lt;/h2&gt;
+&lt;p&gt;It works because it balances beauty and noise.&lt;/p&gt;
 
-&lt;h2 id=&quot;getting-started&quot;&gt;Getting Started&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;The Beauty&lt;/strong&gt;: The sad melodies and “dreamy” singing.&lt;/p&gt;
 
-&lt;p&gt;To get started with Jekyll, you’ll need to:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The Noise&lt;/strong&gt;: The heavy drums and loud, fuzzy guitars.&lt;/p&gt;
 
-&lt;ol&gt;
-  &lt;li&gt;Install Ruby (version 2.5.0 or higher)&lt;/li&gt;
-  &lt;li&gt;Install Bundler: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;gem install bundler&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;Clone your repository&lt;/li&gt;
-  &lt;li&gt;Run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bundle install&lt;/code&gt; to install dependencies&lt;/li&gt;
-  &lt;li&gt;Run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bundle exec jekyll serve&lt;/code&gt; to start the development server&lt;/li&gt;
-&lt;/ol&gt;
+&lt;p&gt;It’s the kind of song that’s perfect for a late-night drive or just staring out the window when you’re feeling a bit deep. If you grew up listening to Nu-Metal or Alt-Rock, this song is going to feel like home.&lt;/p&gt;
 
-&lt;p&gt;That’s it! Your site will be available at &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http://localhost:4000&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Stay tuned for more posts about web development, programming, and technology!&lt;/p&gt;</content><author><name>0xb01</name></author><category term="Tutorial" /><category term="Jekyll" /><category term="jekyll" /><category term="static-site" /><category term="github-pages" /><summary type="html">Welcome to my new blog! This is the first post in my Jekyll-powered site hosted on GitHub Pages.</summary></entry></feed>
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/dEU90cHWKMk?si=_USel0IdaNMKO0MI&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&quot; referrerpolicy=&quot;strict-origin-when-cross-origin&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;</content><author><name>0xb01</name></author><category term="Music" /><category term="Thoughts" /><category term="music" /><category term="thoughts" /><summary type="html">If you’ve heard Amira Elfeky’s track “Everything I Do Is For You,” you probably felt a massive wave of nostalgia hit you. It’s getting a lot of buzz lately, and for good reason—it sounds like the perfect “lost track” from the early 2000s.</summary></entry></feed>
