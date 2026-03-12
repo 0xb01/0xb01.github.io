@@ -1,4 +1,4 @@
-# John Nichols Ranara's Portfolio
+# Portfolio
 
 This is my personal portfolio website built with Jekyll and hosted on GitHub Pages.
 
