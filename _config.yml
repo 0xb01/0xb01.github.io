@@ -1,0 +1,51 @@
+title: John Nichols Ranara
+email: 0xb01@proton.me
+description: >-
+  Solution-oriented programmer with 10 years of experience in creating software 
+  for desktop platforms, mobile development, and hardware.
+baseurl: ""
+url: "https://0xb01.github.io"
+twitter_username: 0xb03
+github_username: 0xb01
+linkedin_username: jnr01
+
+# Build settings
+markdown: kramdown
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Permalink settings for clean URLs
+permalink: pretty
+
+# Exclude from processing
+exclude:
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+
+# Collections
+collections:
+  projects:
+    output: true
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+  - scope:
+      path: ""
+      type: "projects"
+    values:
+      layout: "default"

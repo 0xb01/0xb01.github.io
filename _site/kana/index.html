@@ -1,0 +1,984 @@
+<!DOCTYPE html PUBLIC "wow 67 42069" "http://example.com/wala-lang.dtd">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kana Practice</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#1e1e2e">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%23667eea' width='100' height='100' rx='15'/%3E%3Ctext y='50%' x='50%' dy='.35em' text-anchor='middle' font-size='50'%3E🎌%3C/text%3E%3C/svg%3E">
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            background: #1e1e2e;
+            min-height: 100vh;
+        }
+        /* Progress bar overlay */
+        .progress-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: #3a3a5a;
+            z-index: 1000;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s;
+        }
+        /* Pages */
+        .page { display: none; }
+        .page.active { display: block; }
+        /* Setup & Results pages - centered */
+        .centered-page {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+        }
+        .centered-page.active { display: flex; }
+        .container {
+            background: #2a2a3e;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            max-width: 700px;
+            width: 100%;
+        }
+        /* App buttons (install/download) - bottom center */
+        .app-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #3a3a5a;
+        }
+        .app-btn {
+            padding: 10px 18px;
+            font-size: 14px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .app-btn-install {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .app-btn-download {
+            background: #4a4a6a;
+            color: #e0e0e0;
+        }
+        .app-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+        h1, h2 {
+            text-align: center;
+            color: #e0e0e0;
+        }
+        h1 { margin-bottom: 30px; }
+        h2 { margin-bottom: 20px; }
+        /* Section titles */
+        .section-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #8b85ff;
+            margin: 20px 0 10px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .section-title .title-buttons {
+            display: flex;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+        /* Checkbox grid */
+        .checkbox-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 12px;
+            background: #3a3a5a;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .checkbox-item:hover { background: #4a4a6a; }
+        .checkbox-item input {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        .checkbox-item label {
+            font-size: 14px;
+            cursor: pointer;
+            flex: 1;
+            color: #e0e0e0;
+        }
+        .kana-sample {
+            font-size: 18px;
+            color: #8b85ff;
+            font-weight: bold;
+        }
+        .row-label {
+            font-weight: bold;
+            color: #e0e0e0;
+        }
+        /* Buttons */
+        button {
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.1s, box-shadow 0.2s;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .btn-primary.btn-small {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .btn-secondary {
+            background: #4a4a6a;
+            color: #e0e0e0;
+            margin-top: 0;
+        }
+        .btn-small {
+            width: auto;
+            padding: 8px 16px;
+            font-size: 14px;
+            min-width: 100px;
+        }
+        .select-all-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        .select-all-row button {
+            flex: 1;
+            min-width: 120px;
+            padding: 10px;
+            font-size: 14px;
+        }
+        /* Practice page layout */
+        .practice-layout {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        /* Stats at top */
+        .practice-stats {
+            display: flex;
+            justify-content: space-around;
+            padding: 15px 25px;
+            background: #2a2a3e;
+            border-radius: 0 0 12px 12px;
+            margin-bottom: 20px;
+        }
+        .stat { text-align: center; }
+        .stat-value {
+            font-size: 28px;
+            font-weight: bold;
+            color: #8b85ff;
+        }
+        .stat-label {
+            font-size: 11px;
+            color: #a0a0a0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        /* Main content */
+        .practice-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 20px 40px 20px;
+        }
+        .character-display {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .character {
+            font-size: 140px;
+            color: #e0e0e0;
+            line-height: 1;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+        .character-type {
+            font-size: 14px;
+            color: #a0a0a0;
+            margin-top: 15px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        /* Input section */
+        .input-wrapper {
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        #answerInput {
+            width: 100%;
+            padding: 18px 25px;
+            font-size: 20px;
+            border: 2px solid #444466;
+            border-radius: 12px;
+            outline: none;
+            transition: border-color 0.2s;
+            background: transparent;
+            color: #e0e0e0;
+            text-align: center;
+        }
+        #answerInput:focus { border-color: #8b85ff; }
+        #answerInput::placeholder { color: #555577; }
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            border: 2px solid #8b85ff;
+            border-radius: 12px;
+            cursor: pointer;
+            background: transparent;
+            color: #8b85ff;
+            transition: all 0.2s;
+        }
+        .submit-btn:hover {
+            background: #8b85ff;
+            color: #1e1e2e;
+        }
+        /* Multiple choice for reverse mode */
+        .multiple-choice {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            max-width: 500px;
+            margin-top: 20px;
+        }
+        .choice-btn {
+            padding: 15px 25px;
+            font-size: 24px;
+            border: 2px solid #444466;
+            border-radius: 12px;
+            background: #3a3a5a;
+            color: #e0e0e0;
+            cursor: pointer;
+            transition: all 0.2s;
+            min-width: 80px;
+        }
+        .choice-btn:hover {
+            border-color: #8b85ff;
+            background: #4a4a6a;
+            transform: translateY(-2px);
+        }
+        .choice-btn.correct {
+            border-color: #4caf50;
+            background: #1b4332;
+        }
+        .choice-btn.incorrect {
+            border-color: #f44336;
+            background: #5c1a1a;
+        }
+        /* Exit button */
+        .exit-btn {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: auto;
+            padding: 12px 25px;
+            font-size: 14px;
+            background: #4a4a6a;
+            color: #e0e0e0;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .exit-btn:hover {
+            background: #ff6b6b;
+            transform: translateY(-2px);
+        }
+        /* Results */
+        .results-container {
+            background: #2a2a3e;
+            border-radius: 15px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+        .score {
+            font-size: 48px;
+            color: #8b85ff;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .result-message {
+            font-size: 18px;
+            color: #a0a0a0;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .results-stats {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+            background: #3a3a5a;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+        /* Mobile */
+        @media (max-width: 600px) {
+            .app-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            .app-btn {
+                width: 100%;
+                max-width: 200px;
+                justify-content: center;
+            }
+            .character { font-size: 100px; }
+            .practice-stats { padding: 10px 15px; }
+            .stat-value { font-size: 20px; }
+            .stat-label { font-size: 9px; }
+            .section-title { flex-direction: column; align-items: flex-start; }
+            .section-title .title-buttons { width: 100%; }
+            .score { font-size: 36px; }
+            .exit-btn { bottom: 15px; right: 15px; padding: 10px 18px; font-size: 13px; }
+            .container { padding: 20px; margin: 0; }
+            .checkbox-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Setup Page -->
+    <div class="centered-page active" id="setupPage">
+        <div class="container">
+            <h1>🎌 Kana Practice</h1>
+            
+            <div class="section-title">Practice Mode</div>
+            <div class="checkbox-grid" style="margin-bottom: 20px;">
+                <div class="checkbox-item">
+                    <input type="checkbox" id="normalMode" checked>
+                    <label for="normalMode">
+                        <span style="color: #8b85ff; font-weight: bold;">→</span> Character to Romaji (type)
+                    </label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="reverseTypeMode">
+                    <label for="reverseTypeMode">
+                        <span style="color: #8b85ff; font-weight: bold;">←</span> Romaji to Character (type)
+                    </label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="reverseMultiMode">
+                    <label for="reverseMultiMode">
+                        <span style="color: #8b85ff; font-weight: bold;">←</span> Romaji to Character (choice)
+                    </label>
+                </div>
+            </div>
+            
+            <div class="section-title">Character Type</div>
+            <div class="checkbox-grid">
+                <div class="checkbox-item">
+                    <input type="checkbox" id="hiraganaCheck" checked onchange="updateKanaSamples()">
+                    <label for="hiraganaCheck">
+                        <span class="kana-sample">あいうえお</span> Hiragana
+                    </label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="katakanaCheck" checked onchange="updateKanaSamples()">
+                    <label for="katakanaCheck">
+                        <span class="kana-sample">アイウエオ</span> Katakana
+                    </label>
+                </div>
+            </div>
+
+            <div class="section-title">
+                <span>Character Rows</span>
+                <div class="title-buttons">
+                    <button class="btn-primary btn-small" onclick="toggleAllRows(true)">Select All</button>
+                    <button class="btn-secondary btn-small" onclick="toggleAllRows(false)">Clear All</button>
+                </div>
+            </div>
+            
+            <div class="select-all-row">
+                <button class="btn-secondary btn-small" onclick="selectRows(['a', 'k', 's', 't', 'n', 'h', 'm', 'y', 'r', 'w'])">All Basic</button>
+                <button class="btn-secondary btn-small" onclick="selectRows(['g', 'z', 'd', 'b', 'p'])">All Voiced</button>
+            </div>
+
+            <div class="checkbox-grid" id="rowCheckboxes">
+                <div class="checkbox-item"><input type="checkbox" id="rowA" value="a" checked><label for="rowA"><span class="row-label">A </span><span class="kana-sample" data-hira="あ" data-kata="ア">あ</span></label></div>
+                <div class="checkbox-item"><input type="checkbox" id="rowK" value="k" checked><label for="rowK"><span class="row-label">K </span><span class="kana-sample" data-hira="か" data-kata="カ">か</span></label></div>
+                <div class="checkbox-item"><input type="checkbox" id="rowS" value="s" checked><label for="rowS"><span class="row-label">S </span><span class="kana-sample" data-hira="さ" data-kata="サ">さ</span></label></div>
+                <div class="checkbox-item"><input type="checkbox" id="rowT" value="t" checked><label for="rowT"><span class="row-label">T </span><span class="kana-sample" data-hira="た" data-kata="タ">た</span></label></div>
+                <div class="checkbox-item"><input type="checkbox" id="rowN" value="n" checked><label for="rowN"><span class="row-label">N </span><span class="kana-sample" data-hira="な" data-kata="ナ">な</span></label></div>
+                <div class="checkbox-item"><input type="checkbox" id="rowH" value="h" checked><label for="rowH"><span class="row-label">H </span><span class="kana-sample" data-hira="は" data-kata="ハ">は</span></label></div>
+                <div class="checkbox-item"><input type="checkbox" id="rowM" value="m" checked><label for="rowM"><span class="row-label">M </span><span class="kana-sample" data-hira="ま" data-kata="マ">ま</span></label></div>
+                <div class="checkbox-item"><input type="checkbox" id="rowY" value="y" checked><label for="rowY"><span class="row-label">Y </span><span class="kana-sample" data-hira="や" data-kata="ヤ">や</span></label></div>
+                <div class="checkbox-item"><input type="checkbox" id="rowR" value="r" checked><label for="rowR"><span class="row-label">R </span><span class="kana-sample" data-hira="ら" data-kata="ラ">ら</span></label></div>
+                <div class="checkbox-item"><input type="checkbox" id="rowW" value="w" checked><label for="rowW"><span class="row-label">W </span><span class="kana-sample" data-hira="わ" data-kata="ワ">わ</span></label></div>
+                <div class="checkbox-item"><input type="checkbox" id="rowG" value="g" checked><label for="rowG"><span class="row-label">G </span><span class="kana-sample" data-hira="が" data-kata="ガ">が</span></label></div>
+                <div class="checkbox-item"><input type="checkbox" id="rowZ" value="z" checked><label for="rowZ"><span class="row-label">Z </span><span class="kana-sample" data-hira="ざ" data-kata="ザ">ざ</span></label></div>
+                <div class="checkbox-item"><input type="checkbox" id="rowD" value="d" checked><label for="rowD"><span class="row-label">D </span><span class="kana-sample" data-hira="だ" data-kata="ダ">だ</span></label></div>
+                <div class="checkbox-item"><input type="checkbox" id="rowB" value="b" checked><label for="rowB"><span class="row-label">B </span><span class="kana-sample" data-hira="ば" data-kata="バ">ば</span></label></div>
+                <div class="checkbox-item"><input type="checkbox" id="rowP" value="p" checked><label for="rowP"><span class="row-label">P </span><span class="kana-sample" data-hira="ぱ" data-kata="パ">ぱ</span></label></div>
+            </div>
+
+            <button class="btn-primary" onclick="startPractice()" style="margin-top: 20px;">Start Practice</button>
+            <div class="app-buttons">
+                <button class="app-btn app-btn-download" onclick="downloadApp()" title="Download HTML file">
+                    ⬇️ Download
+                </button>
+                <button class="app-btn app-btn-install" onclick="installApp()" title="Add to home screen">
+                    📲 Install
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Practice Page -->
+    <div class="page" id="practicePage">
+        <div class="progress-overlay"><div class="progress-fill" id="progressFill"></div></div>
+        <div class="practice-layout">
+            <div class="practice-stats">
+                <div class="stat"><div class="stat-value" id="correctCount">0</div><div class="stat-label">Correct</div></div>
+                <div class="stat"><div class="stat-value" id="wrongCount">0</div><div class="stat-label">Wrong</div></div>
+                <div class="stat"><div class="stat-value" id="remainingCount">0</div><div class="stat-label">Remaining</div></div>
+            </div>
+            <div class="practice-content">
+                <div class="character-display">
+                    <div class="character" id="characterDisplay">あ</div>
+                    <div class="character-type" id="characterType">Hiragana</div>
+                </div>
+                <div class="input-wrapper" id="inputWrapper">
+                    <input type="text" id="answerInput" placeholder="Type pronunciation (e.g., ka)" autocomplete="off">
+                    <button class="submit-btn" onclick="checkAnswer()">Submit</button>
+                </div>
+                <div class="multiple-choice" id="multipleChoice" style="display: none;"></div>
+            </div>
+        </div>
+        <button class="exit-btn" onclick="endPractice()">✕ Exit</button>
+    </div>
+
+    <!-- Results Page -->
+    <div class="centered-page" id="resultsPage">
+        <div class="results-container">
+            <h2>Practice Complete!</h2>
+            <div class="score" id="finalScore">80%</div>
+            <p class="result-message" id="resultMessage">Great job! Keep practicing!</p>
+            <div class="results-stats">
+                <div class="stat"><div class="stat-value" id="finalCorrect">0</div><div class="stat-label">Correct</div></div>
+                <div class="stat"><div class="stat-value" id="finalWrong">0</div><div class="stat-label">Wrong</div></div>
+                <div class="stat"><div class="stat-value" id="finalTotal">0</div><div class="stat-label">Total</div></div>
+            </div>
+            <div id="wrongAnswersSection" style="text-align: left; margin: 20px 0; max-height: 300px; overflow-y: auto;">
+                <h3 style="color: #ff6b6b; margin-bottom: 15px;">Characters to Review:</h3>
+                <div id="wrongAnswersList" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px;"></div>
+            </div>
+            <button class="btn-primary" onclick="resetPractice()">Practice Again</button>
+        </div>
+    </div>
+
+    <script>
+        const hiraganaByRow = {
+            'a': {'あ': 'a', 'い': 'i', 'う': 'u', 'え': 'e', 'お': 'o'},
+            'k': {'か': 'ka', 'き': 'ki', 'く': 'ku', 'け': 'ke', 'こ': 'ko'},
+            's': {'さ': 'sa', 'し': 'shi', 'す': 'su', 'せ': 'se', 'そ': 'so'},
+            't': {'た': 'ta', 'ち': 'chi', 'つ': 'tsu', 'て': 'te', 'と': 'to'},
+            'n': {'な': 'na', 'に': 'ni', 'ぬ': 'nu', 'ね': 'ne', 'の': 'no'},
+            'h': {'は': 'ha', 'ひ': 'hi', 'ふ': 'fu', 'へ': 'he', 'ほ': 'ho'},
+            'm': {'ま': 'ma', 'み': 'mi', 'む': 'mu', 'め': 'me', 'も': 'mo'},
+            'y': {'や': 'ya', 'ゆ': 'yu', 'よ': 'yo'},
+            'r': {'ら': 'ra', 'り': 'ri', 'る': 'ru', 'れ': 're', 'ろ': 'ro'},
+            'w': {'わ': 'wa', 'を': 'wo', 'ん': 'n'},
+            'g': {'が': 'ga', 'ぎ': 'gi', 'ぐ': 'gu', 'げ': 'ge', 'ご': 'go'},
+            'z': {'ざ': 'za', 'じ': 'ji', 'ず': 'zu', 'ぜ': 'ze', 'ぞ': 'zo'},
+            'd': {'だ': 'da', 'ぢ': 'ji', 'づ': 'zu', 'で': 'de', 'ど': 'do'},
+            'b': {'ば': 'ba', 'び': 'bi', 'ぶ': 'bu', 'べ': 'be', 'ぼ': 'bo'},
+            'p': {'ぱ': 'pa', 'ぴ': 'pi', 'ぷ': 'pu', 'ぺ': 'pe', 'ぽ': 'po'}
+        };
+
+        const katakanaByRow = {
+            'a': {'ア': 'a', 'イ': 'i', 'ウ': 'u', 'エ': 'e', 'オ': 'o'},
+            'k': {'カ': 'ka', 'キ': 'ki', 'ク': 'ku', 'ケ': 'ke', 'コ': 'ko'},
+            's': {'サ': 'sa', 'シ': 'shi', 'ス': 'su', 'セ': 'se', 'ソ': 'so'},
+            't': {'タ': 'ta', 'チ': 'chi', 'ツ': 'tsu', 'テ': 'te', 'ト': 'to'},
+            'n': {'ナ': 'na', 'ニ': 'ni', 'ヌ': 'nu', 'ネ': 'ne', 'ノ': 'no'},
+            'h': {'ハ': 'ha', 'ヒ': 'hi', 'フ': 'fu', 'ヘ': 'he', 'ホ': 'ho'},
+            'm': {'マ': 'ma', 'ミ': 'mi', 'ム': 'mu', 'メ': 'me', 'モ': 'mo'},
+            'y': {'ヤ': 'ya', 'ユ': 'yu', 'ヨ': 'yo'},
+            'r': {'ラ': 'ra', 'リ': 'ri', 'ル': 'ru', 'レ': 're', 'ロ': 'ro'},
+            'w': {'ワ': 'wa', 'ヲ': 'wo', 'ン': 'n'},
+            'g': {'ガ': 'ga', 'ギ': 'gi', 'グ': 'gu', 'ゲ': 'ge', 'ゴ': 'go'},
+            'z': {'ザ': 'za', 'ジ': 'ji', 'ズ': 'zu', 'ゼ': 'ze', 'ゾ': 'zo'},
+            'd': {'ダ': 'da', 'ヂ': 'ji', 'ヅ': 'zu', 'デ': 'de', 'ド': 'do'},
+            'b': {'バ': 'ba', 'ビ': 'bi', 'ブ': 'bu', 'ベ': 'be', 'ボ': 'bo'},
+            'p': {'パ': 'pa', 'ピ': 'pi', 'プ': 'pu', 'ペ': 'pe', 'ポ': 'po'}
+        };
+
+        let practiceQueue = [];
+        let currentIndex = 0;
+        let correct = 0;
+        let wrong = 0;
+        let waitingForNext = false;
+        let wrongAnswers = [];
+        let reverseMode = 'none'; // 'none', 'type', 'multiple', 'mixed'
+        let currentMultipleChoice = [];
+
+        function shuffle(array) {
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        function toggleAllRows(checked) {
+            document.querySelectorAll('#rowCheckboxes input[type="checkbox"]').forEach(cb => cb.checked = checked);
+        }
+
+        function selectRows(rows) {
+            toggleAllRows(false);
+            rows.forEach(row => {
+                const cb = document.getElementById('row' + row.toUpperCase());
+                if (cb) cb.checked = true;
+            });
+        }
+
+        function updateKanaSamples() {
+            const hiraganaCheck = document.getElementById('hiraganaCheck');
+            const katakanaCheck = document.getElementById('katakanaCheck');
+            
+            // Update all kana samples in row checkboxes
+            document.querySelectorAll('#rowCheckboxes .kana-sample').forEach(sample => {
+                const hira = sample.getAttribute('data-hira');
+                const kata = sample.getAttribute('data-kata');
+                
+                if (hiraganaCheck.checked && katakanaCheck.checked) {
+                    // Both selected: show both
+                    sample.textContent = hira + kata;
+                } else if (hiraganaCheck.checked) {
+                    // Only hiragana
+                    sample.textContent = hira;
+                } else if (katakanaCheck.checked) {
+                    // Only katakana
+                    sample.textContent = kata;
+                } else {
+                    // Neither - default to hiragana
+                    sample.textContent = hira;
+                }
+            });
+        }
+
+        function startPractice() {
+            const useHiragana = document.getElementById('hiraganaCheck').checked;
+            const useKatakana = document.getElementById('katakanaCheck').checked;
+            const normalMode = document.getElementById('normalMode').checked;
+            const reverseTypeMode = document.getElementById('reverseTypeMode').checked;
+            const reverseMultiMode = document.getElementById('reverseMultiMode').checked;
+
+            if (!useHiragana && !useKatakana) {
+                alert('Please select at least one character type!');
+                return;
+            }
+
+            if (!normalMode && !reverseTypeMode && !reverseMultiMode) {
+                alert('Please select at least one practice mode!');
+                return;
+            }
+
+            const selectedRows = [];
+            document.querySelectorAll('#rowCheckboxes input[type="checkbox"]:checked').forEach(cb => {
+                selectedRows.push(cb.value);
+            });
+
+            if (selectedRows.length === 0) {
+                alert('Please select at least one character row!');
+                return;
+            }
+
+            practiceQueue = [];
+
+            // Add normal mode items
+            if (normalMode) {
+                if (useHiragana) {
+                    selectedRows.forEach(row => {
+                        const rowData = hiraganaByRow[row];
+                        if (rowData) {
+                            for (const [kana, romaji] of Object.entries(rowData)) {
+                                practiceQueue.push({ character: kana, answer: romaji, type: useHiragana && useKatakana ? 'Hiragana' : '', mode: 'normal' });
+                            }
+                        }
+                    });
+                }
+                if (useKatakana) {
+                    selectedRows.forEach(row => {
+                        const rowData = katakanaByRow[row];
+                        if (rowData) {
+                            for (const [kana, romaji] of Object.entries(rowData)) {
+                                practiceQueue.push({ character: kana, answer: romaji, type: useHiragana && useKatakana ? 'Katakana' : '', mode: 'normal' });
+                            }
+                        }
+                    });
+                }
+            }
+
+            // Add reverse type mode items
+            if (reverseTypeMode) {
+                if (useHiragana) {
+                    selectedRows.forEach(row => {
+                        const rowData = hiraganaByRow[row];
+                        if (rowData) {
+                            for (const [kana, romaji] of Object.entries(rowData)) {
+                                practiceQueue.push({ character: kana, answer: romaji, type: useHiragana && useKatakana ? 'Hiragana' : '', mode: 'reverse_type' });
+                            }
+                        }
+                    });
+                }
+                if (useKatakana) {
+                    selectedRows.forEach(row => {
+                        const rowData = katakanaByRow[row];
+                        if (rowData) {
+                            for (const [kana, romaji] of Object.entries(rowData)) {
+                                practiceQueue.push({ character: kana, answer: romaji, type: useHiragana && useKatakana ? 'Katakana' : '', mode: 'reverse_type' });
+                            }
+                        }
+                    });
+                }
+            }
+
+            // Add reverse multiple choice mode items
+            if (reverseMultiMode) {
+                if (useHiragana) {
+                    selectedRows.forEach(row => {
+                        const rowData = hiraganaByRow[row];
+                        if (rowData) {
+                            for (const [kana, romaji] of Object.entries(rowData)) {
+                                practiceQueue.push({ character: kana, answer: romaji, type: useHiragana && useKatakana ? 'Hiragana' : '', mode: 'reverse_multi' });
+                            }
+                        }
+                    });
+                }
+                if (useKatakana) {
+                    selectedRows.forEach(row => {
+                        const rowData = katakanaByRow[row];
+                        if (rowData) {
+                            for (const [kana, romaji] of Object.entries(rowData)) {
+                                practiceQueue.push({ character: kana, answer: romaji, type: useHiragana && useKatakana ? 'Katakana' : '', mode: 'reverse_multi' });
+                            }
+                        }
+                    });
+                }
+            }
+
+            practiceQueue = shuffle(practiceQueue);
+            currentIndex = 0;
+            correct = 0;
+            wrong = 0;
+            waitingForNext = false;
+            wrongAnswers = [];
+
+            document.getElementById('setupPage').classList.remove('active');
+            document.getElementById('practicePage').classList.add('active');
+
+            showCharacter();
+        }
+
+        function showCharacter() {
+            if (currentIndex >= practiceQueue.length) {
+                endPractice();
+                return;
+            }
+
+            const current = practiceQueue[currentIndex];
+            const inputWrapper = document.getElementById('inputWrapper');
+            const multipleChoice = document.getElementById('multipleChoice');
+            const characterDisplay = document.getElementById('characterDisplay');
+            const characterType = document.getElementById('characterType');
+            const answerInput = document.getElementById('answerInput');
+
+            if (current.mode === 'reverse_multi') {
+                // Reverse multiple choice: show romaji, select kana from options
+                characterDisplay.textContent = current.answer;
+                characterDisplay.style.fontSize = '60px';
+                characterType.textContent = 'Romaji';
+                inputWrapper.style.display = 'none';
+                
+                generateMultipleChoice(current);
+                multipleChoice.style.display = 'flex';
+            } else if (current.mode === 'reverse_type') {
+                // Reverse type: show romaji, type the kana character
+                characterDisplay.textContent = current.answer;
+                characterDisplay.style.fontSize = '60px';
+                characterType.textContent = 'Romaji - Type the character';
+                inputWrapper.style.display = 'flex';
+                multipleChoice.style.display = 'none';
+                answerInput.value = '';
+                answerInput.placeholder = 'Type the kana character (e.g., あ)';
+                answerInput.focus();
+            } else {
+                // Normal mode: show kana, type romaji
+                characterDisplay.textContent = current.character;
+                characterDisplay.style.fontSize = '140px';
+                characterType.textContent = current.type || 'Kana';
+                inputWrapper.style.display = 'flex';
+                multipleChoice.style.display = 'none';
+                answerInput.value = '';
+                answerInput.placeholder = 'Type pronunciation (e.g., ka)';
+                answerInput.focus();
+            }
+            
+            waitingForNext = false;
+            updateStats();
+        }
+
+        function generateMultipleChoice(correctItem) {
+            const multipleChoice = document.getElementById('multipleChoice');
+            
+            // Get all possible answers from same type (hiragana or katakana)
+            const allItems = practiceQueue.filter(item => 
+                item.type === correctItem.type || (correctItem.type === '' && true)
+            );
+            
+            // Shuffle and pick 3 wrong answers
+            const shuffled = shuffle([...allItems]);
+            const wrongChoices = shuffled.filter(item => item.character !== correctItem.character).slice(0, 3);
+            
+            // Combine correct answer with wrong choices
+            currentMultipleChoice = shuffle([correctItem, ...wrongChoices]);
+            
+            multipleChoice.innerHTML = currentMultipleChoice.map((item, index) => 
+                `<button class="choice-btn" onclick="selectChoice(${index})">${item.character}</button>`
+            ).join('');
+        }
+
+        function selectChoice(index) {
+            if (waitingForNext) return;
+            
+            const selected = currentMultipleChoice[index];
+            const current = practiceQueue[currentIndex];
+            const buttons = document.querySelectorAll('.choice-btn');
+            
+            waitingForNext = true;
+            
+            if (selected.character === current.character) {
+                correct++;
+                buttons[index].classList.add('correct');
+            } else {
+                wrong++;
+                wrongAnswers.push({ 
+                    character: current.character, 
+                    answer: current.answer, 
+                    type: current.type, 
+                    mode: current.mode,
+                    userTyped: selected.character
+                });
+                buttons[index].classList.add('incorrect');
+                
+                // Highlight correct answer
+                const correctIndex = currentMultipleChoice.findIndex(item => item.character === current.character);
+                if (correctIndex >= 0) {
+                    buttons[correctIndex].classList.add('correct');
+                }
+            }
+            
+            updateStats();
+            
+            currentIndex++;
+            setTimeout(() => {
+                showCharacter();
+            }, 500);
+        }
+
+        function checkAnswer() {
+            if (waitingForNext) return;
+
+            const input = document.getElementById('answerInput');
+            const current = practiceQueue[currentIndex];
+            const userAnswer = input.value.trim();
+
+            if (!userAnswer) return;
+
+            let isCorrect = false;
+            let userTyped = userAnswer;
+            
+            if (current.mode === 'reverse_type') {
+                // Reverse type: user typed kana, compare with character
+                isCorrect = (userAnswer === current.character);
+            } else {
+                // Normal mode: user typed romaji, compare with answer
+                isCorrect = (userAnswer.toLowerCase() === current.answer.toLowerCase());
+                userTyped = userAnswer.toLowerCase();
+            }
+
+            if (isCorrect) {
+                correct++;
+            } else {
+                wrong++;
+                wrongAnswers.push({ 
+                    character: current.character, 
+                    answer: current.answer, 
+                    type: current.type, 
+                    mode: current.mode,
+                    userTyped: userTyped
+                });
+            }
+
+            updateStats();
+            waitingForNext = true;
+            input.value = '';
+
+            currentIndex++;
+            setTimeout(() => {
+                showCharacter();
+            }, 300);
+        }
+
+        function updateStats() {
+            document.getElementById('correctCount').textContent = correct;
+            document.getElementById('wrongCount').textContent = wrong;
+            document.getElementById('remainingCount').textContent = practiceQueue.length - currentIndex;
+
+            const progress = (currentIndex / practiceQueue.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+        }
+
+        function endPractice() {
+            document.getElementById('practicePage').classList.remove('active');
+            document.getElementById('resultsPage').classList.add('active');
+
+            const total = correct + wrong;
+            const percentage = total > 0 ? Math.round((correct / total) * 100) : 0;
+
+            document.getElementById('finalScore').textContent = percentage + '%';
+            document.getElementById('finalCorrect').textContent = correct;
+            document.getElementById('finalWrong').textContent = wrong;
+            document.getElementById('finalTotal').textContent = total;
+
+            const wrongAnswersSection = document.getElementById('wrongAnswersSection');
+            const wrongAnswersList = document.getElementById('wrongAnswersList');
+
+            if (wrongAnswers.length > 0) {
+                wrongAnswersSection.style.display = 'block';
+                wrongAnswersList.innerHTML = wrongAnswers.map(item => {
+                    let modeLabel = '';
+                    let expectedLabel = '';
+                    let userLabel = '';
+                    
+                    if (item.mode === 'reverse_type') {
+                        modeLabel = 'Romaji→Kana (type)';
+                        expectedLabel = 'Character';
+                        userLabel = 'You typed';
+                    } else if (item.mode === 'reverse_multi') {
+                        modeLabel = 'Romaji→Kana (choice)';
+                        expectedLabel = 'Character';
+                        userLabel = 'You chose';
+                    } else {
+                        modeLabel = 'Kana→Romaji';
+                        expectedLabel = 'Romaji';
+                        userLabel = 'You typed';
+                    }
+                    
+                    return `<div style="background: #3a3a5a; padding: 10px; border-radius: 8px; text-align: center;">
+                        <div style="font-size: 11px; color: #8b85ff; margin-bottom: 5px;">${modeLabel}</div>
+                        <div style="font-size: 32px; color: #e0e0e0;">${item.character}</div>
+                        <div style="font-size: 12px; color: #a0a0a0; margin: 5px 0;">${item.type}</div>
+                        <div style="font-size: 13px; color: #74c69d; margin: 5px 0;">${expectedLabel}: <strong>${item.answer}</strong></div>
+                        <div style="font-size: 13px; color: #ff6b6b;">${userLabel}: <strong>${item.userTyped}</strong></div>
+                    </div>`;
+                }).join('');
+            } else {
+                wrongAnswersSection.style.display = 'none';
+            }
+
+            let message = '';
+            if (percentage >= 90) message = '🎉 Excellent! You\'re a kana master!';
+            else if (percentage >= 70) message = '👍 Great job! Keep practicing!';
+            else if (percentage >= 50) message = '📚 Good effort! Practice makes perfect!';
+            else message = '💪 Don\'t give up! Try again!';
+            document.getElementById('resultMessage').textContent = message;
+        }
+
+        function resetPractice() {
+            document.getElementById('resultsPage').classList.remove('active');
+            document.getElementById('setupPage').classList.add('active');
+            wrongAnswers = [];
+            reverseMode = 'none';
+            currentMultipleChoice = [];
+        }
+
+        document.getElementById('answerInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') checkAnswer();
+        });
+
+        // Initialize kana samples on page load
+        updateKanaSamples();
+
+        // Download the HTML file
+        function downloadApp() {
+            const html = document.documentElement.outerHTML;
+            const blob = new Blob([html], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'kana-practice.htm';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Install/Add to home screen
+        function installApp() {
+            // Try PWA install if service worker is available
+            if ('serviceWorker' in navigator) {
+                alert('To install this app:\n\n📱 Mobile: Tap \"Share\" → \"Add to Home Screen\"\n🖥️ Desktop: Click the install icon in your browser address bar');
+            } else {
+                alert('To save this app for offline use:\n\n1. Press Ctrl+S (or Cmd+S on Mac)\n2. Save the page to your device\n3. Open the saved file anytime - it works completely offline!');
+            }
+        }
+    </script>
+</body>
+</html>
