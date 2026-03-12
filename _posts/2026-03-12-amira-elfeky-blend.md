@@ -2,8 +2,8 @@
 layout: post
 title: "The Amira Elfeky Blend"
 date: 2026-03-12 07:26:00 +0800
-categories: [Music, Thoughts]
-tags: [music, thoughts]
+categories: [Music]
+tags: [music]
 author: "banikaz"
 ---
 
@@ -11,10 +11,10 @@ If you’ve heard **Amira Elfeky’s** track *"Everything I Do Is For You,"* you
 
 Here’s why it feels so much like a mix of **Evanescence** and **Linkin Park**:
 
-## The "Ghostly" Vocals (The Evanescence Side)
+## The "Ghostly" Vocals
 Amira has that haunting, airy voice that reminds everyone of Amy Lee. It’s pretty and soft, but it feels heavy with emotion. Like the best Evanescence songs, she sounds like she’s singing from the middle of a dark, foggy room. It’s moody, dramatic, and really catches your ear.
 
-## The Heavy Crunch (The Linkin Park Side)
+## The Heavy Crunch
 While her voice is soft, the music behind her is loud and gritty. The guitars have that thick, distorted "crunch" that was all over Linkin Park’s Meteora album. It has that same "quiet verse, explosive chorus" energy that makes you want to turn the volume all the way up.
 
 ## Why it Blends So Well
