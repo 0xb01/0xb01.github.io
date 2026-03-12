@@ -4,7 +4,7 @@ title: "The Amira Elfeky Blend"
 date: 2026-03-12 07:26:00 +0800
 categories: [Music, Thoughts]
 tags: [music, thoughts]
-author: "0xb01"
+author: "banikaz"
 ---
 
 If you’ve heard **Amira Elfeky’s** track *"Everything I Do Is For You,"* you probably felt a massive wave of nostalgia hit you. It’s getting a lot of buzz lately, and for good reason—it sounds like the perfect "lost track" from the early 2000s.
