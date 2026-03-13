@@ -503,6 +503,35 @@ details[open] summary {
     font-family: var(--font-mono);
 }
 
+.project-link-btn {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: #aaa;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2px 8px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    margin-left: 10px;
+    transition: all 0.2s;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    top: -2px;
+}
+
+.project-link-btn::before {
+    content: "↗ ";
+    margin-right: 4px;
+}
+
+.project-link-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
 .project-item .summary-text {
     font-size: 0.9rem;
     color: #aaa;

@@ -7,9 +7,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=JetBrains+Mono:wght@400;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-    <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="John Nichols Ranara" />
+    <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Banikaz" />
     <!-- Begin Jekyll SEO tag v2.7.1 -->
-<title>The Amira Elfeky Blend | John Nichols Ranara</title>
+<title>The Amira Elfeky Blend | Banikaz</title>
 <meta name="generator" content="Jekyll v3.9.5" />
 <meta property="og:title" content="The Amira Elfeky Blend" />
 <meta name="author" content="banikaz" />
@@ -18,7 +18,7 @@
 <meta property="og:description" content="If you’ve heard Amira Elfeky’s track “Everything I Do Is For You,” you probably felt a massive wave of nostalgia hit you. It’s getting a lot of buzz lately, and for good reason—it sounds like the perfect “lost track” from the early 2000s." />
 <link rel="canonical" href="http://localhost:4000/music/2026/03/12/amira-elfeky-blend/" />
 <meta property="og:url" content="http://localhost:4000/music/2026/03/12/amira-elfeky-blend/" />
-<meta property="og:site_name" content="John Nichols Ranara" />
+<meta property="og:site_name" content="Banikaz" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2026-03-12T07:26:00+08:00" />
 <meta name="twitter:card" content="summary" />
@@ -87,5 +87,22 @@
     </p>
 </footer>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({startOnLoad:false, theme:'dark'});
+        
+        // Convert kramdown code blocks to mermaid divs
+        document.addEventListener('DOMContentLoaded', function() {
+            const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+            codeBlocks.forEach(function(codeBlock) {
+                const pre = codeBlock.parentElement;
+                const mermaidDiv = document.createElement('div');
+                mermaidDiv.className = 'mermaid';
+                mermaidDiv.textContent = codeBlock.textContent;
+                pre.parentNode.replaceChild(mermaidDiv, pre);
+            });
+            mermaid.init();
+        });
+    </script>
 </body>
 </html>

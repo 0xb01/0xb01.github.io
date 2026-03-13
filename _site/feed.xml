@@ -1,4 +1,156 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-03-13T00:26:06+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">John Nichols Ranara</title><subtitle>Solution-oriented programmer with 10 years of experience in creating software  for desktop platforms, mobile development, and hardware.</subtitle><entry><title type="html">The Amira Elfeky Blend</title><link href="http://localhost:4000/music/2026/03/12/amira-elfeky-blend/" rel="alternate" type="text/html" title="The Amira Elfeky Blend" /><published>2026-03-12T07:26:00+08:00</published><updated>2026-03-12T07:26:00+08:00</updated><id>http://localhost:4000/music/2026/03/12/amira-elfeky-blend</id><content type="html" xml:base="http://localhost:4000/music/2026/03/12/amira-elfeky-blend/">&lt;p&gt;If you’ve heard &lt;strong&gt;Amira Elfeky’s&lt;/strong&gt; track &lt;em&gt;“Everything I Do Is For You,”&lt;/em&gt; you probably felt a massive wave of nostalgia hit you. It’s getting a lot of buzz lately, and for good reason—it sounds like the perfect “lost track” from the early 2000s.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-03-13T14:15:34+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Banikaz</title><subtitle>Solution-oriented programmer with 10 years of experience in creating software  for desktop platforms, mobile development, and hardware.</subtitle><entry><title type="html">Testing Mermaid Diagrams</title><link href="http://localhost:4000/tech/2026/03/13/testing-mermaid-diagrams/" rel="alternate" type="text/html" title="Testing Mermaid Diagrams" /><published>2026-03-13T00:00:00+08:00</published><updated>2026-03-13T00:00:00+08:00</updated><id>http://localhost:4000/tech/2026/03/13/testing-mermaid-diagrams</id><content type="html" xml:base="http://localhost:4000/tech/2026/03/13/testing-mermaid-diagrams/">&lt;p&gt;This is a test post to verify Mermaid diagram support.&lt;/p&gt;
+
+&lt;h2 id=&quot;flowchart-graph-td&quot;&gt;Flowchart (Graph TD)&lt;/h2&gt;
+
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;graph TD
+    A[Start] --&amp;gt; B{Is it working?}
+    B --&amp;gt;|Yes| C[Great!]
+    B --&amp;gt;|No| D[Debug]
+    D --&amp;gt; B
+    C --&amp;gt; E[End]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-mermaid&quot;&gt;graph TD
+    A[Start] --&amp;gt; B{Is it working?}
+    B --&amp;gt;|Yes| C[Great!]
+    B --&amp;gt;|No| D[Debug]
+    D --&amp;gt; B
+    C --&amp;gt; E[End]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;sequence-diagram&quot;&gt;Sequence Diagram&lt;/h2&gt;
+
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sequenceDiagram
+    participant User
+    participant Browser
+    participant Server
+    
+    User-&amp;gt;&amp;gt;Browser: Request page
+    Browser-&amp;gt;&amp;gt;Server: GET /page
+    Server--&amp;gt;&amp;gt;Browser: HTML response
+    Browser--&amp;gt;&amp;gt;User: Display page
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-mermaid&quot;&gt;sequenceDiagram
+    participant User
+    participant Browser
+    participant Server
+    
+    User-&amp;gt;&amp;gt;Browser: Request page
+    Browser-&amp;gt;&amp;gt;Server: GET /page
+    Server--&amp;gt;&amp;gt;Browser: HTML response
+    Browser--&amp;gt;&amp;gt;User: Display page
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;class-diagram&quot;&gt;Class Diagram&lt;/h2&gt;
+
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;classDiagram
+    class Animal {
+        +String name
+        +makeSound()
+    }
+    class Dog {
+        +bark()
+    }
+    class Cat {
+        +meow()
+    }
+    Animal &amp;lt;|-- Dog
+    Animal &amp;lt;|-- Cat
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-mermaid&quot;&gt;classDiagram
+    class Animal {
+        +String name
+        +makeSound()
+    }
+    class Dog {
+        +bark()
+    }
+    class Cat {
+        +meow()
+    }
+    Animal &amp;lt;|-- Dog
+    Animal &amp;lt;|-- Cat
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;entity-relationship-diagram&quot;&gt;Entity Relationship Diagram&lt;/h2&gt;
+
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;erDiagram
+    USER ||--o{ POST : creates
+    USER ||--o{ COMMENT : writes
+    POST ||--o{ COMMENT : has
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-mermaid&quot;&gt;erDiagram
+    USER ||--o{ POST : creates
+    USER ||--o{ COMMENT : writes
+    POST ||--o{ COMMENT : has
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;gantt-chart&quot;&gt;Gantt Chart&lt;/h2&gt;
+
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gantt
+    title Project Timeline
+    dateFormat  YYYY-MM-DD
+    section Planning
+    Research       :done,    des1, 2026-01-01, 2026-01-15
+    Design         :active,  des2, 2026-01-16, 2026-02-01
+    section Development
+    Coding         :         des3, 2026-02-02, 2026-03-01
+    Testing        :         des4, 2026-03-02, 2026-03-15
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-mermaid&quot;&gt;gantt
+    title Project Timeline
+    dateFormat  YYYY-MM-DD
+    section Planning
+    Research       :done,    des1, 2026-01-01, 2026-01-15
+    Design         :active,  des2, 2026-01-16, 2026-02-01
+    section Development
+    Coding         :         des3, 2026-02-02, 2026-03-01
+    Testing        :         des4, 2026-03-02, 2026-03-15
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;pie-chart&quot;&gt;Pie Chart&lt;/h2&gt;
+
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pie
+    title Browser Market Share
+    &quot;Chrome&quot; : 65
+    &quot;Safari&quot; : 18
+    &quot;Firefox&quot; : 10
+    &quot;Edge&quot; : 7
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-mermaid&quot;&gt;pie
+    title Browser Market Share
+    &quot;Chrome&quot; : 65
+    &quot;Safari&quot; : 18
+    &quot;Firefox&quot; : 10
+    &quot;Edge&quot; : 7
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;state-diagram&quot;&gt;State Diagram&lt;/h2&gt;
+
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;stateDiagram-v2
+    [*] --&amp;gt; Idle
+    Idle --&amp;gt; Processing : Start
+    Processing --&amp;gt; [*] : Complete
+    Processing --&amp;gt; Error : Failed
+    Error --&amp;gt; Processing : Retry
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-mermaid&quot;&gt;stateDiagram-v2
+    [*] --&amp;gt; Idle
+    Idle --&amp;gt; Processing : Start
+    Processing --&amp;gt; [*] : Complete
+    Processing --&amp;gt; Error : Failed
+    Error --&amp;gt; Processing : Retry
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;If you can see all the diagrams rendered above, Mermaid support is working correctly!&lt;/p&gt;</content><author><name>banikaz</name></author><category term="Tech" /><category term="tech" /><category term="test" /><summary type="html">This is a test post to verify Mermaid diagram support.</summary></entry><entry><title type="html">The Amira Elfeky Blend</title><link href="http://localhost:4000/music/2026/03/12/amira-elfeky-blend/" rel="alternate" type="text/html" title="The Amira Elfeky Blend" /><published>2026-03-12T07:26:00+08:00</published><updated>2026-03-12T07:26:00+08:00</updated><id>http://localhost:4000/music/2026/03/12/amira-elfeky-blend</id><content type="html" xml:base="http://localhost:4000/music/2026/03/12/amira-elfeky-blend/">&lt;p&gt;If you’ve heard &lt;strong&gt;Amira Elfeky’s&lt;/strong&gt; track &lt;em&gt;“Everything I Do Is For You,”&lt;/em&gt; you probably felt a massive wave of nostalgia hit you. It’s getting a lot of buzz lately, and for good reason—it sounds like the perfect “lost track” from the early 2000s.&lt;/p&gt;
 
 &lt;p&gt;Here’s why it feels so much like a mix of &lt;strong&gt;Evanescence&lt;/strong&gt; and &lt;strong&gt;Linkin Park&lt;/strong&gt;:&lt;/p&gt;
 
@@ -17,4 +169,4 @@
 
 &lt;p&gt;It’s the kind of song that’s perfect for a late-night drive or just staring out the window when you’re feeling a bit deep. If you grew up listening to Nu-Metal or Alt-Rock, this song is going to feel like home.&lt;/p&gt;
 
-&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/dEU90cHWKMk?si=_USel0IdaNMKO0MI&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&quot; referrerpolicy=&quot;strict-origin-when-cross-origin&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;</content><author><name>banikaz</name></author><category term="Music" /><category term="music" /><summary type="html">If you’ve heard Amira Elfeky’s track “Everything I Do Is For You,” you probably felt a massive wave of nostalgia hit you. It’s getting a lot of buzz lately, and for good reason—it sounds like the perfect “lost track” from the early 2000s.</summary></entry></feed>
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/dEU90cHWKMk?si=_USel0IdaNMKO0MI&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&quot; referrerpolicy=&quot;strict-origin-when-cross-origin&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;</content><author><name>banikaz</name></author><category term="Music" /><category term="music" /><category term="thoughts" /><summary type="html">If you’ve heard Amira Elfeky’s track “Everything I Do Is For You,” you probably felt a massive wave of nostalgia hit you. It’s getting a lot of buzz lately, and for good reason—it sounds like the perfect “lost track” from the early 2000s.</summary></entry></feed>

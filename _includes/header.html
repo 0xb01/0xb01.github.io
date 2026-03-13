@@ -1,5 +1,5 @@
 <header>
-    <h1>{{ site.title }} <span class="nickname">"Niks"</span><br>Ranara</h1>
+    <h1>John Nichols <span class="nickname">"{{ site.title }}"</span><br>Ranara</h1>
     <div class="contact-info">
         <span>
             <a href="https://maps.app.goo.gl/cGp4ssQzspJaF3fB6" target="_blank" class="geo-link">
@@ -9,15 +9,3 @@
         <a href="/about/#connection" class="connect-link">Connect with me</a>
     </div>
 </header>
-
-<script>
-    function revealContact(el) {
-        const val = atob(el.getAttribute('data-v'));
-        const type = el.getAttribute('data-t');
-        const link = document.createElement('a');
-        link.href = `${type}:${val}`;
-        link.textContent = val;
-        link.className = 'revealed contact-link';
-        el.parentNode.replaceChild(link, el);
-    }
-</script>

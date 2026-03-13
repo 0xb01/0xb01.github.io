@@ -6,7 +6,12 @@ This is my personal portfolio website built with Jekyll and hosted on GitHub Pag
 
 To run this site locally, you'll need to have Ruby and Bundler installed.
 
-1. Install dependencies:
+1. Install the required Bundler version:
+   ```bash
+   gem install bundler -v 4.0.8
+   ```
+
+2. Install dependencies:
    ```bash
    bundle install
    ```
@@ -18,6 +23,21 @@ To run this site locally, you'll need to have Ruby and Bundler installed.
 
 3. Open your browser to http://localhost:4000
 
+## Dependencies
+
+This project uses the following Ruby gems:
+
+- **jekyll** (~> 3.9.0) - Static site generator
+- **webrick** (~> 1.7) - Web server for local development
+- **ffi** (~> 1.15.0) - Foreign Function Interface
+- **kramdown-parser-gfm** (~> 1.1.0) - GitHub Flavored Markdown parser
+- **csv**, **base64**, **bigdecimal** - Standard library gems
+
+Jekyll plugins:
+- **jekyll-feed** (~> 0.15.0) - RSS feed generator
+- **jekyll-sitemap** (~> 1.4.0) - Sitemap generator
+- **jekyll-seo-tag** (~> 2.7.0) - SEO metadata tags
+
 ## Project Structure
 
 ```
@@ -26,15 +46,13 @@ To run this site locally, you'll need to have Ruby and Bundler installed.
 ├── _layouts/            # Page layouts
 ├── _posts/              # Blog posts
 ├── _site/               # Generated site (don't edit)
-├── .jekyll-cache/       # Cache files (don't edit)
+├── kana/                # Kana practice app
 ├── Gemfile              # Ruby dependencies
 ├── Gemfile.lock         # Locked Ruby dependencies
-├── index.html           # Home page
+├── index.md             # Home page
 ├── about.html           # About page
 ├── blog.html            # Blog page
-├── projects.html        # Projects page
-├── kana.htm             # Kana practice app
-├── kana.py              # Kana practice app backend
+├── work.html            # Work page
 └── style.css            # Stylesheet
 ```
 

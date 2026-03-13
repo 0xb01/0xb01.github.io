@@ -3,7 +3,7 @@ layout: post
 title: "The Amira Elfeky Blend"
 date: 2026-03-12 07:26:00 +0800
 categories: [Music]
-tags: [music]
+tags: [music, thoughts]
 author: "banikaz"
 ---
 
