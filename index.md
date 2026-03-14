@@ -7,7 +7,7 @@ title: Portfolio
 
 <section id="summary">
     <p class="summary-text">
-        Solution-oriented programmer with 10 years of experience in creating software for desktop platforms, mobile development, and hardware.<span class="cursor"></span>
+        Solution-oriented programmer with a decare of experience, specializing in desktop application development and backend architecture, with a versatile background in multi-platform software.<span class="cursor"></span>
     </p>
 </section>
 
