@@ -7,7 +7,7 @@ title: Portfolio
 
 <section id="summary">
     <p class="summary-text">
-        Solution-oriented programmer with a decare of experience, specializing in desktop application development and backend architecture, with a versatile background in multi-platform software.<span class="cursor"></span>
+        Solution-oriented programmer with a decade of experience, specializing in desktop application development and backend architecture, with a versatile background in multi-platform software.<span class="cursor"></span>
     </p>
 </section>
 
