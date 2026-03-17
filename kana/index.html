@@ -444,7 +444,7 @@
             
             <div class="select-all-row">
                 <button class="btn-secondary btn-small" onclick="selectRows(['a', 'k', 's', 't', 'n', 'h', 'm', 'y', 'r', 'w'])">All Basic</button>
-                <button class="btn-secondary btn-small" onclick="selectRows(['g', 'z', 'd', 'b', 'p'])">All Voiced</button>
+                <button class="btn-secondary btn-small" onclick="selectRows(['g', 'z', 'd', 'b', 'p', 'v'])">All Voiced</button>
             </div>
 
             <div class="checkbox-grid" id="rowCheckboxes">
@@ -463,6 +463,7 @@
                 <div class="checkbox-item"><input type="checkbox" id="rowD" value="d" checked><label for="rowD"><span class="row-label">D </span><span class="kana-sample" data-hira="だ" data-kata="ダ">だ</span></label></div>
                 <div class="checkbox-item"><input type="checkbox" id="rowB" value="b" checked><label for="rowB"><span class="row-label">B </span><span class="kana-sample" data-hira="ば" data-kata="バ">ば</span></label></div>
                 <div class="checkbox-item"><input type="checkbox" id="rowP" value="p" checked><label for="rowP"><span class="row-label">P </span><span class="kana-sample" data-hira="ぱ" data-kata="パ">ぱ</span></label></div>
+                <div class="checkbox-item"><input type="checkbox" id="rowV" value="v" checked><label for="rowV"><span class="row-label">V </span><span class="kana-sample" data-hira="ゔ" data-kata="">ゔ</span></label></div>
             </div>
 
             <button class="btn-primary" onclick="startPractice()" style="margin-top: 20px;">Start Practice</button>
@@ -534,9 +535,10 @@
             'w': {'わ': 'wa', 'を': 'wo', 'ん': 'n'},
             'g': {'が': 'ga', 'ぎ': 'gi', 'ぐ': 'gu', 'げ': 'ge', 'ご': 'go'},
             'z': {'ざ': 'za', 'じ': 'ji', 'ず': 'zu', 'ぜ': 'ze', 'ぞ': 'zo'},
-            'd': {'だ': 'da', 'ぢ': 'ji', 'づ': 'zu', 'で': 'de', 'ど': 'do'},
+            'd': {'だ': 'da', 'ぢ': 'dji', 'づ': 'dzu', 'で': 'de', 'ど': 'do'},
             'b': {'ば': 'ba', 'び': 'bi', 'ぶ': 'bu', 'べ': 'be', 'ぼ': 'bo'},
-            'p': {'ぱ': 'pa', 'ぴ': 'pi', 'ぷ': 'pu', 'ぺ': 'pe', 'ぽ': 'po'}
+            'p': {'ぱ': 'pa', 'ぴ': 'pi', 'ぷ': 'pu', 'ぺ': 'pe', 'ぽ': 'po'},
+            'v': { 'ゔ': 'vu'}
         };
 
         const katakanaByRow = {
@@ -552,7 +554,7 @@
             'w': {'ワ': 'wa', 'ヲ': 'wo', 'ン': 'n'},
             'g': {'ガ': 'ga', 'ギ': 'gi', 'グ': 'gu', 'ゲ': 'ge', 'ゴ': 'go'},
             'z': {'ザ': 'za', 'ジ': 'ji', 'ズ': 'zu', 'ゼ': 'ze', 'ゾ': 'zo'},
-            'd': {'ダ': 'da', 'ヂ': 'ji', 'ヅ': 'zu', 'デ': 'de', 'ド': 'do'},
+            'd': {'ダ': 'da', 'ヂ': 'dji', 'ヅ': 'dzu', 'デ': 'de', 'ド': 'do'},
             'b': {'バ': 'ba', 'ビ': 'bi', 'ブ': 'bu', 'ベ': 'be', 'ボ': 'bo'},
             'p': {'パ': 'pa', 'ピ': 'pi', 'プ': 'pu', 'ペ': 'pe', 'ポ': 'po'}
         };
