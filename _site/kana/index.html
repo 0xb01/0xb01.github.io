@@ -67,7 +67,7 @@
             border-top: 1px solid #3a3a5a;
         }
         .app-btn {
-            padding: 10px 18px;
+            padding: 12px 5px;
             font-size: 14px;
             border: none;
             border-radius: 8px;
@@ -75,15 +75,20 @@
             transition: all 0.2s;
             display: flex;
             align-items: center;
-            gap: 6px;
+            justify-content: center;
+            gap: 8px;
+            white-space: nowrap;
+            width: auto; /* Override global button width */
         }
         .app-btn-install {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
+            flex: 7;
         }
         .app-btn-download {
             background: #4a4a6a;
             color: #e0e0e0;
+            flex: 3;
         }
         .app-btn:hover {
             transform: translateY(-2px);
@@ -370,15 +375,6 @@
         }
         /* Mobile */
         @media (max-width: 600px) {
-            .app-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            .app-btn {
-                width: 100%;
-                max-width: 200px;
-                justify-content: center;
-            }
             .character { font-size: 100px; }
             .practice-stats { padding: 10px 15px; }
             .stat-value { font-size: 20px; }
@@ -470,11 +466,11 @@
 
             <button class="btn-primary" onclick="startPractice()" style="margin-top: 20px;">Start Practice</button>
             <div class="app-buttons">
-                <button class="app-btn app-btn-download" onclick="downloadApp()" title="Download HTML file">
-                    ⬇️ Download
-                </button>
-                <button class="app-btn app-btn-install" onclick="installApp()" title="Add to home screen">
-                    📲 Install
+                <a href="https://banikaz.online/" class="app-btn app-btn-download" style="text-decoration: none;" title="Go to home page">
+                    🏠 Home
+                </a>
+                <button class="app-btn app-btn-install" onclick="installApp()" title="Install as an App">
+                    📲 Install App
                 </button>
             </div>
         </div>
@@ -969,27 +965,17 @@
             });
         }
 
-        // Download the HTML file
-        function downloadApp() {
-            const html = document.documentElement.outerHTML;
-            const blob = new Blob([html], { type: 'text/html' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'kana-practice.htm';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-        }
-
         // Install/Add to home screen
         function installApp() {
-            // Try PWA install if service worker is available
-            if ('serviceWorker' in navigator) {
-                alert('To install this app:\n\n📱 Mobile: Tap \"Share\" → \"Add to Home Screen\"\n🖥️ Desktop: Click the install icon in your browser address bar');
+            const isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+            const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+            
+            if (isiOS) {
+                alert('To install on iPhone/iPad:\n\n1. Tap the Share button (square with arrow)\n2. Scroll down and tap "Add to Home Screen"\n3. Enjoy offline practice! 🎌');
+            } else if (isChrome) {
+                alert('To install on Android/PC:\n\n1. Look for the "Install" icon in the address bar (on PC) or the menu (on Android)\n2. Select "Install App"\n3. It will now work completely offline! 🎌');
             } else {
-                alert('To save this app for offline use:\n\n1. Press Ctrl+S (or Cmd+S on Mac)\n2. Save the page to your device\n3. Open the saved file anytime - it works completely offline!');
+                alert('To install this app:\n\n📱 Mobile: Tap "Share" or "Menu" → "Add to Home Screen"\n🖥️ Desktop: Look for an "Install" icon in your browser address bar');
             }
         }
     </script>
