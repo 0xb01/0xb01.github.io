@@ -410,9 +410,6 @@ function showContact() {
         }, 10);
     }
 
-    // Regenerate CAPTCHA
-    generateCaptcha();
-
     if (workExpBtn) workExpBtn.classList.remove('active');
     if (homeBtn) homeBtn.classList.remove('active');
     if (blogBtn) blogBtn.classList.remove('active');
@@ -863,7 +860,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initTimeline();
     initEducation();
     initProjectButtons();
-    initContactForm();
 
     // Handle browser back/forward buttons
     window.addEventListener('popstate', (event) => {
@@ -957,34 +953,12 @@ function printResume() {
 }
 
 /**
- * Initialize contact form
- */
-function initContactForm() {
-    generateCaptcha();
-}
-
-/**
- * Generate simple math CAPTCHA
- */
-let captchaResult = 0;
-
-function generateCaptcha() {
-    const num1 = Math.floor(Math.random() * 10) + 1;
-    const num2 = Math.floor(Math.random() * 10) + 1;
-    captchaResult = num1 + num2;
-    const captchaQuestion = document.getElementById('captchaQuestion');
-    if (captchaQuestion) {
-        captchaQuestion.textContent = `${num1} + ${num2} = ?`;
-    }
-}
-
-/**
  * Handle subject dropdown change
  */
 function handleSubjectChange() {
     const select = document.getElementById('contactSubjectSelect');
     const customInput = document.getElementById('contactSubject');
-    
+
     if (select.value === 'Other') {
         customInput.classList.add('active');
         customInput.required = true;
@@ -1003,27 +977,34 @@ function handleSubjectChange() {
 /**
  * Submit contact form
  */
-function submitContactForm(event) {
+async function submitContactForm(event) {
     event.preventDefault();
-    
-    const captchaAnswer = document.getElementById('captchaAnswer');
-    const userAnswer = parseInt(captchaAnswer.value);
-    
-    if (userAnswer !== captchaResult) {
-        alert('Incorrect CAPTCHA. Please try again.');
-        generateCaptcha();
-        captchaAnswer.value = '';
-        return false;
+
+    const form = event.target;
+    const formData = new FormData(form);
+
+    try {
+        const response = await fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+
+        if (response.ok) {
+            alert('Thank you for your message! I will get back to you soon.');
+            form.reset();
+        } else {
+            const error = await response.json();
+            alert('Oops! There was a problem sending your message. Please try again.');
+            console.error('Form submission error:', error);
+        }
+    } catch (error) {
+        alert('Oops! There was a problem sending your message. Please try again.');
+        console.error('Form submission error:', error);
     }
-    
-    // Form is valid - here you would typically send the data to a server
-    // For now, show success message
-    alert('Thank you for your message! I will get back to you soon.');
-    
-    // Reset form
-    document.getElementById('contactForm').reset();
-    generateCaptcha();
-    
+
     return false;
 }
 
