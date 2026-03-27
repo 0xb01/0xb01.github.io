@@ -1,99 +1,143 @@
-# Portfolio
+# Banikaz Portfolio
 
-This is my personal portfolio website built with Jekyll and hosted on GitHub Pages.
+Personal portfolio website of **John Nichols Ranara** — a solution-oriented programmer with 10 years of experience in desktop platforms, mobile development, and hardware. Built with Jekyll and hosted on GitHub Pages.
 
-## Development Setup
+**Live Site:** [banikaz.online](http://banikaz.online)
 
-To run this site locally, you'll need to have Ruby and Bundler installed.
+## Features
 
-1. Install the required Bundler version:
-   ```bash
-   gem install bundler -v 4.0.8
-   ```
+- Responsive single-page portfolio with smooth navigation
+- Work experience timeline with expandable sections
+- Projects showcase with flip cards
+- Blog section with Mermaid diagram support
+- Contact form with CAPTCHA
+- Mobile-friendly sidebar navigation
+- SEO optimized with Open Graph tags
+- RSS feed and sitemap auto-generation
 
-2. Install dependencies:
-   ```bash
-   bundle install
-   ```
+## Tech Stack
 
-2. Run the development server:
-   ```bash
-   bundle exec jekyll serve
-   ```
+- **Jekyll** (~3.9.0) - Static site generator
+- **HTML5, CSS3, JavaScript** - Frontend
+- **Font Awesome** - Icons
+- **Mermaid** - Diagram rendering
+- **ProggyVector** - Monospace font
 
-3. Open your browser to http://localhost:4000
+### Ruby Gems
 
-## Dependencies
-
-This project uses the following Ruby gems:
-
-- **jekyll** (~> 3.9.0) - Static site generator
-- **webrick** (~> 1.7) - Web server for local development
-- **ffi** (~> 1.15.0) - Foreign Function Interface
-- **kramdown-parser-gfm** (~> 1.1.0) - GitHub Flavored Markdown parser
-- **csv**, **base64**, **bigdecimal** - Standard library gems
-
-Jekyll plugins:
-- **jekyll-feed** (~> 0.15.0) - RSS feed generator
-- **jekyll-sitemap** (~> 1.4.0) - Sitemap generator
-- **jekyll-seo-tag** (~> 2.7.0) - SEO metadata tags
+| Gem | Version | Purpose |
+|-----|---------|---------|
+| jekyll | ~3.9.0 | Static site generator |
+| webrick | ~1.7 | Web server for local development |
+| jekyll-feed | ~0.15.0 | RSS feed generator |
+| jekyll-sitemap | ~1.4.0 | Sitemap generator |
+| jekyll-seo-tag | ~2.7.0 | SEO metadata tags |
+| kramdown-parser-gfm | ~1.1.0 | GitHub Flavored Markdown parser |
 
 ## Project Structure
 
 ```
-├── _config.yml          # Configuration file
+0xb01.github.io/
+├── _config.yml          # Site configuration
 ├── _includes/           # Reusable components
+│   ├── footer.html
+│   ├── header.html
+│   ├── navigation.html
+│   ├── sidebar.html
+│   └── tech-stack.html
 ├── _layouts/            # Page layouts
+│   ├── v2.html          # Main portfolio layout
+│   ├── v2-default.html  # Default layout
+│   └── v2-post.html     # Blog post layout
 ├── _posts/              # Blog posts
-├── _site/               # Generated site (don't edit)
-├── kana/                # Kana practice app
+├── _site/               # Generated site (gitignored)
+├── kana/                # Kana practice web app
+├── res/                 # Resources/assets
+├── index.html           # Home page (SPA)
+├── script.js            # Main JavaScript
+├── style.css            # Main stylesheet
 ├── Gemfile              # Ruby dependencies
-├── Gemfile.lock         # Locked Ruby dependencies
-├── index.md             # Home page
-├── about.html           # About page
-├── blog.html            # Blog page
-├── work.html            # Work page
-└── style.css            # Stylesheet
+└── README.md            # This file
 ```
 
-## Adding Content
+## Development Setup
 
-### Blog Posts
+### Prerequisites
 
-To add a new blog post, create a new file in the `_posts` directory with the following naming convention:
+- Ruby 2.7+
+- Bundler
 
-```
-YYYY-MM-DD-title-of-post.md
-```
+### Installation
 
-At the top of each post, include the front matter:
+1. **Install Bundler** (if not already installed):
+   ```bash
+   gem install bundler
+   ```
 
-```yaml
----
-layout: default
-title: "Your Post Title"
-date: YYYY-MM-DD HH:MM:SS +/-TTTT
-categories: [Category1, Category2]
-tags: [tag1, tag2, tag3]
-author: John Nichols Ranara
----
-```
+2. **Install dependencies**:
+   ```bash
+   bundle install
+   ```
 
-### Pages
+3. **Run development server**:
+   ```bash
+   bundle exec jekyll serve
+   ```
 
-To add a new page, create an HTML or Markdown file in the root directory with the front matter:
+4. **Open in browser**: http://localhost:4000
 
-```yaml
----
-layout: default
-title: Page Title
----
-```
+## Usage
+
+### Navigation
+
+The portfolio uses a single-page application (SPA) design with the following sections:
+
+- **Home** - Introduction and hero section
+- **Work** - Work experience and education timeline
+- **Blog** - Blog posts list
+- **Contact** - Contact form and social links
+- **Resume** - Full resume view
+
+### Adding Blog Posts
+
+1. Create a new file in `_posts/` with the format: `YYYY-MM-DD-post-title.md`
+2. Add front matter:
+   ```yaml
+   ---
+   layout: v2-post
+   title: "Your Post Title"
+   date: 2026-03-28 12:00:00 -0800
+   categories: [Category]
+   tags: [tag1, tag2]
+   author: John Nichols Ranara
+   ---
+   ```
+3. Write content in Markdown. Mermaid diagrams are supported:
+   ````markdown
+   ```mermaid
+   graph TD
+       A --> B
+   ```
+   ````
+
+### Customization
+
+- **Site config**: Edit `_config.yml` for site metadata, social links, and build settings
+- **Styling**: Modify `style.css` CSS variables for theme colors
+- **Content**: Update `index.html` for main page content
+- **Components**: Edit files in `_includes/` for reusable sections
 
 ## Deployment
 
-This site is automatically deployed to GitHub Pages when changes are pushed to the main branch.
+This site is automatically deployed to GitHub Pages when changes are pushed to the `main` branch.
 
-## Customization
+## Contact
 
-Feel free to customize the design by modifying `style.css` or creating new layouts in the `_layouts` directory.
+- **Email:** [banikaz@proton.me](mailto:banikaz@proton.me)
+- **GitHub:** [@0xb01](https://github.com/0xb01)
+- **LinkedIn:** [John Nicolas Ranara](https://www.linkedin.com/in/jnr01)
+- **Location:** Tacloban City, Leyte, Philippines
+
+## License
+
+This project is open source and available under the [MIT License](LICENSE).

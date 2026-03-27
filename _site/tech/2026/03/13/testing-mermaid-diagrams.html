@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testing Mermaid Diagrams | Banikaz</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Banikaz" />
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Testing Mermaid Diagrams | Banikaz</title>
+<meta name="generator" content="Jekyll v3.9.5" />
+<meta property="og:title" content="Testing Mermaid Diagrams" />
+<meta name="author" content="banikaz" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="This is a test post to verify Mermaid diagram support." />
+<meta property="og:description" content="This is a test post to verify Mermaid diagram support." />
+<link rel="canonical" href="http://localhost:4000/tech/2026/03/13/testing-mermaid-diagrams.html" />
+<meta property="og:url" content="http://localhost:4000/tech/2026/03/13/testing-mermaid-diagrams.html" />
+<meta property="og:site_name" content="Banikaz" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-03-13T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Testing Mermaid Diagrams" />
+<script type="application/ld+json">
+{"@type":"BlogPosting","description":"This is a test post to verify Mermaid diagram support.","author":{"@type":"Person","name":"banikaz"},"headline":"Testing Mermaid Diagrams","dateModified":"2026-03-13T00:00:00+08:00","datePublished":"2026-03-13T00:00:00+08:00","url":"http://localhost:4000/tech/2026/03/13/testing-mermaid-diagrams.html","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/tech/2026/03/13/testing-mermaid-diagrams.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+<body>
+    <div class="container">
+        <!-- Column 1: Personal Info -->
+<aside class="column column-1">
+    <div class="profile-section">
+        <div class="profile-image">
+            <img src="/res/me.jpg" alt="John Nichols Ranara" class="profile-photo">
+        </div>
+        <h1 class="name">John Nichols Ranara</h1>
+        <div class="location-info">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Tacloban City, Leyte</span>
+        </div>
+        <div class="status-box">
+            <i class="fas fa-circle" style="font-size: 6px; color: var(--accent-color); margin-right: 6px;"></i>
+            Open to opportunities
+        </div>
+        <div class="nav-buttons">
+            <hr class="separator">
+            <button class="nav-btn active" id="homeBtn" onclick="showHome()">Home</button>
+            <button class="nav-btn" id="workExpBtn" onclick="showWorkExperience()">Work Experience</button>
+            <button class="nav-btn" id="blogBtn" onclick="showBlog()">Blog</button>
+            <button class="nav-btn" id="contactBtn" onclick="showContact()">Contact</button>
+            <button class="nav-btn" id="resumeBtn" onclick="showResume()">Resume</button>
+        </div>
+    </div>
+
+    <div class="contact-section" style="margin-top: auto; padding-top: 15px; padding-bottom: 10px;">
+        <h3>Contact</h3>
+        <ul class="contact-list">
+            <li>
+                <i class="fas fa-envelope"></i>
+                <a href="javascript:void(0)" onclick="showContact(); return false;">banikaz@proton.me</a>
+            </li>
+            <li>
+                <i class="fas fa-phone"></i>
+                <a href="javascript:void(0)" onclick="showContact(); return false;">(+63) 976-002-8684</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="social-section">
+        <h3>Socials</h3>
+        <div class="social-links">
+            <a href="https://github.com/0xb01" class="social-link" aria-label="GitHub" target="_blank">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/jnr01" class="social-link" aria-label="LinkedIn" target="_blank">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://www.facebook.com/0xb01" class="social-link" aria-label="Facebook" target="_blank">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://x.com/authenticegg" class="social-link" aria-label="Twitter" target="_blank">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://www.instagram.com/0xb02" class="social-link" aria-label="Instagram" target="_blank">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.youtube.com/@JuanNicolasMe" class="social-link" aria-label="YouTube" target="_blank">
+                <i class="fab fa-youtube"></i>
+            </a>
+        </div>
+    </div>
+</aside>
+
+
+        <!-- Column 2: Main Content -->
+        <main class="column column-2" id="mainContent">
+            <!-- Blog Post Content -->
+            <section class="section blog-post-section" id="blogPostContent">
+                <div class="blog-header">
+                    <button class="back-btn" onclick="goBackToBlog()">
+                        <i class="fas fa-arrow-left"></i> Blog
+                    </button>
+                </div>
+                <article class="blog-post-full" id="blogPostFull">
+                    <div class="blog-post-meta">
+                        <h1 class="blog-post-title-single">Testing Mermaid Diagrams</h1>
+                        <time class="blog-post-date-full" datetime="2026-03-13T00:00:00+08:00">March 13, 2026</time>
+                    </div>
+                    <div class="blog-post-content">
+                        <p>This is a test post to verify Mermaid diagram support.</p>
+
+<h2 id="flowchart-graph-td">Flowchart (Graph TD)</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>graph TD
+    A[Start] --&gt; B{Is it working?}
+    B --&gt;|Yes| C[Great!]
+    B --&gt;|No| D[Debug]
+    D --&gt; B
+    C --&gt; E[End]
+</code></pre></div></div>
+
+<pre><code class="language-mermaid">graph TD
+    A[Start] --&gt; B{Is it working?}
+    B --&gt;|Yes| C[Great!]
+    B --&gt;|No| D[Debug]
+    D --&gt; B
+    C --&gt; E[End]
+</code></pre>
+
+<h2 id="sequence-diagram">Sequence Diagram</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sequenceDiagram
+    participant User
+    participant Browser
+    participant Server
+    
+    User-&gt;&gt;Browser: Request page
+    Browser-&gt;&gt;Server: GET /page
+    Server--&gt;&gt;Browser: HTML response
+    Browser--&gt;&gt;User: Display page
+</code></pre></div></div>
+
+<pre><code class="language-mermaid">sequenceDiagram
+    participant User
+    participant Browser
+    participant Server
+    
+    User-&gt;&gt;Browser: Request page
+    Browser-&gt;&gt;Server: GET /page
+    Server--&gt;&gt;Browser: HTML response
+    Browser--&gt;&gt;User: Display page
+</code></pre>
+
+<h2 id="class-diagram">Class Diagram</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>classDiagram
+    class Animal {
+        +String name
+        +makeSound()
+    }
+    class Dog {
+        +bark()
+    }
+    class Cat {
+        +meow()
+    }
+    Animal &lt;|-- Dog
+    Animal &lt;|-- Cat
+</code></pre></div></div>
+
+<pre><code class="language-mermaid">classDiagram
+    class Animal {
+        +String name
+        +makeSound()
+    }
+    class Dog {
+        +bark()
+    }
+    class Cat {
+        +meow()
+    }
+    Animal &lt;|-- Dog
+    Animal &lt;|-- Cat
+</code></pre>
+
+<h2 id="entity-relationship-diagram">Entity Relationship Diagram</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>erDiagram
+    USER ||--o{ POST : creates
+    USER ||--o{ COMMENT : writes
+    POST ||--o{ COMMENT : has
+</code></pre></div></div>
+
+<pre><code class="language-mermaid">erDiagram
+    USER ||--o{ POST : creates
+    USER ||--o{ COMMENT : writes
+    POST ||--o{ COMMENT : has
+</code></pre>
+
+<h2 id="gantt-chart">Gantt Chart</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gantt
+    title Project Timeline
+    dateFormat  YYYY-MM-DD
+    section Planning
+    Research       :done,    des1, 2026-01-01, 2026-01-15
+    Design         :active,  des2, 2026-01-16, 2026-02-01
+    section Development
+    Coding         :         des3, 2026-02-02, 2026-03-01
+    Testing        :         des4, 2026-03-02, 2026-03-15
+</code></pre></div></div>
+
+<pre><code class="language-mermaid">gantt
+    title Project Timeline
+    dateFormat  YYYY-MM-DD
+    section Planning
+    Research       :done,    des1, 2026-01-01, 2026-01-15
+    Design         :active,  des2, 2026-01-16, 2026-02-01
+    section Development
+    Coding         :         des3, 2026-02-02, 2026-03-01
+    Testing        :         des4, 2026-03-02, 2026-03-15
+</code></pre>
+
+<h2 id="pie-chart">Pie Chart</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pie
+    title Browser Market Share
+    "Chrome" : 65
+    "Safari" : 18
+    "Firefox" : 10
+    "Edge" : 7
+</code></pre></div></div>
+
+<pre><code class="language-mermaid">pie
+    title Browser Market Share
+    "Chrome" : 65
+    "Safari" : 18
+    "Firefox" : 10
+    "Edge" : 7
+</code></pre>
+
+<h2 id="state-diagram">State Diagram</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>stateDiagram-v2
+    [*] --&gt; Idle
+    Idle --&gt; Processing : Start
+    Processing --&gt; [*] : Complete
+    Processing --&gt; Error : Failed
+    Error --&gt; Processing : Retry
+</code></pre></div></div>
+
+<pre><code class="language-mermaid">stateDiagram-v2
+    [*] --&gt; Idle
+    Idle --&gt; Processing : Start
+    Processing --&gt; [*] : Complete
+    Processing --&gt; Error : Failed
+    Error --&gt; Processing : Retry
+</code></pre>
+
+<hr />
+
+<p>If you can see all the diagrams rendered above, Mermaid support is working correctly!</p>
+
+                    </div>
+
+                    <!-- Share Section -->
+                    <div class="share-section">
+                        <hr class="share-separator">
+                        <div class="share-url">
+                            <span>http://localhost:4000/tech/2026/03/13/testing-mermaid-diagrams.html</span>
+                        </div>
+                        <div class="share-buttons">
+                            <span class="share-label">Share:</span>
+                            <a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Flocalhost%3A4000%2Ftech%2F2026%2F03%2F13%2Ftesting-mermaid-diagrams.html&text=Testing+Mermaid+Diagrams" class="share-btn" target="_blank" rel="noopener" aria-label="Share on Twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Ftech%2F2026%2F03%2F13%2Ftesting-mermaid-diagrams.html" class="share-btn" target="_blank" rel="noopener" aria-label="Share on Facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Ftech%2F2026%2F03%2F13%2Ftesting-mermaid-diagrams.html&title=Testing+Mermaid+Diagrams" class="share-btn" target="_blank" rel="noopener" aria-label="Share on LinkedIn">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="https://reddit.com/submit?url=http%3A%2F%2Flocalhost%3A4000%2Ftech%2F2026%2F03%2F13%2Ftesting-mermaid-diagrams.html&title=Testing+Mermaid+Diagrams" class="share-btn" target="_blank" rel="noopener" aria-label="Share on Reddit">
+                                <i class="fab fa-reddit-alien"></i>
+                            </a>
+                            <button class="share-btn" onclick="copyUrl()" aria-label="Copy link">
+                                <i class="fas fa-link"></i>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+            </section>
+        </main>
+
+        <!-- Column 3: Tech Stack & Hobbies -->
+<aside class="column column-3">
+    <section class="tech-stack-section">
+        <h3 class="section-title">Tech Stack</h3>
+
+        <div class="tech-category">
+            <h4 class="tech-category-title">
+                <i class="fas fa-desktop"></i> Frontend
+            </h4>
+            <div class="tech-list">
+                <span class="tech-item">HTML</span>
+                <span class="tech-item">CSS</span>
+                <span class="tech-item">JavaScript</span>
+                <span class="tech-item">TypeScript</span>
+            </div>
+        </div>
+
+        <div class="tech-category">
+            <h4 class="tech-category-title">
+                <i class="fas fa-server"></i> Backend
+            </h4>
+            <div class="tech-list">
+                <span class="tech-item">Bash</span>
+                <span class="tech-item">C</span>
+                <span class="tech-item">C#</span>
+                <span class="tech-item">Java</span>
+                <span class="tech-item">Python</span>
+                <span class="tech-item">PHP</span>
+                <span class="tech-item">Lua</span>
+                <span class="tech-item">NodeJS</span>
+                <span class="tech-item">Qt</span>
+                <span class="tech-item">Xojo</span>
+            </div>
+        </div>
+
+        <div class="tech-category">
+            <h4 class="tech-category-title">
+                <i class="fas fa-database"></i> Database
+            </h4>
+            <div class="tech-list">
+                <span class="tech-item">MySQL</span>
+                <span class="tech-item">PostgreSQL</span>
+                <span class="tech-item">MongoDB</span>
+                <span class="tech-item">SQLite</span>
+            </div>
+        </div>
+
+        <div class="tech-category">
+            <h4 class="tech-category-title">
+                <i class="fas fa-tools"></i> Tools & Platforms
+            </h4>
+            <div class="tech-list">
+                <span class="tech-item">Docker</span>
+                <span class="tech-item">Git</span>
+                <span class="tech-item">GitHub</span>
+                <span class="tech-item">GitLab</span>
+                <span class="tech-item">Make/n8n</span>
+                <span class="tech-item">Alibaba Cloud</span>
+                <span class="tech-item">Google Cloud</span>
+                <span class="tech-item">GitHub Actions</span>
+            </div>
+        </div>
+
+        <div class="tech-category">
+            <h4 class="tech-category-title">
+                <i class="fas fa-palette"></i> Creative
+            </h4>
+            <div class="tech-list">
+                <span class="tech-item">Photoshop</span>
+                <span class="tech-item">Premiere</span>
+                <span class="tech-item">DaVinci</span>
+                <span class="tech-item">OBS</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="hobbies-section">
+        <h3 class="section-title">Hobbies</h3>
+        <div class="hobbies-list">
+            <div class="hobby-item">
+                <i class="fas fa-book"></i>
+                <span>Reading</span>
+            </div>
+            <div class="hobby-item">
+                <i class="fas fa-headphones"></i>
+                <span>Music</span>
+            </div>
+            <div class="hobby-item">
+                <i class="fas fa-code"></i>
+                <span>Learning Tech</span>
+            </div>
+            <div class="hobby-item">
+                <i class="fas fa-language"></i>
+                <span>Japanese</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="quote-section">
+        <p class="quote-text">"When you have a great and difficult task... if you only work a little at a time, every day a little, suddenly the work will finish itself."</p>
+        <span class="quote-author">— Isak Dinesen</span>
+    </div>
+</aside>
+
+    </div>
+
+    <script src="/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.0/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: false, theme: 'default' });
+        
+        // Copy URL function
+        function copyUrl() {
+            const url = window.location.href;
+            navigator.clipboard.writeText(url).then(() => {
+                // Show feedback
+                const btn = event.currentTarget;
+                const originalIcon = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i>';
+                btn.style.backgroundColor = 'var(--accent-color)';
+                btn.style.color = 'white';
+                setTimeout(() => {
+                    btn.innerHTML = originalIcon;
+                    btn.style.backgroundColor = '';
+                    btn.style.color = '';
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = url;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+            });
+        }
+        
+        // Initialize Mermaid on page load for direct URL access
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                if (typeof mermaid !== 'undefined') {
+                    const mermaidCodes = document.querySelectorAll('code.language-mermaid');
+                    mermaidCodes.forEach((code, index) => {
+                        const pre = code.parentElement;
+                        const div = document.createElement('div');
+                        div.className = 'mermaid';
+                        div.textContent = code.textContent.trim();
+                        pre.parentNode.replaceChild(div, pre);
+                    });
+                    
+                    mermaid.initialize({ startOnLoad: false, theme: 'default' });
+                    const mermaidDivs = document.querySelectorAll('.mermaid');
+                    mermaidDivs.forEach((div, i) => {
+                        if (!div.querySelector('svg')) {
+                            mermaid.render(`mermaid-${i}`, div.textContent).then(({ svg }) => {
+                                div.innerHTML = svg;
+                            });
+                        }
+                    });
+                }
+            }, 300);
+        });
+    </script>
+</body>
+</html>

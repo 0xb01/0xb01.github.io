@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }} | {{ site.title }}</title>
+    <link rel="stylesheet" href="/v2/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    {% feed_meta %}
+    {% seo %}
+</head>
+<body>
+    {{ content }}
+
+    <script>
+        // Scroll behavior to fade header - listens to window scroll
+        const headerFull = document.querySelector('.cv-header-full');
+        
+        if (headerFull) {
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 100) {
+                    headerFull.classList.add('hidden');
+                } else {
+                    headerFull.classList.remove('hidden');
+                }
+            }, { passive: true });
+        }
+    </script>
+</body>
+</html>

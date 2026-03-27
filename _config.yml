@@ -6,8 +6,8 @@ description: >-
 baseurl: ""
 url: "http://banikaz.online"
 
-my_phone: KzYzLTk3Ni0wMDItODY4NA==
-my_email: YmFuaWthekBwcm90b24ubWU=
+my_phone: (+63) 976-002-8684
+my_email: banikaz@proton.me
 my_github: https://github.com/0xb01
 my_linkedin: https://www.linkedin.com/in/jnr01
 my_facebook: https://www.facebook.com/0xb01
@@ -23,7 +23,7 @@ plugins:
   - jekyll-seo-tag
 
 # Permalink settings for clean URLs
-permalink: pretty
+permalink: /:categories/:year/:month/:day/:title.html
 
 # Exclude from processing
 exclude:
@@ -49,7 +49,7 @@ defaults:
       path: ""
       type: "posts"
     values:
-      layout: "post"
+      layout: "v2-post"
   - scope:
       path: ""
       type: "projects"

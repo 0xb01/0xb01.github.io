@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }} | {{ site.title }}</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    {% feed_meta %}
+    {% seo %}
+</head>
+<body>
+    <div class="container">
+        {% include sidebar.html %}
+
+        <!-- Column 2: Main Content -->
+        <main class="column column-2" id="mainContent">
+            <!-- Blog Post Content -->
+            <section class="section blog-post-section" id="blogPostContent">
+                <div class="blog-header">
+                    <button class="back-btn" onclick="goBackToBlog()">
+                        <i class="fas fa-arrow-left"></i> Blog
+                    </button>
+                </div>
+                <article class="blog-post-full" id="blogPostFull">
+                    <div class="blog-post-meta">
+                        <h1 class="blog-post-title-single">{{ page.title }}</h1>
+                        <time class="blog-post-date-full" datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %d, %Y" }}</time>
+                    </div>
+                    <div class="blog-post-content">
+                        {{ content }}
+                    </div>
+
+                    <!-- Share Section -->
+                    <div class="share-section">
+                        <hr class="share-separator">
+                        <div class="share-url">
+                            <span>{{ page.url | prepend: site.url }}</span>
+                        </div>
+                        <div class="share-buttons">
+                            <span class="share-label">Share:</span>
+                            <a href="https://twitter.com/intent/tweet?url={{ page.url | prepend: site.url | url_encode }}&text={{ page.title | url_encode }}" class="share-btn" target="_blank" rel="noopener" aria-label="Share on Twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ page.url | prepend: site.url | url_encode }}" class="share-btn" target="_blank" rel="noopener" aria-label="Share on Facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ page.url | prepend: site.url | url_encode }}&title={{ page.title | url_encode }}" class="share-btn" target="_blank" rel="noopener" aria-label="Share on LinkedIn">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="https://reddit.com/submit?url={{ page.url | prepend: site.url | url_encode }}&title={{ page.title | url_encode }}" class="share-btn" target="_blank" rel="noopener" aria-label="Share on Reddit">
+                                <i class="fab fa-reddit-alien"></i>
+                            </a>
+                            <button class="share-btn" onclick="copyUrl()" aria-label="Copy link">
+                                <i class="fas fa-link"></i>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+            </section>
+        </main>
+
+        {% include tech-stack.html %}
+    </div>
+
+    <script src="/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.0/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: false, theme: 'default' });
+        
+        // Copy URL function
+        function copyUrl() {
+            const url = window.location.href;
+            navigator.clipboard.writeText(url).then(() => {
+                // Show feedback
+                const btn = event.currentTarget;
+                const originalIcon = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i>';
+                btn.style.backgroundColor = 'var(--accent-color)';
+                btn.style.color = 'white';
+                setTimeout(() => {
+                    btn.innerHTML = originalIcon;
+                    btn.style.backgroundColor = '';
+                    btn.style.color = '';
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = url;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+            });
+        }
+        
+        // Initialize Mermaid on page load for direct URL access
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                if (typeof mermaid !== 'undefined') {
+                    const mermaidCodes = document.querySelectorAll('code.language-mermaid');
+                    mermaidCodes.forEach((code, index) => {
+                        const pre = code.parentElement;
+                        const div = document.createElement('div');
+                        div.className = 'mermaid';
+                        div.textContent = code.textContent.trim();
+                        pre.parentNode.replaceChild(div, pre);
+                    });
+                    
+                    mermaid.initialize({ startOnLoad: false, theme: 'default' });
+                    const mermaidDivs = document.querySelectorAll('.mermaid');
+                    mermaidDivs.forEach((div, i) => {
+                        if (!div.querySelector('svg')) {
+                            mermaid.render(`mermaid-${i}`, div.textContent).then(({ svg }) => {
+                                div.innerHTML = svg;
+                            });
+                        }
+                    });
+                }
+            }, 300);
+        });
+    </script>
+</body>
+</html>

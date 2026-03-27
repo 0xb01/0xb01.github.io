@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: v2-post
 title: "The Amira Elfeky Blend"
 date: 2026-03-12 07:26:00 +0800
 categories: [Music]
