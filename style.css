@@ -466,11 +466,15 @@ body {
     justify-content: center;
     opacity: 1 !important;
     visibility: visible !important;
+    overflow-x: auto;
+    overflow-y: auto;
+    max-width: 100%;
 }
 
 .blog-post-full .mermaid svg {
     max-width: 100%;
     height: auto;
+    max-height: none;
 }
 
 .blog-post-full blockquote {
@@ -2147,6 +2151,18 @@ body.resume-view .container {
 
     .blog-post-title-single {
         font-size: 1.2rem;
+    }
+
+    /* Mermaid diagram mobile fixes */
+    .blog-post-full .mermaid {
+        padding: 10px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .blog-post-full .mermaid svg {
+        max-width: 100%;
+        height: auto;
     }
 }
 
