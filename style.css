@@ -701,12 +701,20 @@ body {
     gap: 8px;
 }
 
-.subject-custom-input {
-    display: none;
+.subject-custom-wrapper {
+    display: none !important;
+    margin: 0 !important;
 }
 
-.subject-custom-input.active {
-    display: block;
+.subject-custom-wrapper.active {
+    display: flex !important;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.subject-custom-wrapper input {
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* Submit Button */

@@ -957,18 +957,19 @@ function printResume() {
  */
 function handleSubjectChange() {
     const select = document.getElementById('contactSubjectSelect');
+    const customWrapper = document.querySelector('.subject-custom-wrapper');
     const customInput = document.getElementById('contactSubject');
 
-    if (select.value === 'Other') {
-        customInput.classList.add('active');
+    if (select.value === 'other') {
+        customWrapper.classList.add('active');
         customInput.required = true;
         customInput.placeholder = 'Enter your subject...';
     } else if (select.value) {
-        customInput.classList.remove('active');
+        customWrapper.classList.remove('active');
         customInput.required = false;
         customInput.value = select.value;
     } else {
-        customInput.classList.remove('active');
+        customWrapper.classList.remove('active');
         customInput.required = false;
         customInput.value = '';
     }
