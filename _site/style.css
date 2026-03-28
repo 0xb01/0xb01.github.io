@@ -2313,6 +2313,7 @@ body.resume-view .container {
         border-radius: 0;
         height: auto;
         min-height: 100vh;
+        grid-template-columns: 1fr;
     }
 
     /* Mobile header with contact info */
