@@ -32,17 +32,21 @@
         <!-- Column 1: Personal Info -->
 <aside class="column column-1">
     <div class="profile-section">
-        <div class="profile-image">
-            <img src="/res/me.jpg" alt="John Nichols Ranara" class="profile-photo">
-        </div>
-        <h1 class="name">John Nichols Ranara</h1>
-        <div class="location-info">
-            <i class="fas fa-map-marker-alt"></i>
-            <span>Tacloban City, Leyte</span>
-        </div>
-        <div class="status-box">
-            <i class="fas fa-circle" style="font-size: 6px; color: var(--accent-color); margin-right: 6px;"></i>
-            Open to opportunities
+        <div class="profile-left">
+            <div class="profile-image">
+                <img src="/res/me.jpg" alt="John Nichols Ranara" class="profile-photo">
+            </div>
+            <div class="profile-text">
+                <h1 class="name">John Nichols Ranara</h1>
+                <div class="location-info">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Tacloban City, Leyte</span>
+                </div>
+                <div class="status-box">
+                    <i class="fas fa-circle" style="font-size: 6px; color: var(--accent-color); margin-right: 6px;"></i>
+                    Open to opportunities
+                </div>
+            </div>
         </div>
         <div class="nav-buttons">
             <hr class="separator">
@@ -65,6 +69,10 @@
                 <i class="fas fa-phone"></i>
                 <a href="javascript:void(0)" onclick="showContact(); return false;">(+63) 976-002-8684</a>
             </li>
+            <li class="timezone-contact" onclick="showContact()">
+                <i class="fas fa-clock"></i>
+                <span id="timezoneText">Loading...</span>
+            </li>
         </ul>
     </div>
 
@@ -77,6 +85,7 @@
             <a href="https://www.linkedin.com/in/jnr01" class="social-link" aria-label="LinkedIn" target="_blank">
                 <i class="fab fa-linkedin-in"></i>
             </a>
+            <!--
             <a href="https://www.facebook.com/0xb01" class="social-link" aria-label="Facebook" target="_blank">
                 <i class="fab fa-facebook-f"></i>
             </a>
@@ -86,6 +95,7 @@
             <a href="https://www.instagram.com/0xb02" class="social-link" aria-label="Instagram" target="_blank">
                 <i class="fab fa-instagram"></i>
             </a>
+            -->
             <a href="https://www.youtube.com/@JuanNicolasMe" class="social-link" aria-label="YouTube" target="_blank">
                 <i class="fab fa-youtube"></i>
             </a>
@@ -241,8 +251,8 @@
         <h3 class="section-title">Hobbies</h3>
         <div class="hobbies-list">
             <div class="hobby-item">
-                <i class="fas fa-book"></i>
-                <span>Reading</span>
+                <i class="fas fa-hammer"></i>
+                <span>Modding Games</span>
             </div>
             <div class="hobby-item">
                 <i class="fas fa-headphones"></i>

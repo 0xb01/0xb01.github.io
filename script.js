@@ -1060,3 +1060,67 @@ function initProjectButtons() {
         });
     });
 }
+
+/**
+ * Display timezone difference between visitor and Manila (GMT+8)
+ */
+function updateTimezoneDifference() {
+    const timezoneText = document.getElementById('timezoneText');
+    if (!timezoneText) return;
+
+    const now = new Date();
+
+    // Get Manila time (GMT+8)
+    const manilaTime = now.toLocaleTimeString('en-US', {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true,
+        timeZone: 'Asia/Manila'
+    });
+
+    // Get visitor's local time
+    const localTime = now.toLocaleTimeString('en-US', {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true
+    });
+
+    // Calculate time difference using date objects
+    // Get current UTC time
+    const utcTime = now.getTime() + (now.getTimezoneOffset() * 60000);
+    // Get Manila time (GMT+8)
+    const manilaTimeMs = utcTime + (8 * 3600000);
+    const manilaDate = new Date(manilaTimeMs);
+
+    // Calculate hour difference
+    const localHour = now.getHours();
+    const manilaHour = manilaDate.getHours();
+    let diffHours = manilaHour - localHour;
+
+    // Adjust for day wraparound
+    if (diffHours > 12) diffHours -= 24;
+    if (diffHours < -12) diffHours += 24;
+
+    let timeDiffText = '';
+    let titleText = `It's ${manilaTime} in Tacloban City`;
+
+    if (diffHours === 0) {
+        // Same timezone - just show time
+        timeDiffText = localTime;
+    } else if (diffHours > 0) {
+        // Manila is ahead
+        timeDiffText = `${localTime} (I'm ${Math.abs(diffHours)}h ahead of you.)`;
+    } else {
+        // Manila is behind
+        timeDiffText = `${localTime} (I'm ${Math.abs(diffHours)}h behind you.)`;
+    }
+
+    timezoneText.textContent = timeDiffText;
+    timezoneText.parentElement.title = titleText;
+}
+
+// Update timezone on page load and every minute
+document.addEventListener('DOMContentLoaded', function() {
+    updateTimezoneDifference();
+    setInterval(updateTimezoneDifference, 60000); // Update every 60 seconds
+});

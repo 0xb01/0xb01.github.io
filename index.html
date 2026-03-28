@@ -118,11 +118,11 @@ title: Portfolio
                         <div class="tasks">
                             <h4>Key Responsibilities</h4>
                             <ul>
-                                <li>Developed Disaster Risk Reduction (DRR) mobile apps and educational mobile apps for Save The Children Philippines and DepEd</li>
-                                <li>Facilitated mobile features development workshops and data collection</li>
-                                <li>Conducted consultation and meeting with DepEd key persons</li>
-                                <li>Provided technical support and training for mobile app development</li>
-                                <li>Assisted in the development of the website and hosting of the mobile applications and tools</li>
+                                <li>Developed Disaster Risk Reduction (DRR) mobile apps and educational mobile apps for Save The Children Philippines and DepEd.</li>
+                                <li>Facilitated mobile features development workshops and data collection.</li>
+                                <li>Conducted consultation and meeting with DepEd key persons.</li>
+                                <li>Provided technical support and training for mobile app development.</li>
+                                <li>Developed the website, assisted in the creation of resources, and hosting of the mobile applications and tools.</li>
                             </ul>
                         </div>
                         <div class="tech-stack">
@@ -163,10 +163,10 @@ title: Portfolio
                         <div class="tasks">
                             <h4>Key Responsibilities</h4>
                             <ul>
-                                <li>Assigned to Special Force Online and Special Force 2</li>
-                                <li>Organized and hosted local and online gaming events and tournaments</li>
-                                <li>Provided technical support and fixes for gaming-related issues</li>
-                                <li>Assisted in creating gaming-related communities and player engagement</li>
+                                <li>Assigned to Special Force Online and Special Force 2.</li>
+                                <li>Organized and hosted local and online gaming events and tournaments.</li>
+                                <li>Provided technical support and fixes for gaming-related issues.</li>
+                                <li>Assisted in creating gaming-related communities and player engagement.</li>
                             </ul>
                         </div>
                         <div class="tech-stack">
@@ -196,11 +196,11 @@ title: Portfolio
                         <div class="tasks">
                             <h4>Key Responsibilities</h4>
                             <ul>
-                                <li>Developed a document management system for the department as replacement of the previous system</li>
-                                <li>Provided training and support for the new system to the department staff</li>
-                                <li>Assisted in the migration of data from the old system to the new system</li>
-                                <li>Provided technical support and maintenance for the new system</li>
-                                <li>Improved the system to handle large volumes of data, faster referencing, and scanning capabilities</li>
+                                <li>Developed a document management system for the department as replacement for their previous unfinished system.</li>
+                                <li>Improved the system to handle large volumes of data, faster referencing, and scanning capabilities.</li>
+                                <li>Provided training and support for the new system to the department staff.</li>
+                                <li>Assisted in the migration of data from the old system to the new system.</li>
+                                <li>Provided technical support and maintenance for the new system.</li>
                             </ul>
                         </div>
                         <div class="tech-stack">
@@ -440,7 +440,7 @@ title: Portfolio
         <!-- Contact Section -->
         <section class="section contact-page-section hidden" id="contactPageSection">
             <h3 class="section-title">Get In Touch</h3>
-            
+
             <!-- Note/Message Box -->
             <div class="contact-note-box">
                 <div class="note-header">
@@ -448,47 +448,83 @@ title: Portfolio
                     <span class="note-title">A Quick Note</span>
                 </div>
                 <div class="note-content">
-                    <p>Hi there! Thanks for visiting my portfolio. Whether you have a project in mind, a job opportunity, or just want to say hello, feel free to reach out using the form below. I typically respond within 24-48 hours.</p>
+                    <p>
+                        I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions. Whether you have a question, a collaboration idea, or just want to say hello, feel free to reach out!
+                    </p>
+                    <p>
+                        I typically respond within 24-48 hours. For project inquiries, please include as much detail as possible about your requirements, timeline, and budget.
+                    </p>
                     <p class="note-signature">— Niks</p>
                 </div>
             </div>
 
             <!-- Contact Form -->
-            <form class="contact-form" id="contactForm" action="https://formspree.io/f/mojpjdag" method="POST">
+            <form class="contact-form" id="contactForm" onsubmit="submitForm(event)">
                 <div class="form-group">
-                    <label for="contactEmail">Your Email *</label>
-                    <input type="email" id="contactEmail" name="email" required placeholder="your@email.com">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required placeholder="Your Name">
                 </div>
+
                 <div class="form-group">
-                    <label for="contactSubject">Subject *</label>
-                    <div class="subject-input-wrapper">
-                        <select id="contactSubjectSelect" name="subjectSelect" onchange="handleSubjectChange()">
-                            <option value="">Select an inquiry type...</option>
-                            <option value="General Inquiry">General Inquiry</option>
-                            <option value="Project Proposal">Project Proposal</option>
-                            <option value="Job Opportunity">Job Opportunity</option>
-                            <option value="Collaboration">Collaboration</option>
-                            <option value="Feedback">Feedback</option>
-                            <option value="Other">Other (specify below)</option>
-                        </select>
-                        <input type="text" id="contactSubject" name="subject" placeholder="Or type your own subject..." class="subject-custom-input">
-                    </div>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required placeholder="Your Email">
                 </div>
+
                 <div class="form-group">
-                    <label for="contactMessage">Message *</label>
-                    <textarea id="contactMessage" name="message" rows="6" required placeholder="Your message here..."></textarea>
+                    <label for="subject">Subject</label>
+                    <select id="subject" name="subject" required onchange="handleSubjectChange()">
+                        <option value="">Select a subject</option>
+                        <option value="project">Project Inquiry</option>
+                        <option value="collaboration">Collaboration</option>
+                        <option value="job">Job Opportunity</option>
+                        <option value="other">Other</option>
+                    </select>
                 </div>
+
+                <div class="form-group">
+                    <label for="subject-custom">Custom Subject</label>
+                    <input type="text" id="subject-custom" name="subject_custom" class="subject-custom-input" placeholder="Enter your subject">
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required placeholder="Your Message" rows="5"></textarea>
+                </div>
+
                 <button type="submit" class="submit-btn">
                     <i class="fas fa-paper-plane"></i> Send Message
                 </button>
             </form>
+
+            <!-- Share Section -->
+            <div class="share-section">
+                <hr class="shareseparator">
+                <div class="share-url">
+                    <span>{{ site.url }}/contact</span>
+                </div>
+                <div class="share-buttons">
+                    <span class="share-label">Share:</span>
+                    <button class="share-btn" onclick="shareToFacebook()" aria-label="Share to Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </button>
+                    <button class="share-btn" onclick="shareToTwitter()" aria-label="Share to Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </button>
+                    <button class="share-btn" onclick="shareToLinkedIn()" aria-label="Share to LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </button>
+                    <button class="share-btn" onclick="copyLink()" aria-label="Copy link">
+                        <i class="fas fa-link"></i>
+                    </button>
+                </div>
+            </div>
         </section>
 
         <!-- Resume Section -->
         <section class="section resume-section hidden" id="resumeSection">
             <div class="resume-header">
                 <h1 class="resume-name">John Nichols Ranara</h1>
-                <p class="resume-title">Full-Stack Developer • Software Developer</p>
+                <p class="resume-title">Full-Stack Developer • Principal Software Engineer</p>
                 <div class="resume-contact">
                     <span><i class="fas fa-map-marker-alt"></i> Tacloban City, Leyte</span>
                     <span><i class="fas fa-envelope"></i> {{ site.my_email }}</span>
@@ -501,164 +537,156 @@ title: Portfolio
                 <p>Solution-oriented programmer with 10+ years of experience specializing in desktop application development and backend architecture. Proven track record of delivering end-to-end software solutions across multiple platforms including Windows, Android, and web applications.</p>
             </div>
 
-            <div class="resume-section-content">
-                <h3>Technical Skills</h3>
-                <div class="resume-skills-grid">
-                    <div class="resume-skill-category">
-                        <h4><i class="fas fa-language"></i> Languages</h4>
-                        <div class="resume-tags">
-                            <span class="resume-tag">English</span>
-                            <span class="resume-tag">Filipino</span>
-                            <span class="resume-tag">Waray-waray (Dialect)</span>
-                            <span class="resume-tag">Cebuano (Dialect)</span>
-                        </div>
-                    </div>
-                    <div class="resume-skill-category">
-                        <h4><i class="fas fa-desktop"></i> Frontend</h4>
-                        <div class="resume-tags">
-                            <span class="resume-tag">HTML</span>
-                            <span class="resume-tag">CSS</span>
-                            <span class="resume-tag">JavaScript</span>
-                            <span class="resume-tag">TypeScript</span>
-                        </div>
-                    </div>
-                    <div class="resume-skill-category">
-                        <h4><i class="fas fa-server"></i> Backend</h4>
-                        <div class="resume-tags">
-                            <span class="resume-tag">Bash</span>
-                            <span class="resume-tag">C</span>
-                            <span class="resume-tag">C#</span>
-                            <span class="resume-tag">Java</span>
-                            <span class="resume-tag">Python</span>
-                            <span class="resume-tag">PHP</span>
-                            <span class="resume-tag">Lua</span>
-                            <span class="resume-tag">NodeJS</span>
-                            <span class="resume-tag">Qt</span>
-                            <span class="resume-tag">Xojo</span>
-                        </div>
-                    </div>
-                    <div class="resume-skill-category">
-                        <h4><i class="fas fa-database"></i> Database</h4>
-                        <div class="resume-tags">
-                            <span class="resume-tag">MySQL</span>
-                            <span class="resume-tag">PostgreSQL</span>
-                            <span class="resume-tag">MongoDB</span>
-                            <span class="resume-tag">SQLite</span>
-                        </div>
-                    </div>
-                    <div class="resume-skill-category">
-                        <h4><i class="fas fa-tools"></i> Tools & Platforms</h4>
-                        <div class="resume-tags">
-                            <span class="resume-tag">Docker</span>
-                            <span class="resume-tag">Git</span>
-                            <span class="resume-tag">GitHub</span>
-                            <span class="resume-tag">GitLab</span>
-                            <span class="resume-tag">Make/n8n</span>
-                            <span class="resume-tag">Alibaba Cloud</span>
-                            <span class="resume-tag">Google Cloud</span>
-                            <span class="resume-tag">GitHub Actions</span>
-                        </div>
-                    </div>
-                    <div class="resume-skill-category">
-                        <h4><i class="fas fa-palette"></i> Creative</h4>
-                        <div class="resume-tags">
-                            <span class="resume-tag">Photoshop</span>
-                            <span class="resume-tag">Premiere</span>
-                            <span class="resume-tag">DaVinci</span>
-                            <span class="resume-tag">OBS</span>
+            <div class="resume-layout">
+                <!-- Left Column: Experience (Wider) -->
+                <div class="resume-column resume-column-main">
+                    <div class="resume-section-content">
+                        <h3>Experience</h3>
+                        <div class="resume-timeline">
+                            <div class="resume-item">
+                                <div class="resume-item-header">
+                                    <h4>Software Developer</h4>
+                                    <span class="resume-period">Jul 2019 – Present</span>
+                                </div>
+                                <p class="resume-company">Erfinder Philippines, Tacloban City</p>
+                                <ul class="resume-highlights">
+                                    <li>Helped in the development of PIIOX, an open, modular platform designed for control and automation systems.</li>
+                                    <li>Helped in the development of TESSA, a tool that automates execution of scientific software applications.</li>
+                                    <li>Developed internal ERP system for Climeo AG.</li>
+                                    <li>Developed a management tool for Climeo AG IoT devices and clients.</li>
+                                    <li>Developed several internal applications for Stadler, Inc.</li>
+                                    <li>Created social media pages, chatbots, and professional websites for various clients.</li>
+                                    <li>Created promotional materials for various clients.</li>
+                                </ul>
+                            </div>
+                            <div class="resume-item">
+                                <div class="resume-item-header">
+                                    <h4>Android Developer</h4>
+                                    <span class="resume-period">Nov 2016 – 2018</span>
+                                </div>
+                                <p class="resume-company">Hyperworks I.T. Solutions</p>
+                                <ul class="resume-highlights">
+                                    <li>Developed Disaster Risk Reduction (DRR) mobile apps and educational mobile apps for Save The Children Philippines and DepEd.</li>
+                                    <li>Facilitated mobile features development workshops and data collection.</li>
+                                    <li>Conducted consultation and meeting with DepEd key persons.</li>
+                                    <li>Provided technical support and training for mobile app development.</li>
+                                    <li>Developed the website, assisted in the creation of resources, and hosting of the mobile applications and tools.</li>
+                                </ul>
+                            </div>
+                            <div class="resume-item">
+                                <div class="resume-item-header">
+                                    <h4>On The Job Training</h4>
+                                    <span class="resume-period">Jul 2016 – Dec 2016</span>
+                                </div>
+                                <p class="resume-company">Department of Agrarian Reforms</p>
+                                <ul class="resume-highlights">
+                                    <li>Developed a document management system for the department as replacement for their previous unfinished system.</li>
+                                    <li>Improved the system to handle large volumes of data, faster referencing, and scanning capabilities.</li>
+                                    <li>Provided training and support for the new system to the department staff.</li>
+                                    <li>Assisted in the migration of data from the old system to the new system.</li>
+                                    <li>Provided technical support and maintenance for the new system.</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="resume-section-content">
-                <h3>Experience</h3>
-                <div class="resume-timeline">
-                    <div class="resume-item">
-                        <div class="resume-item-header">
-                            <h4>Software Developer</h4>
-                            <span class="resume-period">Jul 2019 – Present</span>
+                <!-- Right Column: Skills, Education, Download (Narrower) -->
+                <div class="resume-column resume-column-side">
+                    <div class="resume-section-content">
+                        <h3>Technical Skills</h3>
+                        <div class="resume-skills-grid-compact">
+                            <div class="resume-skill-category">
+                                <h4><i class="fas fa-language"></i> Languages</h4>
+                                <div class="resume-tags">
+                                    <span class="resume-tag">English</span>
+                                    <span class="resume-tag">Filipino</span>
+                                    <span class="resume-tag">Waray-waray (Dialect)</span>
+                                    <span class="resume-tag">Cebuano (Dialect)</span>
+                                </div>
+                            </div>
+                            <div class="resume-skill-category">
+                                <h4><i class="fas fa-desktop"></i> Frontend</h4>
+                                <div class="resume-tags">
+                                    <span class="resume-tag">HTML</span>
+                                    <span class="resume-tag">CSS</span>
+                                    <span class="resume-tag">JavaScript</span>
+                                    <span class="resume-tag">TypeScript</span>
+                                </div>
+                            </div>
+                            <div class="resume-skill-category">
+                                <h4><i class="fas fa-server"></i> Backend</h4>
+                                <div class="resume-tags">
+                                    <span class="resume-tag">Bash</span>
+                                    <span class="resume-tag">C</span>
+                                    <span class="resume-tag">C#</span>
+                                    <span class="resume-tag">Java</span>
+                                    <span class="resume-tag">Python</span>
+                                    <span class="resume-tag">PHP</span>
+                                    <span class="resume-tag">Lua</span>
+                                    <span class="resume-tag">NodeJS</span>
+                                    <span class="resume-tag">Qt</span>
+                                    <span class="resume-tag">Xojo</span>
+                                </div>
+                            </div>
+                            <div class="resume-skill-category">
+                                <h4><i class="fas fa-database"></i> Database</h4>
+                                <div class="resume-tags">
+                                    <span class="resume-tag">MySQL</span>
+                                    <span class="resume-tag">PostgreSQL</span>
+                                    <span class="resume-tag">MongoDB</span>
+                                    <span class="resume-tag">SQLite</span>
+                                </div>
+                            </div>
+                            <div class="resume-skill-category">
+                                <h4><i class="fas fa-tools"></i> Tools & Platforms</h4>
+                                <div class="resume-tags">
+                                    <span class="resume-tag">Docker</span>
+                                    <span class="resume-tag">Git</span>
+                                    <span class="resume-tag">GitHub</span>
+                                    <span class="resume-tag">GitLab</span>
+                                    <span class="resume-tag">Make/n8n</span>
+                                    <span class="resume-tag">Alibaba Cloud</span>
+                                    <span class="resume-tag">Google Cloud</span>
+                                    <span class="resume-tag">GitHub Actions</span>
+                                </div>
+                            </div>
+                            <div class="resume-skill-category">
+                                <h4><i class="fas fa-palette"></i> Creative</h4>
+                                <div class="resume-tags">
+                                    <span class="resume-tag">Photoshop</span>
+                                    <span class="resume-tag">Premiere</span>
+                                    <span class="resume-tag">DaVinci</span>
+                                    <span class="resume-tag">OBS</span>
+                                </div>
+                            </div>
                         </div>
-                        <p class="resume-company">Erfinder Philippines, Tacloban City</p>
-                        <ul class="resume-highlights">
-                            <li>Helped in the development of PIIOX, an open, modular platform designed for control and automation systems</li>
-                            <li>Helped in the development of TESSA, a tool that automates execution of scientific software applications</li>
-                            <li>Developed internal ERP system for Climeo AG</li>
-                            <li>Developed a management tool for Climeo AG IoT devices and clients</li>
-                            <li>Developed several internal applications for Stadler, Inc.</li>
-                            <li>Created social media pages, chatbots, and professional websites for various clients</li>
-                            <li>Created promotional materials for various clients</li>
-                        </ul>
                     </div>
-                    <div class="resume-item">
-                        <div class="resume-item-header">
-                            <h4>Android Developer</h4>
-                            <span class="resume-period">Nov 2016 – 2018</span>
+
+                    <div class="resume-section-content resume-education">
+                        <h3>Education</h3>
+                        <div class="resume-timeline">
+                            <div class="resume-item">
+                                <div class="resume-item-header">
+                                    <h4>BS Computer Science</h4>
+                                    <span class="resume-period">2013 – 2017</span>
+                                </div>
+                                <p class="resume-company">ACLC College, Tacloban City</p>
+                                <ul class="resume-highlights">
+                                    <li>2nd Place, Web Programming — Eastern Visayas ICT Expo (2016)</li>
+                                    <li>3rd Place, Visual Arts — Eastern Visayas ICT Expo (2016)</li>
+                                    <li>Top 5, Hack The Climate Hackathon — Philippine Science HS - EV Campus (2016)</li>
+                                </ul>
+                            </div>
                         </div>
-                        <p class="resume-company">Hyperworks I.T. Solutions</p>
-                        <ul class="resume-highlights">
-                            <li>Developed Disaster Risk Reduction (DRR) mobile apps and educational mobile apps for Save The Children Philippines and DepEd</li>
-                            <li>Facilitated mobile features development workshops and data collection</li>
-                            <li>Conducted consultation and meeting with DepEd key persons</li>
-                            <li>Provided technical support and training for mobile app development</li>
-                            <li>Assisted in the development of the website and hosting of the mobile applications and tools</li>
-                        </ul>
                     </div>
-                    <div class="resume-item">
-                        <div class="resume-item-header">
-                            <h4>Event Organizer</h4>
-                            <span class="resume-period">2015 – 2016</span>
-                        </div>
-                        <p class="resume-company">PlayPark Inc.</p>
-                        <ul class="resume-highlights">
-                            <li>Assigned to Special Force Online and Special Force 2</li>
-                            <li>Organized and hosted local and online gaming events and tournaments</li>
-                            <li>Provided technical support and fixes for gaming-related issues</li>
-                            <li>Assisted in creating gaming-related communities and player engagement</li>
-                        </ul>
-                    </div>
-                    <div class="resume-item">
-                        <div class="resume-item-header">
-                            <h4>On The Job Training</h4>
-                            <span class="resume-period">Jul 2016 – Dec 2016</span>
-                        </div>
-                        <p class="resume-company">Department of Agrarian Reforms</p>
-                        <ul class="resume-highlights">
-                            <li>Developed a document management system for the department as replacement of the previous system</li>
-                            <li>Provided training and support for the new system to the department staff</li>
-                            <li>Assisted in the migration of data from the old system to the new system</li>
-                            <li>Provided technical support and maintenance for the new system</li>
-                            <li>Improved the system to handle large volumes of data, faster referencing, and scanning capabilities</li>
-                        </ul>
+
+                    <div class="resume-download">
+                        <a href="/res/Ranara-Resume.pdf" class="resume-download-btn" rel="noopener">
+                            <i class="fas fa-download"></i> Download Resume (PDF)
+                        </a>
                     </div>
                 </div>
-            </div>
-
-            <div class="resume-section-content">
-                <h3>Education</h3>
-                <div class="resume-timeline">
-                    <div class="resume-item">
-                        <div class="resume-item-header">
-                            <h4>BS Computer Science</h4>
-                            <span class="resume-period">2013 – 2017</span>
-                        </div>
-                        <p class="resume-company">ACLC College, Tacloban City</p>
-                        <ul class="resume-highlights">
-                            <li>2nd Place, Web Programming — Eastern Visayas ICT Expo (2016)</li>
-                            <li>3rd Place, Visual Arts — Eastern Visayas ICT Expo (2016)</li>
-                            <li>Top 5, Hack The Climate Hackathon — Philippine Science HS - EV Campus (2016)</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="resume-download">
-                <!-- Disable Print dialog for now 
-                    <a href="javascript:void(0)" class="resume-download-btn" onclick="printResume()" rel="noopener"></a>
-                -->
-                <a href="/res/Ranara-Resume.pdf" class="resume-download-btn" rel="noopener">
-                    <i class="fas fa-download"></i> Download Resume (PDF)
-                </a>
             </div>
         </section>
     </main>
@@ -675,6 +703,3 @@ title: Portfolio
 <script>
     mermaid.initialize({ startOnLoad: false, theme: 'default' });
 </script>
-
-
-
