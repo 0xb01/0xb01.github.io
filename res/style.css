@@ -99,8 +99,8 @@ body {
 .column-1 {
     background-color: #fafafa;
     border-right: 1px solid var(--border-color);
-    font-size: 0.75rem;
-    padding: 15px 18px;
+    font-size: 0.72rem;
+    padding: 15px 16px;
     display: flex;
     flex-direction: column;
 }
@@ -142,35 +142,39 @@ body {
 
 /* ==================== Column 1 ==================== */
 
-/* Profile Section */
-.profile-section {
-    text-align: center;
-    margin-bottom: 15px;
-}
-
-.profile-image {
-    margin-bottom: 12px;
-}
-
-.profile-photo {
-    width: 140px;
-    height: 140px;
-    margin: 0 auto;
-    border-radius: 50%;
-    object-fit: cover;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
+/* Profile Section - New Card Design */
 .profile-section {
     text-align: center;
     margin-bottom: 20px;
 }
 
+.profile-image {
+    margin-bottom: 14px;
+    position: relative;
+}
+
+.profile-photo {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--border-color);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s;
+}
+
+.profile-photo:hover {
+    border-color: var(--accent-color);
+    box-shadow: 0 6px 20px rgba(128, 0, 0, 0.15);
+    transform: scale(1.02);
+}
+
 .name {
-    font-size: 1rem;
-    font-weight: 600;
+    font-size: 1.05rem;
+    font-weight: 700;
     color: var(--text-primary);
-    margin-bottom: 6px;
+    margin-bottom: 8px;
     letter-spacing: -0.5px;
 }
 
@@ -180,9 +184,9 @@ body {
     align-items: center;
     justify-content: center;
     gap: 6px;
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     color: var(--text-muted);
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     letter-spacing: -0.3px;
 }
 
@@ -191,48 +195,27 @@ body {
     font-size: 0.7rem;
 }
 
-/* Status Message Box */
+/* Status Message - Badge Style */
 .status-box {
-    display: inline-block;
-    background-color: #f0f0f5;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background-color: rgba(76, 175, 80, 0.1);
+    border: 1px solid rgba(76, 175, 80, 0.2);
+    border-radius: 20px;
     padding: 5px 10px;
-    font-size: 0.7rem;
-    color: var(--text-secondary);
-    position: relative;
-    text-align: left;
-    letter-spacing: -0.3px;
+    font-size: 0.68rem;
+    color: #4caf50;
+    font-weight: 600;
+    letter-spacing: 0.3px;
 }
 
-.status-box::before {
-    content: "";
-    position: absolute;
-    top: -5px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-bottom: 5px solid var(--border-color);
-}
-
-.status-box::after {
-    content: "";
-    position: absolute;
-    top: -4px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-left: 4px solid transparent;
-    border-right: 4px solid transparent;
-    border-bottom: 4px solid #f0f0f5;
-}
-
-/* Navigation Buttons */
+/* Navigation Buttons - New Design */
 .nav-buttons {
-    margin-top: 12px;
+    margin-top: 15px;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
     align-items: center;
 }
 
@@ -240,40 +223,79 @@ body {
     width: 100%;
     border: none;
     border-top: 1px solid var(--border-color);
-    margin: 8px 0;
+    margin: 10px 0;
 }
 
 .nav-btn {
     width: 100%;
-    padding: 8px 12px;
-    background-color: var(--container-bg);
-    border: 1px solid var(--border-color);
+    padding: 10px 14px;
+    background: linear-gradient(135deg, transparent, rgba(128, 0, 0, 0.03));
+    border: 1px solid transparent;
     border-radius: var(--radius-sm);
-    color: var(--text-secondary);
     font-family: inherit;
-    font-size: 0.75rem;
-    font-weight: 600;
+    font-size: 0.73rem;
+    font-weight: 500;
+    color: var(--text-secondary);
     cursor: pointer;
-    transition: all 0.2s;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    letter-spacing: -0.2px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-btn::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 3px;
+    height: 100%;
+    background-color: var(--accent-color);
+    transform: scaleY(0);
+    transition: transform 0.25s ease;
+}
+
+.nav-btn i {
+    font-size: 0.85rem;
+    width: 18px;
+    text-align: center;
+    transition: all 0.25s;
+}
+
+.nav-btn span {
+    flex: 1;
+    text-align: left;
 }
 
 .nav-btn:hover {
-    background-color: var(--accent-color);
-    border-color: var(--accent-color);
-    color: white;
-    transform: translateY(-1px);
+    background: linear-gradient(135deg, rgba(128, 0, 0, 0.05), rgba(128, 0, 0, 0.08));
+    color: var(--text-primary);
+    transform: translateX(3px);
 }
 
-.nav-btn::active {
-    transform: translateY(0);
+.nav-btn:hover i {
+    color: var(--accent-color);
+    transform: scale(1.1);
 }
 
 .nav-btn.active {
-    background-color: var(--accent-color);
-    border-color: var(--accent-color);
-    color: white;
+    background: linear-gradient(135deg, rgba(128, 0, 0, 0.08), rgba(128, 0, 0, 0.12));
+    color: var(--accent-color);
+    font-weight: 600;
+    border-color: rgba(128, 0, 0, 0.15);
+    box-shadow: 0 2px 8px rgba(128, 0, 0, 0.08);
+}
+
+.nav-btn.active::before {
+    transform: scaleY(1);
+}
+
+.nav-btn.active i {
+    color: var(--accent-color);
+    transform: scale(1.15);
 }
 
 /* Blog button styling */
@@ -859,39 +881,43 @@ body {
     display: none !important;
 }
 
-/* Contact Section */
+/* Contact Section - New Design */
 .contact-section,
 .social-section {
-    margin-bottom: 15px;
+    margin-bottom: 18px;
 }
 
 .contact-section h3,
 .social-section h3 {
-    font-size: 0.68rem;
+    font-size: 0.7rem;
     text-transform: uppercase;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.5px;
     color: var(--text-muted);
-    margin-bottom: 8px;
+    margin-bottom: 10px;
+    font-weight: 600;
 }
 
 .contact-list {
     list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 .contact-list li {
     display: flex;
     align-items: center;
-    gap: 6px;
-    margin-bottom: 6px;
-    font-size: 0.75rem;
+    gap: 8px;
+    margin-bottom: 8px;
+    font-size: 0.72rem;
     color: var(--text-secondary);
-    letter-spacing: -0.5px;
+    letter-spacing: -0.3px;
 }
 
 .contact-list li i {
     color: var(--accent-color);
-    width: 18px;
-    font-size: 0.8rem;
+    width: 16px;
+    font-size: 0.75rem;
+    text-align: center;
 }
 
 .contact-list a {
@@ -904,25 +930,39 @@ body {
     color: var(--accent-color);
 }
 
-/* Social Links */
+/* Timezone contact styling */
+.timezone-contact {
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.timezone-contact:hover {
+    color: var(--accent-color);
+}
+
+.timezone-contact:hover i {
+    color: var(--accent-color);
+}
+
+/* Social Links - Icon Button Style */
 .social-links {
     display: flex;
-    gap: 5px;
+    gap: 6px;
     flex-wrap: wrap;
 }
 
 .social-link {
-    width: 30px;
-    height: 30px;
+    width: 34px;
+    height: 34px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--container-bg);
+    background-color: var(--card-bg);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-sm);
     color: var(--text-secondary);
     text-decoration: none;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     transition: all 0.2s;
 }
 
@@ -931,6 +971,7 @@ body {
     border-color: var(--accent-color);
     color: white;
     transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(128, 0, 0, 0.15);
 }
 
 /* ==================== column 2 ==================== */
@@ -2782,35 +2823,56 @@ body.resume-view .container {
     }
 
     .column-1 .profile-photo {
-        width: 120px;
-        height: 120px;
+        width: 100px;
+        height: 100px;
         margin: 0 auto;
         display: block;
     }
 
     .column-1 .name {
-        font-size: 1.1rem;
-        margin-bottom: 10px;
+        font-size: 1.05rem;
+        margin-bottom: 8px;
         text-align: center;
     }
 
     .column-1 .location-info {
         justify-content: center;
-        margin-bottom: 10px;
+        margin-bottom: 8px;
     }
 
     .column-1 .status-box {
-        display: inline-block;
-        margin-bottom: 15px;
+        display: inline-flex;
+        margin-bottom: 12px;
     }
 
     .column-1 .nav-buttons {
-        margin-top: 20px;
+        margin-top: 15px;
+    }
+
+    .column-1 .nav-btn {
+        padding: 9px 12px;
+        font-size: 0.7rem;
+    }
+
+    .column-1 .nav-btn i {
+        font-size: 0.8rem;
+        width: 16px;
     }
 
     .column-1 .contact-section,
     .column-1 .social-section {
-        margin-top: 20px;
+        margin-top: 15px;
+    }
+
+    .column-1 .contact-list li {
+        font-size: 0.7rem;
+        margin-bottom: 6px;
+    }
+
+    .column-1 .social-link {
+        width: 32px;
+        height: 32px;
+        font-size: 0.8rem;
     }
 
     .column-2 {

@@ -24,7 +24,15 @@
     <div class="nav-buttons">
         <hr class="separator">
         {%- for nav in site.data.profile.navigation -%}
-            <button class="nav-btn{% if nav.active %} active{% endif %}" id="{{ nav.id }}" onclick="{{ nav.action }}()">{{ nav.label }}</button>
+            <button class="nav-btn{% if nav.active %} active{% endif %}" id="{{ nav.id }}" onclick="{{ nav.action }}()">
+                {%- if nav.label == 'Home' -%}<i class="fas fa-home"></i>
+                {%- elsif nav.label == 'Work Experience' -%}<i class="fas fa-briefcase"></i>
+                {%- elsif nav.label == 'Blog' -%}<i class="fas fa-pen-fancy"></i>
+                {%- elsif nav.label == 'Contact' -%}<i class="fas fa-envelope"></i>
+                {%- elsif nav.label == 'Resume' -%}<i class="fas fa-file-alt"></i>
+                {%- endif -%}
+                <span>{{ nav.label }}</span>
+            </button>
         {%- endfor -%}
     </div>
 </div>
