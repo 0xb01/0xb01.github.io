@@ -122,6 +122,9 @@ function showHome() {
 
     // Remove resume view from body
     document.body.classList.remove('resume-view');
+    
+    // Remove contact view from body
+    document.body.classList.remove('contact-view');
 
     if (workExpBtn) workExpBtn.classList.remove('active');
     if (homeBtn) homeBtn.classList.add('active');
@@ -230,6 +233,9 @@ function showWorkExperience() {
 
     // Remove resume view from body
     document.body.classList.remove('resume-view');
+    
+    // Remove contact view from body
+    document.body.classList.remove('contact-view');
 
     // Expand all Work Experience and Education timeline items
     expandAllTimelineItems();
@@ -327,6 +333,9 @@ function showBlog() {
 
     // Remove resume view from body
     document.body.classList.remove('resume-view');
+    
+    // Remove contact view from body
+    document.body.classList.remove('contact-view');
 
     if (blogSection) {
         blogSection.classList.remove('hidden');
@@ -401,6 +410,9 @@ function showContact() {
 
     // Remove resume view from body
     document.body.classList.remove('resume-view');
+    
+    // Add contact view class to body
+    document.body.classList.add('contact-view');
 
     if (contactPageSection) {
         contactPageSection.classList.remove('hidden');
@@ -506,19 +518,15 @@ async function showBlogPostFromList(element) {
  * Load blog post content via fetch
  */
 async function loadBlogPost(url) {
-    console.log('Loading blog post:', url);
     try {
         const response = await fetch(url);
         const html = await response.text();
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, 'text/html');
         const postContent = doc.querySelector('.blog-post-full');
-        
-        console.log('Post content found:', !!postContent);
-        
+
         if (postContent) {
             document.getElementById('blogPostFull').innerHTML = postContent.innerHTML;
-            console.log('Content set');
         } else {
             // Fallback: try to get the main content
             const mainContent = doc.querySelector('main') || doc.querySelector('.content');
@@ -534,18 +542,17 @@ async function loadBlogPost(url) {
                 `;
             }
         }
-        
+
         // Update browser URL
         if (url !== window.location.pathname) {
             window.history.pushState({ path: url }, '', url);
         }
-        
+
         // Initialize Mermaid diagrams after content is loaded
         await initializeMermaid();
-        
+
         showBlogPost();
     } catch (error) {
-        console.error('Error loading blog post:', error);
         document.getElementById('blogPostFull').innerHTML = `
             <div class="blog-post-content">
                 <p>Error loading post. Please try again.</p>
@@ -561,48 +568,42 @@ async function loadBlogPost(url) {
 async function initializeMermaid() {
     // Wait for mermaid to be available and content to be in DOM
     await new Promise(resolve => setTimeout(resolve, 300));
-    
+
     if (typeof mermaid === 'undefined') {
-        console.log('Mermaid not loaded yet');
         return;
     }
-    
+
     // Find all mermaid code blocks
     const mermaidCodes = document.querySelectorAll('code.language-mermaid');
-    console.log('Found mermaid code blocks:', mermaidCodes.length);
-    
+
     // Convert code blocks to mermaid divs
     mermaidCodes.forEach((code) => {
         const pre = code.parentElement;
         if (pre.classList.contains('mermaid')) return;
-        
+
         const div = document.createElement('div');
         div.className = 'mermaid';
         div.textContent = code.textContent.trim();
         pre.parentNode.replaceChild(div, pre);
     });
-    
+
     // Initialize mermaid
     mermaid.initialize({ startOnLoad: false, theme: 'default' });
-    
+
     // Find all .mermaid divs and render them
     const mermaidDivs = document.querySelectorAll('.mermaid');
-    console.log('Found mermaid divs to render:', mermaidDivs.length);
-    
+
     for (let i = 0; i < mermaidDivs.length; i++) {
         const div = mermaidDivs[i];
         if (div.querySelector('svg')) continue; // Already rendered
-        
+
         try {
             const { svg } = await mermaid.render(`mermaid-${i}`, div.textContent);
             div.innerHTML = svg;
         } catch (err) {
-            console.error('Error rendering mermaid diagram:', err);
             div.innerHTML = '<p style="color: red;">Error rendering diagram</p>';
         }
     }
-    
-    console.log('Mermaid rendering complete');
 }
 
 /**
@@ -650,6 +651,9 @@ function showBlogPost() {
     if (workExpBtn) workExpBtn.classList.remove('active');
     if (homeBtn) homeBtn.classList.remove('active');
     if (blogBtn) blogBtn.classList.add('active');
+    
+    // Remove contact view from body
+    document.body.classList.remove('contact-view');
 }
 
 /**
@@ -697,8 +701,11 @@ function goBackToBlog() {
     if (workExpBtn) workExpBtn.classList.remove('active');
     if (homeBtn) homeBtn.classList.remove('active');
     if (blogBtn) blogBtn.classList.add('active');
+    
+    // Remove contact view from body
+    document.body.classList.remove('contact-view');
 
-    // Update browser URL to blog 
+    // Update browser URL to blog
     const currentPath = window.location.pathname;
     if (currentPath !== '/' && currentPath !== '/index.html') {
         window.history.pushState({ page: 'blog' }, '', '/#blog');
@@ -895,8 +902,6 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (hash === '#resume') {
         showResume();
     }
-
-    console.log('Portfolio initialized successfully!');
 });
 
 /**
@@ -999,11 +1004,9 @@ async function submitContactForm(event) {
         } else {
             const error = await response.json();
             alert('Oops! There was a problem sending your message. Please try again.');
-            console.error('Form submission error:', error);
         }
     } catch (error) {
         alert('Oops! There was a problem sending your message. Please try again.');
-        console.error('Form submission error:', error);
     }
 
     return false;
@@ -1124,4 +1127,102 @@ function updateTimezoneDifference() {
 document.addEventListener('DOMContentLoaded', function() {
     updateTimezoneDifference();
     setInterval(updateTimezoneDifference, 60000); // Update every 60 seconds
+});
+
+/**
+ * Scroll to top functionality
+ */
+function scrollToTop() {
+    const isMobileTablet = window.innerWidth <= 1200;
+    
+    if (isMobileTablet) {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    } else {
+        const mainContent = document.getElementById('mainContent');
+        if (mainContent) {
+            mainContent.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+    }
+}
+
+/**
+ * Toggle scroll-to-top button visibility based on scroll position
+ */
+function toggleScrollToTopButton() {
+    const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+    const mainContent = document.getElementById('mainContent');
+    
+    if (!scrollToTopBtn) return;
+    
+    // Check if we're on a page where the button should show
+    const homeContent = document.getElementById('homeContent');
+    const workExperienceSection = document.querySelector('.work-experience');
+    const blogSection = document.getElementById('blogSection');
+    const blogPostContent = document.getElementById('blogPostContent');
+    const contactPageSection = document.getElementById('contactPageSection');
+    const resumeSection = document.getElementById('resumeSection');
+    
+    // Hide on Resume page only
+    const shouldHideOnPage = (
+        (resumeSection && !resumeSection.classList.contains('hidden'))
+    );
+    
+    if (shouldHideOnPage) {
+        scrollToTopBtn.classList.remove('visible');
+        return;
+    }
+    
+    // Show on Home, Work Experience, Blog, Blog Post, and Contact
+    const shouldShowOnPage = (
+        (homeContent && !homeContent.classList.contains('hidden')) ||
+        (workExperienceSection && !workExperienceSection.classList.contains('hidden')) ||
+        (blogSection && !blogSection.classList.contains('hidden')) ||
+        (blogPostContent && !blogPostContent.classList.contains('hidden')) ||
+        (contactPageSection && !contactPageSection.classList.contains('hidden'))
+    );
+    
+    if (!shouldShowOnPage) {
+        scrollToTopBtn.classList.remove('visible');
+        return;
+    }
+    
+    // On mobile/tablet (<=1200px), scroll happens on window/body
+    // On desktop (>1200px), scroll happens on mainContent
+    let scrollTop = 0;
+    const isMobileTablet = window.innerWidth <= 1200;
+    
+    if (isMobileTablet) {
+        scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+    } else {
+        // Desktop - check mainContent scroll
+        if (mainContent) {
+            scrollTop = mainContent.scrollTop;
+        }
+    }
+    
+    // Show button only when scrolled more than 300px
+    if (scrollTop > 300) {
+        scrollToTopBtn.classList.add('visible');
+    } else {
+        scrollToTopBtn.classList.remove('visible');
+    }
+}
+
+// Add scroll event listener for scroll-to-top button
+document.addEventListener('DOMContentLoaded', function() {
+    const mainContent = document.getElementById('mainContent');
+    if (mainContent) {
+        mainContent.addEventListener('scroll', toggleScrollToTopButton);
+    }
+    window.addEventListener('scroll', toggleScrollToTopButton);
+    window.addEventListener('resize', toggleScrollToTopButton);
+    
+    // Initial check on page load
+    setTimeout(toggleScrollToTopButton, 100);
 });
