@@ -1,15 +1,18 @@
 {%- comment -%}
   Hobbies Include
   Renders hobbies from _data/techstack.yml
-  
+  Design: Circular icon badges with tooltip-style names
+
   Usage: {% include hobbies-render.html %}
 {%- endcomment -%}
 
-<div class="hobbies-list">
-  {%- for hobby in site.data.techstack.hobbies limit: 4 -%}
-    <div class="hobby-item">
-      <i class="fas {{ hobby.icon }}"></i>
-      <span>{{ hobby.name }}</span>
+<div class="hobbies-grid">
+  {%- for hobby in site.data.techstack.hobbies limit: 6 -%}
+    <div class="hobby-badge" title="{{ hobby.name }}">
+      <div class="hobby-badge-icon">
+        <i class="fas {{ hobby.icon }}"></i>
+      </div>
+      <span class="hobby-badge-name">{{ hobby.name }}</span>
     </div>
   {%- endfor -%}
 </div>

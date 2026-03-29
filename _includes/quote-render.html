@@ -1,11 +1,15 @@
 {%- comment -%}
   Quote Include
   Renders quote from _data/profile.yml
-  
+  Design: Highlighted quote card with decorative elements
+
   Usage: {% include quote-render.html %}
 {%- endcomment -%}
 
-<div class="quote-section">
-  <p class="quote-text">{{ site.data.profile.quote.text }}</p>
-  <span class="quote-author">— {{ site.data.profile.quote.author }}</span>
+<div class="quote-card">
+  <div class="quote-card-icon">
+    <i class="fas fa-quote-left"></i>
+  </div>
+  <p class="quote-card-text">{{ site.data.profile.quote.text }}</p>
+  <span class="quote-card-author">— {{ site.data.profile.quote.author }}</span>
 </div>

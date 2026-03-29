@@ -1,14 +1,15 @@
 {%- comment -%}
   Tech Stack Include
   Renders tech stack from _data/techstack.yml
-  
+  Design: Compact skill cards with icons
+
   Usage: {% include tech-stack-render.html context='sidebar' %}
          {% include tech-stack-render.html context='resume' %}
-  
+
   Parameters:
-    - context: 'sidebar' for 3rd column layout (uses tech-item class)
-               'resume' for resume layout (uses resume-tag class)
-  
+    - context: 'sidebar' for 3rd column layout
+               'resume' for resume layout
+
   Each category in techstack.yml can have:
     show_in: resume  (only in resume)
     show_in: sidebar (only in sidebar)
@@ -47,20 +48,14 @@
       </div>
     {%- else -%}
       <!-- Sidebar View -->
-      <div class="tech-category">
-        <h4 class="tech-category-title">
-          {%- if category.icon == 'fa-language' -%}<i class="fas fa-language"></i>
-          {%- elsif category.icon == 'fa-desktop' -%}<i class="fas fa-desktop"></i>
-          {%- elsif category.icon == 'fa-server' -%}<i class="fas fa-server"></i>
-          {%- elsif category.icon == 'fa-database' -%}<i class="fas fa-database"></i>
-          {%- elsif category.icon == 'fa-tools' -%}<i class="fas fa-tools"></i>
-          {%- elsif category.icon == 'fa-palette' -%}<i class="fas fa-palette"></i>
-          {%- endif -%}
-          {{ category.name }}
-        </h4>
-        <div class="tech-list">
+      <div class="skill-card">
+        <div class="skill-card-header">
+          <i class="fas {{ category.icon }} skill-card-icon"></i>
+          <h4 class="skill-card-title">{{ category.name }}</h4>
+        </div>
+        <div class="skill-card-tags">
           {%- for item in category.items -%}
-            <span class="tech-item">{{ item }}</span>
+            <span class="skill-tag">{{ item }}</span>
           {%- endfor -%}
         </div>
       </div>
