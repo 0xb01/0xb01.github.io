@@ -1014,53 +1014,18 @@ async function submitContactForm(event) {
 
 /**
  * Initialize project card buttons
+ * New design uses direct <a> links for public projects
  */
 function initProjectButtons() {
-    const projectButtons = document.querySelectorAll('.project-link-btn');
-
-    projectButtons.forEach(button => {
-        // Store original description for closed source _projects
-        const cardBack = button.closest('.project-card-back');
-        if (cardBack && button.getAttribute('data-type') === 'closed') {
-            const description = cardBack.querySelector('.project-description');
-            if (description) {
-                button.setAttribute('data-original-description', description.textContent);
-            }
-        }
-
-        button.addEventListener('click', (event) => {
-            event.stopPropagation();
-
-            const link = button.getAttribute('data-link');
-            const type = button.getAttribute('data-type');
-            const cardBack = button.closest('.project-card-back');
-
-            if (type === 'public' && link) {
-                // Open link in new tab
-                window.open(link, '_blank');
-            } else if (type === 'closed') {
-                // Toggle closed source state
-                if (cardBack) {
-                    const description = cardBack.querySelector('.project-description');
-                    const isClosedSource = cardBack.classList.contains('closed-source');
-
-                    if (isClosedSource) {
-                        // Revert to original state
-                        cardBack.classList.remove('closed-source');
-                        if (description) {
-                            description.textContent = button.getAttribute('data-original-description');
-                        }
-                        button.textContent = 'View Project';
-                    } else {
-                        // Show closed source message
-                        cardBack.classList.add('closed-source');
-                        if (description) {
-                            description.textContent = 'Project is closed source / proprietary.';
-                        }
-                        button.textContent = 'Closed Source';
-                    }
-                }
-            }
+    // Public projects now use direct <a> tags with target="_blank"
+    // No JavaScript handling needed for them
+    
+    // Add hover effect for closed source projects (optional enhancement)
+    const closedProjects = document.querySelectorAll('.project-card[data-visibility="closed"]');
+    
+    closedProjects.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            // Could add future interactions here if needed
         });
     });
 }

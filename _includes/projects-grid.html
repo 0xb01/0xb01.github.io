@@ -1,34 +1,86 @@
 {%- comment -%}
   Projects Grid Include
   Renders projects from _data/projects.yml
-  
+  Design: Horizontal cards with hover expansion and inline actions
+
   Usage: {% include projects-grid.html %}
 {%- endcomment -%}
 
 <div class="projects-grid">
   {%- for project in site.data.projects -%}
-    <div class="project-card">
-      <div class="project-card-inner">
-        <div class="project-card-front">
-          <div class="project-header-center">
-            <h4 class="project-name">{{ project.name }}</h4>
-            <span class="project-year">{{ project.year }}</span>
+    {%- assign icon = project.name | slice: 0, 2 -%}
+    {%- if icon contains "🎌" or icon contains "🔎" or icon contains "🔒" or icon contains "🌐" or icon contains "🧮" or icon contains "🕹️" or icon contains "🎮" -%}
+      {%- assign project_icon = icon -%}
+    {%- else -%}
+      {%- assign project_icon = "📁" -%}
+    {%- endif -%}
+    
+    {%- assign max_visible_tags = 5 -%}
+    {%- assign tech_count = project.tech_stack | size -%}
+    {%- assign hidden_count = tech_count | minus: max_visible_tags -%}
+    {%- if hidden_count < 0 -%}
+      {%- assign hidden_count = 0 -%}
+    {%- endif -%}
+    
+    <article class="project-card" data-visibility="{{ project.visibility }}">
+      <div class="project-card-content">
+        <div class="project-main">
+          <div class="project-icon">{{ project_icon }}</div>
+          <div class="project-info">
+            <div class="project-header">
+              <h4 class="project-name">{{ project.name | remove_first: project_icon | remove_first: " " }}</h4>
+              <span class="project-year">{{ project.year }}</span>
+            </div>
+            <p class="project-description">{{ project.description }}</p>
           </div>
-          <div class="project-techstack">
-            {%- for tech in project.tech_stack -%}
+        </div>
+        
+        <div class="project-meta">
+          <div class="project-techstack" data-hidden-count="{{ hidden_count }}">
+            {%- for tech in project.tech_stack limit: max_visible_tags -%}
               <span class="tech-tag">{{ tech }}</span>
             {%- endfor -%}
+            {%- if hidden_count > 0 -%}
+              <span class="tech-tag tech-tag-more">+{{ hidden_count }}</span>
+            {%- endif -%}
+            {%- if hidden_count > 0 -%}
+            <div class="tech-stack-full">
+              {%- for tech in project.tech_stack -%}
+                <span class="tech-tag">{{ tech }}</span>
+              {%- endfor -%}
+            </div>
+            {%- endif -%}
+          </div>
+          
+          <div class="project-actions">
+            {%- if project.visibility == 'public' and project.url != '' -%}
+              <div class="action-stack">
+                <span class="visibility-badge public">
+                  <i class="fas fa-globe"></i>
+                  <span>Public</span>
+                </span>
+                <a href="{{ project.url }}" class="project-link-btn" target="_blank" rel="noopener">
+                  <i class="fas fa-external-link-alt"></i>
+                  <span>View</span>
+                </a>
+              </div>
+            {%- else -%}
+              <div class="action-stack">
+                <span class="visibility-badge closed">
+                  <i class="fas fa-eye-slash"></i>
+                  <span>Closed Source</span>
+                </span>
+                <span class="project-link-btn closed">
+                  <i class="fas fa-lock"></i>
+                  <span>Private</span>
+                </span>
+              </div>
+            {%- endif -%}
           </div>
         </div>
-        <div class="project-card-back">
-          <p class="project-description">{{ project.description }}</p>
-          {%- if project.visibility == 'public' and project.url != '' -%}
-            <button class="project-link-btn" data-link="{{ project.url }}" data-type="public">View Project</button>
-          {%- else -%}
-            <button class="project-link-btn" data-type="closed">View Project</button>
-          {%- endif -%}
-        </div>
       </div>
-    </div>
+      
+      <div class="project-card-accent"></div>
+    </article>
   {%- endfor -%}
 </div>
