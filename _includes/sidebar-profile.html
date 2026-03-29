@@ -1,0 +1,67 @@
+{%- comment -%}
+  Sidebar Profile Include
+  Renders profile info from _data/profile.yml
+  
+  Usage: {% include sidebar-profile.html %}
+{%- endcomment -%}
+
+<div class="profile-section">
+    <div class="profile-left">
+        <div class="profile-image">
+            <img src="{{ site.data.profile.profile_image }}" alt="{{ site.data.profile.name }}" class="profile-photo">
+        </div>
+        <div class="profile-text">
+            <h1 class="name">{{ site.data.profile.name }}</h1>
+            <div class="location-info">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>{{ site.data.profile.location }}</span>
+            </div>
+            <div class="status-box">
+                {{ site.data.profile.status }}
+            </div>
+        </div>
+    </div>
+    <div class="nav-buttons">
+        <hr class="separator">
+        {%- for nav in site.data.profile.navigation -%}
+            <button class="nav-btn{% if nav.active %} active{% endif %}" id="{{ nav.id }}" onclick="{{ nav.action }}()">{{ nav.label }}</button>
+        {%- endfor -%}
+    </div>
+</div>
+
+<div class="contact-section" style="margin-top: auto; padding-top: 15px; padding-bottom: 10px;">
+    <h3>Contact</h3>
+    <ul class="contact-list">
+        {%- for contact in site.data.profile.contact -%}
+            {%- if contact.type == 'timezone' -%}
+                <li class="timezone-contact" onclick="{{ contact.action }}()">
+                    <i class="fas {{ contact.icon }}"></i>
+                    <span id="timezoneText" data-timezone="{{ contact.timezone }}" data-location="{{ site.data.profile.location }}">Loading...</span>
+                </li>
+            {%- elsif contact.clickable -%}
+                <li>
+                    <i class="fas {{ contact.icon }}"></i>
+                    <a href="javascript:void(0)" onclick="{{ contact.action }}(); return false;">{{ contact.value }}</a>
+                </li>
+            {%- else -%}
+                <li>
+                    <i class="fas {{ contact.icon }}"></i>
+                    <span>{{ contact.value }}</span>
+                </li>
+            {%- endif -%}
+        {%- endfor -%}
+    </ul>
+</div>
+
+<div class="social-section">
+    <h3>Socials</h3>
+    <div class="social-links">
+        {%- for social in site.data.profile.socials -%}
+            {%- if social.show != false -%}
+                <a href="{{ social.url }}" class="social-link" aria-label="{{ social.label }}" target="_blank">
+                    <i class="fab {{ social.icon }}"></i>
+                </a>
+            {%- endif -%}
+        {%- endfor -%}
+    </div>
+</div>

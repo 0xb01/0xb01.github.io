@@ -1,19 +1,10 @@
 title: JNR
 email: banikaz@proton.me
 description: >-
-  Solution-oriented programmer with 10 years of experience in creating software 
+  Solution-oriented programmer with 10 years of experience in creating software
   for desktop platforms, mobile development, and hardware.
 baseurl: ""
 url: "http://banikaz.online"
-
-my_phone: (+63) 976-002-8684
-my_email: banikaz@proton.me
-my_github: https://github.com/0xb01
-my_linkedin: https://www.linkedin.com/in/jnr01
-my_facebook: https://www.facebook.com/0xb01
-my_twitter: https://x.com/authenticegg
-my_instagram: https://www.instagram.com/0xb02
-my_youtube: https://www.youtube.com/@JuanNicolasMe
 
 # Build settings
 markdown: kramdown

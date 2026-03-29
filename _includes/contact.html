@@ -6,21 +6,16 @@
     <div class="contact-note-box">
         <div class="note-header">
             <i class="fas fa-sticky-note"></i>
-            <span class="note-title">A Quick Note</span>
+            <span class="note-title">{{ site.data.profile.contact_form.note_title }}</span>
         </div>
         <div class="note-content">
-            <p>
-                I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions. Whether you have a question, a collaboration idea, or just want to say hello, feel free to reach out!
-            </p>
-            <p>
-                I typically respond within 24-48 hours. For project inquiries, please include as much detail as possible about your requirements, timeline, and budget.
-            </p>
-            <p class="note-signature">— Niks</p>
+            {{ site.data.profile.contact_form.note_content | markdownify }}
+            <p class="note-signature">— {{ site.data.profile.contact_form.note_signature }}</p>
         </div>
     </div>
 
     <!-- Contact Form -->
-    <form class="contact-form" id="contactForm" onsubmit="submitForm(event)">
+    <form class="contact-form" id="contactForm" action="{{ site.data.profile.contact_form.formspree_url }}" method="POST">
         <div class="form-group">
             <label for="name">Name</label>
             <input type="text" id="name" name="name" required placeholder="Your Name">

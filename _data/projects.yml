@@ -1,0 +1,72 @@
+# Projects Data
+# Single source of truth for Recent / Fun Projects section
+# Edit here - changes reflect automatically
+
+- name: "🎌 Kana Practice"
+  year: 2026
+  description: Interactive web app for practicing Japanese Hiragana and Katakana with multiple learning modes.
+  tech_stack:
+    - CSS
+    - HTML
+    - JavaScript
+  url: /kana/
+  visibility: public  # public, private, closed
+
+- name: "🔎 Zzzzz"
+  year: 2026
+  description: Obsidian plugin that finds problematic files like broken links, orphaned files, and unlinked mentions.
+  tech_stack:
+    - CSS
+    - JavaScript
+    - NodeJS
+    - TypeScript
+  url: https://github.com/0xb01/zzzzz
+  visibility: public
+
+- name: "🔒 Auto Incognito Filter"
+  year: 2026
+  description: Browser extension that automatically opens specified websites in incognito mode for enhanced privacy.
+  tech_stack:
+    - CSS
+    - HTML
+    - JavaScript
+    - NodeJS
+  url: https://github.com/0xb01/auto-incognito-filter
+  visibility: public
+
+- name: "🌐 Banikaz"
+  year: 2026
+  description: Personal portfolio and blog website to share projects, experiences, and thoughts. Powered by GitHub Pages.
+  tech_stack:
+    - CSS
+    - HTML
+    - JavaScript
+  url: https://github.com/0xb01/0xb01.github.io
+  visibility: public
+
+- name: "🧮 AkoCalc"
+  year: 2025
+  description: In-line calculator with variables, basic arithmetic, and currency conversions for quick calculations.
+  tech_stack:
+    - C#
+  url: ""
+  visibility: closed
+
+- name: "🕹️ TnT"
+  year: 2023
+  description: Personal library and unified launcher for managing PC games.
+  tech_stack:
+    - C#
+    - Postman
+    - PowerShell
+  url: ""
+  visibility: closed
+
+- name: "🎮 Haiyan: PC Booster"
+  year: 2017
+  description: "All-in-one Windows PC optimization tool with system cleanup, game mode, registry optimization, and anti-virus."
+  tech_stack:
+    - Batch
+    - VB.NET
+  url: ""
+  visibility: closed

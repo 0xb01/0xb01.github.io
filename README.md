@@ -39,12 +39,25 @@ Personal portfolio website of **John Nichols Ranara** — a solution-oriented pr
 ```
 0xb01.github.io/
 ├── _config.yml          # Site configuration
+├── _data/               # Content data files (edit these!)
+│   ├── profile.yml      # Personal info, socials, quote, contact form
+│   ├── experience.yml   # Work experience & education
+│   ├── projects.yml     # Projects showcase
+│   └── techstack.yml    # Tech stack & hobbies
 ├── _includes/           # Reusable components
-│   ├── footer.html
-│   ├── header.html
-│   ├── navigation.html
+│   ├── about.html
+│   ├── contact.html
+│   ├── experience-items.html
+│   ├── hero.html
+│   ├── hobbies-render.html
+│   ├── mobile-header.html
+│   ├── projects-grid.html
+│   ├── quote-render.html
+│   ├── resume.html
 │   ├── sidebar.html
-│   └── tech-stack.html
+│   ├── sidebar-profile.html
+│   ├── tech-stack.html
+│   └── tech-stack-render.html
 ├── _layouts/            # Page layouts
 │   ├── v2.html          # Main portfolio layout
 │   ├── v2-default.html  # Default layout
@@ -53,9 +66,11 @@ Personal portfolio website of **John Nichols Ranara** — a solution-oriented pr
 ├── _site/               # Generated site (gitignored)
 ├── kana/                # Kana practice web app
 ├── res/                 # Resources/assets
+│   ├── me.jpg           # Profile photo
+│   ├── Ranara-Resume.pdf
+│   ├── script.js        # Main JavaScript
+│   └── style.css        # Main stylesheet
 ├── index.html           # Home page (SPA)
-├── script.js            # Main JavaScript
-├── style.css            # Main stylesheet
 ├── Gemfile              # Ruby dependencies
 └── README.md            # This file
 ```
@@ -87,6 +102,49 @@ Personal portfolio website of **John Nichols Ranara** — a solution-oriented pr
 4. **Open in browser**: http://localhost:4000
 
 ## Usage
+
+### Using This Template
+
+This portfolio is designed to be easily customizable! You can fork this repository and make it your own by editing the **`_data/`** YAML files—no need to dig through HTML. All your personal information, work experience, projects, and more are stored in structured data files.
+
+### Data Files Overview
+
+All content is managed through `_data/` YAML files:
+
+| File | Purpose | What to Edit |
+|------|---------|--------------|
+| `_data/profile.yml` | Personal info | Name, location, hero text, about me, contact info, socials, navigation, quote, resume PDF |
+| `_data/experience.yml` | Work history | Job positions, companies, dates, responsibilities, tech stack, references |
+| `_data/projects.yml` | Projects | Project name, year, description, tech stack, URLs, visibility |
+| `_data/techstack.yml` | Skills & hobbies | Tech categories, skills, hobbies (max 4), icons |
+
+### Quick Start Customization
+
+1. **Fork this repository** to your GitHub account
+2. **Edit `_data/profile.yml`**:
+   ```yaml
+   name: Your Name
+   location: Your City, Country
+   status: Your Status
+   hero:
+     title: Your Title
+     headline: Your Headline
+   socials:
+     - platform: GitHub
+       url: https://github.com/yourusername
+       show: true
+   resume:
+     pdf_path: /res/Your-Resume.pdf
+   quote:
+     text: "Your favorite quote..."
+     author: "Quote Author"
+   contact_form:
+     note_signature: "Your Name"
+   ```
+3. **Update `_data/experience.yml`** with your work history
+4. **Update `_data/projects.yml`** with your projects
+5. **Replace assets** in `/res/` (profile photo, resume PDF)
+6. **Update `_config.yml`** with your domain and email
 
 ### Navigation
 
@@ -122,10 +180,29 @@ The portfolio uses a single-page application (SPA) design with the following sec
 
 ### Customization
 
-- **Site config**: Edit `_config.yml` for site metadata, social links, and build settings
-- **Styling**: Modify `style.css` CSS variables for theme colors
-- **Content**: Update `index.html` for main page content
+- **Site config**: Edit `_config.yml` for site metadata, domain, and build settings
+- **Styling**: Modify `/res/style.css` CSS variables for theme colors
+- **Content**: Edit `_data/` YAML files—all your content lives here!
 - **Components**: Edit files in `_includes/` for reusable sections
+- **Layouts**: Modify `_layouts/` for page structure changes
+
+### Contact Form Setup
+
+1. Go to [Formspree.io](https://formspree.io) and create a free account
+2. Create a new form and get your endpoint URL
+3. Update `_data/profile.yml`:
+   ```yaml
+   contact_form:
+     formspree_url: https://formspree.io/f/your-form-id
+   ```
+
+### Resume PDF
+
+Place your resume PDF in `/res/` and update the path in `_data/profile.yml`:
+```yaml
+resume:
+  pdf_path: /res/Your-Name-Resume.pdf
+```
 
 ## Deployment
 

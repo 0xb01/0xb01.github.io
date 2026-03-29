@@ -1066,20 +1066,24 @@ function initProjectButtons() {
 }
 
 /**
- * Display timezone difference between visitor and Manila (GMT+8)
+ * Display timezone difference between visitor and configured timezone
  */
 function updateTimezoneDifference() {
     const timezoneText = document.getElementById('timezoneText');
     if (!timezoneText) return;
 
+    // Get configured timezone from data attribute or default to Asia/Manila
+    const configuredTimezone = timezoneText.getAttribute('data-timezone') || 'Asia/Manila';
+    const configuredLocation = timezoneText.getAttribute('data-location') || 'Tacloban City';
+
     const now = new Date();
 
-    // Get Manila time (GMT+8)
-    const manilaTime = now.toLocaleTimeString('en-US', {
+    // Get configured location time
+    const locationTime = now.toLocaleTimeString('en-US', {
         hour: '2-digit',
         minute: '2-digit',
         hour12: true,
-        timeZone: 'Asia/Manila'
+        timeZone: configuredTimezone
     });
 
     // Get visitor's local time
@@ -1092,30 +1096,31 @@ function updateTimezoneDifference() {
     // Calculate time difference using date objects
     // Get current UTC time
     const utcTime = now.getTime() + (now.getTimezoneOffset() * 60000);
-    // Get Manila time (GMT+8)
-    const manilaTimeMs = utcTime + (8 * 3600000);
-    const manilaDate = new Date(manilaTimeMs);
-
+    
+    // Get configured location UTC offset
+    const locationDate = new Date(now.toLocaleString('en-US', { timeZone: configuredTimezone }));
+    const localDate = now;
+    
     // Calculate hour difference
     const localHour = now.getHours();
-    const manilaHour = manilaDate.getHours();
-    let diffHours = manilaHour - localHour;
+    const locationHour = locationDate.getHours();
+    let diffHours = locationHour - localHour;
 
     // Adjust for day wraparound
     if (diffHours > 12) diffHours -= 24;
     if (diffHours < -12) diffHours += 24;
 
     let timeDiffText = '';
-    let titleText = `It's ${manilaTime} in Tacloban City`;
+    let titleText = `It's ${locationTime} in ${configuredLocation}`;
 
     if (diffHours === 0) {
         // Same timezone - just show time
         timeDiffText = localTime;
     } else if (diffHours > 0) {
-        // Manila is ahead
+        // Location is ahead
         timeDiffText = `${localTime} (I'm ${Math.abs(diffHours)}h ahead of you.)`;
     } else {
-        // Manila is behind
+        // Location is behind
         timeDiffText = `${localTime} (I'm ${Math.abs(diffHours)}h behind you.)`;
     }
 

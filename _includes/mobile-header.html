@@ -1,0 +1,15 @@
+{%- comment -%}
+  Mobile Header Include
+  Renders mobile header from _data/profile.yml
+  
+  Usage: {% include mobile-header.html %}
+{%- endcomment -%}
+
+<div class="mobile-header" id="mobileHeader">
+    <div class="mobile-header-name">{{ site.data.profile.name }}</div>
+    <div class="mobile-header-info">
+        <span><i class="fas fa-map-marker-alt"></i> {{ site.data.profile.location }}</span>
+        <span><i class="fas fa-envelope"></i> {{ site.data.profile.contact[0].value }}</span>
+        <span><i class="fas fa-phone"></i> {{ site.data.profile.contact[1].value }}</span>
+    </div>
+</div>

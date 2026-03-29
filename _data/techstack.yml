@@ -1,0 +1,79 @@
+# Tech Stack Data
+# Single source of truth for Tech Stack (sidebar + resume)
+# Edit here - changes reflect automatically in both locations
+
+categories:
+  - name: Languages
+    icon: fa-language
+    show_in: resume  # resume, sidebar, or both
+    items:
+      - English
+      - Filipino
+      - Waray-waray (Dialect)
+      - Cebuano (Dialect)
+
+  - name: Frontend
+    icon: fa-desktop
+    show_in: both
+    items:
+      - HTML
+      - CSS
+      - JavaScript
+      - TypeScript
+
+  - name: Backend
+    icon: fa-server
+    show_in: both
+    items:
+      - Bash
+      - C
+      - C#
+      - Java
+      - Python
+      - PHP
+      - Lua
+      - NodeJS
+      - Qt
+      - Xojo
+
+  - name: Database
+    icon: fa-database
+    show_in: both
+    items:
+      - MySQL
+      - PostgreSQL
+      - MongoDB
+      - SQLite
+
+  - name: Tools & Platforms
+    icon: fa-tools
+    show_in: both
+    items:
+      - Docker
+      - Git
+      - GitHub
+      - GitLab
+      - Make/n8n
+      - Alibaba Cloud
+      - Google Cloud
+      - GitHub Actions
+
+  - name: Creative
+    icon: fa-palette
+    show_in: both
+    items:
+      - Photoshop
+      - Premiere
+      - DaVinci
+      - OBS
+
+# Hobbies (max 4 items)
+hobbies:
+  - name: Modding Games
+    icon: fa-hammer
+  - name: Music
+    icon: fa-headphones
+  - name: Learning Tech
+    icon: fa-code
+  - name: Japanese
+    icon: fa-language

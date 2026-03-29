@@ -1,0 +1,124 @@
+# Profile Data
+# Single source of truth for personal/profile information
+# Edit here - changes reflect automatically everywhere
+
+# Basic Info
+name: John Nichols Ranara
+location: Tacloban City, Leyte
+status: Open to opportunities
+profile_image: /res/me.jpg
+
+# Hero Section (Home page)
+hero:
+  title: Full-Stack Developer • Principal Software Engineer
+  headline: Solution-oriented person
+  description: Solution-oriented programmer with a decade of experience, specializing in desktop application development and backend architecture, with a versatile background in multi-platform software.
+
+# About Section
+about:
+  title: About Me
+  content: Hi, I'm Niks! I've been obsessed with code since I was a kid, and I've spent the last 10 years turning that passion into a career. I'm a specialist in desktop development and backend setup, with a proven track record of delivering end-to-end software solutions. My background spans multiple platforms, from native Android apps to complex desktop environments. Currently working at home, I focus on efficient systems and solving the unique challenges that come with desktop software.
+
+# Contact Info (for sidebar contact section)
+contact:
+  - type: email
+    icon: fa-envelope
+    value: banikaz@proton.me
+    clickable: true
+    action: showContact
+
+  - type: phone
+    icon: fa-phone
+    value: (+63) 976-002-8684
+    clickable: true
+    action: showContact
+
+  - type: timezone
+    icon: fa-clock
+    timezone: Asia/Manila  # Set your timezone (e.g., Asia/Manila, America/New_York, Europe/London)
+    clickable: true
+    action: showContact
+
+# Socials (add as many as you want)
+socials:
+  - platform: GitHub
+    icon: fa-github
+    url: https://github.com/0xb01
+    label: GitHub
+    show: true
+
+  - platform: LinkedIn
+    icon: fa-linkedin-in
+    url: https://www.linkedin.com/in/jnr01
+    label: LinkedIn
+    show: true
+
+  - platform: YouTube
+    icon: fa-youtube
+    url: https://www.youtube.com/@JuanNicolasMe
+    label: YouTube
+    show: true
+
+  - platform: Facebook
+    icon: fa-facebook
+    url: https://www.facebook.com/0xb01
+    label: Facebook
+    show: false
+
+  - platform: Twitter/X
+    icon: fa-x-twitter
+    url: https://x.com/authenticegg
+    label: Twitter
+    show: false
+
+  - platform: Instagram
+    icon: fa-instagram
+    url: https://www.instagram.com/0xb02
+    label: Instagram
+    show: false
+
+# Navigation Buttons (sidebar)
+navigation:
+  - label: Home
+    id: homeBtn
+    action: showHome
+    active: true
+
+  - label: Work Experience
+    id: workExpBtn
+    action: showWorkExperience
+    active: false
+
+  - label: Blog
+    id: blogBtn
+    action: showBlog
+    active: false
+
+  - label: Contact
+    id: contactBtn
+    action: showContact
+    active: false
+
+  - label: Resume
+    id: resumeBtn
+    action: showResume
+    active: false
+
+# Quote (for sidebar)
+quote:
+  text: "When you have a great and difficult task... if you only work a little at a time, every day a little, suddenly the work will finish itself."
+  author: "Isak Dinesen"
+
+# Contact Form Configuration
+contact_form:
+  formspree_url: https://formspree.io/f/mojpjdag
+  note_title: "A Quick Note"
+  note_content: |
+    I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions. Whether you have a question, a collaboration idea, or just want to say hello, feel free to reach out!
+
+    I typically respond within 24-48 hours. For project inquiries, please include as much detail as possible about your requirements, timeline, and budget.
+  note_signature: "Niks"
+
+# Resume
+resume:
+  pdf_path: /res/Ranara-Resume.pdf  # Path to your resume PDF file

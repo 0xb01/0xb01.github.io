@@ -1,0 +1,13 @@
+{%- comment -%}
+  About Section Include
+  Renders about content from _data/profile.yml
+  
+  Usage: {% include about.html %}
+{%- endcomment -%}
+
+<div class="about-container">
+    <h3>{{ site.data.profile.about.title }}</h3>
+    <div class="about-bubble">
+        <p>{{ site.data.profile.about.content }}</p>
+    </div>
+</div>

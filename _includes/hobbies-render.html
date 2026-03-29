@@ -1,0 +1,15 @@
+{%- comment -%}
+  Hobbies Include
+  Renders hobbies from _data/techstack.yml
+  
+  Usage: {% include hobbies-render.html %}
+{%- endcomment -%}
+
+<div class="hobbies-list">
+  {%- for hobby in site.data.techstack.hobbies limit: 4 -%}
+    <div class="hobby-item">
+      <i class="fas {{ hobby.icon }}"></i>
+      <span>{{ hobby.name }}</span>
+    </div>
+  {%- endfor -%}
+</div>

@@ -1,0 +1,14 @@
+{%- comment -%}
+  Hero Section Include
+  Renders hero content from _data/profile.yml
+  
+  Usage: {% include hero.html %}
+{%- endcomment -%}
+
+<div class="work-info">
+    <p class="work-title">{{ site.data.profile.hero.title }}</p>
+    <h2 class="hero-text">{{ site.data.profile.hero.headline }}</h2>
+    <p class="hero-description">
+        {{ site.data.profile.hero.description }}
+    </p>
+</div>

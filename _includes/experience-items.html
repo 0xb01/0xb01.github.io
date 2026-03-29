@@ -1,0 +1,97 @@
+{%- comment -%}
+  Experience Items Include
+  Renders work experience items based on context.
+  
+  Usage: {% include experience-items.html context='work' %}
+         {% include experience-items.html context='resume' %}
+  
+  Parameters:
+    - context: 'work' for Work Experience page (shows tech stack & references)
+               'resume' for Resume (hides tech stack & references)
+  
+  Each experience in experience.yml can have:
+    show_in: resume  (only in resume)
+    show_in: work    (only in work experience page)
+    show_in: both    (in both places)
+{%- endcomment -%}
+
+{%- for job in site.data.experience -%}
+  {%- assign show_job = false -%}
+  {%- if job.show_in == 'both' -%}
+    {%- assign show_job = true -%}
+  {%- elsif include.context == 'resume' and job.show_in == 'resume' -%}
+    {%- assign show_job = true -%}
+  {%- elsif include.context == 'work' and job.show_in == 'work' -%}
+    {%- assign show_job = true -%}
+  {%- endif -%}
+
+  {%- if show_job -%}
+    {%- if include.context == 'resume' -%}
+      <!-- Resume View -->
+      <div class="resume-item">
+        <div class="resume-item-header">
+          <h4>{{ job.position }}</h4>
+          <span class="resume-period">{{ job.period }}</span>
+        </div>
+        <p class="resume-company">{{ job.company }}</p>
+        <ul class="resume-highlights">
+          {%- for task in job.responsibilities -%}
+            <li>{{ task }}</li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    {%- else -%}
+      <!-- Work Experience Page View -->
+      {%- assign item_class = 'collapsed' -%}
+      {%- if forloop.first -%}
+        {%- assign item_class = 'expanded' -%}
+      {%- endif -%}
+      
+      <div class="timeline-item {{ item_class }}">
+        <div class="timeline-header">
+          <div class="timeline-info">
+            <span class="timeline-year">{{ job.period | upcase }}</span>
+            <span class="timeline-position">{{ job.position }}</span>
+            <span class="timeline-duration">{{ job.duration }}</span>
+            <span class="timeline-company">{{ job.company }}</span>
+          </div>
+          <i class="fas fa-chevron-{%- if forloop.first -%}down{%- else -%}right{%- endif -%} toggle-icon"></i>
+        </div>
+        <div class="timeline-content">
+          <div class="tasks">
+            <h4>Key Responsibilities</h4>
+            <ul>
+              {%- for task in job.responsibilities -%}
+                <li>{{ task }}</li>
+              {%- endfor -%}
+            </ul>
+          </div>
+          
+          {%- if job.tech_stack and job.tech_stack.size > 0 -%}
+          <div class="tech-stack">
+            <h4>Tech Stack</h4>
+            <div class="tech-tags">
+              {%- for tech in job.tech_stack -%}
+                <span class="tech-tag">{{ tech }}</span>
+              {%- endfor -%}
+            </div>
+          </div>
+          {%- endif -%}
+          
+          {%- if job.references and job.references.size > 0 -%}
+          <div class="references">
+            <h4>References</h4>
+            <div class="reference-links">
+              {%- for ref in job.references -%}
+                <a href="{{ ref.url }}" target="_blank" rel="noopener" class="reference-link">
+                  <i class="fas fa-external-link-alt"></i> {{ ref.title }}
+                </a>
+              {%- endfor -%}
+            </div>
+          </div>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endif -%}
+  {%- endif -%}
+{%- endfor -%}

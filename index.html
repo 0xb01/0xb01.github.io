@@ -2,15 +2,7 @@
 layout: v2
 title: Portfolio
 ---
-<!-- Mobile Header -->
-<div class="mobile-header" id="mobileHeader">
-    <div class="mobile-header-name">John Nichols Ranara</div>
-    <div class="mobile-header-info">
-        <span><i class="fas fa-map-marker-alt"></i> Tacloban City, Leyte</span>
-        <span><i class="fas fa-envelope"></i> {{ site.my_email }}</span>
-        <span><i class="fas fa-phone"></i> {{ site.my_phone }}</span>
-    </div>
-</div>
+{% include mobile-header.html %}
 
 <!-- Mobile Burger Buttons -->
 <button class="mobile-burger mobile-burger-left" id="mobileBurgerLeft" onclick="toggleMobileSidebar('left')" aria-label="Open menu">
@@ -29,192 +21,14 @@ title: Portfolio
     <!-- Column 2: Main Content -->
     <main class="column column-2" id="mainContent">
         <div class="home-content" id="homeContent">
-            <div class="work-info">
-                <p class="work-title">Full-Stack Developer • Principal Software Engineer</p>
-                <h2 class="hero-text">Solution-oriented person</h2>
-                <p class="hero-description">
-                    Solution-oriented programmer with a decade of experience, specializing in desktop application development and backend architecture, with a versatile background in multi-platform software.
-                </p>
-            </div>
-
-            <div class="about-container">
-                <h3>About Me</h3>
-                <div class="about-bubble">
-                    <p>
-                        Hi, I'm Niks! I've been obsessed with code since I was a kid, and I've spent the last 10 years turning that passion into a career. I'm a specialist in desktop development and backend setup, with a proven track record of delivering end-to-end software solutions. My background spans multiple platforms, from native Android apps to complex desktop environments. Currently working at home, I focus on efficient systems and solving the unique challenges that come with desktop software.
-                    </p>
-                </div>
-            </div>
+            {% include hero.html %}
+            {% include about.html %}
         </div>
 
         <section class="section work-experience" id="workExperienceSection">
             <h3 class="section-title">Work Experience</h3>
-
             <div class="timeline">
-                <!-- Latest job - expanded -->
-                <div class="timeline-item expanded">
-                    <div class="timeline-header">
-                        <div class="timeline-info">
-                            <span class="timeline-year">JUL 2019 – PRESENT</span>
-                            <span class="timeline-position">Software Developer</span>
-                            <span class="timeline-duration">6+ years</span>
-                            <span class="timeline-company">Erfinder Philippines, Tacloban City</span>
-                        </div>
-                        <i class="fas fa-chevron-down toggle-icon"></i>
-                    </div>
-                    <div class="timeline-content">
-                        <div class="tasks">
-                            <h4>Key Responsibilities</h4>
-                            <ul>
-                                <li>Helped in the development of PIIOX, an open, modular platform designed for control and automation systems.</li>
-                                <li>Helped in the development of TESSA, a tool that automates execution of scientific software applications.</li>
-                                <li>Developed internal ERP system for Climeo AG.</li>
-                                <li>Developed a management tool for Climeo AG IoT devices and clients.</li>
-                                <li>Developed several internal applications for Stadler, Inc.</li>
-                                <li>Created social media pages, chatbots, and professional websites for various clients.</li>
-                                <li>Created promotional materials for various clients.</li>
-                            </ul>
-                        </div>
-                        <div class="tech-stack">
-                            <h4>Tech Stack</h4>
-                            <div class="tech-tags">
-                                <span class="tech-tag">Bash</span>
-                                <span class="tech-tag">C</span>
-                                <span class="tech-tag">C#</span>
-                                <span class="tech-tag">Python</span>
-                                <span class="tech-tag">Xojo</span>
-                                <span class="tech-tag">Docker</span>
-                                <span class="tech-tag">Make</span>
-                                <span class="tech-tag">Photoshop</span>
-                                <span class="tech-tag">Premiere</span>
-                            </div>
-                        </div>
-                        <div class="references">
-                            <h4>References</h4>
-                            <div class="reference-links">
-                                <a href="https://www.elektormagazine.com/labs/piiox-raspberry-pi-io-box" target="_blank" rel="noopener" class="reference-link">
-                                    <i class="fas fa-external-link-alt"></i> Article: PIIOX
-                                </a>
-                                <a href="https://github.com/Erfinder-Philippines/TESSA" target="_blank" rel="noopener" class="reference-link">
-                                    <i class="fas fa-external-link-alt"></i> GitHub: TESSA
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Previous jobs - collapsed -->
-                <div class="timeline-item collapsed">
-                    <div class="timeline-header">
-                        <div class="timeline-info">
-                            <span class="timeline-year">NOV 2016 – 2018</span>
-                            <span class="timeline-position">Android Developer</span>
-                            <span class="timeline-duration">2 years</span>
-                            <span class="timeline-company">Hyperworks I.T. Solutions</span>
-                        </div>
-                        <i class="fas fa-chevron-right toggle-icon"></i>
-                    </div>
-                    <div class="timeline-content">
-                        <div class="tasks">
-                            <h4>Key Responsibilities</h4>
-                            <ul>
-                                <li>Developed Disaster Risk Reduction (DRR) mobile apps and educational mobile apps for Save The Children Philippines and DepEd.</li>
-                                <li>Facilitated mobile features development workshops and data collection.</li>
-                                <li>Conducted consultation and meeting with DepEd key persons.</li>
-                                <li>Provided technical support and training for mobile app development.</li>
-                                <li>Developed the website, assisted in the creation of resources, and hosting of the mobile applications and tools.</li>
-                            </ul>
-                        </div>
-                        <div class="tech-stack">
-                            <h4>Tech Stack</h4>
-                            <div class="tech-tags">
-                                <span class="tech-tag">Batch</span>
-                                <span class="tech-tag">CSS</span>
-                                <span class="tech-tag">HTML</span>
-                                <span class="tech-tag">Java</span>
-                                <span class="tech-tag">PHP</span>
-                                <span class="tech-tag">Android Studio</span>
-                                <span class="tech-tag">Photoshop</span>
-                                <span class="tech-tag">Camtasia Studio</span>
-                            </div>
-                        </div>
-                        <div class="references">
-                            <h4>References</h4>
-                            <div class="reference-links">
-                                <a href="https://www.youtube.com/watch?v=svQEpxnNP8c" target="_blank" rel="noopener" class="reference-link">
-                                    <i class="fas fa-external-link-alt"></i> Video: School Watching Application (SWApp)
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="timeline-item collapsed">
-                    <div class="timeline-header">
-                        <div class="timeline-info">
-                            <span class="timeline-year">2015 – 2016</span>
-                            <span class="timeline-position">Event Organizer</span>
-                            <span class="timeline-duration">1 year</span>
-                            <span class="timeline-company">PlayPark Inc.</span>
-                        </div>
-                        <i class="fas fa-chevron-right toggle-icon"></i>
-                    </div>
-                    <div class="timeline-content">
-                        <div class="tasks">
-                            <h4>Key Responsibilities</h4>
-                            <ul>
-                                <li>Assigned to Special Force Online and Special Force 2.</li>
-                                <li>Organized and hosted local and online gaming events and tournaments.</li>
-                                <li>Provided technical support and fixes for gaming-related issues.</li>
-                                <li>Assisted in creating gaming-related communities and player engagement.</li>
-                            </ul>
-                        </div>
-                        <div class="tech-stack">
-                            <h4>Tech Stack</h4>
-                            <div class="tech-tags">
-                                <span class="tech-tag">Community Management</span>
-                                <span class="tech-tag">Technical Support</span>
-                                <span class="tech-tag">OBS Studio</span>
-                                <span class="tech-tag">Photoshop</span>
-                                <span class="tech-tag">Premiere</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="timeline-item collapsed">
-                    <div class="timeline-header">
-                        <div class="timeline-info">
-                            <span class="timeline-year">JUL 2016 – DEC 2016</span>
-                            <span class="timeline-position">On The Job Training</span>
-                            <span class="timeline-duration">6 months</span>
-                            <span class="timeline-company">Department of Agrarian Reforms</span>
-                        </div>
-                        <i class="fas fa-chevron-right toggle-icon"></i>
-                    </div>
-                    <div class="timeline-content">
-                        <div class="tasks">
-                            <h4>Key Responsibilities</h4>
-                            <ul>
-                                <li>Developed a document management system for the department as replacement for their previous unfinished system.</li>
-                                <li>Improved the system to handle large volumes of data, faster referencing, and scanning capabilities.</li>
-                                <li>Provided training and support for the new system to the department staff.</li>
-                                <li>Assisted in the migration of data from the old system to the new system.</li>
-                                <li>Provided technical support and maintenance for the new system.</li>
-                            </ul>
-                        </div>
-                        <div class="tech-stack">
-                            <h4>Tech Stack</h4>
-                            <div class="tech-tags">
-                                <span class="tech-tag">CSS</span>
-                                <span class="tech-tag">HTML</span>
-                                <span class="tech-tag">JavaScript</span>
-                                <span class="tech-tag">NodeJS</span>
-                                <span class="tech-tag">PHP</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {% include experience-items.html context='work' %}
             </div>
         </section>
 

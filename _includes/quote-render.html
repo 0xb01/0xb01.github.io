@@ -1,0 +1,11 @@
+{%- comment -%}
+  Quote Include
+  Renders quote from _data/profile.yml
+  
+  Usage: {% include quote-render.html %}
+{%- endcomment -%}
+
+<div class="quote-section">
+  <p class="quote-text">{{ site.data.profile.quote.text }}</p>
+  <span class="quote-author">— {{ site.data.profile.quote.author }}</span>
+</div>

@@ -1,0 +1,93 @@
+# Work Experience Data
+# Single source of truth for Work Experience page and Resume
+# Edit here - changes reflect everywhere automatically
+
+- position: Software Developer
+  company: Erfinder Philippines, Tacloban City
+  period: Jul 2019 – Present
+  duration: 6+ years
+  show_in: both  # resume, work, or both
+  responsibilities:
+    - Helped in the development of PIIOX, an open, modular platform designed for control and automation systems.
+    - Helped in the development of TESSA, a tool that automates execution of scientific software applications.
+    - Developed internal ERP system for Climeo AG.
+    - Developed a management tool for Climeo AG IoT devices and clients.
+    - Developed several internal applications for Stadler, Inc.
+    - Created social media pages, chatbots, and professional websites for various clients.
+    - Created promotional materials for various clients.
+  tech_stack:
+    - Bash
+    - C
+    - C#
+    - Python
+    - Xojo
+    - Docker
+    - Make
+    - Photoshop
+    - Premiere
+  references:
+    - title: "Article: PIIOX"
+      url: https://www.elektormagazine.com/labs/piiox-raspberry-pi-io-box
+    - title: "GitHub: TESSA"
+      url: https://github.com/Erfinder-Philippines/TESSA
+
+- position: Android Developer
+  company: Hyperworks I.T. Solutions
+  period: Nov 2016 – 2018
+  duration: 2 years
+  show_in: both
+  responsibilities:
+    - Developed Disaster Risk Reduction (DRR) mobile apps and educational mobile apps for Save The Children Philippines and DepEd.
+    - Facilitated mobile features development workshops and data collection.
+    - Conducted consultation and meeting with DepEd key persons.
+    - Provided technical support and training for mobile app development.
+    - Developed the website, assisted in the creation of resources, and hosting of the mobile applications and tools.
+  tech_stack:
+    - Batch
+    - CSS
+    - HTML
+    - Java
+    - PHP
+    - Android Studio
+    - Photoshop
+    - Camtasia Studio
+  references:
+    - title: "Video: School Watching Application (SWApp)"
+      url: https://www.youtube.com/watch?v=svQEpxnNP8c
+
+- position: Event Organizer
+  company: PlayPark Inc.
+  period: 2015 – 2016
+  duration: 1 year
+  show_in: work  # Only shows in Work Experience page, not in Resume
+  responsibilities:
+    - Assigned to Special Force Online and Special Force 2.
+    - Organized and hosted local and online gaming events and tournaments.
+    - Provided technical support and fixes for gaming-related issues.
+    - Assisted in creating gaming-related communities and player engagement.
+  tech_stack:
+    - Community Management
+    - Technical Support
+    - OBS Studio
+    - Photoshop
+    - Premiere
+  references: []
+
+- position: On The Job Training
+  company: Department of Agrarian Reforms
+  period: Jul 2016 – Dec 2016
+  duration: 6 months
+  show_in: both
+  responsibilities:
+    - Developed a document management system for the department as replacement for their previous unfinished system.
+    - Improved the system to handle large volumes of data, faster referencing, and scanning capabilities.
+    - Provided training and support for the new system to the department staff.
+    - Assisted in the migration of data from the old system to the new system.
+    - Provided technical support and maintenance for the new system.
+  tech_stack:
+    - CSS
+    - HTML
+    - JavaScript
+    - NodeJS
+    - PHP
+  references: []

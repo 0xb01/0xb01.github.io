@@ -1,0 +1,69 @@
+{%- comment -%}
+  Tech Stack Include
+  Renders tech stack from _data/techstack.yml
+  
+  Usage: {% include tech-stack-render.html context='sidebar' %}
+         {% include tech-stack-render.html context='resume' %}
+  
+  Parameters:
+    - context: 'sidebar' for 3rd column layout (uses tech-item class)
+               'resume' for resume layout (uses resume-tag class)
+  
+  Each category in techstack.yml can have:
+    show_in: resume  (only in resume)
+    show_in: sidebar (only in sidebar)
+    show_in: both    (in both places)
+{%- endcomment -%}
+
+{%- for category in site.data.techstack.categories -%}
+  {%- assign show_category = false -%}
+  {%- if category.show_in == 'both' -%}
+    {%- assign show_category = true -%}
+  {%- elsif include.context == 'resume' and category.show_in == 'resume' -%}
+    {%- assign show_category = true -%}
+  {%- elsif include.context == 'sidebar' and category.show_in == 'sidebar' -%}
+    {%- assign show_category = true -%}
+  {%- endif -%}
+
+  {%- if show_category -%}
+    {%- if include.context == 'resume' -%}
+      <!-- Resume View -->
+      <div class="resume-skill-category">
+        <h4>
+          {%- if category.icon == 'fa-language' -%}<i class="fas fa-language"></i>
+          {%- elsif category.icon == 'fa-desktop' -%}<i class="fas fa-desktop"></i>
+          {%- elsif category.icon == 'fa-server' -%}<i class="fas fa-server"></i>
+          {%- elsif category.icon == 'fa-database' -%}<i class="fas fa-database"></i>
+          {%- elsif category.icon == 'fa-tools' -%}<i class="fas fa-tools"></i>
+          {%- elsif category.icon == 'fa-palette' -%}<i class="fas fa-palette"></i>
+          {%- endif -%}
+          {{ category.name }}
+        </h4>
+        <div class="resume-tags">
+          {%- for item in category.items -%}
+            <span class="resume-tag">{{ item }}</span>
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- else -%}
+      <!-- Sidebar View -->
+      <div class="tech-category">
+        <h4 class="tech-category-title">
+          {%- if category.icon == 'fa-language' -%}<i class="fas fa-language"></i>
+          {%- elsif category.icon == 'fa-desktop' -%}<i class="fas fa-desktop"></i>
+          {%- elsif category.icon == 'fa-server' -%}<i class="fas fa-server"></i>
+          {%- elsif category.icon == 'fa-database' -%}<i class="fas fa-database"></i>
+          {%- elsif category.icon == 'fa-tools' -%}<i class="fas fa-tools"></i>
+          {%- elsif category.icon == 'fa-palette' -%}<i class="fas fa-palette"></i>
+          {%- endif -%}
+          {{ category.name }}
+        </h4>
+        <div class="tech-list">
+          {%- for item in category.items -%}
+            <span class="tech-item">{{ item }}</span>
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+  {%- endif -%}
+{%- endfor -%}

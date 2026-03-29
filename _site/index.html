@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/res/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="JNR" />
     <!-- Begin Jekyll SEO tag v2.7.1 -->
@@ -24,8 +24,7 @@
 
 </head>
 <body>
-    <!-- Mobile Header -->
-<div class="mobile-header" id="mobileHeader">
+    <div class="mobile-header" id="mobileHeader">
     <div class="mobile-header-name">John Nichols Ranara</div>
     <div class="mobile-header-info">
         <span><i class="fas fa-map-marker-alt"></i> Tacloban City, Leyte</span>
@@ -33,6 +32,7 @@
         <span><i class="fas fa-phone"></i> (+63) 976-002-8684</span>
     </div>
 </div>
+
 
 <!-- Mobile Burger Buttons -->
 <button class="mobile-burger mobile-burger-left" id="mobileBurgerLeft" onclick="toggleMobileSidebar('left')" aria-label="Open menu">
@@ -49,254 +49,160 @@
     <!-- Column 1: Personal Info -->
 <aside class="column column-1">
     <div class="profile-section">
-        <div class="profile-left">
-            <div class="profile-image">
-                <img src="/res/me.jpg" alt="John Nichols Ranara" class="profile-photo">
+    <div class="profile-left">
+        <div class="profile-image">
+            <img src="/res/me.jpg" alt="John Nichols Ranara" class="profile-photo">
+        </div>
+        <div class="profile-text">
+            <h1 class="name">John Nichols Ranara</h1>
+            <div class="location-info">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Tacloban City, Leyte</span>
             </div>
-            <div class="profile-text">
-                <h1 class="name">John Nichols Ranara</h1>
-                <div class="location-info">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>Tacloban City, Leyte</span>
-                </div>
-                <div class="status-box">
-                    Open to opportunities
-                </div>
+            <div class="status-box">
+                Open to opportunities
             </div>
         </div>
-        <div class="nav-buttons">
-            <hr class="separator">
-            <button class="nav-btn active" id="homeBtn" onclick="showHome()">Home</button>
-            <button class="nav-btn" id="workExpBtn" onclick="showWorkExperience()">Work Experience</button>
-            <button class="nav-btn" id="blogBtn" onclick="showBlog()">Blog</button>
-            <button class="nav-btn" id="contactBtn" onclick="showContact()">Contact</button>
-            <button class="nav-btn" id="resumeBtn" onclick="showResume()">Resume</button>
-        </div>
     </div>
+    <div class="nav-buttons">
+        <hr class="separator"><button class="nav-btn active" id="homeBtn" onclick="showHome()">Home</button><button class="nav-btn" id="workExpBtn" onclick="showWorkExperience()">Work Experience</button><button class="nav-btn" id="blogBtn" onclick="showBlog()">Blog</button><button class="nav-btn" id="contactBtn" onclick="showContact()">Contact</button><button class="nav-btn" id="resumeBtn" onclick="showResume()">Resume</button></div>
+</div>
 
-    <div class="contact-section" style="margin-top: auto; padding-top: 15px; padding-bottom: 10px;">
-        <h3>Contact</h3>
-        <ul class="contact-list">
-            <li>
-                <i class="fas fa-envelope"></i>
-                <a href="javascript:void(0)" onclick="showContact(); return false;">banikaz@proton.me</a>
-            </li>
-            <li>
-                <i class="fas fa-phone"></i>
-                <a href="javascript:void(0)" onclick="showContact(); return false;">(+63) 976-002-8684</a>
-            </li>
-            <li class="timezone-contact" onclick="showContact()">
-                <i class="fas fa-clock"></i>
-                <span id="timezoneText">Loading...</span>
-            </li>
-        </ul>
-    </div>
+<div class="contact-section" style="margin-top: auto; padding-top: 15px; padding-bottom: 10px;">
+    <h3>Contact</h3>
+    <ul class="contact-list"><li>
+                    <i class="fas fa-envelope"></i>
+                    <a href="javascript:void(0)" onclick="showContact(); return false;">banikaz@proton.me</a>
+                </li><li>
+                    <i class="fas fa-phone"></i>
+                    <a href="javascript:void(0)" onclick="showContact(); return false;">(+63) 976-002-8684</a>
+                </li><li class="timezone-contact" onclick="showContact()">
+                    <i class="fas fa-clock"></i>
+                    <span id="timezoneText" data-timezone="Asia/Manila" data-location="Tacloban City, Leyte">Loading...</span>
+                </li></ul>
+</div>
 
-    <div class="social-section">
-        <h3>Socials</h3>
-        <div class="social-links">
-            <a href="https://github.com/0xb01" class="social-link" aria-label="GitHub" target="_blank">
-                <i class="fab fa-github"></i>
-            </a>
-            <a href="https://www.linkedin.com/in/jnr01" class="social-link" aria-label="LinkedIn" target="_blank">
-                <i class="fab fa-linkedin-in"></i>
-            </a>
-            <a href="https://www.youtube.com/@JuanNicolasMe" class="social-link" aria-label="YouTube" target="_blank">
-                <i class="fab fa-youtube"></i>
-            </a>
-        </div>
-    </div>
+<div class="social-section">
+    <h3>Socials</h3>
+    <div class="social-links"><a href="https://github.com/0xb01" class="social-link" aria-label="GitHub" target="_blank">
+                    <i class="fab fa-github"></i>
+                </a><a href="https://www.linkedin.com/in/jnr01" class="social-link" aria-label="LinkedIn" target="_blank">
+                    <i class="fab fa-linkedin-in"></i>
+                </a><a href="https://www.youtube.com/@JuanNicolasMe" class="social-link" aria-label="YouTube" target="_blank">
+                    <i class="fab fa-youtube"></i>
+                </a></div>
+</div>
+
 </aside>
 
     <!-- Column 2: Main Content -->
     <main class="column column-2" id="mainContent">
         <div class="home-content" id="homeContent">
             <div class="work-info">
-                <p class="work-title">Full-Stack Developer • Principal Software Engineer</p>
-                <h2 class="hero-text">Solution-oriented person</h2>
-                <p class="hero-description">
-                    Solution-oriented programmer with a decade of experience, specializing in desktop application development and backend architecture, with a versatile background in multi-platform software.
-                </p>
-            </div>
+    <p class="work-title">Full-Stack Developer • Principal Software Engineer</p>
+    <h2 class="hero-text">Solution-oriented person</h2>
+    <p class="hero-description">
+        Solution-oriented programmer with a decade of experience, specializing in desktop application development and backend architecture, with a versatile background in multi-platform software.
+    </p>
+</div>
 
             <div class="about-container">
-                <h3>About Me</h3>
-                <div class="about-bubble">
-                    <p>
-                        Hi, I'm Niks! I've been obsessed with code since I was a kid, and I've spent the last 10 years turning that passion into a career. I'm a specialist in desktop development and backend setup, with a proven track record of delivering end-to-end software solutions. My background spans multiple platforms, from native Android apps to complex desktop environments. Currently working at home, I focus on efficient systems and solving the unique challenges that come with desktop software.
-                    </p>
-                </div>
-            </div>
+    <h3>About Me</h3>
+    <div class="about-bubble">
+        <p>Hi, I'm Niks! I've been obsessed with code since I was a kid, and I've spent the last 10 years turning that passion into a career. I'm a specialist in desktop development and backend setup, with a proven track record of delivering end-to-end software solutions. My background spans multiple platforms, from native Android apps to complex desktop environments. Currently working at home, I focus on efficient systems and solving the unique challenges that come with desktop software.</p>
+    </div>
+</div>
+
         </div>
 
         <section class="section work-experience" id="workExperienceSection">
             <h3 class="section-title">Work Experience</h3>
-
             <div class="timeline">
-                <!-- Latest job - expanded -->
-                <div class="timeline-item expanded">
-                    <div class="timeline-header">
-                        <div class="timeline-info">
-                            <span class="timeline-year">JUL 2019 – PRESENT</span>
-                            <span class="timeline-position">Software Developer</span>
-                            <span class="timeline-duration">6+ years</span>
-                            <span class="timeline-company">Erfinder Philippines, Tacloban City</span>
-                        </div>
-                        <i class="fas fa-chevron-down toggle-icon"></i>
-                    </div>
-                    <div class="timeline-content">
-                        <div class="tasks">
-                            <h4>Key Responsibilities</h4>
-                            <ul>
-                                <li>Helped in the development of PIIOX, an open, modular platform designed for control and automation systems.</li>
-                                <li>Helped in the development of TESSA, a tool that automates execution of scientific software applications.</li>
-                                <li>Developed internal ERP system for Climeo AG.</li>
-                                <li>Developed a management tool for Climeo AG IoT devices and clients.</li>
-                                <li>Developed several internal applications for Stadler, Inc.</li>
-                                <li>Created social media pages, chatbots, and professional websites for various clients.</li>
-                                <li>Created promotional materials for various clients.</li>
-                            </ul>
-                        </div>
-                        <div class="tech-stack">
-                            <h4>Tech Stack</h4>
-                            <div class="tech-tags">
-                                <span class="tech-tag">Bash</span>
-                                <span class="tech-tag">C</span>
-                                <span class="tech-tag">C#</span>
-                                <span class="tech-tag">Python</span>
-                                <span class="tech-tag">Xojo</span>
-                                <span class="tech-tag">Docker</span>
-                                <span class="tech-tag">Make</span>
-                                <span class="tech-tag">Photoshop</span>
-                                <span class="tech-tag">Premiere</span>
-                            </div>
-                        </div>
-                        <div class="references">
-                            <h4>References</h4>
-                            <div class="reference-links">
-                                <a href="https://www.elektormagazine.com/labs/piiox-raspberry-pi-io-box" target="_blank" rel="noopener" class="reference-link">
-                                    <i class="fas fa-external-link-alt"></i> Article: PIIOX
-                                </a>
-                                <a href="https://github.com/Erfinder-Philippines/TESSA" target="_blank" rel="noopener" class="reference-link">
-                                    <i class="fas fa-external-link-alt"></i> GitHub: TESSA
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Previous jobs - collapsed -->
-                <div class="timeline-item collapsed">
-                    <div class="timeline-header">
-                        <div class="timeline-info">
-                            <span class="timeline-year">NOV 2016 – 2018</span>
-                            <span class="timeline-position">Android Developer</span>
-                            <span class="timeline-duration">2 years</span>
-                            <span class="timeline-company">Hyperworks I.T. Solutions</span>
-                        </div>
-                        <i class="fas fa-chevron-right toggle-icon"></i>
-                    </div>
-                    <div class="timeline-content">
-                        <div class="tasks">
-                            <h4>Key Responsibilities</h4>
-                            <ul>
-                                <li>Developed Disaster Risk Reduction (DRR) mobile apps and educational mobile apps for Save The Children Philippines and DepEd.</li>
-                                <li>Facilitated mobile features development workshops and data collection.</li>
-                                <li>Conducted consultation and meeting with DepEd key persons.</li>
-                                <li>Provided technical support and training for mobile app development.</li>
-                                <li>Developed the website, assisted in the creation of resources, and hosting of the mobile applications and tools.</li>
-                            </ul>
-                        </div>
-                        <div class="tech-stack">
-                            <h4>Tech Stack</h4>
-                            <div class="tech-tags">
-                                <span class="tech-tag">Batch</span>
-                                <span class="tech-tag">CSS</span>
-                                <span class="tech-tag">HTML</span>
-                                <span class="tech-tag">Java</span>
-                                <span class="tech-tag">PHP</span>
-                                <span class="tech-tag">Android Studio</span>
-                                <span class="tech-tag">Photoshop</span>
-                                <span class="tech-tag">Camtasia Studio</span>
-                            </div>
-                        </div>
-                        <div class="references">
-                            <h4>References</h4>
-                            <div class="reference-links">
-                                <a href="https://www.youtube.com/watch?v=svQEpxnNP8c" target="_blank" rel="noopener" class="reference-link">
-                                    <i class="fas fa-external-link-alt"></i> Video: School Watching Application (SWApp)
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="timeline-item collapsed">
-                    <div class="timeline-header">
-                        <div class="timeline-info">
-                            <span class="timeline-year">2015 – 2016</span>
-                            <span class="timeline-position">Event Organizer</span>
-                            <span class="timeline-duration">1 year</span>
-                            <span class="timeline-company">PlayPark Inc.</span>
-                        </div>
-                        <i class="fas fa-chevron-right toggle-icon"></i>
-                    </div>
-                    <div class="timeline-content">
-                        <div class="tasks">
-                            <h4>Key Responsibilities</h4>
-                            <ul>
-                                <li>Assigned to Special Force Online and Special Force 2.</li>
-                                <li>Organized and hosted local and online gaming events and tournaments.</li>
-                                <li>Provided technical support and fixes for gaming-related issues.</li>
-                                <li>Assisted in creating gaming-related communities and player engagement.</li>
-                            </ul>
-                        </div>
-                        <div class="tech-stack">
-                            <h4>Tech Stack</h4>
-                            <div class="tech-tags">
-                                <span class="tech-tag">Community Management</span>
-                                <span class="tech-tag">Technical Support</span>
-                                <span class="tech-tag">OBS Studio</span>
-                                <span class="tech-tag">Photoshop</span>
-                                <span class="tech-tag">Premiere</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="timeline-item collapsed">
-                    <div class="timeline-header">
-                        <div class="timeline-info">
-                            <span class="timeline-year">JUL 2016 – DEC 2016</span>
-                            <span class="timeline-position">On The Job Training</span>
-                            <span class="timeline-duration">6 months</span>
-                            <span class="timeline-company">Department of Agrarian Reforms</span>
-                        </div>
-                        <i class="fas fa-chevron-right toggle-icon"></i>
-                    </div>
-                    <div class="timeline-content">
-                        <div class="tasks">
-                            <h4>Key Responsibilities</h4>
-                            <ul>
-                                <li>Developed a document management system for the department as replacement for their previous unfinished system.</li>
-                                <li>Improved the system to handle large volumes of data, faster referencing, and scanning capabilities.</li>
-                                <li>Provided training and support for the new system to the department staff.</li>
-                                <li>Assisted in the migration of data from the old system to the new system.</li>
-                                <li>Provided technical support and maintenance for the new system.</li>
-                            </ul>
-                        </div>
-                        <div class="tech-stack">
-                            <h4>Tech Stack</h4>
-                            <div class="tech-tags">
-                                <span class="tech-tag">CSS</span>
-                                <span class="tech-tag">HTML</span>
-                                <span class="tech-tag">JavaScript</span>
-                                <span class="tech-tag">NodeJS</span>
-                                <span class="tech-tag">PHP</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <!-- Work Experience Page View --><div class="timeline-item expanded">
+        <div class="timeline-header">
+          <div class="timeline-info">
+            <span class="timeline-year">JUL 2019 – PRESENT</span>
+            <span class="timeline-position">Software Developer</span>
+            <span class="timeline-duration">6+ years</span>
+            <span class="timeline-company">Erfinder Philippines, Tacloban City</span>
+          </div>
+          <i class="fas fa-chevron-downtoggle-icon"></i>
+        </div>
+        <div class="timeline-content">
+          <div class="tasks">
+            <h4>Key Responsibilities</h4>
+            <ul><li>Helped in the development of PIIOX, an open, modular platform designed for control and automation systems.</li><li>Helped in the development of TESSA, a tool that automates execution of scientific software applications.</li><li>Developed internal ERP system for Climeo AG.</li><li>Developed a management tool for Climeo AG IoT devices and clients.</li><li>Developed several internal applications for Stadler, Inc.</li><li>Created social media pages, chatbots, and professional websites for various clients.</li><li>Created promotional materials for various clients.</li></ul>
+          </div><div class="tech-stack">
+            <h4>Tech Stack</h4>
+            <div class="tech-tags"><span class="tech-tag">Bash</span><span class="tech-tag">C</span><span class="tech-tag">C#</span><span class="tech-tag">Python</span><span class="tech-tag">Xojo</span><span class="tech-tag">Docker</span><span class="tech-tag">Make</span><span class="tech-tag">Photoshop</span><span class="tech-tag">Premiere</span></div>
+          </div><div class="references">
+            <h4>References</h4>
+            <div class="reference-links"><a href="https://www.elektormagazine.com/labs/piiox-raspberry-pi-io-box" target="_blank" rel="noopener" class="reference-link">
+                  <i class="fas fa-external-link-alt"></i> Article: PIIOX
+                </a><a href="https://github.com/Erfinder-Philippines/TESSA" target="_blank" rel="noopener" class="reference-link">
+                  <i class="fas fa-external-link-alt"></i> GitHub: TESSA
+                </a></div>
+          </div></div>
+      </div><!-- Work Experience Page View --><div class="timeline-item collapsed">
+        <div class="timeline-header">
+          <div class="timeline-info">
+            <span class="timeline-year">NOV 2016 – 2018</span>
+            <span class="timeline-position">Android Developer</span>
+            <span class="timeline-duration">2 years</span>
+            <span class="timeline-company">Hyperworks I.T. Solutions</span>
+          </div>
+          <i class="fas fa-chevron-righttoggle-icon"></i>
+        </div>
+        <div class="timeline-content">
+          <div class="tasks">
+            <h4>Key Responsibilities</h4>
+            <ul><li>Developed Disaster Risk Reduction (DRR) mobile apps and educational mobile apps for Save The Children Philippines and DepEd.</li><li>Facilitated mobile features development workshops and data collection.</li><li>Conducted consultation and meeting with DepEd key persons.</li><li>Provided technical support and training for mobile app development.</li><li>Developed the website, assisted in the creation of resources, and hosting of the mobile applications and tools.</li></ul>
+          </div><div class="tech-stack">
+            <h4>Tech Stack</h4>
+            <div class="tech-tags"><span class="tech-tag">Batch</span><span class="tech-tag">CSS</span><span class="tech-tag">HTML</span><span class="tech-tag">Java</span><span class="tech-tag">PHP</span><span class="tech-tag">Android Studio</span><span class="tech-tag">Photoshop</span><span class="tech-tag">Camtasia Studio</span></div>
+          </div><div class="references">
+            <h4>References</h4>
+            <div class="reference-links"><a href="https://www.youtube.com/watch?v=svQEpxnNP8c" target="_blank" rel="noopener" class="reference-link">
+                  <i class="fas fa-external-link-alt"></i> Video: School Watching Application (SWApp)
+                </a></div>
+          </div></div>
+      </div><!-- Work Experience Page View --><div class="timeline-item collapsed">
+        <div class="timeline-header">
+          <div class="timeline-info">
+            <span class="timeline-year">2015 – 2016</span>
+            <span class="timeline-position">Event Organizer</span>
+            <span class="timeline-duration">1 year</span>
+            <span class="timeline-company">PlayPark Inc.</span>
+          </div>
+          <i class="fas fa-chevron-righttoggle-icon"></i>
+        </div>
+        <div class="timeline-content">
+          <div class="tasks">
+            <h4>Key Responsibilities</h4>
+            <ul><li>Assigned to Special Force Online and Special Force 2.</li><li>Organized and hosted local and online gaming events and tournaments.</li><li>Provided technical support and fixes for gaming-related issues.</li><li>Assisted in creating gaming-related communities and player engagement.</li></ul>
+          </div><div class="tech-stack">
+            <h4>Tech Stack</h4>
+            <div class="tech-tags"><span class="tech-tag">Community Management</span><span class="tech-tag">Technical Support</span><span class="tech-tag">OBS Studio</span><span class="tech-tag">Photoshop</span><span class="tech-tag">Premiere</span></div>
+          </div></div>
+      </div><!-- Work Experience Page View --><div class="timeline-item collapsed">
+        <div class="timeline-header">
+          <div class="timeline-info">
+            <span class="timeline-year">JUL 2016 – DEC 2016</span>
+            <span class="timeline-position">On The Job Training</span>
+            <span class="timeline-duration">6 months</span>
+            <span class="timeline-company">Department of Agrarian Reforms</span>
+          </div>
+          <i class="fas fa-chevron-righttoggle-icon"></i>
+        </div>
+        <div class="timeline-content">
+          <div class="tasks">
+            <h4>Key Responsibilities</h4>
+            <ul><li>Developed a document management system for the department as replacement for their previous unfinished system.</li><li>Improved the system to handle large volumes of data, faster referencing, and scanning capabilities.</li><li>Provided training and support for the new system to the department staff.</li><li>Assisted in the migration of data from the old system to the new system.</li><li>Provided technical support and maintenance for the new system.</li></ul>
+          </div><div class="tech-stack">
+            <h4>Tech Stack</h4>
+            <div class="tech-tags"><span class="tech-tag">CSS</span><span class="tech-tag">HTML</span><span class="tech-tag">JavaScript</span><span class="tech-tag">NodeJS</span><span class="tech-tag">PHP</span></div>
+          </div></div>
+      </div>
             </div>
         </section>
 
@@ -331,160 +237,92 @@
         <!-- Projects Section -->
 <section class="section projects" id="projectsSection">
     <h3 class="section-title">Recent / Fun Projects</h3>
-    <div class="projects-grid">
-        <div class="project-card">
-            <div class="project-card-inner">
-                <div class="project-card-front">
-                    <div class="project-header-center">
-                        <h4 class="project-name">🎌 Kana Practice</h4>
-                        <span class="project-year">2026</span>
-                    </div>
-                    <div class="project-techstack">
-                        <span class="tech-tag">CSS</span>
-                        <span class="tech-tag">HTML</span>
-                        <span class="tech-tag">JavaScript</span>
-                    </div>
-                </div>
-                <div class="project-card-back">
-                    <p class="project-description">
-                        Interactive web app for practicing Japanese Hiragana and Katakana with multiple learning modes.
-                    </p>
-                    <button class="project-link-btn" data-link="/kana/" data-type="public">View Project</button>
-                </div>
-            </div>
+    <div class="projects-grid"><div class="project-card">
+      <div class="project-card-inner">
+        <div class="project-card-front">
+          <div class="project-header-center">
+            <h4 class="project-name">🎌 Kana Practice</h4>
+            <span class="project-year">2026</span>
+          </div>
+          <div class="project-techstack"><span class="tech-tag">CSS</span><span class="tech-tag">HTML</span><span class="tech-tag">JavaScript</span></div>
         </div>
+        <div class="project-card-back">
+          <p class="project-description">Interactive web app for practicing Japanese Hiragana and Katakana with multiple learning modes.</p><button class="project-link-btn" data-link="/kana/" data-type="public">View Project</button></div>
+      </div>
+    </div><div class="project-card">
+      <div class="project-card-inner">
+        <div class="project-card-front">
+          <div class="project-header-center">
+            <h4 class="project-name">🔎 Zzzzz</h4>
+            <span class="project-year">2026</span>
+          </div>
+          <div class="project-techstack"><span class="tech-tag">CSS</span><span class="tech-tag">JavaScript</span><span class="tech-tag">NodeJS</span><span class="tech-tag">TypeScript</span></div>
+        </div>
+        <div class="project-card-back">
+          <p class="project-description">Obsidian plugin that finds problematic files like broken links, orphaned files, and unlinked mentions.</p><button class="project-link-btn" data-link="https://github.com/0xb01/zzzzz" data-type="public">View Project</button></div>
+      </div>
+    </div><div class="project-card">
+      <div class="project-card-inner">
+        <div class="project-card-front">
+          <div class="project-header-center">
+            <h4 class="project-name">🔒 Auto Incognito Filter</h4>
+            <span class="project-year">2026</span>
+          </div>
+          <div class="project-techstack"><span class="tech-tag">CSS</span><span class="tech-tag">HTML</span><span class="tech-tag">JavaScript</span><span class="tech-tag">NodeJS</span></div>
+        </div>
+        <div class="project-card-back">
+          <p class="project-description">Browser extension that automatically opens specified websites in incognito mode for enhanced privacy.</p><button class="project-link-btn" data-link="https://github.com/0xb01/auto-incognito-filter" data-type="public">View Project</button></div>
+      </div>
+    </div><div class="project-card">
+      <div class="project-card-inner">
+        <div class="project-card-front">
+          <div class="project-header-center">
+            <h4 class="project-name">🌐 Banikaz</h4>
+            <span class="project-year">2026</span>
+          </div>
+          <div class="project-techstack"><span class="tech-tag">CSS</span><span class="tech-tag">HTML</span><span class="tech-tag">JavaScript</span></div>
+        </div>
+        <div class="project-card-back">
+          <p class="project-description">Personal portfolio and blog website to share projects, experiences, and thoughts. Powered by GitHub Pages.</p><button class="project-link-btn" data-link="https://github.com/0xb01/0xb01.github.io" data-type="public">View Project</button></div>
+      </div>
+    </div><div class="project-card">
+      <div class="project-card-inner">
+        <div class="project-card-front">
+          <div class="project-header-center">
+            <h4 class="project-name">🧮 AkoCalc</h4>
+            <span class="project-year">2025</span>
+          </div>
+          <div class="project-techstack"><span class="tech-tag">C#</span></div>
+        </div>
+        <div class="project-card-back">
+          <p class="project-description">In-line calculator with variables, basic arithmetic, and currency conversions for quick calculations.</p><button class="project-link-btn" data-type="closed">View Project</button></div>
+      </div>
+    </div><div class="project-card">
+      <div class="project-card-inner">
+        <div class="project-card-front">
+          <div class="project-header-center">
+            <h4 class="project-name">🕹️ TnT</h4>
+            <span class="project-year">2023</span>
+          </div>
+          <div class="project-techstack"><span class="tech-tag">C#</span><span class="tech-tag">Postman</span><span class="tech-tag">PowerShell</span></div>
+        </div>
+        <div class="project-card-back">
+          <p class="project-description">Personal library and unified launcher for managing PC games.</p><button class="project-link-btn" data-type="closed">View Project</button></div>
+      </div>
+    </div><div class="project-card">
+      <div class="project-card-inner">
+        <div class="project-card-front">
+          <div class="project-header-center">
+            <h4 class="project-name">🎮 Haiyan: PC Booster</h4>
+            <span class="project-year">2017</span>
+          </div>
+          <div class="project-techstack"><span class="tech-tag">Batch</span><span class="tech-tag">VB.NET</span></div>
+        </div>
+        <div class="project-card-back">
+          <p class="project-description">All-in-one Windows PC optimization tool with system cleanup, game mode, registry optimization, and anti-virus.</p><button class="project-link-btn" data-type="closed">View Project</button></div>
+      </div>
+    </div></div>
 
-        <div class="project-card">
-            <div class="project-card-inner">
-                <div class="project-card-front">
-                    <div class="project-header-center">
-                        <h4 class="project-name">🔎 Zzzzz</h4>
-                        <span class="project-year">2026</span>
-                    </div>
-                    <div class="project-techstack">
-                        <span class="tech-tag">CSS</span>
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">NodeJS</span>
-                        <span class="tech-tag">TypeScript</span>
-                    </div>
-                </div>
-                <div class="project-card-back">
-                    <p class="project-description">
-                        Obsidian plugin that finds problematic files like broken links, orphaned files, and unlinked mentions.
-                    </p>
-                    <button class="project-link-btn" data-link="https://github.com/0xb01/zzzzz" data-type="public">View Project</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="project-card">
-            <div class="project-card-inner">
-                <div class="project-card-front">
-                    <div class="project-header-center">
-                        <h4 class="project-name">🔒 Auto Incognito Filter</h4>
-                        <span class="project-year">2026</span>
-                    </div>
-                    <div class="project-techstack">
-                        <span class="tech-tag">CSS</span>
-                        <span class="tech-tag">HTML</span>
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">NodeJS</span>
-                    </div>
-                </div>
-                <div class="project-card-back">
-                    <p class="project-description">
-                        Browser extension that automatically opens specified websites in incognito mode for enhanced privacy.
-                    </p>
-                    <button class="project-link-btn" data-link="https://github.com/0xb01/auto-incognito-filter" data-type="public">View Project</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="project-card">
-            <div class="project-card-inner">
-                <div class="project-card-front">
-                    <div class="project-header-center">
-                        <h4 class="project-name">🌐 Banikaz</h4>
-                        <span class="project-year">2026</span>
-                    </div>
-                    <div class="project-techstack">
-                        <span class="tech-tag">CSS</span>
-                        <span class="tech-tag">HTML</span>
-                        <span class="tech-tag">JavaScript</span>
-                    </div>
-                </div>
-                <div class="project-card-back">
-                    <p class="project-description">
-                        Personal portfolio and blog website to share projects, experiences, and thoughts. Powered by GitHub Pages.
-                    </p>
-                    <button class="project-link-btn" data-link="https://github.com/0xb01/0xb01.github.io" data-type="public">View Project</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="project-card">
-            <div class="project-card-inner">
-                <div class="project-card-front">
-                    <div class="project-header-center">
-                        <h4 class="project-name">🧮 AkoCalc</h4>
-                        <span class="project-year">2025</span>
-                    </div>
-                    <div class="project-techstack">
-                        <span class="tech-tag">C#</span>
-                    </div>
-                </div>
-                <div class="project-card-back">
-                    <p class="project-description">
-                        In-line calculator with variables, basic arithmetic, and currency conversions for quick calculations.
-                    </p>
-                    <button class="project-link-btn" data-type="closed">View Project</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="project-card">
-            <div class="project-card-inner">
-                <div class="project-card-front">
-                    <div class="project-header-center">
-                        <h4 class="project-name">🕹️ TnT</h4>
-                        <span class="project-year">2023</span>
-                    </div>
-                    <div class="project-techstack">
-                        <span class="tech-tag">C#</span>
-                        <span class="tech-tag">Postman</span>
-                        <span class="tech-tag">PowerShell</span>
-                    </div>
-                </div>
-                <div class="project-card-back">
-                    <p class="project-description">
-                        Personal library and unified launcher for managing PC games.
-                    </p>
-                    <button class="project-link-btn" data-type="closed">View Project</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="project-card">
-            <div class="project-card-inner">
-                <div class="project-card-front">
-                    <div class="project-header-center">
-                        <h4 class="project-name">🎮 Haiyan: PC Booster</h4>
-                        <span class="project-year">2017</span>
-                    </div>
-                    <div class="project-techstack">
-                        <span class="tech-tag">Batch</span>
-                        <span class="tech-tag">VB.NET</span>
-                    </div>
-                </div>
-                <div class="project-card-back">
-                    <p class="project-description">
-                        All-in-one Windows PC optimization tool with system cleanup, game mode, registry optimization, and anti-virus.
-                    </p>
-                    <button class="project-link-btn" data-type="closed">View Project</button>
-                </div>
-            </div>
-        </div>
-    </div>
 </section>
 
         <!-- Blog Section -->
@@ -548,18 +386,16 @@
             <span class="note-title">A Quick Note</span>
         </div>
         <div class="note-content">
-            <p>
-                I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions. Whether you have a question, a collaboration idea, or just want to say hello, feel free to reach out!
-            </p>
-            <p>
-                I typically respond within 24-48 hours. For project inquiries, please include as much detail as possible about your requirements, timeline, and budget.
-            </p>
+            <p>I’m always open to discussing new projects, creative ideas, or opportunities to be part of your visions. Whether you have a question, a collaboration idea, or just want to say hello, feel free to reach out!</p>
+
+<p>I typically respond within 24-48 hours. For project inquiries, please include as much detail as possible about your requirements, timeline, and budget.</p>
+
             <p class="note-signature">— Niks</p>
         </div>
     </div>
 
     <!-- Contact Form -->
-    <form class="contact-form" id="contactForm" onsubmit="submitForm(event)">
+    <form class="contact-form" id="contactForm" action="https://formspree.io/f/mojpjdag" method="POST">
         <div class="form-group">
             <label for="name">Name</label>
             <input type="text" id="name" name="name" required placeholder="Your Name">
@@ -611,7 +447,7 @@
 
     <div class="resume-summary">
         <h3>Professional Summary</h3>
-        <p>Solution-oriented programmer with 10+ years of experience specializing in desktop application development and backend architecture. Proven track record of delivering end-to-end software solutions across multiple platforms including Windows, Android, and web applications.</p>
+        <p>Solution-oriented programmer with a decade of experience, specializing in desktop application development and backend architecture, with a versatile background in multi-platform software.</p>
     </div>
 
     <div class="resume-layout">
@@ -620,50 +456,31 @@
             <div class="resume-section-content">
                 <h3>Experience</h3>
                 <div class="resume-timeline">
-                    <div class="resume-item">
-                        <div class="resume-item-header">
-                            <h4>Software Developer</h4>
-                            <span class="resume-period">Jul 2019 – Present</span>
-                        </div>
-                        <p class="resume-company">Erfinder Philippines, Tacloban City</p>
-                        <ul class="resume-highlights">
-                            <li>Helped in the development of PIIOX, an open, modular platform designed for control and automation systems.</li>
-                            <li>Helped in the development of TESSA, a tool that automates execution of scientific software applications.</li>
-                            <li>Developed internal ERP system for Climeo AG.</li>
-                            <li>Developed a management tool for Climeo AG IoT devices and clients.</li>
-                            <li>Developed several internal applications for Stadler, Inc.</li>
-                            <li>Created social media pages, chatbots, and professional websites for various clients.</li>
-                            <li>Created promotional materials for various clients.</li>
-                        </ul>
-                    </div>
-                    <div class="resume-item">
-                        <div class="resume-item-header">
-                            <h4>Android Developer</h4>
-                            <span class="resume-period">Nov 2016 – 2018</span>
-                        </div>
-                        <p class="resume-company">Hyperworks I.T. Solutions</p>
-                        <ul class="resume-highlights">
-                            <li>Developed Disaster Risk Reduction (DRR) mobile apps and educational mobile apps for Save The Children Philippines and DepEd.</li>
-                            <li>Facilitated mobile features development workshops and data collection.</li>
-                            <li>Conducted consultation and meeting with DepEd key persons.</li>
-                            <li>Provided technical support and training for mobile app development.</li>
-                            <li>Developed the website, assisted in the creation of resources, and hosting of the mobile applications and tools.</li>
-                        </ul>
-                    </div>
-                    <div class="resume-item">
-                        <div class="resume-item-header">
-                            <h4>On The Job Training</h4>
-                            <span class="resume-period">Jul 2016 – Dec 2016</span>
-                        </div>
-                        <p class="resume-company">Department of Agrarian Reforms</p>
-                        <ul class="resume-highlights">
-                            <li>Developed a document management system for the department as replacement for their previous unfinished system.</li>
-                            <li>Improved the system to handle large volumes of data, faster referencing, and scanning capabilities.</li>
-                            <li>Provided training and support for the new system to the department staff.</li>
-                            <li>Assisted in the migration of data from the old system to the new system.</li>
-                            <li>Provided technical support and maintenance for the new system.</li>
-                        </ul>
-                    </div>
+                    <!-- Resume View -->
+      <div class="resume-item">
+        <div class="resume-item-header">
+          <h4>Software Developer</h4>
+          <span class="resume-period">Jul 2019 – Present</span>
+        </div>
+        <p class="resume-company">Erfinder Philippines, Tacloban City</p>
+        <ul class="resume-highlights"><li>Helped in the development of PIIOX, an open, modular platform designed for control and automation systems.</li><li>Helped in the development of TESSA, a tool that automates execution of scientific software applications.</li><li>Developed internal ERP system for Climeo AG.</li><li>Developed a management tool for Climeo AG IoT devices and clients.</li><li>Developed several internal applications for Stadler, Inc.</li><li>Created social media pages, chatbots, and professional websites for various clients.</li><li>Created promotional materials for various clients.</li></ul>
+      </div><!-- Resume View -->
+      <div class="resume-item">
+        <div class="resume-item-header">
+          <h4>Android Developer</h4>
+          <span class="resume-period">Nov 2016 – 2018</span>
+        </div>
+        <p class="resume-company">Hyperworks I.T. Solutions</p>
+        <ul class="resume-highlights"><li>Developed Disaster Risk Reduction (DRR) mobile apps and educational mobile apps for Save The Children Philippines and DepEd.</li><li>Facilitated mobile features development workshops and data collection.</li><li>Conducted consultation and meeting with DepEd key persons.</li><li>Provided technical support and training for mobile app development.</li><li>Developed the website, assisted in the creation of resources, and hosting of the mobile applications and tools.</li></ul>
+      </div><!-- Resume View -->
+      <div class="resume-item">
+        <div class="resume-item-header">
+          <h4>On The Job Training</h4>
+          <span class="resume-period">Jul 2016 – Dec 2016</span>
+        </div>
+        <p class="resume-company">Department of Agrarian Reforms</p>
+        <ul class="resume-highlights"><li>Developed a document management system for the department as replacement for their previous unfinished system.</li><li>Improved the system to handle large volumes of data, faster referencing, and scanning capabilities.</li><li>Provided training and support for the new system to the department staff.</li><li>Assisted in the migration of data from the old system to the new system.</li><li>Provided technical support and maintenance for the new system.</li></ul>
+      </div>
                 </div>
             </div>
         </div>
@@ -673,70 +490,37 @@
             <div class="resume-section-content">
                 <h3>Technical Skills</h3>
                 <div class="resume-skills-grid-compact">
-                    <div class="resume-skill-category">
-                        <h4><i class="fas fa-language"></i> Languages</h4>
-                        <div class="resume-tags">
-                            <span class="resume-tag">English</span>
-                            <span class="resume-tag">Filipino</span>
-                            <span class="resume-tag">Waray-waray (Dialect)</span>
-                            <span class="resume-tag">Cebuano (Dialect)</span>
-                        </div>
-                    </div>
-                    <div class="resume-skill-category">
-                        <h4><i class="fas fa-desktop"></i> Frontend</h4>
-                        <div class="resume-tags">
-                            <span class="resume-tag">HTML</span>
-                            <span class="resume-tag">CSS</span>
-                            <span class="resume-tag">JavaScript</span>
-                            <span class="resume-tag">TypeScript</span>
-                        </div>
-                    </div>
-                    <div class="resume-skill-category">
-                        <h4><i class="fas fa-server"></i> Backend</h4>
-                        <div class="resume-tags">
-                            <span class="resume-tag">Bash</span>
-                            <span class="resume-tag">C</span>
-                            <span class="resume-tag">C#</span>
-                            <span class="resume-tag">Java</span>
-                            <span class="resume-tag">Python</span>
-                            <span class="resume-tag">PHP</span>
-                            <span class="resume-tag">Lua</span>
-                            <span class="resume-tag">NodeJS</span>
-                            <span class="resume-tag">Qt</span>
-                            <span class="resume-tag">Xojo</span>
-                        </div>
-                    </div>
-                    <div class="resume-skill-category">
-                        <h4><i class="fas fa-database"></i> Database</h4>
-                        <div class="resume-tags">
-                            <span class="resume-tag">MySQL</span>
-                            <span class="resume-tag">PostgreSQL</span>
-                            <span class="resume-tag">MongoDB</span>
-                            <span class="resume-tag">SQLite</span>
-                        </div>
-                    </div>
-                    <div class="resume-skill-category">
-                        <h4><i class="fas fa-tools"></i> Tools & Platforms</h4>
-                        <div class="resume-tags">
-                            <span class="resume-tag">Docker</span>
-                            <span class="resume-tag">Git</span>
-                            <span class="resume-tag">GitHub</span>
-                            <span class="resume-tag">GitLab</span>
-                            <span class="resume-tag">Make/n8n</span>
-                            <span class="resume-tag">Alibaba Cloud</span>
-                            <span class="resume-tag">Google Cloud</span>
-                            <span class="resume-tag">GitHub Actions</span>
-                        </div>
-                    </div>
-                    <div class="resume-skill-category">
-                        <h4><i class="fas fa-palette"></i> Creative</h4>
-                        <div class="resume-tags">
-                            <span class="resume-tag">Photoshop</span>
-                            <span class="resume-tag">Premiere</span>
-                            <span class="resume-tag">DaVinci</span>
-                            <span class="resume-tag">OBS</span>
-                        </div>
-                    </div>
+                    <!-- Resume View -->
+      <div class="resume-skill-category">
+        <h4><i class="fas fa-language"></i>Languages
+        </h4>
+        <div class="resume-tags"><span class="resume-tag">English</span><span class="resume-tag">Filipino</span><span class="resume-tag">Waray-waray (Dialect)</span><span class="resume-tag">Cebuano (Dialect)</span></div>
+      </div><!-- Resume View -->
+      <div class="resume-skill-category">
+        <h4><i class="fas fa-desktop"></i>Frontend
+        </h4>
+        <div class="resume-tags"><span class="resume-tag">HTML</span><span class="resume-tag">CSS</span><span class="resume-tag">JavaScript</span><span class="resume-tag">TypeScript</span></div>
+      </div><!-- Resume View -->
+      <div class="resume-skill-category">
+        <h4><i class="fas fa-server"></i>Backend
+        </h4>
+        <div class="resume-tags"><span class="resume-tag">Bash</span><span class="resume-tag">C</span><span class="resume-tag">C#</span><span class="resume-tag">Java</span><span class="resume-tag">Python</span><span class="resume-tag">PHP</span><span class="resume-tag">Lua</span><span class="resume-tag">NodeJS</span><span class="resume-tag">Qt</span><span class="resume-tag">Xojo</span></div>
+      </div><!-- Resume View -->
+      <div class="resume-skill-category">
+        <h4><i class="fas fa-database"></i>Database
+        </h4>
+        <div class="resume-tags"><span class="resume-tag">MySQL</span><span class="resume-tag">PostgreSQL</span><span class="resume-tag">MongoDB</span><span class="resume-tag">SQLite</span></div>
+      </div><!-- Resume View -->
+      <div class="resume-skill-category">
+        <h4><i class="fas fa-tools"></i>Tools & Platforms
+        </h4>
+        <div class="resume-tags"><span class="resume-tag">Docker</span><span class="resume-tag">Git</span><span class="resume-tag">GitHub</span><span class="resume-tag">GitLab</span><span class="resume-tag">Make/n8n</span><span class="resume-tag">Alibaba Cloud</span><span class="resume-tag">Google Cloud</span><span class="resume-tag">GitHub Actions</span></div>
+      </div><!-- Resume View -->
+      <div class="resume-skill-category">
+        <h4><i class="fas fa-palette"></i>Creative
+        </h4>
+        <div class="resume-tags"><span class="resume-tag">Photoshop</span><span class="resume-tag">Premiere</span><span class="resume-tag">DaVinci</span><span class="resume-tag">OBS</span></div>
+      </div>
                 </div>
             </div>
 
@@ -772,103 +556,58 @@
 <aside class="column column-3">
     <section class="tech-stack-section">
         <h3 class="section-title">Tech Stack</h3>
-
-        <div class="tech-category">
-            <h4 class="tech-category-title">
-                <i class="fas fa-desktop"></i> Frontend
-            </h4>
-            <div class="tech-list">
-                <span class="tech-item">HTML</span>
-                <span class="tech-item">CSS</span>
-                <span class="tech-item">JavaScript</span>
-                <span class="tech-item">TypeScript</span>
-            </div>
-        </div>
-
-        <div class="tech-category">
-            <h4 class="tech-category-title">
-                <i class="fas fa-server"></i> Backend
-            </h4>
-            <div class="tech-list">
-                <span class="tech-item">Bash</span>
-                <span class="tech-item">C</span>
-                <span class="tech-item">C#</span>
-                <span class="tech-item">Java</span>
-                <span class="tech-item">Python</span>
-                <span class="tech-item">PHP</span>
-                <span class="tech-item">Lua</span>
-                <span class="tech-item">NodeJS</span>
-                <span class="tech-item">Qt</span>
-                <span class="tech-item">Xojo</span>
-            </div>
-        </div>
-
-        <div class="tech-category">
-            <h4 class="tech-category-title">
-                <i class="fas fa-database"></i> Database
-            </h4>
-            <div class="tech-list">
-                <span class="tech-item">MySQL</span>
-                <span class="tech-item">PostgreSQL</span>
-                <span class="tech-item">MongoDB</span>
-                <span class="tech-item">SQLite</span>
-            </div>
-        </div>
-
-        <div class="tech-category">
-            <h4 class="tech-category-title">
-                <i class="fas fa-tools"></i> Tools & Platforms
-            </h4>
-            <div class="tech-list">
-                <span class="tech-item">Docker</span>
-                <span class="tech-item">Git</span>
-                <span class="tech-item">GitHub</span>
-                <span class="tech-item">GitLab</span>
-                <span class="tech-item">Make/n8n</span>
-                <span class="tech-item">Alibaba Cloud</span>
-                <span class="tech-item">Google Cloud</span>
-                <span class="tech-item">GitHub Actions</span>
-            </div>
-        </div>
-
-        <div class="tech-category">
-            <h4 class="tech-category-title">
-                <i class="fas fa-palette"></i> Creative
-            </h4>
-            <div class="tech-list">
-                <span class="tech-item">Photoshop</span>
-                <span class="tech-item">Premiere</span>
-                <span class="tech-item">DaVinci</span>
-                <span class="tech-item">OBS</span>
-            </div>
-        </div>
+        <!-- Sidebar View -->
+      <div class="tech-category">
+        <h4 class="tech-category-title"><i class="fas fa-desktop"></i>Frontend
+        </h4>
+        <div class="tech-list"><span class="tech-item">HTML</span><span class="tech-item">CSS</span><span class="tech-item">JavaScript</span><span class="tech-item">TypeScript</span></div>
+      </div><!-- Sidebar View -->
+      <div class="tech-category">
+        <h4 class="tech-category-title"><i class="fas fa-server"></i>Backend
+        </h4>
+        <div class="tech-list"><span class="tech-item">Bash</span><span class="tech-item">C</span><span class="tech-item">C#</span><span class="tech-item">Java</span><span class="tech-item">Python</span><span class="tech-item">PHP</span><span class="tech-item">Lua</span><span class="tech-item">NodeJS</span><span class="tech-item">Qt</span><span class="tech-item">Xojo</span></div>
+      </div><!-- Sidebar View -->
+      <div class="tech-category">
+        <h4 class="tech-category-title"><i class="fas fa-database"></i>Database
+        </h4>
+        <div class="tech-list"><span class="tech-item">MySQL</span><span class="tech-item">PostgreSQL</span><span class="tech-item">MongoDB</span><span class="tech-item">SQLite</span></div>
+      </div><!-- Sidebar View -->
+      <div class="tech-category">
+        <h4 class="tech-category-title"><i class="fas fa-tools"></i>Tools & Platforms
+        </h4>
+        <div class="tech-list"><span class="tech-item">Docker</span><span class="tech-item">Git</span><span class="tech-item">GitHub</span><span class="tech-item">GitLab</span><span class="tech-item">Make/n8n</span><span class="tech-item">Alibaba Cloud</span><span class="tech-item">Google Cloud</span><span class="tech-item">GitHub Actions</span></div>
+      </div><!-- Sidebar View -->
+      <div class="tech-category">
+        <h4 class="tech-category-title"><i class="fas fa-palette"></i>Creative
+        </h4>
+        <div class="tech-list"><span class="tech-item">Photoshop</span><span class="tech-item">Premiere</span><span class="tech-item">DaVinci</span><span class="tech-item">OBS</span></div>
+      </div>
     </section>
 
     <section class="hobbies-section">
         <h3 class="section-title">Hobbies</h3>
-        <div class="hobbies-list">
-            <div class="hobby-item">
-                <i class="fas fa-hammer"></i>
-                <span>Modding Games</span>
-            </div>
-            <div class="hobby-item">
-                <i class="fas fa-headphones"></i>
-                <span>Music</span>
-            </div>
-            <div class="hobby-item">
-                <i class="fas fa-code"></i>
-                <span>Learning Tech</span>
-            </div>
-            <div class="hobby-item">
-                <i class="fas fa-language"></i>
-                <span>Japanese</span>
-            </div>
-        </div>
+        <div class="hobbies-list"><div class="hobby-item">
+      <i class="fas fa-hammer"></i>
+      <span>Modding Games</span>
+    </div><div class="hobby-item">
+      <i class="fas fa-headphones"></i>
+      <span>Music</span>
+    </div><div class="hobby-item">
+      <i class="fas fa-code"></i>
+      <span>Learning Tech</span>
+    </div><div class="hobby-item">
+      <i class="fas fa-language"></i>
+      <span>Japanese</span>
+    </div></div>
+
     </section>
 
     <div class="quote-section">
-        <p class="quote-text">"When you have a great and difficult task... if you only work a little at a time, every day a little, suddenly the work will finish itself."</p>
-        <span class="quote-author">— Isak Dinesen</span>
+        <div class="quote-section">
+  <p class="quote-text">When you have a great and difficult task... if you only work a little at a time, every day a little, suddenly the work will finish itself.</p>
+  <span class="quote-author">— Isak Dinesen</span>
+</div>
+
     </div>
 </aside>
 </div>
@@ -887,6 +626,6 @@
 <script>
     mermaid.initialize({ startOnLoad: false, theme: 'default' });
 </script>
-    <script src="/script.js"></script>
+    <script src="/res/script.js"></script>
 </body>
 </html>

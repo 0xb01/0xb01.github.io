@@ -1,0 +1,34 @@
+{%- comment -%}
+  Projects Grid Include
+  Renders projects from _data/projects.yml
+  
+  Usage: {% include projects-grid.html %}
+{%- endcomment -%}
+
+<div class="projects-grid">
+  {%- for project in site.data.projects -%}
+    <div class="project-card">
+      <div class="project-card-inner">
+        <div class="project-card-front">
+          <div class="project-header-center">
+            <h4 class="project-name">{{ project.name }}</h4>
+            <span class="project-year">{{ project.year }}</span>
+          </div>
+          <div class="project-techstack">
+            {%- for tech in project.tech_stack -%}
+              <span class="tech-tag">{{ tech }}</span>
+            {%- endfor -%}
+          </div>
+        </div>
+        <div class="project-card-back">
+          <p class="project-description">{{ project.description }}</p>
+          {%- if project.visibility == 'public' and project.url != '' -%}
+            <button class="project-link-btn" data-link="{{ project.url }}" data-type="public">View Project</button>
+          {%- else -%}
+            <button class="project-link-btn" data-type="closed">View Project</button>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  {%- endfor -%}
+</div>
