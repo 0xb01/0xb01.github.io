@@ -36,7 +36,7 @@
       <div class="experience-header" onclick="toggleExperienceCard(this)">
         <div class="experience-main">
           <div class="experience-badge">
-            <span class="experience-year">{{ edu.period | split: '–' | first | strip }}</span>
+            <span class="experience-year">{{ edu.period | split: '–' | first | strip | split: ' ' | last }}</span>
           </div>
           <div class="experience-info">
             <h3 class="experience-position">{{ edu.degree }}</h3>
@@ -47,7 +47,60 @@
               </span>
               <span class="experience-duration">
                 <i class="fas fa-clock"></i>
-                {{ edu.duration }}
+                {%- assign period_parts = edu.period | split: '–' -%}
+                {%- assign start_date = period_parts[0] | strip -%}
+                {%- assign end_date = period_parts[1] | strip -%}
+                {%- assign start_parts = start_date | split: ' ' -%}
+                {%- assign end_parts = end_date | split: ' ' -%}
+                {%- if start_parts.size == 2 -%}
+                  {%- assign start_month_str = start_parts[0] -%}
+                  {%- assign start_year = start_parts[1] -%}
+                {%- else -%}
+                  {%- assign start_month_str = "" -%}
+                  {%- assign start_year = start_parts[0] -%}
+                {%- endif -%}
+                {%- if end_parts.size == 2 -%}
+                  {%- assign end_month_str = end_parts[0] -%}
+                  {%- assign end_year = end_parts[1] -%}
+                {%- else -%}
+                  {%- assign end_month_str = "" -%}
+                  {%- assign end_year = end_parts[0] -%}
+                {%- endif -%}
+                {%- assign duration_years = end_year | minus: start_year -%}
+                {%- if start_month_str != "" -%}
+                  {%- assign start_month_num = start_month_str | date: '%m' | plus: 0 -%}
+                {%- else -%}
+                  {%- assign start_month_num = 1 -%}
+                {%- endif -%}
+                {%- if end_month_str != "" -%}
+                  {%- assign end_month_num = end_month_str | date: '%m' | plus: 0 -%}
+                {%- else -%}
+                  {%- assign end_month_num = 12 -%}
+                {%- endif -%}
+                {%- assign total_months = duration_years | times: 12 | plus: end_month_num | minus: start_month_num -%}
+                {%- if start_month_str == "" and end_month_str == "" -%}
+                  {%- if duration_years <= 0 -%}
+                    1 year
+                  {%- elsif duration_years == 1 -%}
+                    1 year
+                  {%- else -%}
+                    {{ duration_years }} years
+                  {%- endif -%}
+                {%- elsif total_months <= 0 -%}
+                  1 month
+                {%- elsif total_months < 12 -%}
+                  {{ total_months }} {% if total_months == 1 %}month{% else %}months{% endif %}
+                {%- elsif total_months == 12 -%}
+                  1 year
+                {%- else -%}
+                  {%- assign calc_years = total_months | divided_by: 12 -%}
+                  {%- assign remaining_months = total_months | modulo: 12 -%}
+                  {%- if remaining_months == 0 -%}
+                    {{ calc_years }} years
+                  {%- else -%}
+                    {{ calc_years }} year{% if calc_years > 1 %}s{% endif %}, {{ remaining_months }} {% if remaining_months == 1 %}month{% else %}months{% endif %}
+                  {%- endif -%}
+                {%- endif -%}
               </span>
             </div>
           </div>

@@ -5,7 +5,7 @@
 - position: Software Developer
   company: Erfinder Philippines, Tacloban City
   period: Jul 2019 – Present
-  duration: 6+ years
+  present: true
   show_in: both  # resume, work, or both
   responsibilities:
     - Helped in the development of PIIOX, an open, modular platform designed for control and automation systems.
@@ -34,7 +34,6 @@
 - position: Android Developer
   company: Hyperworks I.T. Solutions
   period: Nov 2016 – 2018
-  duration: 2 years
   show_in: both
   responsibilities:
     - Developed Disaster Risk Reduction (DRR) mobile apps and educational mobile apps for Save The Children Philippines and DepEd.
@@ -58,7 +57,6 @@
 - position: Event Organizer
   company: PlayPark Inc.
   period: 2015 – 2016
-  duration: 1 year
   show_in: work  # Only shows in Work Experience page, not in Resume
   responsibilities:
     - Assigned to Special Force Online and Special Force 2.
@@ -76,7 +74,6 @@
 - position: On The Job Training
   company: Department of Agrarian Reforms
   period: Jul 2016 – Dec 2016
-  duration: 6 months
   show_in: both
   responsibilities:
     - Developed a document management system for the department as replacement for their previous unfinished system.

@@ -1056,6 +1056,22 @@ body {
     transition: width 0.3s;
 }
 
+.present-ribbon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: linear-gradient(135deg, var(--accent-color), var(--accent-hover));
+    color: white;
+    padding: 4px 12px;
+    font-size: 0.65rem;
+    font-weight: 600;
+    border-radius: 0 var(--radius-md) 0 var(--radius-md);
+    box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.15);
+    z-index: 5;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
 .experience-card:hover .experience-card-accent {
     width: 5px;
 }
