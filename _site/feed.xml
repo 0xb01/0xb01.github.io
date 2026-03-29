@@ -1,4 +1,84 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-03-29T19:04:45+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">JNR</title><subtitle>Solution-oriented programmer with 10 years of experience in creating software  for desktop platforms, mobile development, and hardware.</subtitle><entry><title type="html">Testing Mermaid Diagrams</title><link href="http://localhost:4000/tech/2026/03/13/testing-mermaid-diagrams.html" rel="alternate" type="text/html" title="Testing Mermaid Diagrams" /><published>2026-03-13T00:00:00+08:00</published><updated>2026-03-13T00:00:00+08:00</updated><id>http://localhost:4000/tech/2026/03/13/testing-mermaid-diagrams</id><content type="html" xml:base="http://localhost:4000/tech/2026/03/13/testing-mermaid-diagrams.html">&lt;p&gt;This is a test post to verify Mermaid diagram support.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-03-29T19:19:41+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">JNR</title><subtitle>Solution-oriented programmer with 10 years of experience in creating software for desktop platforms, mobile development, and hardware.</subtitle><entry><title type="html">This Portfolio is Customizable</title><link href="http://localhost:4000/tech/2026/03/29/customizable.html" rel="alternate" type="text/html" title="This Portfolio is Customizable" /><published>2026-03-29T07:15:00+08:00</published><updated>2026-03-29T07:15:00+08:00</updated><id>http://localhost:4000/tech/2026/03/29/customizable</id><content type="html" xml:base="http://localhost:4000/tech/2026/03/29/customizable.html">&lt;p&gt;Yeah, it is!&lt;/p&gt;
+
+&lt;h2 id=&quot;how-it-works&quot;&gt;How It Works&lt;/h2&gt;
+
+&lt;p&gt;All personal content is stored in structured YAML files under the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_data/&lt;/code&gt; directory. This means you don’t need to dig through HTML to update your information, just edit the data files!&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;_data/
+├── profile.yml      # Personal info, socials, contact form
+├── experience.yml   # Work history &amp;amp; education
+├── projects.yml     # Projects showcase
+└── techstack.yml    # Skills &amp;amp; hobbies
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;customization-flow&quot;&gt;Customization Flow&lt;/h2&gt;
+
+&lt;p&gt;Here’s how the customization process works:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-mermaid&quot;&gt;flowchart TD
+    A[Fork Repository] --&amp;gt; B[Edit _data/profile.yml]
+    B --&amp;gt; C[Update _data/experience.yml]
+    C --&amp;gt; D[Update _data/projects.yml]
+    D --&amp;gt; E[Replace assets in /res/]
+    E --&amp;gt; F[Update _config.yml]
+    F --&amp;gt; G[Push to GitHub]
+    G --&amp;gt; H[Auto-deploy to GitHub Pages]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;what-you-can-customize&quot;&gt;What You Can Customize&lt;/h2&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;File&lt;/th&gt;
+      &lt;th&gt;What to Edit&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;profile.yml&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;Name, location, hero text, about me, social links, contact form settings, resume PDF path&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;experience.yml&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;Job positions, companies, dates, responsibilities, tech stack&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;projects.yml&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;Project names, descriptions, tech stack, URLs, visibility&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;techstack.yml&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;Skills categories, hobbies (max 4), icons&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;quick-start&quot;&gt;Quick Start&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Fork&lt;/strong&gt; this repository to your GitHub account&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Edit&lt;/strong&gt; the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_data/&lt;/code&gt; YAML files with your information&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Replace&lt;/strong&gt; assets in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/res/&lt;/code&gt; (profile photo, resume PDF)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Update&lt;/strong&gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; with your domain&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Push&lt;/strong&gt; changes—GitHub Pages auto-deploys!&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;advanced-customization&quot;&gt;Advanced Customization&lt;/h2&gt;
+
+&lt;p&gt;For deeper changes, you can also modify:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Styling&lt;/strong&gt;: Edit &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/res/style.css&lt;/code&gt; CSS variables for theme colors&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Components&lt;/strong&gt;: Edit files in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_includes/&lt;/code&gt; for reusable sections&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Layouts&lt;/strong&gt;: Modify &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_layouts/&lt;/code&gt; for page structure changes&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;blog-posts-with-mermaid-support&quot;&gt;Blog Posts with Mermaid Support&lt;/h2&gt;
+
+&lt;p&gt;The portfolio also supports &lt;strong&gt;Mermaid diagrams&lt;/strong&gt; in blog posts (like this one!). Perfect for technical writing and documentation.&lt;/p&gt;
+
+&lt;p&gt;Feel free to explore the &lt;a href=&quot;https://github.com/0xb01/0xb01.github.io&quot;&gt;repository&lt;/a&gt; and make it your own!&lt;/p&gt;</content><author><name></name></author><category term="Tech" /><category term="tech" /><category term="portfolio" /><summary type="html">Yeah, it is!</summary></entry><entry><title type="html">Testing Mermaid Diagrams</title><link href="http://localhost:4000/tech/2026/03/13/testing-mermaid-diagrams.html" rel="alternate" type="text/html" title="Testing Mermaid Diagrams" /><published>2026-03-13T00:00:00+08:00</published><updated>2026-03-13T00:00:00+08:00</updated><id>http://localhost:4000/tech/2026/03/13/testing-mermaid-diagrams</id><content type="html" xml:base="http://localhost:4000/tech/2026/03/13/testing-mermaid-diagrams.html">&lt;p&gt;This is a test post to verify Mermaid diagram support.&lt;/p&gt;
 
 &lt;h2 id=&quot;flowchart-graph-td&quot;&gt;Flowchart (Graph TD)&lt;/h2&gt;
 
@@ -150,7 +230,7 @@
 
 &lt;hr /&gt;
 
-&lt;p&gt;If you can see all the diagrams rendered above, Mermaid support is working correctly!&lt;/p&gt;</content><author><name>banikaz</name></author><category term="Tech" /><category term="tech" /><category term="test" /><summary type="html">This is a test post to verify Mermaid diagram support.</summary></entry><entry><title type="html">The Amira Elfeky Blend</title><link href="http://localhost:4000/music/2026/03/12/amira-elfeky-blend.html" rel="alternate" type="text/html" title="The Amira Elfeky Blend" /><published>2026-03-12T07:26:00+08:00</published><updated>2026-03-12T07:26:00+08:00</updated><id>http://localhost:4000/music/2026/03/12/amira-elfeky-blend</id><content type="html" xml:base="http://localhost:4000/music/2026/03/12/amira-elfeky-blend.html">&lt;p&gt;If you’ve heard &lt;strong&gt;Amira Elfeky’s&lt;/strong&gt; track &lt;em&gt;“Everything I Do Is For You,”&lt;/em&gt; you probably felt a massive wave of nostalgia hit you. It’s getting a lot of buzz lately, and for good reason—it sounds like the perfect “lost track” from the early 2000s.&lt;/p&gt;
+&lt;p&gt;If you can see all the diagrams rendered above, Mermaid support is working correctly!&lt;/p&gt;</content><author><name></name></author><category term="Tech" /><category term="tech" /><category term="test" /><summary type="html">This is a test post to verify Mermaid diagram support.</summary></entry><entry><title type="html">The Amira Elfeky Blend</title><link href="http://localhost:4000/music/2026/03/12/amira-elfeky-blend.html" rel="alternate" type="text/html" title="The Amira Elfeky Blend" /><published>2026-03-12T07:26:00+08:00</published><updated>2026-03-12T07:26:00+08:00</updated><id>http://localhost:4000/music/2026/03/12/amira-elfeky-blend</id><content type="html" xml:base="http://localhost:4000/music/2026/03/12/amira-elfeky-blend.html">&lt;p&gt;If you’ve heard &lt;strong&gt;Amira Elfeky’s&lt;/strong&gt; track &lt;em&gt;“Everything I Do Is For You,”&lt;/em&gt; you probably felt a massive wave of nostalgia hit you. It’s getting a lot of buzz lately, and for good reason—it sounds like the perfect “lost track” from the early 2000s.&lt;/p&gt;
 
 &lt;p&gt;Here’s why it feels so much like a mix of &lt;strong&gt;Evanescence&lt;/strong&gt; and &lt;strong&gt;Linkin Park&lt;/strong&gt;:&lt;/p&gt;
 
@@ -169,4 +249,4 @@
 
 &lt;p&gt;It’s the kind of song that’s perfect for a late-night drive or just staring out the window when you’re feeling a bit deep. If you grew up listening to Nu-Metal or Alt-Rock, this song is going to feel like home.&lt;/p&gt;
 
-&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/dEU90cHWKMk?si=_USel0IdaNMKO0MI&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&quot; referrerpolicy=&quot;strict-origin-when-cross-origin&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;</content><author><name>banikaz</name></author><category term="Music" /><category term="music" /><category term="thoughts" /><summary type="html">If you’ve heard Amira Elfeky’s track “Everything I Do Is For You,” you probably felt a massive wave of nostalgia hit you. It’s getting a lot of buzz lately, and for good reason—it sounds like the perfect “lost track” from the early 2000s.</summary></entry></feed>
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/dEU90cHWKMk?si=_USel0IdaNMKO0MI&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&quot; referrerpolicy=&quot;strict-origin-when-cross-origin&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;</content><author><name></name></author><category term="Music" /><category term="music" /><category term="thoughts" /><summary type="html">If you’ve heard Amira Elfeky’s track “Everything I Do Is For You,” you probably felt a massive wave of nostalgia hit you. It’s getting a lot of buzz lately, and for good reason—it sounds like the perfect “lost track” from the early 2000s.</summary></entry></feed>

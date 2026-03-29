@@ -4,7 +4,6 @@ title: "Testing Mermaid Diagrams"
 date: 2026-03-13 00:00:00 +0800
 categories: [Tech]
 tags: [tech, test]
-author: "banikaz"
 ---
 
 This is a test post to verify Mermaid diagram support.
