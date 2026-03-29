@@ -55,7 +55,7 @@
             <span class="timeline-duration">{{ job.duration }}</span>
             <span class="timeline-company">{{ job.company }}</span>
           </div>
-          <i class="fas fa-chevron-{%- if forloop.first -%}down{%- else -%}right{%- endif -%} toggle-icon"></i>
+          <i class="fas {% if forloop.first %}fa-chevron-down{% else %}fa-chevron-right{% endif %} toggle-icon"></i>
         </div>
         <div class="timeline-content">
           <div class="tasks">

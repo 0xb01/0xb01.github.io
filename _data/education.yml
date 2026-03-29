@@ -1,0 +1,12 @@
+# Education Data
+# Single source of truth for Education page and Resume
+# Edit here - changes reflect everywhere automatically
+
+- degree: BS Computer Science
+  school: ACLC College, Tacloban City
+  period: 2013 – 2017
+  duration: 4 years
+  achievements:
+    - 2nd Place, Web Programming — Eastern Visayas ICT Expo (2016)
+    - 3rd Place, Visual Arts — Eastern Visayas ICT Expo (2016)
+    - Top 5, Hack The Climate Hackathon — Philippine Science HS - EV Campus (2016)

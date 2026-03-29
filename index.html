@@ -36,27 +36,7 @@ title: Portfolio
             <h3 class="section-title">Education</h3>
 
             <div class="timeline">
-                <div class="timeline-item collapsed">
-                    <div class="timeline-header">
-                        <div class="timeline-info">
-                            <span class="timeline-year">2013 – 2017</span>
-                            <span class="timeline-position">Bachelor of Science in Computer Science</span>
-                            <span class="timeline-duration">4 years</span>
-                            <span class="timeline-company">ACLC College, Tacloban City</span>
-                        </div>
-                        <i class="fas fa-chevron-right toggle-icon"></i>
-                    </div>
-                    <div class="timeline-content">
-                        <div class="tasks">
-                            <h4>Achievements</h4>
-                            <ul>
-                                <li>2nd Place, Web Programming — Eastern Visayas ICT Expo (2016)</li>
-                                <li>3rd Place, Visual Arts — Eastern Visayas ICT Expo (2016)</li>
-                                <li>Top 5, Hack The Climate Hackathon — Philippine Science HS - EV Campus (2016)</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                {% include education-items.html context='work' %}
             </div>
         </section>
 

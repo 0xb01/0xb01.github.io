@@ -1,0 +1,56 @@
+{%- comment -%}
+  Education Items Include
+  Renders education items based on context.
+
+  Usage: {% include education-items.html context='work' %}
+         {% include education-items.html context='resume' %}
+
+  Parameters:
+    - context: 'work' for Education section (shows achievements in timeline)
+               'resume' for Resume (compact view)
+{%- endcomment -%}
+
+{%- for edu in site.data.education -%}
+  {%- if include.context == 'resume' -%}
+    <!-- Resume View -->
+    <div class="resume-item">
+      <div class="resume-item-header">
+        <h4>{{ edu.degree }}</h4>
+        <span class="resume-period">{{ edu.period }}</span>
+      </div>
+      <p class="resume-company">{{ edu.school }}</p>
+      {%- if edu.achievements and edu.achievements.size > 0 -%}
+        <ul class="resume-highlights">
+          {%- for achievement in edu.achievements -%}
+            <li>{{ achievement }}</li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </div>
+  {%- else -%}
+    <!-- Education Section View -->
+    <div class="timeline-item collapsed">
+      <div class="timeline-header">
+        <div class="timeline-info">
+          <span class="timeline-year">{{ edu.period | upcase }}</span>
+          <span class="timeline-position">{{ edu.degree }}</span>
+          <span class="timeline-duration">{{ edu.duration }}</span>
+          <span class="timeline-company">{{ edu.school }}</span>
+        </div>
+        <i class="fas fa-chevron-right toggle-icon"></i>
+      </div>
+      <div class="timeline-content">
+        {%- if edu.achievements and edu.achievements.size > 0 -%}
+        <div class="tasks">
+          <h4>Achievements</h4>
+          <ul>
+            {%- for achievement in edu.achievements -%}
+              <li>{{ achievement }}</li>
+            {%- endfor -%}
+          </ul>
+        </div>
+        {%- endif -%}
+      </div>
+    </div>
+  {%- endif -%}
+{%- endfor -%}
