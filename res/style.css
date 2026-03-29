@@ -47,6 +47,9 @@ body {
     body {
         height: 100vh;
         overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 }
 
@@ -61,13 +64,13 @@ body {
 
 /* Main Container */
 .container {
-    max-width: 1400px;
+    max-width: 1920px;
     margin: 15px;
     background-color: var(--container-bg);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
     display: grid;
-    grid-template-columns: 240px 1fr 260px;
+    grid-template-columns: 280px 1fr 300px;
     gap: 0;
     overflow: hidden;
     border: 1px solid var(--border-color);
@@ -1022,217 +1025,276 @@ body {
     letter-spacing: -0.5px;
 }
 
-/* Timeline */
+/* Work Experience - New Card Design */
 .timeline {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 12px;
 }
 
-.timeline-item {
+.experience-card {
+    position: relative;
+    background-color: var(--card-bg);
     border: 1px solid var(--border-color);
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-md);
     overflow: hidden;
-    transition: all 0.3s;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.timeline-item:hover {
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+.experience-card:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    transform: translateY(-1px);
 }
 
-.timeline-header {
+.experience-card-accent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--accent-color), var(--accent-gradient-end, var(--accent-color)));
+    transition: width 0.3s;
+}
+
+.experience-card:hover .experience-card-accent {
+    width: 5px;
+}
+
+.experience-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 12px;
-    background-color: #fafafa;
+    padding: 16px;
     cursor: pointer;
     transition: background-color 0.2s;
 }
 
-.timeline-header:hover {
+.experience-header:hover {
     background-color: #fafafa;
 }
 
-.timeline-item:hover .timeline-header {
-    background-color: #fafafa;
-}
-
-.timeline-info {
+.experience-main {
     display: flex;
-    flex-direction: column;
-    gap: 2px;
+    gap: 14px;
+    align-items: flex-start;
+    flex: 1;
 }
 
-.timeline-year {
+.experience-badge {
+    flex-shrink: 0;
+    min-width: 80px;
+    text-align: center;
+}
+
+.experience-year {
+    display: inline-block;
     font-size: 0.75rem;
+    font-weight: 700;
     color: var(--accent-color);
-    font-weight: 600;
-    letter-spacing: -0.5px;
+    background-color: rgba(128, 0, 0, 0.08);
+    padding: 4px 10px;
+    border-radius: 6px;
+    letter-spacing: 0;
+    min-width: 55px;
 }
 
-.timeline-position {
-    font-size: 0.85rem;
-    font-weight: 600;
+.experience-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.experience-position {
+    font-size: 1rem;
+    font-weight: 700;
     color: var(--text-primary);
-    letter-spacing: -0.5px;
-}
-
-.timeline-duration {
-    font-size: 0.75rem;
-    color: var(--text-muted);
+    margin: 0 0 6px 0;
     letter-spacing: -0.3px;
 }
 
-.timeline-company {
-    font-size: 0.75rem;
-    color: var(--text-secondary);
-    letter-spacing: -0.5px;
-}
-
-.toggle-icon {
-    color: var(--text-muted);
-    font-size: 0.8rem;
-}
-
-.timeline-content {
-    display: none;
-    padding: 12px;
-    background-color: var(--container-bg);
-}
-
-.timeline-item.expanded .timeline-content {
-    display: block;
-}
-
-.tasks h4,
-.tech-stack h4 {
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 0.3px;
-    color: var(--text-muted);
-    margin-bottom: 8px;
-}
-
-.tasks ul {
-    list-style: none;
-    margin-bottom: 15px;
-}
-
-.tasks li {
-    position: relative;
-    padding-left: 18px;
-    margin-bottom: 4px;
-    color: var(--text-secondary);
-    font-size: 0.75rem;
-    letter-spacing: -0.5px;
-}
-
-.tasks li::before {
-    content: "•";
-    position: absolute;
-    left: 0;
-    color: var(--accent-color);
-    font-weight: bold;
-    font-size: 0.8rem;
-    line-height: 1;
-}
-
-/* education timeline content list styling */
-.timeline-content ul {
-    list-style: none;
-    margin: 10px 0;
-    padding-left: 5px;
-}
-
-.timeline-content li {
-    position: relative;
-    padding-left: 18px;
-    margin-bottom: 4px;
-    color: var(--text-secondary);
-    font-size: 0.75rem;
-    letter-spacing: -0.5px;
-}
-
-.timeline-content li::before {
-    content: "•";
-    position: absolute;
-    left: 0;
-    color: var(--accent-color);
-    font-weight: bold;
-    font-size: 0.8rem;
-    line-height: 1;
-}
-
-.timeline-content p {
-    color: var(--text-secondary);
-    font-size: 0.8rem;
-    margin-bottom: 8px;
-}
-
-.tech-tags {
+.experience-meta {
     display: flex;
     flex-wrap: wrap;
-    gap: 5px;
+    gap: 12px;
+    align-items: center;
 }
 
-.tech-tag {
-    display: inline-block;
-    padding: 4px 10px;
-    background-color: #fdf0f0;
-    color: var(--accent-color);
-    border-radius: 20px;
-    font-size: 0.7rem;
-    font-weight: 500;
-    letter-spacing: -0.5px;
-    user-select: none;
-}
-
-/* References Section */
-.references {
-    margin-top: 15px;
-    padding-top: 15px;
-    border-top: 1px dashed var(--border-color);
-}
-
-.references h4 {
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 0.3px;
-    color: var(--text-muted);
-    margin-bottom: 10px;
-}
-
-.reference-links {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.reference-link {
+.experience-company,
+.experience-duration {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    padding: 6px 10px;
-    background-color: var(--container-bg);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-sm);
+    gap: 5px;
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+}
+
+.experience-company i,
+.experience-duration i {
+    color: var(--text-muted);
+    font-size: 0.7rem;
+}
+
+.experience-toggle {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    border: none;
+    background-color: var(--tag-bg);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    color: var(--text-muted);
+}
+
+.experience-toggle:hover {
+    background-color: var(--accent-color);
+    color: white;
+    transform: rotate(5deg);
+}
+
+.experience-toggle i {
+    font-size: 0.75rem;
+    transition: transform 0.3s;
+}
+
+.experience-content {
+    display: none;
+    padding: 0 16px 16px 16px;
+}
+
+.experience-card.expanded .experience-content {
+    display: block;
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.experience-body {
+    padding-top: 12px;
+    border-top: 1px solid var(--border-light);
+}
+
+.responsibilities-section,
+.tech-stack-section,
+.references-section {
+    margin-bottom: 16px;
+}
+
+.responsibilities-section:last-child,
+.tech-stack-section:last-child,
+.references-section:last-child {
+    margin-bottom: 0;
+}
+
+.responsibilities-section h4,
+.tech-stack-section h4,
+.references-section h4 {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.responsibilities-section h4 i,
+.tech-stack-section h4 i,
+.references-section h4 i {
     color: var(--accent-color);
     font-size: 0.75rem;
-    font-weight: 600;
-    text-decoration: none;
+}
+
+.responsibilities-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.responsibilities-list li {
+    position: relative;
+    padding-left: 18px;
+    margin-bottom: 6px;
+    color: var(--text-secondary);
+    font-size: 0.82rem;
+    line-height: 1.5;
+    letter-spacing: -0.2px;
+}
+
+.responsibilities-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+    font-weight: bold;
+    font-size: 0.9rem;
+    line-height: 1;
+}
+
+.tech-stack-section .tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.tech-stack-section .tech-tag {
+    font-size: 0.72rem;
+    padding: 4px 10px;
+    background-color: var(--tag-bg);
+    color: var(--text-secondary);
+    border-radius: 12px;
+    font-weight: 500;
+    letter-spacing: 0;
     transition: all 0.2s;
 }
 
-.reference-link:hover {
+.tech-stack-section .tech-tag:hover {
     background-color: var(--accent-color);
-    border-color: var(--accent-color);
+    color: white;
+    transform: translateY(-1px);
+}
+
+.references-section .reference-links {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.references-section .reference-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding: 6px 10px;
+    background-color: var(--tag-bg);
+    border-radius: var(--radius-sm);
+    transition: all 0.2s;
+    width: fit-content;
+}
+
+.references-section .reference-link:hover {
+    background-color: var(--accent-color);
     color: white;
     transform: translateX(3px);
 }
 
-.reference-link i {
-    font-size: 0.7rem;
+.references-section .reference-link i {
+    font-size: 0.65rem;
 }
 
 /* Projects Grid - New Horizontal Card Design */
@@ -1249,7 +1311,7 @@ body {
     border-radius: var(--radius-md);
     padding: 16px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    overflow: visible;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     min-height: 140px;
@@ -1383,23 +1445,24 @@ body {
 
 .tech-stack-full {
     position: absolute;
-    bottom: 100%;
+    bottom: 0;
     left: 0;
+    right: 0;
     background-color: var(--container-bg);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-sm);
-    padding: 8px 10px;
+    border-top: 1px solid var(--border-color);
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+    padding: 10px;
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
-    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.05);
     opacity: 0;
     visibility: hidden;
     transform: translateY(5px);
     transition: all 0.2s;
-    z-index: 100;
-    margin-bottom: 6px;
-    max-width: 280px;
+    z-index: 10;
+    max-height: 50%;
+    overflow-y: auto;
 }
 
 .project-card:hover .tech-stack-full {
@@ -2379,13 +2442,18 @@ body.resume-view .container {
         gap: 30px;
     }
 
-    /* Timeline adjustments for tablet */
-    .timeline-info {
-        gap: 2px;
+    /* Experience card adjustments for tablet */
+    .experience-header {
+        padding: 14px;
     }
 
-    .timeline-position {
-        font-size: 0.85rem;
+    .experience-position {
+        font-size: 0.95rem;
+    }
+
+    .experience-company,
+    .experience-duration {
+        font-size: 0.75rem;
     }
 
     /* Projects grid for tablet */
@@ -2433,16 +2501,16 @@ body.resume-view .container {
         font-size: 1.1rem;
     }
 
-    /* Compact timeline for limited height */
-    .timeline-item {
+    /* Compact experience cards for limited height */
+    .experience-card {
         margin-bottom: 8px;
     }
 
-    .timeline-header {
+    .experience-header {
         padding: 8px 10px;
     }
 
-    .timeline-position {
+    .experience-position {
         font-size: 0.8rem;
     }
 
@@ -2779,12 +2847,44 @@ body.resume-view .container {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .timeline-info {
-        gap: 2px;
+    /* Experience card mobile adjustments */
+    .experience-header {
+        padding: 12px;
     }
 
-    .timeline-position {
+    .experience-main {
+        gap: 10px;
+    }
+
+    .experience-year {
+        font-size: 0.7rem;
+        padding: 3px 8px;
+    }
+
+    .experience-position {
         font-size: 0.9rem;
+    }
+
+    .experience-meta {
+        gap: 8px;
+    }
+
+    .experience-company,
+    .experience-duration {
+        font-size: 0.72rem;
+    }
+
+    .experience-toggle {
+        width: 28px;
+        height: 28px;
+    }
+
+    .experience-content {
+        padding: 0 12px 12px 12px;
+    }
+
+    .responsibilities-list li {
+        font-size: 0.8rem;
     }
 
     .mobile-header-info {

@@ -724,10 +724,10 @@ function expandAllTimelineItems() {
     [workExperienceSection, educationSection].forEach(section => {
         if (!section) return;
 
-        const timelineItems = section.querySelectorAll('.timeline-item');
+        const timelineItems = section.querySelectorAll('.experience-card');
         timelineItems.forEach(item => {
-            const header = item.querySelector('.timeline-header');
-            const icon = item.querySelector('.toggle-icon');
+            const header = item.querySelector('.experience-header');
+            const icon = header.querySelector('.experience-toggle i');
 
             item.classList.remove('collapsed');
             item.classList.add('expanded');
@@ -749,10 +749,10 @@ function resetTimelineState() {
 
     // Reset Work Experience (first item expanded, others collapsed)
     if (workExperienceSection) {
-        const timelineItems = workExperienceSection.querySelectorAll('.timeline-item');
+        const timelineItems = workExperienceSection.querySelectorAll('.experience-card');
         timelineItems.forEach((item, index) => {
-            const header = item.querySelector('.timeline-header');
-            const icon = item.querySelector('.toggle-icon');
+            const header = item.querySelector('.experience-header');
+            const icon = header.querySelector('.experience-toggle i');
 
             if (index === 0) {
                 // First item - expanded
@@ -776,10 +776,10 @@ function resetTimelineState() {
 
     // Reset Education (all collapsed)
     if (educationSection) {
-        const timelineItems = educationSection.querySelectorAll('.timeline-item');
+        const timelineItems = educationSection.querySelectorAll('.experience-card');
         timelineItems.forEach(item => {
-            const header = item.querySelector('.timeline-header');
-            const icon = item.querySelector('.toggle-icon');
+            const header = item.querySelector('.experience-header');
+            const icon = header.querySelector('.experience-toggle i');
 
             item.classList.remove('expanded');
             item.classList.add('collapsed');
@@ -792,21 +792,41 @@ function resetTimelineState() {
 }
 
 /**
+ * Toggle experience card expand/collapse
+ */
+function toggleExperienceCard(header) {
+    const card = header.closest('.experience-card');
+    const icon = header.querySelector('.experience-toggle i');
+
+    if (!card) return;
+
+    card.classList.toggle('expanded');
+    card.classList.toggle('collapsed');
+
+    if (icon) {
+        icon.classList.toggle('fa-chevron-down');
+        icon.classList.toggle('fa-chevron-right');
+    }
+}
+
+/**
  * Initialize timeline items state
- * Ensures the first work experience item is expanded by default
+ * Home page: First work experience item expanded, rest collapsed
+ * Resume page: All work experience items expanded
  */
 function initTimeline() {
     const workExperienceSection = document.querySelector('.work-experience');
     if (!workExperienceSection) return;
 
-    const timelineItems = workExperienceSection.querySelectorAll('.timeline-item');
+    const timelineItems = workExperienceSection.querySelectorAll('.experience-card');
+    const isResumeView = document.body.classList.contains('resume-view');
 
     timelineItems.forEach((item, index) => {
-        const header = item.querySelector('.timeline-header');
-        const icon = item.querySelector('.toggle-icon');
+        const header = item.querySelector('.experience-header');
+        const icon = item.querySelector('.experience-toggle i');
 
-        if (index === 0) {
-            // First item (latest job) - expanded
+        if (isResumeView) {
+            // Resume page - all expanded
             item.classList.add('expanded');
             item.classList.remove('collapsed');
             if (icon) {
@@ -814,35 +834,38 @@ function initTimeline() {
                 icon.classList.add('fa-chevron-down');
             }
         } else {
-            // All other items - collapsed
-            item.classList.add('collapsed');
-            item.classList.remove('expanded');
-            if (icon) {
-                icon.classList.remove('fa-chevron-down');
-                icon.classList.add('fa-chevron-right');
+            // Home page - first expanded, rest collapsed
+            if (index === 0) {
+                item.classList.add('expanded');
+                item.classList.remove('collapsed');
+                if (icon) {
+                    icon.classList.remove('fa-chevron-right');
+                    icon.classList.add('fa-chevron-down');
+                }
+            } else {
+                item.classList.add('collapsed');
+                item.classList.remove('expanded');
+                if (icon) {
+                    icon.classList.remove('fa-chevron-down');
+                    icon.classList.add('fa-chevron-right');
+                }
             }
-        }
-
-        // Add click event listener
-        if (header) {
-            header.addEventListener('click', toggleTimeline);
-            header.style.cursor = 'pointer';
         }
     });
 }
 
 /**
- * Initialize educationSection  (all .collapsed)
+ * Initialize education section (all collapsed on home page)
  */
 function initEducation() {
     const educationSection = document.querySelector('.education');
     if (!educationSection) return;
 
-    const timelineItems = educationSection.querySelectorAll('.timeline-item');
+    const timelineItems = educationSection.querySelectorAll('.experience-card');
 
     timelineItems.forEach(item => {
-        const header = item.querySelector('.timeline-header');
-        const icon = item.querySelector('.toggle-icon');
+        const header = item.querySelector('.experience-header');
+        const icon = header.querySelector('.experience-toggle i');
 
         // All education items - collapsed
         item.classList.add('collapsed');
@@ -850,12 +873,6 @@ function initEducation() {
         if (icon) {
             icon.classList.remove('fa-chevron-down');
             icon.classList.add('fa-chevron-right');
-        }
-
-        // Add click event listener
-        if (header) {
-            header.addEventListener('click', toggleTimeline);
-            header.style.cursor = 'pointer';
         }
     });
 }
