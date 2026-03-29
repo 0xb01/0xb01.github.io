@@ -44,30 +44,55 @@ title: Portfolio
 
         <!-- Blog Section -->
         <section class="section blog-section hidden" id="blogSection">
-            <h3 class="section-title">Blog</h3>
-            <div class="blog-posts">
+            <div class="blog-header-new">
+                <div class="blog-header-content">
+                    <h2 class="blog-headline">Latest Writing</h2>
+                    <p class="blog-subheadline">Thoughts, tutorials, and technical deep-dives.</p>
+                </div>
+                <div class="blog-header-icon">
+                    <i class="fas fa-pen-fancy"></i>
+                </div>
+            </div>
+
+            <div class="blog-posts-grid">
                 {% for post in site.posts %}
-                <article class="blog-post-item">
-                    <div class="blog-post-header">
-                        <h4 class="blog-post-title">
-                            <a href="javascript:void(0)" onclick="showBlogPostFromList(this)" data-url="{{ post.url }}">{{ post.title }}</a>
-                        </h4>
-                        <span class="blog-post-date">{{ post.date | date: "%B %d, %Y" }}</span>
+                <article class="blog-card" onclick="showBlogPostFromList(this)" data-url="{{ post.url }}">
+                    <div class="blog-card-badge">
+                        {%- if post.categories -%}
+                            {{ post.categories[0] }}
+                        {%- else -%}
+                            Post
+                        {%- endif -%}
                     </div>
-                    <div class="blog-post-excerpt">
-                        {{ post.excerpt }}
+                    <h3 class="blog-card-title">{{ post.title }}</h3>
+                    <p class="blog-card-excerpt">{{ post.excerpt | strip_html | truncatewords: 25 }}</p>
+                    <div class="blog-card-meta">
+                        <span class="blog-card-date">
+                            <i class="fas fa-calendar"></i>
+                            {{ post.date | date: "%b %d, %Y" }}
+                        </span>
+                        <span class="blog-card-read-more">
+                            Read More <i class="fas fa-arrow-right"></i>
+                        </span>
                     </div>
-                    <a href="javascript:void(0)" class="blog-read-more" onclick="showBlogPostFromList(this)" data-url="{{ post.url }}">Read More →</a>
                 </article>
                 {% endfor %}
             </div>
+
+            {% if site.posts.size == 0 %}
+            <div class="blog-empty">
+                <i class="fas fa-inbox"></i>
+                <p>No blog posts yet. Check back soon!</p>
+            </div>
+            {% endif %}
         </section>
 
         <!-- Single Blog Post Content -->
         <section class="section blog-post-section hidden" id="blogPostContent">
-            <div class="blog-header">
-                <button class="back-btn" onclick="goBackToBlog()">
-                    <i class="fas fa-arrow-left"></i> Blog
+            <div class="blog-header-new">
+                <button class="back-btn-new" onclick="goBackToBlog()">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Back to Posts</span>
                 </button>
             </div>
             <article class="blog-post-full" id="blogPostFull">

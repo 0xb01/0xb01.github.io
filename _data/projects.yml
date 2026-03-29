@@ -2,19 +2,27 @@
 # Single source of truth for Recent / Fun Projects section
 # Edit here - changes reflect automatically
 
+- name: "🧹 ADM"
+  year: 2026
+  description: "Manages Microsoft Edge AutoFill Data"
+  tech_stack:
+    - C#
+  url: ""
+  visibility: closed # public, private, closed
+
 - name: "🎌 Kana Practice"
   year: 2026
-  description: Interactive web app for practicing Japanese Hiragana and Katakana with multiple learning modes.
+  description: Interactive web app for practicing Japanese Hiragana and Katakana.
   tech_stack:
     - CSS
     - HTML
     - JavaScript
   url: /kana/
-  visibility: public  # public, private, closed
+  visibility: public
 
 - name: "🔎 Zzzzz"
   year: 2026
-  description: Obsidian plugin that finds problematic files like broken links, orphaned files, and unlinked mentions.
+  description: Obsidian plugin that finds problematic files.
   tech_stack:
     - CSS
     - JavaScript
@@ -23,9 +31,9 @@
   url: https://github.com/0xb01/zzzzz
   visibility: public
 
-- name: "🔒 Auto Incognito Filter"
+- name: "🔒 Auto Incognito"
   year: 2026
-  description: Browser extension that automatically opens specified websites in incognito mode for enhanced privacy.
+  description: Browser extension that automatically opens specified websites in incognito mode.
   tech_stack:
     - CSS
     - HTML
@@ -36,7 +44,7 @@
 
 - name: "🌐 Banikaz"
   year: 2026
-  description: Personal portfolio and blog website to share projects, experiences, and thoughts. Powered by GitHub Pages.
+  description: Personal portfolio and blog website powered by GitHub Pages.
   tech_stack:
     - CSS
     - HTML
@@ -46,7 +54,7 @@
 
 - name: "🧮 AkoCalc"
   year: 2025
-  description: In-line calculator with variables, basic arithmetic, and currency conversions for quick calculations.
+  description: In-line calculator with variables, basic arithmetic, and currency conversions.
   tech_stack:
     - C#
   url: ""
@@ -64,7 +72,7 @@
 
 - name: "🎮 Haiyan: PC Booster"
   year: 2017
-  description: "All-in-one Windows PC optimization tool with system cleanup, game mode, registry optimization, and anti-virus."
+  description: "All-in-one Windows PC optimization tool."
   tech_stack:
     - Batch
     - VB.NET

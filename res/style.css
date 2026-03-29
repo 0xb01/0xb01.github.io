@@ -307,20 +307,63 @@ body {
     justify-content: center;
 }
 
-/* Blog Section */
+/* Blog Section - New Card Design */
 .blog-section {
     width: 100%;
 }
 
-.blog-header {
-    margin-bottom: 15px;
+/* Blog Header */
+.blog-header-new {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--border-color);
 }
 
-.back-btn {
+.blog-header-content {
+    flex: 1;
+}
+
+.blog-headline {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin: 0 0 8px 0;
+    letter-spacing: -1px;
+    background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.blog-subheadline {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin: 0;
+    letter-spacing: -0.3px;
+}
+
+.blog-header-icon {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--accent-color), var(--accent-hover));
+    border-radius: 50%;
+    color: white;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+/* Back Button - New */
+.back-btn-new {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    padding: 6px 12px;
+    gap: 8px;
+    padding: 9px 14px;
     background-color: var(--container-bg);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-sm);
@@ -330,107 +373,165 @@ body {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: -0.2px;
 }
 
-.back-btn:hover {
+.back-btn-new:hover {
     background-color: var(--accent-color);
     border-color: var(--accent-color);
     color: white;
-    transform: translateX(-2px);
+    transform: translateX(-3px);
 }
 
-.back-btn i {
-    font-size: 0.7rem;
+.back-btn-new i {
+    font-size: 0.75rem;
 }
 
-.blog-posts {
+/* Blog Posts Grid */
+.blog-posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+/* Blog Card */
+.blog-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    min-height: 220px;
+    position: relative;
+    overflow: hidden;
 }
 
-.blog-post-item {
-    background-color: #fafafa;
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-sm);
-    padding: 15px;
-    transition: all 0.2s;
+.blog-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--accent-color), var(--accent-gradient-end, var(--accent-color)));
+    opacity: 0;
+    transition: opacity 0.3s;
 }
 
-.blog-post-item:hover {
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+.blog-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
     border-color: var(--accent-color);
 }
 
-.blog-post-header {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    margin-bottom: 10px;
+.blog-card:hover::before {
+    opacity: 1;
 }
 
-.blog-post-title {
-    font-size: 0.9rem;
+.blog-card-badge {
+    display: inline-block;
+    font-size: 0.65rem;
     font-weight: 600;
-    color: var(--text-primary);
-    margin: 0;
-    letter-spacing: -0.5px;
-}
-
-.blog-post-title a {
-    color: inherit;
-    text-decoration: none;
-    transition: color 0.2s;
-}
-
-.blog-post-title a:hover {
     color: var(--accent-color);
+    background-color: rgba(128, 0, 0, 0.08);
+    padding: 4px 9px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    margin-bottom: 12px;
+    align-self: flex-start;
 }
 
-.blog-post-date {
-    font-size: 0.7rem;
-    color: var(--text-muted);
-    letter-spacing: -0.3px;
+.blog-card-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 10px 0;
+    letter-spacing: -0.5px;
+    line-height: 1.3;
 }
 
-.blog-post-excerpt {
-    font-size: 0.8rem;
+.blog-card-excerpt {
+    font-size: 0.82rem;
     color: var(--text-secondary);
     line-height: 1.6;
-    margin-bottom: 10px;
-    letter-spacing: -0.3px;
+    margin: 0 0 15px 0;
+    letter-spacing: -0.2px;
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
-.blog-read-more {
-    display: inline-block;
-    font-size: 0.75rem;
-    color: var(--accent-color);
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.2s;
-    letter-spacing: -0.3px;
-}
-
-.blog-read-more:hover {
-    color: var(--accent-hover);
-    transform: translateX(3px);
-}
-
-.blog-placeholder {
+.blog-card-meta {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    min-height: 300px;
-    background-color: #f5f5f7;
-    border: 1px dashed var(--border-color);
-    border-radius: var(--radius-sm);
+    padding-top: 15px;
+    border-top: 1px solid var(--border-light);
+    margin-top: auto;
 }
 
-.blog-placeholder-text {
+.blog-card-date {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.7rem;
     color: var(--text-muted);
-    font-size: 0.85rem;
+    letter-spacing: -0.2px;
+}
+
+.blog-card-date i {
+    font-size: 0.65rem;
+}
+
+.blog-card-read-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--accent-color);
+    letter-spacing: -0.2px;
+    transition: all 0.2s;
+}
+
+.blog-card:hover .blog-card-read-more {
+    gap: 8px;
+}
+
+.blog-card-read-more i {
+    font-size: 0.65rem;
+    transition: transform 0.2s;
+}
+
+/* Empty State */
+.blog-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    background-color: var(--card-bg);
+    border: 2px dashed var(--border-color);
+    border-radius: var(--radius-md);
+    text-align: center;
+}
+
+.blog-empty i {
+    font-size: 3rem;
+    color: var(--border-color);
+    margin-bottom: 15px;
+}
+
+.blog-empty p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin: 0;
     font-style: italic;
 }
 
@@ -1658,6 +1759,11 @@ body {
 .visibility-badge.public {
     background-color: rgba(76, 175, 80, 0.1);
     color: #4caf50;
+}
+
+.visibility-badge.private {
+    background-color: rgba(255, 152, 0, 0.1);
+    color: #ff9800;
 }
 
 .visibility-badge.closed {
@@ -3059,6 +3165,65 @@ body.resume-view .container {
     .blog-post-full .mermaid svg {
         max-width: 100%;
         height: auto;
+    }
+
+    /* Blog page mobile */
+    .blog-header-new {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    .blog-headline {
+        font-size: 1.4rem;
+    }
+
+    .blog-subheadline {
+        font-size: 0.88rem;
+    }
+
+    .blog-header-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+
+    .blog-posts-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .blog-card {
+        padding: 18px;
+        min-height: 200px;
+    }
+
+    .blog-card-title {
+        font-size: 1rem;
+    }
+
+    .blog-card-excerpt {
+        font-size: 0.8rem;
+        -webkit-line-clamp: 3;
+    }
+
+    .blog-card-badge {
+        font-size: 0.6rem;
+        padding: 3px 8px;
+    }
+
+    .blog-card-meta {
+        flex-direction: column;
+        gap: 8px;
+        align-items: flex-start;
+    }
+
+    .back-btn-new {
+        padding: 8px 12px;
+        font-size: 0.72rem;
+        width: 100%;
+        justify-content: center;
     }
 
     /* Contact page mobile */

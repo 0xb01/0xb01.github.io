@@ -8,9 +8,12 @@
 
 <div class="projects-grid">
   {%- for project in site.data.projects -%}
-    {%- assign icon = project.name | slice: 0, 2 -%}
-    {%- if icon contains "🎌" or icon contains "🔎" or icon contains "🔒" or icon contains "🌐" or icon contains "🧮" or icon contains "🕹️" or icon contains "🎮" -%}
-      {%- assign project_icon = icon -%}
+    {%- comment -%}
+      Extract emoji icon from project name.
+      Checks if name contains common emoji characters.
+    {%- endcomment -%}
+    {%- if project.name contains "🎌" or project.name contains "🔎" or project.name contains "🔒" or project.name contains "🌐" or project.name contains "🧮" or project.name contains "🕹️" or project.name contains "🎮" or project.name contains "🧹" or project.name contains "📦" or project.name contains "🚀" or project.name contains "💻" or project.name contains "📱" or project.name contains "🎯" or project.name contains "🔧" or project.name contains "📊" or project.name contains "🎨" or project.name contains "📝" or project.name contains "🔥" or project.name contains "⭐" or project.name contains "💡" -%}
+      {%- assign project_icon = project.name | slice: 0, 2 -%}
     {%- else -%}
       {%- assign project_icon = "📁" -%}
     {%- endif -%}
@@ -51,7 +54,7 @@
             </div>
             {%- endif -%}
           </div>
-          
+
           <div class="project-actions">
             {%- if project.visibility == 'public' and project.url != '' -%}
               <div class="action-stack">
@@ -64,6 +67,17 @@
                   <span>View</span>
                 </a>
               </div>
+            {%- elsif project.visibility == 'private' -%}
+              <div class="action-stack">
+                <span class="visibility-badge private">
+                  <i class="fas fa-lock"></i>
+                  <span>Private</span>
+                </span>
+                <span class="project-link-btn closed">
+                  <i class="fas fa-briefcase"></i>
+                  <span>Work</span>
+                </span>
+              </div>
             {%- else -%}
               <div class="action-stack">
                 <span class="visibility-badge closed">
@@ -71,8 +85,8 @@
                   <span>Closed Source</span>
                 </span>
                 <span class="project-link-btn closed">
-                  <i class="fas fa-lock"></i>
-                  <span>Private</span>
+                  <i class="fas fa-user"></i>
+                  <span>Personal</span>
                 </span>
               </div>
             {%- endif -%}
