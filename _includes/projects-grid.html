@@ -26,13 +26,13 @@
     {%- endif -%}
     
     <article class="project-card" data-visibility="{{ project.visibility }}">
+      <div class="project-year-ribbon">{{ project.year }}</div>
       <div class="project-card-content">
         <div class="project-main">
           <div class="project-icon">{{ project_icon }}</div>
           <div class="project-info">
             <div class="project-header">
-              <h4 class="project-name">{{ project.name | remove_first: project_icon | remove_first: " " }}</h4>
-              <span class="project-year">{{ project.year }}</span>
+              <h4 class="project-name">{{ project.name | replace_first: project_icon, '' | strip }}</h4>
             </div>
             <p class="project-description">{{ project.description }}</p>
           </div>

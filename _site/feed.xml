@@ -1,4 +1,368 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-03-30T01:44:08+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">JNR</title><subtitle>Solution-oriented programmer with 10 years of experience in creating software for desktop platforms, mobile development, and hardware.</subtitle><entry><title type="html">This Portfolio is Customizable</title><link href="http://localhost:4000/tech/2026/03/29/customizable.html" rel="alternate" type="text/html" title="This Portfolio is Customizable" /><published>2026-03-29T07:15:00+08:00</published><updated>2026-03-29T07:15:00+08:00</updated><id>http://localhost:4000/tech/2026/03/29/customizable</id><content type="html" xml:base="http://localhost:4000/tech/2026/03/29/customizable.html">&lt;p&gt;Yeah, it is!&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-03-30T15:40:20+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">JNR</title><subtitle>Solution-oriented programmer with 10 years of experience in creating software for desktop platforms, mobile development, and hardware.</subtitle><entry><title type="html">A Good Alternative to Google Keep</title><link href="http://localhost:4000/tech/2026/03/30/sync-obsidian-with-syncthing.html" rel="alternate" type="text/html" title="A Good Alternative to Google Keep" /><published>2026-03-30T08:00:00+08:00</published><updated>2026-03-30T08:00:00+08:00</updated><id>http://localhost:4000/tech/2026/03/30/sync-obsidian-with-syncthing</id><content type="html" xml:base="http://localhost:4000/tech/2026/03/30/sync-obsidian-with-syncthing.html">&lt;p&gt;For years, I’ve been using &lt;strong&gt;Google Keep&lt;/strong&gt; for my notes. You know the ones — quick reminders, shopping lists, random thoughts at 2 AM. It’s simple, fast, and just works. If you’re like me, you probably have hundreds of notes sitting there.&lt;/p&gt;
+
+&lt;p&gt;But here’s the thing: this is just my opinion, and it might not be yours. Google Keep is great for quick notes, but I started feeling limited. I wanted more control over my notes, better organization, and the ability to link ideas together. That’s when I discovered &lt;strong&gt;Obsidian&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;The only problem? Obsidian doesn’t have built-in sync for free. That’s where &lt;strong&gt;Syncthing&lt;/strong&gt; comes in.&lt;/p&gt;
+
+&lt;h2 id=&quot;why-i-moved-away-from-google-keep&quot;&gt;Why I Moved Away from Google Keep&lt;/h2&gt;
+
+&lt;p&gt;Look, Google Keep is solid. It’s everywhere — your phone, your browser, even your smartwatch. You can throw in text, photos, voice notes, and it all syncs instantly. For casual note-taking, it’s hard to beat.&lt;/p&gt;
+
+&lt;p&gt;But I ran into a few issues:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;No folders or organization&lt;/strong&gt; — everything is just labels and colors&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Limited formatting&lt;/strong&gt; — can’t do much beyond basic text&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Locked into Google&lt;/strong&gt; — exporting is possible, but it’s not your data really&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;No linking between notes&lt;/strong&gt; — great for isolated notes, not for connected thinking&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Again, this is just my experience. If Google Keep works for you, stick with it! But if you’re feeling the same way I did, keep reading.&lt;/p&gt;
+
+&lt;h2 id=&quot;enter-obsidian--syncthing&quot;&gt;Enter Obsidian + Syncthing&lt;/h2&gt;
+
+&lt;p&gt;Obsidian treats your notes as plain text files (Markdown), stored in a folder called a “vault”. This means you own your data completely. No proprietary formats, no lock-in.&lt;/p&gt;
+
+&lt;p&gt;The catch? Obsidian’s official sync service costs money. But we can sync for free using &lt;strong&gt;Syncthing&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;what-is-syncthing&quot;&gt;What is Syncthing?&lt;/h2&gt;
+
+&lt;p&gt;Syncthing is a free, open-source tool that syncs files between your devices directly. No cloud storage, no middleman. Your data stays on your devices only.&lt;/p&gt;
+
+&lt;p&gt;Think of it like your own private sync service.&lt;/p&gt;
+
+&lt;h2 id=&quot;how-it-works&quot;&gt;How It Works&lt;/h2&gt;
+
+&lt;p&gt;Here’s what happens when you set up Syncthing:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-mermaid&quot;&gt;flowchart LR
+    A[📱 Phone] &amp;lt;--&amp;gt;|Direct Sync| B[💻 PC/Mac]
+    B &amp;lt;--&amp;gt;|Direct Sync| C[🖥️ Another PC]
+    A &amp;lt;--&amp;gt;|Direct Sync| C
+    
+    subgraph &quot;Your Devices&quot;
+        A
+        B
+        C
+    end
+    
+    style A fill:#e3f2fd
+    style B fill:#e3f2fd
+    style C fill:#e3f2fd
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;All your devices talk directly to each other. When you edit a note on your phone, it syncs to your PC and any other devices automatically.&lt;/p&gt;
+
+&lt;h2 id=&quot;step-1-install-syncthing&quot;&gt;Step 1: Install Syncthing&lt;/h2&gt;
+
+&lt;h3 id=&quot;on-pc-windowslinux&quot;&gt;On PC (Windows/Linux)&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Go to &lt;a href=&quot;https://syncthing.net/&quot;&gt;syncthing.net&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Download &lt;strong&gt;Syncthing for Windows&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;Run the installer&lt;/li&gt;
+  &lt;li&gt;It will open in your browser at &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http://127.0.0.1:8384&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;on-mac&quot;&gt;On Mac&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Open &lt;strong&gt;Terminal&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;Run: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;brew install syncthing&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Run: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;syncthing&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Or download the app from &lt;a href=&quot;https://syncthing.net/&quot;&gt;syncthing.net&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;on-android&quot;&gt;On Android&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Open Google Play Store&lt;/li&gt;
+  &lt;li&gt;Search for &lt;strong&gt;Syncthing-Fork&lt;/strong&gt; (recommended)&lt;/li&gt;
+  &lt;li&gt;Install it&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;on-iphone-ios&quot;&gt;On iPhone (iOS)&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Open App Store&lt;/li&gt;
+  &lt;li&gt;Search for &lt;strong&gt;Möbius Sync&lt;/strong&gt; (Syncthing client for iOS)&lt;/li&gt;
+  &lt;li&gt;Install it&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; iOS requires the app to stay open for syncing. Keep it running in the foreground.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;step-2-connect-your-devices&quot;&gt;Step 2: Connect Your Devices&lt;/h2&gt;
+
+&lt;p&gt;Each device has a unique &lt;strong&gt;Device ID&lt;/strong&gt;. You need to exchange these IDs to connect them.&lt;/p&gt;
+
+&lt;h3 id=&quot;on-your-pcmac-main-device&quot;&gt;On Your PC/Mac (Main Device)&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Open Syncthing in your browser&lt;/li&gt;
+  &lt;li&gt;Click &lt;strong&gt;Actions&lt;/strong&gt; → &lt;strong&gt;Show ID&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;You’ll see a QR code and a long ID string&lt;/li&gt;
+  &lt;li&gt;Keep this screen open&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;on-your-phone&quot;&gt;On Your Phone&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Open Syncthing app&lt;/li&gt;
+  &lt;li&gt;Tap &lt;strong&gt;Add device&lt;/strong&gt; or the &lt;strong&gt;+&lt;/strong&gt; button&lt;/li&gt;
+  &lt;li&gt;Either:
+    &lt;ul&gt;
+      &lt;li&gt;Scan the QR code from your PC, or&lt;/li&gt;
+      &lt;li&gt;Type/paste the Device ID manually&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Give it a name (e.g., “My PC”)&lt;/li&gt;
+  &lt;li&gt;Tap &lt;strong&gt;Save&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;back-on-your-pcmac&quot;&gt;Back on Your PC/Mac&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;You’ll see a notification: “New device wants to connect”&lt;/li&gt;
+  &lt;li&gt;Click &lt;strong&gt;Add Device&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;Give your phone a name (e.g., “My Phone”)&lt;/li&gt;
+  &lt;li&gt;Click &lt;strong&gt;Save&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Now your devices are paired! But they’re not syncing anything yet.&lt;/p&gt;
+
+&lt;h2 id=&quot;step-3-set-up-your-obsidian-folder&quot;&gt;Step 3: Set Up Your Obsidian Folder&lt;/h2&gt;
+
+&lt;h3 id=&quot;on-your-pcmac&quot;&gt;On Your PC/Mac&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;In Syncthing, click &lt;strong&gt;Add Folder&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;Choose a folder label (e.g., “Obsidian Vault”)&lt;/li&gt;
+  &lt;li&gt;Set the &lt;strong&gt;Path&lt;/strong&gt; to where you want your vault stored&lt;/li&gt;
+  &lt;li&gt;Under &lt;strong&gt;Sharing&lt;/strong&gt;, select your phone/other devices&lt;/li&gt;
+  &lt;li&gt;Click &lt;strong&gt;Save&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Your vault folder is now ready to sync.&lt;/p&gt;
+
+&lt;h3 id=&quot;on-your-phone-1&quot;&gt;On Your Phone&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;You’ll get a notification: “New folder shared”&lt;/li&gt;
+  &lt;li&gt;Tap the notification&lt;/li&gt;
+  &lt;li&gt;Choose where to store the folder on your phone&lt;/li&gt;
+  &lt;li&gt;Tap &lt;strong&gt;Save&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;step-4-open-the-vault-in-obsidian&quot;&gt;Step 4: Open the Vault in Obsidian&lt;/h2&gt;
+
+&lt;h3 id=&quot;on-pcmac&quot;&gt;On PC/Mac&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Open Obsidian&lt;/li&gt;
+  &lt;li&gt;Click &lt;strong&gt;Open folder as vault&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;Select the Syncthing folder you just created&lt;/li&gt;
+  &lt;li&gt;Done!&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;on-phone&quot;&gt;On Phone&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Open Obsidian mobile app&lt;/li&gt;
+  &lt;li&gt;Tap &lt;strong&gt;Open folder&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;Navigate to the Syncthing folder&lt;/li&gt;
+  &lt;li&gt;Select it as your vault&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;full-sync-flow&quot;&gt;Full Sync Flow&lt;/h2&gt;
+
+&lt;p&gt;Here’s the complete picture of how your notes sync:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-mermaid&quot;&gt;sequenceDiagram
+    participant You
+    participant PC as 💻 PC/Mac
+    participant Syncthing
+    participant Phone as 📱 Phone
+    
+    You-&amp;gt;&amp;gt;PC: Edit note in Obsidian
+    PC-&amp;gt;&amp;gt;Syncthing: File changed detected
+    Syncthing-&amp;gt;&amp;gt;Phone: Sync changes over LAN/WiFi
+    Phone-&amp;gt;&amp;gt;Phone: Update file in vault
+    Note over Phone: Obsidian auto-refreshes
+    
+    You-&amp;gt;&amp;gt;Phone: Edit note on phone
+    Phone-&amp;gt;&amp;gt;Syncthing: File changed detected
+    Syncthing-&amp;gt;&amp;gt;PC: Sync changes
+    PC-&amp;gt;&amp;gt;PC: Update file in vault
+    Note over PC: Obsidian auto-refreshes
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;tips-for-smooth-syncing&quot;&gt;Tips for Smooth Syncing&lt;/h2&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Tip&lt;/th&gt;
+      &lt;th&gt;Why It Helps&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Keep devices on the same WiFi&lt;/td&gt;
+      &lt;td&gt;Faster sync, no data usage&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Enable “Send &amp;amp; Receive” on all devices&lt;/td&gt;
+      &lt;td&gt;Two-way sync works properly&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Don’t edit the same note on two devices at once&lt;/td&gt;
+      &lt;td&gt;Can cause conflicts&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Check Syncthing status regularly&lt;/td&gt;
+      &lt;td&gt;Make sure all devices are connected&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;troubleshooting&quot;&gt;Troubleshooting&lt;/h2&gt;
+
+&lt;h3 id=&quot;devices-not-connecting&quot;&gt;Devices Not Connecting&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Make sure both devices are on the same network&lt;/li&gt;
+  &lt;li&gt;Check firewall settings (allow Syncthing)&lt;/li&gt;
+  &lt;li&gt;Try adding devices manually with Device ID&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;sync-is-slow&quot;&gt;Sync Is Slow&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Initial sync takes time for large vaults&lt;/li&gt;
+  &lt;li&gt;Move devices closer to WiFi router&lt;/li&gt;
+  &lt;li&gt;Enable “Local Discovery” in Syncthing settings&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;file-conflicts&quot;&gt;File Conflicts&lt;/h3&gt;
+
+&lt;p&gt;If you edit the same note on two devices at the same time, Syncthing creates a conflict file (like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;note.sync-conflict-20260330.md&lt;/code&gt;). Just merge the changes manually and delete the conflict file.&lt;/p&gt;
+
+&lt;h2 id=&quot;why-this-is-better-than-google-keep&quot;&gt;Why This Is Better Than Google Keep&lt;/h2&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Feature&lt;/th&gt;
+      &lt;th&gt;Google Keep&lt;/th&gt;
+      &lt;th&gt;Obsidian + Syncthing&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Cost&lt;/td&gt;
+      &lt;td&gt;Free&lt;/td&gt;
+      &lt;td&gt;Free&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Formatting&lt;/td&gt;
+      &lt;td&gt;Basic text only&lt;/td&gt;
+      &lt;td&gt;Full Markdown support&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Organization&lt;/td&gt;
+      &lt;td&gt;Labels and colors&lt;/td&gt;
+      &lt;td&gt;Folders, links, tags&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Sync&lt;/td&gt;
+      &lt;td&gt;Google cloud&lt;/td&gt;
+      &lt;td&gt;Your devices directly&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Data ownership&lt;/td&gt;
+      &lt;td&gt;Google servers&lt;/td&gt;
+      &lt;td&gt;Your files, your control&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Linking notes&lt;/td&gt;
+      &lt;td&gt;❌ No&lt;/td&gt;
+      &lt;td&gt;✅ Yes (backlinks!)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Offline access&lt;/td&gt;
+      &lt;td&gt;Limited&lt;/td&gt;
+      &lt;td&gt;Full offline support&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Again, this is just my opinion. Google Keep might be perfect for you. But if you want more control and flexibility, this combo is worth trying.&lt;/p&gt;
+
+&lt;h2 id=&quot;plugins-i-use&quot;&gt;Plugins I Use&lt;/h2&gt;
+
+&lt;p&gt;Obsidian has a ton of community plugins that make it even better. Here are the ones I use daily:&lt;/p&gt;
+
+&lt;h3 id=&quot;from-community-plugins&quot;&gt;From Community Plugins&lt;/h3&gt;
+
+&lt;p&gt;Go to &lt;strong&gt;Settings&lt;/strong&gt; → &lt;strong&gt;Community plugins&lt;/strong&gt; → &lt;strong&gt;Browse&lt;/strong&gt; and search for these:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Plugin&lt;/th&gt;
+      &lt;th&gt;What It Does&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;Excalidraw&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;Draw diagrams, sketches, and whiteboards directly in your notes. Great for visual thinkers!&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;Numerals&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;Add numbered lists with custom formats. Perfect for structured documents.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;Paste URL into selection&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;Paste a URL into selected text to turn it into a link automatically. Saves so much time!&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;To install:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Open Obsidian &lt;strong&gt;Settings&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;Go to &lt;strong&gt;Community plugins&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;Turn off “Restricted mode” if it’s on&lt;/li&gt;
+  &lt;li&gt;Click &lt;strong&gt;Browse&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;Search for the plugin name&lt;/li&gt;
+  &lt;li&gt;Click &lt;strong&gt;Install&lt;/strong&gt;, then &lt;strong&gt;Enable&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;my-own-plugin-zzzzz&quot;&gt;My Own Plugin: Zzzzz&lt;/h3&gt;
+
+&lt;p&gt;I also built a plugin called &lt;strong&gt;Zzzzz&lt;/strong&gt; — it helps you find and fix problematic files in your vault (like broken links, large files, or orphaned notes).&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; Zzzzz is &lt;strong&gt;not&lt;/strong&gt; in the Community plugins store yet. You’ll need to install it manually from my repo:&lt;/p&gt;
+
+  &lt;ol&gt;
+    &lt;li&gt;Go to &lt;a href=&quot;https://github.com/0xb01/zzzzz&quot;&gt;github.com/0xb01/zzzzz&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;Download the latest release&lt;/li&gt;
+    &lt;li&gt;Extract it into your vault’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.obsidian/plugins/&lt;/code&gt; folder&lt;/li&gt;
+    &lt;li&gt;Enable it in &lt;strong&gt;Settings&lt;/strong&gt; → &lt;strong&gt;Community plugins&lt;/strong&gt; → &lt;strong&gt;Installed plugins&lt;/strong&gt;&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;final-thoughts&quot;&gt;Final Thoughts&lt;/h2&gt;
+
+&lt;p&gt;I still use Google Keep for quick stuff — shopping lists, random reminders, things I need to grab fast. But for anything that needs real thought or organization, I use Obsidian with Syncthing.&lt;/p&gt;
+
+&lt;p&gt;Syncthing takes a bit of setup (maybe 10-15 minutes), but once it’s running, you won’t notice any difference from paid sync services. Your notes stay in sync, your wallet stays happy, and your data stays private.&lt;/p&gt;
+
+&lt;p&gt;Give it a try! Your future self will thank you.&lt;/p&gt;</content><author><name></name></author><category term="Tech" /><category term="tech" /><category term="obsidian" /><category term="syncthing" /><category term="sync" /><category term="tutorial" /><category term="google-keep" /><summary type="html">For years, I’ve been using Google Keep for my notes. You know the ones — quick reminders, shopping lists, random thoughts at 2 AM. It’s simple, fast, and just works. If you’re like me, you probably have hundreds of notes sitting there.</summary></entry><entry><title type="html">This Portfolio is Customizable</title><link href="http://localhost:4000/tech/2026/03/29/customizable.html" rel="alternate" type="text/html" title="This Portfolio is Customizable" /><published>2026-03-29T07:15:00+08:00</published><updated>2026-03-29T07:15:00+08:00</updated><id>http://localhost:4000/tech/2026/03/29/customizable</id><content type="html" xml:base="http://localhost:4000/tech/2026/03/29/customizable.html">&lt;p&gt;Yeah, it is!&lt;/p&gt;
 
 &lt;h2 id=&quot;how-it-works&quot;&gt;How It Works&lt;/h2&gt;
 

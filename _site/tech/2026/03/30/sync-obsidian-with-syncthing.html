@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Good Alternative to Google Keep | JNR</title>
+    <link rel="icon" type="image/svg+xml" href="/res/icon.svg">
+    <link rel="stylesheet" href="/res/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="JNR" />
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>A Good Alternative to Google Keep | JNR</title>
+<meta name="generator" content="Jekyll v3.9.5" />
+<meta property="og:title" content="A Good Alternative to Google Keep" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="For years, I’ve been using Google Keep for my notes. You know the ones — quick reminders, shopping lists, random thoughts at 2 AM. It’s simple, fast, and just works. If you’re like me, you probably have hundreds of notes sitting there." />
+<meta property="og:description" content="For years, I’ve been using Google Keep for my notes. You know the ones — quick reminders, shopping lists, random thoughts at 2 AM. It’s simple, fast, and just works. If you’re like me, you probably have hundreds of notes sitting there." />
+<link rel="canonical" href="http://localhost:4000/tech/2026/03/30/sync-obsidian-with-syncthing.html" />
+<meta property="og:url" content="http://localhost:4000/tech/2026/03/30/sync-obsidian-with-syncthing.html" />
+<meta property="og:site_name" content="JNR" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-03-30T08:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="A Good Alternative to Google Keep" />
+<script type="application/ld+json">
+{"@type":"BlogPosting","description":"For years, I’ve been using Google Keep for my notes. You know the ones — quick reminders, shopping lists, random thoughts at 2 AM. It’s simple, fast, and just works. If you’re like me, you probably have hundreds of notes sitting there.","headline":"A Good Alternative to Google Keep","dateModified":"2026-03-30T08:00:00+08:00","datePublished":"2026-03-30T08:00:00+08:00","url":"http://localhost:4000/tech/2026/03/30/sync-obsidian-with-syncthing.html","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/tech/2026/03/30/sync-obsidian-with-syncthing.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+<body>
+    <div class="container">
+        <!-- Column 1: Personal Info -->
+<aside class="column column-1">
+    <div class="profile-section">
+    <div class="profile-left">
+        <div class="profile-image">
+            <img src="/res/me.jpg" alt="John Nichols Ranara" class="profile-photo">
+        </div>
+        <div class="profile-text">
+            <h1 class="name">John Nichols Ranara</h1>
+            <div class="location-info">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Tacloban City, Leyte</span>
+            </div>
+            <div class="status-box">
+                Open to opportunities
+            </div>
+        </div>
+    </div>
+    <div class="nav-buttons">
+        <hr class="separator"><button class="nav-btn active" id="homeBtn" onclick="showHome()"><i class="fas fa-home"></i><span>Home</span>
+            </button><button class="nav-btn" id="workExpBtn" onclick="showWorkExperience()"><i class="fas fa-briefcase"></i><span>Work Experience</span>
+            </button><button class="nav-btn" id="blogBtn" onclick="showBlog()"><i class="fas fa-pen-fancy"></i><span>Blog</span>
+            </button><button class="nav-btn" id="contactBtn" onclick="showContact()"><i class="fas fa-envelope"></i><span>Contact</span>
+            </button><button class="nav-btn" id="resumeBtn" onclick="showResume()"><i class="fas fa-file-alt"></i><span>Resume</span>
+            </button></div>
+</div>
+
+<div class="contact-section" style="margin-top: auto; padding-top: 15px; padding-bottom: 10px;">
+    <h3>Contact</h3>
+    <ul class="contact-list"><li>
+                    <i class="fas fa-envelope"></i>
+                    <a href="javascript:void(0)" onclick="showContact(); return false;">banikaz@proton.me</a>
+                </li><li>
+                    <i class="fas fa-phone"></i>
+                    <a href="javascript:void(0)" onclick="showContact(); return false;">(+63) 976-002-8684</a>
+                </li><li class="timezone-contact" onclick="showContact()">
+                    <i class="fas fa-clock"></i>
+                    <span id="timezoneText" data-timezone="Asia/Manila" data-location="Tacloban City, Leyte">Loading...</span>
+                </li></ul>
+</div>
+
+<div class="social-section">
+    <h3>Socials</h3>
+    <div class="social-links"><a href="https://github.com/0xb01" class="social-link" aria-label="GitHub" target="_blank">
+                    <i class="fab fa-github"></i>
+                </a><a href="https://www.linkedin.com/in/jnr01" class="social-link" aria-label="LinkedIn" target="_blank">
+                    <i class="fab fa-linkedin-in"></i>
+                </a><a href="https://www.youtube.com/@JuanNicolasMe" class="social-link" aria-label="YouTube" target="_blank">
+                    <i class="fab fa-youtube"></i>
+                </a></div>
+</div>
+
+</aside>
+
+        <!-- Column 2: Main Content -->
+        <main class="column column-2" id="mainContent">
+            <!-- Blog Post Content -->
+            <section class="section blog-post-section" id="blogPostContent">
+                <div class="blog-header">
+                    <button class="back-btn" onclick="goBackToBlog()">
+                        <i class="fas fa-arrow-left"></i> Blog
+                    </button>
+                </div>
+                <article class="blog-post-full" id="blogPostFull">
+                    <div class="blog-post-meta">
+                        <h1 class="blog-post-title-single">A Good Alternative to Google Keep</h1>
+                        <time class="blog-post-date-full" datetime="2026-03-30T08:00:00+08:00">March 30, 2026</time>
+                    </div>
+                    <div class="blog-post-content">
+                        <p>For years, I’ve been using <strong>Google Keep</strong> for my notes. You know the ones — quick reminders, shopping lists, random thoughts at 2 AM. It’s simple, fast, and just works. If you’re like me, you probably have hundreds of notes sitting there.</p>
+
+<p>But here’s the thing: this is just my opinion, and it might not be yours. Google Keep is great for quick notes, but I started feeling limited. I wanted more control over my notes, better organization, and the ability to link ideas together. That’s when I discovered <strong>Obsidian</strong>.</p>
+
+<p>The only problem? Obsidian doesn’t have built-in sync for free. That’s where <strong>Syncthing</strong> comes in.</p>
+
+<h2 id="why-i-moved-away-from-google-keep">Why I Moved Away from Google Keep</h2>
+
+<p>Look, Google Keep is solid. It’s everywhere — your phone, your browser, even your smartwatch. You can throw in text, photos, voice notes, and it all syncs instantly. For casual note-taking, it’s hard to beat.</p>
+
+<p>But I ran into a few issues:</p>
+
+<ul>
+  <li><strong>No folders or organization</strong> — everything is just labels and colors</li>
+  <li><strong>Limited formatting</strong> — can’t do much beyond basic text</li>
+  <li><strong>Locked into Google</strong> — exporting is possible, but it’s not your data really</li>
+  <li><strong>No linking between notes</strong> — great for isolated notes, not for connected thinking</li>
+</ul>
+
+<p>Again, this is just my experience. If Google Keep works for you, stick with it! But if you’re feeling the same way I did, keep reading.</p>
+
+<h2 id="enter-obsidian--syncthing">Enter Obsidian + Syncthing</h2>
+
+<p>Obsidian treats your notes as plain text files (Markdown), stored in a folder called a “vault”. This means you own your data completely. No proprietary formats, no lock-in.</p>
+
+<p>The catch? Obsidian’s official sync service costs money. But we can sync for free using <strong>Syncthing</strong>.</p>
+
+<h2 id="what-is-syncthing">What is Syncthing?</h2>
+
+<p>Syncthing is a free, open-source tool that syncs files between your devices directly. No cloud storage, no middleman. Your data stays on your devices only.</p>
+
+<p>Think of it like your own private sync service.</p>
+
+<h2 id="how-it-works">How It Works</h2>
+
+<p>Here’s what happens when you set up Syncthing:</p>
+
+<pre><code class="language-mermaid">flowchart LR
+    A[📱 Phone] &lt;--&gt;|Direct Sync| B[💻 PC/Mac]
+    B &lt;--&gt;|Direct Sync| C[🖥️ Another PC]
+    A &lt;--&gt;|Direct Sync| C
+    
+    subgraph "Your Devices"
+        A
+        B
+        C
+    end
+    
+    style A fill:#e3f2fd
+    style B fill:#e3f2fd
+    style C fill:#e3f2fd
+</code></pre>
+
+<p>All your devices talk directly to each other. When you edit a note on your phone, it syncs to your PC and any other devices automatically.</p>
+
+<h2 id="step-1-install-syncthing">Step 1: Install Syncthing</h2>
+
+<h3 id="on-pc-windowslinux">On PC (Windows/Linux)</h3>
+
+<ol>
+  <li>Go to <a href="https://syncthing.net/">syncthing.net</a></li>
+  <li>Download <strong>Syncthing for Windows</strong></li>
+  <li>Run the installer</li>
+  <li>It will open in your browser at <code class="language-plaintext highlighter-rouge">http://127.0.0.1:8384</code></li>
+</ol>
+
+<h3 id="on-mac">On Mac</h3>
+
+<ol>
+  <li>Open <strong>Terminal</strong></li>
+  <li>Run: <code class="language-plaintext highlighter-rouge">brew install syncthing</code></li>
+  <li>Run: <code class="language-plaintext highlighter-rouge">syncthing</code></li>
+  <li>Or download the app from <a href="https://syncthing.net/">syncthing.net</a></li>
+</ol>
+
+<h3 id="on-android">On Android</h3>
+
+<ol>
+  <li>Open Google Play Store</li>
+  <li>Search for <strong>Syncthing-Fork</strong> (recommended)</li>
+  <li>Install it</li>
+</ol>
+
+<h3 id="on-iphone-ios">On iPhone (iOS)</h3>
+
+<ol>
+  <li>Open App Store</li>
+  <li>Search for <strong>Möbius Sync</strong> (Syncthing client for iOS)</li>
+  <li>Install it</li>
+</ol>
+
+<blockquote>
+  <p><strong>Note:</strong> iOS requires the app to stay open for syncing. Keep it running in the foreground.</p>
+</blockquote>
+
+<h2 id="step-2-connect-your-devices">Step 2: Connect Your Devices</h2>
+
+<p>Each device has a unique <strong>Device ID</strong>. You need to exchange these IDs to connect them.</p>
+
+<h3 id="on-your-pcmac-main-device">On Your PC/Mac (Main Device)</h3>
+
+<ol>
+  <li>Open Syncthing in your browser</li>
+  <li>Click <strong>Actions</strong> → <strong>Show ID</strong></li>
+  <li>You’ll see a QR code and a long ID string</li>
+  <li>Keep this screen open</li>
+</ol>
+
+<h3 id="on-your-phone">On Your Phone</h3>
+
+<ol>
+  <li>Open Syncthing app</li>
+  <li>Tap <strong>Add device</strong> or the <strong>+</strong> button</li>
+  <li>Either:
+    <ul>
+      <li>Scan the QR code from your PC, or</li>
+      <li>Type/paste the Device ID manually</li>
+    </ul>
+  </li>
+  <li>Give it a name (e.g., “My PC”)</li>
+  <li>Tap <strong>Save</strong></li>
+</ol>
+
+<h3 id="back-on-your-pcmac">Back on Your PC/Mac</h3>
+
+<ol>
+  <li>You’ll see a notification: “New device wants to connect”</li>
+  <li>Click <strong>Add Device</strong></li>
+  <li>Give your phone a name (e.g., “My Phone”)</li>
+  <li>Click <strong>Save</strong></li>
+</ol>
+
+<p>Now your devices are paired! But they’re not syncing anything yet.</p>
+
+<h2 id="step-3-set-up-your-obsidian-folder">Step 3: Set Up Your Obsidian Folder</h2>
+
+<h3 id="on-your-pcmac">On Your PC/Mac</h3>
+
+<ol>
+  <li>In Syncthing, click <strong>Add Folder</strong></li>
+  <li>Choose a folder label (e.g., “Obsidian Vault”)</li>
+  <li>Set the <strong>Path</strong> to where you want your vault stored</li>
+  <li>Under <strong>Sharing</strong>, select your phone/other devices</li>
+  <li>Click <strong>Save</strong></li>
+</ol>
+
+<p>Your vault folder is now ready to sync.</p>
+
+<h3 id="on-your-phone-1">On Your Phone</h3>
+
+<ol>
+  <li>You’ll get a notification: “New folder shared”</li>
+  <li>Tap the notification</li>
+  <li>Choose where to store the folder on your phone</li>
+  <li>Tap <strong>Save</strong></li>
+</ol>
+
+<h2 id="step-4-open-the-vault-in-obsidian">Step 4: Open the Vault in Obsidian</h2>
+
+<h3 id="on-pcmac">On PC/Mac</h3>
+
+<ol>
+  <li>Open Obsidian</li>
+  <li>Click <strong>Open folder as vault</strong></li>
+  <li>Select the Syncthing folder you just created</li>
+  <li>Done!</li>
+</ol>
+
+<h3 id="on-phone">On Phone</h3>
+
+<ol>
+  <li>Open Obsidian mobile app</li>
+  <li>Tap <strong>Open folder</strong></li>
+  <li>Navigate to the Syncthing folder</li>
+  <li>Select it as your vault</li>
+</ol>
+
+<h2 id="full-sync-flow">Full Sync Flow</h2>
+
+<p>Here’s the complete picture of how your notes sync:</p>
+
+<pre><code class="language-mermaid">sequenceDiagram
+    participant You
+    participant PC as 💻 PC/Mac
+    participant Syncthing
+    participant Phone as 📱 Phone
+    
+    You-&gt;&gt;PC: Edit note in Obsidian
+    PC-&gt;&gt;Syncthing: File changed detected
+    Syncthing-&gt;&gt;Phone: Sync changes over LAN/WiFi
+    Phone-&gt;&gt;Phone: Update file in vault
+    Note over Phone: Obsidian auto-refreshes
+    
+    You-&gt;&gt;Phone: Edit note on phone
+    Phone-&gt;&gt;Syncthing: File changed detected
+    Syncthing-&gt;&gt;PC: Sync changes
+    PC-&gt;&gt;PC: Update file in vault
+    Note over PC: Obsidian auto-refreshes
+</code></pre>
+
+<h2 id="tips-for-smooth-syncing">Tips for Smooth Syncing</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tip</th>
+      <th>Why It Helps</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Keep devices on the same WiFi</td>
+      <td>Faster sync, no data usage</td>
+    </tr>
+    <tr>
+      <td>Enable “Send &amp; Receive” on all devices</td>
+      <td>Two-way sync works properly</td>
+    </tr>
+    <tr>
+      <td>Don’t edit the same note on two devices at once</td>
+      <td>Can cause conflicts</td>
+    </tr>
+    <tr>
+      <td>Check Syncthing status regularly</td>
+      <td>Make sure all devices are connected</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="troubleshooting">Troubleshooting</h2>
+
+<h3 id="devices-not-connecting">Devices Not Connecting</h3>
+
+<ul>
+  <li>Make sure both devices are on the same network</li>
+  <li>Check firewall settings (allow Syncthing)</li>
+  <li>Try adding devices manually with Device ID</li>
+</ul>
+
+<h3 id="sync-is-slow">Sync Is Slow</h3>
+
+<ul>
+  <li>Initial sync takes time for large vaults</li>
+  <li>Move devices closer to WiFi router</li>
+  <li>Enable “Local Discovery” in Syncthing settings</li>
+</ul>
+
+<h3 id="file-conflicts">File Conflicts</h3>
+
+<p>If you edit the same note on two devices at the same time, Syncthing creates a conflict file (like <code class="language-plaintext highlighter-rouge">note.sync-conflict-20260330.md</code>). Just merge the changes manually and delete the conflict file.</p>
+
+<h2 id="why-this-is-better-than-google-keep">Why This Is Better Than Google Keep</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th>Google Keep</th>
+      <th>Obsidian + Syncthing</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Cost</td>
+      <td>Free</td>
+      <td>Free</td>
+    </tr>
+    <tr>
+      <td>Formatting</td>
+      <td>Basic text only</td>
+      <td>Full Markdown support</td>
+    </tr>
+    <tr>
+      <td>Organization</td>
+      <td>Labels and colors</td>
+      <td>Folders, links, tags</td>
+    </tr>
+    <tr>
+      <td>Sync</td>
+      <td>Google cloud</td>
+      <td>Your devices directly</td>
+    </tr>
+    <tr>
+      <td>Data ownership</td>
+      <td>Google servers</td>
+      <td>Your files, your control</td>
+    </tr>
+    <tr>
+      <td>Linking notes</td>
+      <td>❌ No</td>
+      <td>✅ Yes (backlinks!)</td>
+    </tr>
+    <tr>
+      <td>Offline access</td>
+      <td>Limited</td>
+      <td>Full offline support</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Again, this is just my opinion. Google Keep might be perfect for you. But if you want more control and flexibility, this combo is worth trying.</p>
+
+<h2 id="plugins-i-use">Plugins I Use</h2>
+
+<p>Obsidian has a ton of community plugins that make it even better. Here are the ones I use daily:</p>
+
+<h3 id="from-community-plugins">From Community Plugins</h3>
+
+<p>Go to <strong>Settings</strong> → <strong>Community plugins</strong> → <strong>Browse</strong> and search for these:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Plugin</th>
+      <th>What It Does</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Excalidraw</strong></td>
+      <td>Draw diagrams, sketches, and whiteboards directly in your notes. Great for visual thinkers!</td>
+    </tr>
+    <tr>
+      <td><strong>Numerals</strong></td>
+      <td>Add numbered lists with custom formats. Perfect for structured documents.</td>
+    </tr>
+    <tr>
+      <td><strong>Paste URL into selection</strong></td>
+      <td>Paste a URL into selected text to turn it into a link automatically. Saves so much time!</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>To install:</p>
+<ol>
+  <li>Open Obsidian <strong>Settings</strong></li>
+  <li>Go to <strong>Community plugins</strong></li>
+  <li>Turn off “Restricted mode” if it’s on</li>
+  <li>Click <strong>Browse</strong></li>
+  <li>Search for the plugin name</li>
+  <li>Click <strong>Install</strong>, then <strong>Enable</strong></li>
+</ol>
+
+<h3 id="my-own-plugin-zzzzz">My Own Plugin: Zzzzz</h3>
+
+<p>I also built a plugin called <strong>Zzzzz</strong> — it helps you find and fix problematic files in your vault (like broken links, large files, or orphaned notes).</p>
+
+<blockquote>
+  <p><strong>Note:</strong> Zzzzz is <strong>not</strong> in the Community plugins store yet. You’ll need to install it manually from my repo:</p>
+
+  <ol>
+    <li>Go to <a href="https://github.com/0xb01/zzzzz">github.com/0xb01/zzzzz</a></li>
+    <li>Download the latest release</li>
+    <li>Extract it into your vault’s <code class="language-plaintext highlighter-rouge">.obsidian/plugins/</code> folder</li>
+    <li>Enable it in <strong>Settings</strong> → <strong>Community plugins</strong> → <strong>Installed plugins</strong></li>
+  </ol>
+</blockquote>
+
+<h2 id="final-thoughts">Final Thoughts</h2>
+
+<p>I still use Google Keep for quick stuff — shopping lists, random reminders, things I need to grab fast. But for anything that needs real thought or organization, I use Obsidian with Syncthing.</p>
+
+<p>Syncthing takes a bit of setup (maybe 10-15 minutes), but once it’s running, you won’t notice any difference from paid sync services. Your notes stay in sync, your wallet stays happy, and your data stays private.</p>
+
+<p>Give it a try! Your future self will thank you.</p>
+
+                    </div>
+
+                    <!-- Share Section -->
+                    <div class="share-section">
+                        <hr class="share-separator">
+                        <div class="share-url">
+                            <span>http://localhost:4000/tech/2026/03/30/sync-obsidian-with-syncthing.html</span>
+                        </div>
+                        <div class="share-buttons">
+                            <span class="share-label">Share:</span>
+                            <a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Flocalhost%3A4000%2Ftech%2F2026%2F03%2F30%2Fsync-obsidian-with-syncthing.html&text=A+Good+Alternative+to+Google+Keep" class="share-btn" target="_blank" rel="noopener" aria-label="Share on Twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Ftech%2F2026%2F03%2F30%2Fsync-obsidian-with-syncthing.html" class="share-btn" target="_blank" rel="noopener" aria-label="Share on Facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Ftech%2F2026%2F03%2F30%2Fsync-obsidian-with-syncthing.html&title=A+Good+Alternative+to+Google+Keep" class="share-btn" target="_blank" rel="noopener" aria-label="Share on LinkedIn">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="https://reddit.com/submit?url=http%3A%2F%2Flocalhost%3A4000%2Ftech%2F2026%2F03%2F30%2Fsync-obsidian-with-syncthing.html&title=A+Good+Alternative+to+Google+Keep" class="share-btn" target="_blank" rel="noopener" aria-label="Share on Reddit">
+                                <i class="fab fa-reddit-alien"></i>
+                            </a>
+                            <button class="share-btn" onclick="copyUrl()" aria-label="Copy link">
+                                <i class="fas fa-link"></i>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+            </section>
+        </main>
+
+        <!-- Column 3: Tech Stack & Hobbies -->
+<aside class="column column-3">
+    <section class="tech-stack-section">
+        <h3 class="section-title">Tech Stack</h3>
+        <!-- Sidebar View -->
+      <div class="skill-card">
+        <div class="skill-card-header">
+          <i class="fas fa-desktop skill-card-icon"></i>
+          <h4 class="skill-card-title">Frontend</h4>
+        </div>
+        <div class="skill-card-tags"><span class="skill-tag">HTML</span><span class="skill-tag">CSS</span><span class="skill-tag">JavaScript</span><span class="skill-tag">TypeScript</span></div>
+      </div><!-- Sidebar View -->
+      <div class="skill-card">
+        <div class="skill-card-header">
+          <i class="fas fa-server skill-card-icon"></i>
+          <h4 class="skill-card-title">Backend</h4>
+        </div>
+        <div class="skill-card-tags"><span class="skill-tag">Bash</span><span class="skill-tag">C</span><span class="skill-tag">C#</span><span class="skill-tag">Java</span><span class="skill-tag">Python</span><span class="skill-tag">PHP</span><span class="skill-tag">Lua</span><span class="skill-tag">NodeJS</span><span class="skill-tag">Qt</span><span class="skill-tag">Xojo</span></div>
+      </div><!-- Sidebar View -->
+      <div class="skill-card">
+        <div class="skill-card-header">
+          <i class="fas fa-database skill-card-icon"></i>
+          <h4 class="skill-card-title">Database</h4>
+        </div>
+        <div class="skill-card-tags"><span class="skill-tag">MySQL</span><span class="skill-tag">PostgreSQL</span><span class="skill-tag">MongoDB</span><span class="skill-tag">SQLite</span></div>
+      </div><!-- Sidebar View -->
+      <div class="skill-card">
+        <div class="skill-card-header">
+          <i class="fas fa-tools skill-card-icon"></i>
+          <h4 class="skill-card-title">Tools & Platforms</h4>
+        </div>
+        <div class="skill-card-tags"><span class="skill-tag">Docker</span><span class="skill-tag">Git</span><span class="skill-tag">GitHub</span><span class="skill-tag">GitLab</span><span class="skill-tag">Make/n8n</span><span class="skill-tag">Alibaba Cloud</span><span class="skill-tag">Google Cloud</span><span class="skill-tag">GitHub Actions</span></div>
+      </div><!-- Sidebar View -->
+      <div class="skill-card">
+        <div class="skill-card-header">
+          <i class="fas fa-palette skill-card-icon"></i>
+          <h4 class="skill-card-title">Creative</h4>
+        </div>
+        <div class="skill-card-tags"><span class="skill-tag">Photoshop</span><span class="skill-tag">Premiere</span><span class="skill-tag">DaVinci</span><span class="skill-tag">OBS</span></div>
+      </div>
+    </section>
+
+    <section class="hobbies-section">
+        <h3 class="section-title">Hobbies</h3>
+        <div class="hobbies-grid"><div class="hobby-badge" title="Modding Games">
+      <div class="hobby-badge-icon">
+        <i class="fas fa-hammer"></i>
+      </div>
+      <span class="hobby-badge-name">Modding Games</span>
+    </div><div class="hobby-badge" title="Music">
+      <div class="hobby-badge-icon">
+        <i class="fas fa-headphones"></i>
+      </div>
+      <span class="hobby-badge-name">Music</span>
+    </div><div class="hobby-badge" title="Learning Tech">
+      <div class="hobby-badge-icon">
+        <i class="fas fa-code"></i>
+      </div>
+      <span class="hobby-badge-name">Learning Tech</span>
+    </div><div class="hobby-badge" title="Japanese">
+      <div class="hobby-badge-icon">
+        <i class="fas fa-language"></i>
+      </div>
+      <span class="hobby-badge-name">Japanese</span>
+    </div><div class="hobby-badge" title="Gaming">
+      <div class="hobby-badge-icon">
+        <i class="fas fa-gamepad"></i>
+      </div>
+      <span class="hobby-badge-name">Gaming</span>
+    </div><div class="hobby-badge" title="Reading">
+      <div class="hobby-badge-icon">
+        <i class="fas fa-book"></i>
+      </div>
+      <span class="hobby-badge-name">Reading</span>
+    </div></div>
+
+    </section>
+
+    <div class="quote-section">
+        <div class="quote-card">
+  <div class="quote-card-icon">
+    <i class="fas fa-quote-left"></i>
+  </div>
+  <p class="quote-card-text">When you have a great and difficult task... if you only work a little at a time, every day a little, suddenly the work will finish itself.</p>
+  <span class="quote-card-author">— Isak Dinesen</span>
+</div>
+
+    </div>
+</aside>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top-btn" id="scrollToTopBtn" onclick="scrollToTop()" aria-label="Scroll to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script src="/res/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.0/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: false, theme: 'default' });
+        
+        // Copy URL function
+        function copyUrl() {
+            const url = window.location.href;
+            navigator.clipboard.writeText(url).then(() => {
+                // Show feedback
+                const btn = event.currentTarget;
+                const originalIcon = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i>';
+                btn.style.backgroundColor = 'var(--accent-color)';
+                btn.style.color = 'white';
+                setTimeout(() => {
+                    btn.innerHTML = originalIcon;
+                    btn.style.backgroundColor = '';
+                    btn.style.color = '';
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = url;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+            });
+        }
+        
+        // Initialize Mermaid on page load for direct URL access
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                if (typeof mermaid !== 'undefined') {
+                    const mermaidCodes = document.querySelectorAll('code.language-mermaid');
+                    mermaidCodes.forEach((code, index) => {
+                        const pre = code.parentElement;
+                        const div = document.createElement('div');
+                        div.className = 'mermaid';
+                        div.textContent = code.textContent.trim();
+                        pre.parentNode.replaceChild(div, pre);
+                    });
+                    
+                    mermaid.initialize({ startOnLoad: false, theme: 'default' });
+                    const mermaidDivs = document.querySelectorAll('.mermaid');
+                    mermaidDivs.forEach((div, i) => {
+                        if (!div.querySelector('svg')) {
+                            mermaid.render(`mermaid-${i}`, div.textContent).then(({ svg }) => {
+                                div.innerHTML = svg;
+                            });
+                        }
+                    });
+                }
+            }, 300);
+        });
+    </script>
+</body>
+</html>

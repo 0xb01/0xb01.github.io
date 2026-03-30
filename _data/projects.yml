@@ -4,9 +4,10 @@
 
 - name: "🧹 ADM"
   year: 2026
-  description: "Manages Microsoft Edge AutoFill Data"
+  description: AutoFill Data Cleaner for Microsoft Edge.
   tech_stack:
-    - C#
+    - C++
+    - Qt
   url: ""
   visibility: closed # public, private, closed
 
