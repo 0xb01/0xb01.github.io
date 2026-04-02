@@ -3,10 +3,11 @@
 # Edit here - changes reflect everywhere automatically
 
 - position: Software Developer
-  company: Erfinder Philippines, Tacloban City
+  company: Erfinder Philippines, Tacloban City, Leyte
   period: Jul 2019 – Present
   present: true
   show_in: both  # resume, work, or both
+  add_hours: true
   responsibilities:
     - Helped in the development of PIIOX, an open, modular platform designed for control and automation systems.
     - Helped in the development of TESSA, a tool that automates execution of scientific software applications.
@@ -32,9 +33,10 @@
       url: https://github.com/Erfinder-Philippines/TESSA
 
 - position: Android Developer
-  company: Hyperworks I.T. Solutions
+  company: Hyperworks I.T. Solutions, Tacloban City, Leyte
   period: Nov 2016 – 2018
   show_in: both
+  add_hours: true
   responsibilities:
     - Developed Disaster Risk Reduction (DRR) mobile apps and educational mobile apps for Save The Children Philippines and DepEd.
     - Facilitated mobile features development workshops and data collection.
@@ -55,9 +57,10 @@
       url: https://www.youtube.com/watch?v=svQEpxnNP8c
 
 - position: Event Organizer
-  company: PlayPark Inc.
+  company: PlayPark Inc., Makati City, Metro Manila
   period: 2015 – 2016
   show_in: work  # Only shows in Work Experience page, not in Resume
+  add_hours: false
   responsibilities:
     - Assigned to Special Force Online and Special Force 2.
     - Organized and hosted local and online gaming events and tournaments.
@@ -72,9 +75,10 @@
   references: []
 
 - position: On The Job Training
-  company: Department of Agrarian Reforms
+  company: Department of Agrarian Reforms, Tacloban City, Leyte
   period: Jul 2016 – Dec 2016
   show_in: both
+  add_hours: true
   responsibilities:
     - Developed a document management system for the department as replacement for their previous unfinished system.
     - Improved the system to handle large volumes of data, faster referencing, and scanning capabilities.

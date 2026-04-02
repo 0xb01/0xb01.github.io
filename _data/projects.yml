@@ -61,6 +61,14 @@
   url: ""
   visibility: closed
 
+- name: "🔨 StarfieldBatchMeshFix"
+  year: 2024
+  description: A mesh path migration tool for Starfield v1.11.36
+  tech_stack:
+    - VB.NET
+  url: https://github.com/0xb01/StarfieldBatchMeshFix
+  visibility: closed
+
 - name: "🕹️ TnT"
   year: 2023
   description: Personal library and unified launcher for managing PC games.
@@ -69,7 +77,7 @@
     - Postman
     - PowerShell
   url: ""
-  visibility: closed
+  visibility: private
 
 - name: "🎮 Haiyan: PC Booster"
   year: 2017
@@ -78,4 +86,4 @@
     - Batch
     - VB.NET
   url: ""
-  visibility: closed
+  visibility: private

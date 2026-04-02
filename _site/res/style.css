@@ -1369,6 +1369,10 @@ body {
     align-items: center;
 }
 
+.experience-meta + .experience-meta {
+    margin-top: 4px;
+}
+
 .experience-company,
 .experience-duration {
     display: inline-flex;
@@ -1546,6 +1550,60 @@ body {
 
 .references-section .reference-link i {
     font-size: 0.65rem;
+}
+
+/* Projects Section - Header with Filter */
+.projects-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border-color);
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.projects-header .section-title {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.projects-filter {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.projects-filter label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.projects-filter select {
+    padding: 6px 12px;
+    background-color: var(--tag-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    font-family: inherit;
+    font-size: 0.75rem;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.projects-filter select:hover {
+    border-color: var(--accent-color);
+}
+
+.projects-filter select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(128, 0, 0, 0.08);
 }
 
 /* Projects Grid - New Horizontal Card Design */
@@ -1855,13 +1913,6 @@ body {
     border-radius: var(--radius-sm);
     padding: 8px;
     margin-bottom: 6px;
-    transition: all 0.2s;
-}
-
-.skill-card:hover {
-    border-color: var(--accent-color);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    transform: translateX(-2px);
 }
 
 .skill-card-header {
@@ -1900,13 +1951,6 @@ body {
     color: var(--text-secondary);
     letter-spacing: -0.3px;
     user-select: none;
-    transition: all 0.2s;
-}
-
-.skill-tag:hover {
-    background-color: var(--accent-color);
-    color: white;
-    transform: translateY(-1px);
 }
 
 /* Hobbies Section - Compact Badge Design */
@@ -1930,13 +1974,6 @@ body {
     border-radius: var(--radius-sm);
     cursor: default;
     user-select: none;
-    transition: all 0.2s;
-}
-
-.hobby-badge:hover {
-    border-color: var(--accent-color);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-    transform: translateY(-2px);
 }
 
 .hobby-badge-icon {
@@ -1953,14 +1990,6 @@ body {
 .hobby-badge-icon i {
     color: var(--accent-color);
     font-size: 0.9rem;
-}
-
-.hobby-badge:hover .hobby-badge-icon {
-    background-color: var(--accent-color);
-}
-
-.hobby-badge:hover .hobby-badge-icon i {
-    color: white;
 }
 
 .hobby-badge-name {
@@ -2756,6 +2785,44 @@ body.resume-view .container {
         border-top: 1px solid var(--border-color);
     }
 
+    /* Tablet: Contact and Socials side-by-side */
+    .column-1 .contact-and-socials {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .column-1 .contact-section {
+        margin-top: 0;
+        padding-top: 0;
+        border-top: none;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .column-1 .social-section {
+        margin-top: 15px;
+        padding-top: 0;
+        border-top: none;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Social links fill available width on tablet */
+    .column-1 .social-section .social-links {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 6px;
+        flex: 1;
+        align-content: start;
+    }
+
+    .column-1 .social-section .social-link {
+        width: 100%;
+        height: 36px;
+    }
+
     /* Hide mobile-only elements on tablet */
     .mobile-header,
     .mobile-burger,
@@ -2785,7 +2852,7 @@ body.resume-view .container {
 
     /* Projects grid for tablet */
     .projects-grid {
-        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        grid-template-columns: repeat(2, 1fr);
         gap: 12px;
     }
 
@@ -2843,7 +2910,7 @@ body.resume-view .container {
 
     /* Smaller project cards for limited space */
     .projects-grid {
-        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        grid-template-columns: repeat(2, 1fr);
         gap: 10px;
     }
 
@@ -3116,6 +3183,11 @@ body.resume-view .container {
         letter-spacing: -0.8px;
     }
 
+    .work-info {
+        margin-bottom: 20px;
+        margin-top: 10px;
+    }
+
     .work-title {
         font-size: 0.7rem;
         padding: 4px 9px;
@@ -3141,6 +3213,22 @@ body.resume-view .container {
     .projects-grid {
         grid-template-columns: 1fr;
         gap: 10px;
+    }
+
+    .projects-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .projects-filter {
+        width: 100%;
+    }
+
+    .projects-filter select {
+        width: 100%;
+        padding: 8px 12px;
+        font-size: 0.8rem;
     }
 
     .project-card {

@@ -12,12 +12,16 @@ profile_image: /res/me.jpg
 hero:
   title: Full-Stack Developer • Principal Software Engineer
   headline: I'm up for any challenge.
-  description: Solution-oriented programmer with a decade of experience, specializing in desktop application development and backend architecture, with a versatile background in multi-platform software.
+  description: Solution-oriented programmer coding professionally since 2016, specializing in desktop application development and backend architecture, with a versatile background in multi-platform software.
 
 # About Section
 about:
   title: About Me
-  content: Hi, I'm Niks! I've been obsessed with code since I was a kid, and I've spent the last 10 years turning that passion into a career. I'm a specialist in desktop development and backend setup, with a proven track record of delivering end-to-end software solutions. My background spans multiple platforms, from native Android apps to complex desktop environments. Currently working at home, I focus on efficient systems and solving the unique challenges that come with desktop software.
+  content: Hi, I'm Niks! I've been obsessed with code since I was a kid, and I've been building software professionally since 2016. I'm a specialist in desktop development and backend setup, with a proven track record of delivering end-to-end software solutions. My background spans multiple platforms, from native Android apps to complex desktop environments. Currently working from home, I focus on efficient systems and solving the unique challenges that come with desktop software.
+
+# Resume Professional Summary (separate from hero description)
+resume_summary: |
+  Full-Stack Developer and Principal Software Engineer with professional experience since 2016. Specializes in desktop application development and backend architecture, with a versatile background spanning multiple platforms including native Android apps and complex desktop environments. Proven track record of delivering end-to-end software solutions, from IoT device management systems to educational mobile applications. Currently focused on building efficient systems and solving unique challenges in desktop software development.
 
 # Contact Info (for sidebar contact section)
 contact:
@@ -106,8 +110,8 @@ navigation:
 
 # Quote (for sidebar)
 quote:
-  text: "When you have a great and difficult task... if you only work a little at a time, every day a little, suddenly the work will finish itself."
-  author: "Isak Dinesen"
+  text: "Never let your fear decide your fate."
+  author: "“Kill Your Heroes”, AWOLNATION"
 
 # Contact Form Configuration
 contact_form:

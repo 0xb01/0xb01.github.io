@@ -37,39 +37,41 @@
     </div>
 </div>
 
-<div class="contact-section" style="margin-top: auto; padding-top: 15px; padding-bottom: 10px;">
-    <h3>Contact</h3>
-    <ul class="contact-list">
-        {%- for contact in site.data.profile.contact -%}
-            {%- if contact.type == 'timezone' -%}
-                <li class="timezone-contact" onclick="{{ contact.action }}()">
-                    <i class="fas {{ contact.icon }}"></i>
-                    <span id="timezoneText" data-timezone="{{ contact.timezone }}" data-location="{{ site.data.profile.location }}">Loading...</span>
-                </li>
-            {%- elsif contact.clickable -%}
-                <li>
-                    <i class="fas {{ contact.icon }}"></i>
-                    <a href="javascript:void(0)" onclick="{{ contact.action }}(); return false;">{{ contact.value }}</a>
-                </li>
-            {%- else -%}
-                <li>
-                    <i class="fas {{ contact.icon }}"></i>
-                    <span>{{ contact.value }}</span>
-                </li>
-            {%- endif -%}
-        {%- endfor -%}
-    </ul>
-</div>
+    <div class="contact-and-socials">
+        <div class="contact-section" style="padding-top: 15px; padding-bottom: 10px;">
+            <h3>Contact</h3>
+            <ul class="contact-list">
+                {%- for contact in site.data.profile.contact -%}
+                    {%- if contact.type == 'timezone' -%}
+                        <li class="timezone-contact" onclick="{{ contact.action }}()">
+                            <i class="fas {{ contact.icon }}"></i>
+                            <span id="timezoneText" data-timezone="{{ contact.timezone }}" data-location="{{ site.data.profile.location }}">Loading...</span>
+                        </li>
+                    {%- elsif contact.clickable -%}
+                        <li>
+                            <i class="fas {{ contact.icon }}"></i>
+                            <a href="javascript:void(0)" onclick="{{ contact.action }}(); return false;">{{ contact.value }}</a>
+                        </li>
+                    {%- else -%}
+                        <li>
+                            <i class="fas {{ contact.icon }}"></i>
+                            <span>{{ contact.value }}</span>
+                        </li>
+                    {%- endif -%}
+                {%- endfor -%}
+            </ul>
+        </div>
 
-<div class="social-section">
-    <h3>Socials</h3>
-    <div class="social-links">
-        {%- for social in site.data.profile.socials -%}
-            {%- if social.show != false -%}
-                <a href="{{ social.url }}" class="social-link" aria-label="{{ social.label }}" target="_blank">
-                    <i class="fab {{ social.icon }}"></i>
-                </a>
-            {%- endif -%}
-        {%- endfor -%}
+        <div class="social-section">
+            <h3>Socials</h3>
+            <div class="social-links">
+                {%- for social in site.data.profile.socials -%}
+                    {%- if social.show != false -%}
+                        <a href="{{ social.url }}" class="social-link" aria-label="{{ social.label }}" target="_blank">
+                            <i class="fab {{ social.icon }}"></i>
+                        </a>
+                    {%- endif -%}
+                {%- endfor -%}
+            </div>
+        </div>
     </div>
-</div>

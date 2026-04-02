@@ -26,7 +26,8 @@ title: Portfolio
         </div>
 
         <section class="section work-experience" id="workExperienceSection">
-            <h3 class="section-title">Work Experience</h3>
+            {% include calculate-total-experience.html %}
+            <h3 class="section-title">Work Experience ({{ total_years }} {% if total_years == 1 %}year{% else %}years{% endif %}{% if remaining_months > 0 %}, {{ remaining_months }} {% if remaining_months == 1 %}month{% else %}months{% endif %}{% endif %})</h3>
             <div class="timeline">
                 {% include experience-items.html context='work' %}
             </div>
@@ -121,4 +122,35 @@ title: Portfolio
 <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.0/dist/mermaid.min.js"></script>
 <script>
     mermaid.initialize({ startOnLoad: false, theme: 'default' });
+
+    // Populate year filter dropdown
+    function populateYearFilter() {
+        const projectCards = document.querySelectorAll('.project-card');
+        const years = [...new Set([...projectCards].map(card => card.dataset.year))].sort((a, b) => b - a);
+        const yearFilter = document.getElementById('yearFilter');
+
+        years.forEach(year => {
+            const option = document.createElement('option');
+            option.value = year;
+            option.textContent = year;
+            yearFilter.appendChild(option);
+        });
+    }
+
+    // Filter projects by year
+    function filterProjectsByYear() {
+        const selectedYear = document.getElementById('yearFilter').value;
+        const projectCards = document.querySelectorAll('.project-card');
+
+        projectCards.forEach(card => {
+            if (selectedYear === 'all' || card.dataset.year === selectedYear) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+
+    // Initialize year filter when DOM is ready
+    document.addEventListener('DOMContentLoaded', populateYearFilter);
 </script>

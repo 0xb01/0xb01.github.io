@@ -12,14 +12,15 @@
 
     <div class="resume-summary">
         <h3>Professional Summary</h3>
-        <p>{{ site.data.profile.hero.description }}</p>
+        <p>{{ site.data.profile.resume_summary }}</p>
     </div>
 
     <div class="resume-layout">
         <!-- Left Column: Experience (Wider) -->
         <div class="resume-column resume-column-main">
             <div class="resume-section-content">
-                <h3>Experience</h3>
+                {% include calculate-total-experience.html %}
+                <h3>Experience ({{ total_years }} {% if total_years == 1 %}year{% else %}years{% endif %}{% if remaining_months > 0 %}, {{ remaining_months }} {% if remaining_months == 1 %}month{% else %}months{% endif %}{% endif %})</h3>
                 <div class="resume-timeline">
                     {% include experience-items.html context='resume' %}
                 </div>

@@ -1,5 +1,13 @@
 <!-- Projects Section -->
 <section class="section projects" id="projectsSection">
-    <h3 class="section-title">Recent / Fun Projects</h3>
+    <div class="projects-header">
+        <h3 class="section-title">Recent / Fun Projects</h3>
+        <div class="projects-filter">
+            <label for="yearFilter">Filter by Year:</label>
+            <select id="yearFilter" onchange="filterProjectsByYear()">
+                <option value="all">All Years</option>
+            </select>
+        </div>
+    </div>
     {% include projects-grid.html %}
 </section>
