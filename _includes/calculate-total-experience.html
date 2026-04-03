@@ -1,14 +1,21 @@
 {%- comment -%}
   Calculate Total Experience
   Calculates total years and months from experience entries with add_hours: true
+  Optionally displays the result based on show_experience setting.
 
-  Usage: {% include calculate-total-experience.html %}
-  Returns: total_years, total_months variables
+  Usage: {% include calculate-total-experience.html context='work' %}
+         {% include calculate-total-experience.html context='resume' %}
+  
+  Parameters:
+    - context: 'work' or 'resume' (required)
+    - show_label: true to display the h3 label, false to only set variables (default: true)
+  
+  Note: The show_experience setting in experience.yml controls where the total is displayed.
 {%- endcomment -%}
 
 {%- assign total_months = 0 -%}
 
-{%- for job in site.data.experience -%}
+{%- for job in site.data.experience.experiences -%}
   {%- if job.add_hours == true -%}
     {%- assign period_parts = job.period | split: '–' -%}
     {%- assign start_date = period_parts[0] | strip -%}
@@ -73,3 +80,25 @@
 
 {%- assign total_years = total_months | divided_by: 12 -%}
 {%- assign remaining_months = total_months | modulo: 12 -%}
+
+{%- assign show_experience = site.data.experience.show_experience | default: 'both' -%}
+{%- assign should_display = false -%}
+{%- if show_experience == 'both' -%}
+  {%- assign should_display = true -%}
+{%- elsif include.context == 'resume' and show_experience == 'resume' -%}
+  {%- assign should_display = true -%}
+{%- elsif include.context == 'work' and show_experience == 'work' -%}
+  {%- assign should_display = true -%}
+{%- endif -%}
+
+{%- if should_display -%}
+{%- if include.context == 'work' -%}
+<h3 class="section-title">Work Experience ({{ total_years }} {% if total_years == 1 %}year{% else %}years{% endif %}{% if remaining_months > 0 %}, {{ remaining_months }} {% if remaining_months == 1 %}month{% else %}months{% endif %}{% endif %})</h3>
+{%- elsif include.context == 'resume' -%}
+<h3>Experience ({{ total_years }} {% if total_years == 1 %}year{% else %}years{% endif %}{% if remaining_months > 0 %}, {{ remaining_months }} {% if remaining_months == 1 %}month{% else %}months{% endif %}{% endif %})</h3>
+{%- endif -%}
+{%- else -%}
+{%- if include.context == 'resume' -%}
+<h3>Experience</h3>
+{%- endif -%}
+{%- endif -%}

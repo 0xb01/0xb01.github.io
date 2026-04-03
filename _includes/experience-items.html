@@ -16,7 +16,7 @@
     show_in: both    (in both places)
 {%- endcomment -%}
 
-{%- for job in site.data.experience -%}
+{%- for job in site.data.experience.experiences -%}
   {%- assign show_job = false -%}
   {%- if job.show_in == 'both' -%}
     {%- assign show_job = true -%}

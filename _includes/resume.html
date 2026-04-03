@@ -19,8 +19,7 @@
         <!-- Left Column: Experience (Wider) -->
         <div class="resume-column resume-column-main">
             <div class="resume-section-content">
-                {% include calculate-total-experience.html %}
-                <h3>Experience ({{ total_years }} {% if total_years == 1 %}year{% else %}years{% endif %}{% if remaining_months > 0 %}, {{ remaining_months }} {% if remaining_months == 1 %}month{% else %}months{% endif %}{% endif %})</h3>
+                {% include calculate-total-experience.html context='resume' %}
                 <div class="resume-timeline">
                     {% include experience-items.html context='resume' %}
                 </div>

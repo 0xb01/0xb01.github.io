@@ -51,12 +51,11 @@ categories:
     items:
       - Docker
       - Git
-      - GitHub
-      - GitLab
+      - GitHub Actions
+      - GitHub/GitLab/Bitbucket
       - Make/n8n
       - Alibaba Cloud
       - Google Cloud
-      - GitHub Actions
 
   - name: Creative
     icon: fa-palette
