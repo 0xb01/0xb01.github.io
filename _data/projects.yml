@@ -79,6 +79,15 @@
   url: ""
   visibility: private
 
+- name: "🔊 Bleepr"
+  year: 2019
+  description: Push-to-bleep now with a full soundboard, and a roulette for random sound playback. 
+  tech_stack:
+    - C++
+    - Qt
+  url: https://github.com/0xb01/Bleepr
+  visibility: public
+
 - name: "🎮 Haiyan: PC Booster"
   year: 2017
   description: "All-in-one Windows PC optimization tool."
