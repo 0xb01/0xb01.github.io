@@ -19,12 +19,11 @@ experiences:
       - Developed internal ERP system for Climeo AG.
       - Developed a management tool for Climeo AG IoT devices and clients.
       - Developed several internal applications for Stadler, Inc.
-      - Created social media pages, chatbots, and professional websites for various clients.
+      - Created social media pages, chatbots/workflows, and professional websites for various clients.
       - Created promotional materials for various clients.
     tech_stack:
       - Bash
-      - C
-      - C#
+      - C/C#
       - Python
       - Xojo
       - Docker
@@ -65,13 +64,16 @@ experiences:
     company: PlayPark Inc., Makati City, Metro Manila
     period: 2015 – 2016
     show_in: work  # Only shows in Work Experience page, not in Resume
-    add_hours: false
+    add_hours: true
     responsibilities:
-      - Assigned to Special Force Online and Special Force 2.
+      - Assigned to Special Force Online and Special Force 2 as local event organizer and in-game moderator.
       - Organized and hosted local and online gaming events and tournaments.
       - Provided technical support and fixes for gaming-related issues.
       - Assisted in creating gaming-related communities and player engagement.
+      - Created workflow automations for cross-posting from social media and websites.
     tech_stack:
+      - n8n
+      - Integromat/Make
       - Community Management
       - Technical Support
       - OBS Studio
