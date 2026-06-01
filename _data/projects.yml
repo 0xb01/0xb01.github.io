@@ -2,12 +2,24 @@
 # Single source of truth for Recent / Fun Projects section
 # Edit here - changes reflect automatically
 
+- name: "📙 Haha"
+  year: 2026
+  description: Worker that serves game details using Steam Web API and some other goodies.
+  tech_stack:
+      - Cloudflare Workers
+      - HTML5 / CSS3
+      - JavaScript
+      - TypeScript
+      - Steam Web API
+  url: "https://haha.n1kk0.workers.dev/"
+  visibility: public
+
 - name: "🧹 ADM"
   year: 2026
   description: AutoFill Data Cleaner for Microsoft Edge.
   tech_stack:
-    - C++
-    - Qt
+      - C++
+      - Qt
   url: ""
   visibility: closed # public, private, closed
 
@@ -15,9 +27,8 @@
   year: 2026
   description: Interactive web app for practicing Japanese Hiragana and Katakana.
   tech_stack:
-    - CSS
-    - HTML
-    - JavaScript
+      - HTML5 / CSS3
+      - JavaScript
   url: /kana/
   visibility: public
 
@@ -25,10 +36,10 @@
   year: 2026
   description: Obsidian plugin that finds problematic files.
   tech_stack:
-    - CSS
-    - JavaScript
-    - NodeJS
-    - TypeScript
+      - HTML5 / CSS3
+      - JavaScript
+      - NodeJS
+      - TypeScript
   url: https://github.com/0xb01/zzzzz
   visibility: public
 
@@ -36,10 +47,9 @@
   year: 2026
   description: Browser extension that automatically opens specified websites in incognito mode.
   tech_stack:
-    - CSS
-    - HTML
-    - JavaScript
-    - NodeJS
+      - HTML5 / CSS3
+      - JavaScript
+      - NodeJS
   url: https://github.com/0xb01/auto-incognito-filter
   visibility: public
 
@@ -47,9 +57,8 @@
   year: 2026
   description: Personal portfolio and blog website powered by GitHub Pages.
   tech_stack:
-    - CSS
-    - HTML
-    - JavaScript
+      - HTML5 / CSS3
+      - JavaScript
   url: https://github.com/0xb01/0xb01.github.io
   visibility: public
 
@@ -57,7 +66,7 @@
   year: 2025
   description: In-line calculator with variables, basic arithmetic, and currency conversions.
   tech_stack:
-    - C#
+      - C#
   url: ""
   visibility: closed
 
@@ -65,7 +74,7 @@
   year: 2024
   description: A mesh path migration tool for Starfield v1.11.36
   tech_stack:
-    - VB.NET
+      - VB.NET
   url: https://github.com/0xb01/StarfieldBatchMeshFix
   visibility: closed
 
@@ -73,18 +82,18 @@
   year: 2023
   description: Personal library and unified launcher for managing PC games.
   tech_stack:
-    - C#
-    - Postman
-    - PowerShell
+      - C#
+      - Postman
+      - PowerShell
   url: ""
   visibility: private
 
 - name: "🔊 Bleepr"
   year: 2019
-  description: Push-to-bleep now with a full soundboard, and a roulette for random sound playback. 
+  description: Push-to-bleep now with a full soundboard, and a roulette for random sound playback.
   tech_stack:
-    - C++
-    - Qt
+      - C++
+      - Qt
   url: https://github.com/0xb01/Bleepr
   visibility: public
 
@@ -92,7 +101,7 @@
   year: 2017
   description: "All-in-one Windows PC optimization tool."
   tech_stack:
-    - Batch
-    - VB.NET
+      - Batch
+      - VB.NET
   url: ""
   visibility: private

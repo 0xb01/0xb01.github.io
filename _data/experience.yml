@@ -63,7 +63,7 @@ experiences:
   - position: Event Organizer
     company: PlayPark Inc., Makati City, Metro Manila
     period: 2015 – 2016
-    show_in: work  # Only shows in Work Experience page, not in Resume
+    show_in: both
     add_hours: true
     responsibilities:
       - Assigned to Special Force Online and Special Force 2 as local event organizer and in-game moderator.

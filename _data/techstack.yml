@@ -16,8 +16,8 @@ categories:
     icon: fa-desktop
     show_in: both
     items:
-      - HTML
-      - CSS
+      - HTML5
+      - CSS3
       - JavaScript
       - TypeScript
 
@@ -51,11 +51,11 @@ categories:
     items:
       - Docker
       - Git
-      - GitHub Actions
       - GitHub/GitLab/Bitbucket
-      - Make/n8n
-      - Alibaba Cloud
-      - Google Cloud
+      - GitHub Actions
+      - Make/Integromat/n8n
+      - Alibaba/Google Cloud
+      - Gemini CLI/LM Studio/Pi.Dev
 
   - name: Creative
     icon: fa-palette
@@ -68,7 +68,6 @@ categories:
       - Photoshop
       - Premiere
       - Bethesda Creation Kit
-
 
 # Hobbies (max 6 items)
 hobbies:
