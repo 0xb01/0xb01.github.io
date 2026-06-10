@@ -14,27 +14,48 @@ experiences:
     show_in: both  # resume, work, or both
     add_hours: true
     responsibilities:
-      - Helped in the development of PIIOX, an open, modular platform designed for control and automation systems.
-      - Helped in the development of TESSA, a tool that automates execution of scientific software applications.
-      - Developed internal ERP system for Climeo AG.
-      - Developed a management tool for Climeo AG IoT devices and clients.
-      - Developed several internal applications for Stadler, Inc.
-      - Created social media pages, chatbots/workflows, and professional websites for various clients.
-      - Created promotional materials for various clients.
+      - Contributed to the core development of PIIOX, an open, modular platform designed for industrial control and automation systems.
+      - Developed and optimized modules for TESSA, an automation framework for executing complex scientific software applications.
+      - Architected and deployed an internal enterprise resource planning (ERP) system to streamline company operations.
+      - Built a centralized management utility to monitor, provision, and maintain client IoT devices securely.
+      - Engineered multiple proprietary internal applications for industrial partner systems to improve data workflows.
+      - Designed and developed automated chatbots, workflow pipelines, and professional client web platforms.
+      - Produced technical promotional assets and digital media materials for diverse business clients.
     tech_stack:
       - Bash
       - C/C#
-      - Python
-      - Xojo
       - Docker
       - Make
       - Photoshop
       - Premiere
+      - Python
+      - Xojo
     references:
       - title: "Article: PIIOX"
         url: https://www.elektormagazine.com/labs/piiox-raspberry-pi-io-box
       - title: "GitHub: TESSA"
         url: https://github.com/Erfinder-Philippines/TESSA
+
+  - position: IT Volunteer
+    company: Comradeship Philippines, Tacloban City, Leyte
+    period: Feb 2018 - 2019
+    show_in: both
+    add_hours: true
+    responsibilities:
+      - Developed WordPress site.
+      - Designed posters for social media.
+    tech_stack:
+      - Camtasia Studio
+      - HTML5/CSS3
+      - Photoshop
+      - Premiere
+      - WordPress
+      - Technical Support
+    references:
+      - title: "Facebook: Comradeship Philippines"
+        url: https://www.facebook.com/comradeshipphilippines
+      - title: "YouTube: Comradeship Philippines"
+        url: https://www.youtube.com/@ComradeshipPhilippines
 
   - position: Android Developer
     company: Hyperworks I.T. Solutions, Tacloban City, Leyte
@@ -42,44 +63,48 @@ experiences:
     show_in: both
     add_hours: true
     responsibilities:
-      - Developed Disaster Risk Reduction (DRR) mobile apps and educational mobile apps for Save The Children Philippines and DepEd.
-      - Facilitated mobile features development workshops and data collection.
-      - Conducted consultation and meeting with DepEd key persons.
-      - Provided technical support and training for mobile app development.
-      - Developed the website, assisted in the creation of resources, and hosting of the mobile applications and tools.
+      - Engineered native Android applications focused on Disaster Risk Reduction (DRR) and education for Save The Children Philippines and DepEd.
+      - Facilitated features-definition workshops, managing stakeholders and spearheading local data collection initiatives.
+      - Led technical consultations and alignment meetings with key department officials to map software requirements.
+      - Delivered comprehensive technical support documentation and training frameworks for deployment teams.
+      - Developed web interfaces, established application hosting environments, and managed distribution assets.
     tech_stack:
+      - Android Studio
       - Batch
-      - CSS
-      - HTML
+      - Camtasia Studio
+      - HTML5/CSS3
       - Java
       - PHP
-      - Android Studio
       - Photoshop
-      - Camtasia Studio
     references:
       - title: "Video: School Watching Application (SWApp)"
         url: https://www.youtube.com/watch?v=svQEpxnNP8c
 
-  - position: Event Organizer
+  - position: Event Organizer / Game Moderator / Technical Support
     company: PlayPark Inc., Makati City, Metro Manila
-    period: 2015 – 2016
+    period: Nov 2015 – Mar 2019
     show_in: both
     add_hours: true
     responsibilities:
-      - Assigned to Special Force Online and Special Force 2 as local event organizer and in-game moderator.
-      - Organized and hosted local and online gaming events and tournaments.
-      - Provided technical support and fixes for gaming-related issues.
-      - Assisted in creating gaming-related communities and player engagement.
-      - Created workflow automations for cross-posting from social media and websites.
+      - Managed in-game moderation, competitive integrity, and local event logistics for Special Force Online and Special Force 2.
+      - Organized, coordinated, and hosted high-engagement local and online gaming tournaments.
+      - Provided tier-2 technical support, troubleshooting client-side issues and delivering system stability fixes.
+      - Conceptualized and produced promotional media assets, including event posters and game cinematic trailers.
+      - Cultivated active player communities and implemented structural strategies to boost long-term player engagement.
+      - Developed automated workflow pipelines to sync, cross-post, and distribute content seamlessly across social networks.
     tech_stack:
-      - n8n
-      - Integromat/Make
       - Community Management
-      - Technical Support
+      - Integromat/Make
+      - n8n
       - OBS Studio
       - Photoshop
       - Premiere
-    references: []
+      - Technical Support
+    references:
+      - title: "Trailer: Special Force is Back!"
+        url: https://www.youtube.com/watch?v=WIDFrM0a2_s
+      - title: "Trailer: Special Force 2"
+        url: https://www.youtube.com/watch?v=-LC-fEJVC1k
 
   - position: On The Job Training
     company: Department of Agrarian Reforms, Tacloban City, Leyte
@@ -87,11 +112,11 @@ experiences:
     show_in: both
     add_hours: true
     responsibilities:
-      - Developed a document management system for the department as replacement for their previous unfinished system.
-      - Improved the system to handle large volumes of data, faster referencing, and scanning capabilities.
-      - Provided training and support for the new system to the department staff.
-      - Assisted in the migration of data from the old system to the new system.
-      - Provided technical support and maintenance for the new system.
+      - Designed and developed a custom Document Management System (DMS) from scratch to replace a legacy, uncompleted application.
+      - Optimized database structures to efficiently handle large data volumes, enabling faster document referencing and hardware scanning integration.
+      - Conducted training seminars and provided technical documentation to ensure smooth adoption by department personnel.
+      - Executed data migration strategies to extract records from old storage systems into the new relational architecture.
+      - Provided post-deployment technical support, system maintenance, and performance tuning during the rollout phase.
     tech_stack:
       - CSS
       - HTML
