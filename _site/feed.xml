@@ -1,4 +1,61 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-06-22T13:41:27+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">JNR</title><subtitle>Solution-oriented programmer with 10 years of experience in creating software for desktop platforms, mobile development, and hardware.</subtitle><entry><title type="html">Haha… Worker</title><link href="http://localhost:4000/tech/2026/05/12/haha-worker.html" rel="alternate" type="text/html" title="Haha… Worker" /><published>2026-05-12T10:18:00+08:00</published><updated>2026-05-12T10:18:00+08:00</updated><id>http://localhost:4000/tech/2026/05/12/haha-worker</id><content type="html" xml:base="http://localhost:4000/tech/2026/05/12/haha-worker.html">&lt;p&gt;Just wanted to share something… a worker, yes. My first CloudFlare Worker!&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-06-30T11:59:55+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">JNR</title><subtitle>Solution-oriented programmer with 10 years of experience in creating software for desktop platforms, mobile development, and hardware.</subtitle><entry><title type="html">Say Goodbye to ‘Filipino Time’: Inside the Server Keeping the Philippines Synced</title><link href="http://localhost:4000/tech/2026/06/30/inside-ph-synced.html" rel="alternate" type="text/html" title="Say Goodbye to ‘Filipino Time’: Inside the Server Keeping the Philippines Synced" /><published>2026-06-30T11:43:50+08:00</published><updated>2026-06-30T11:43:50+08:00</updated><id>http://localhost:4000/tech/2026/06/30/inside-ph-synced</id><content type="html" xml:base="http://localhost:4000/tech/2026/06/30/inside-ph-synced.html">&lt;p&gt;Ever noticed how your phone always shows the exact same time as the countdown on the TV news, your bank’s mobile app, and the local ATM?&lt;/p&gt;
+
+&lt;p&gt;That isn’t a coincidence. Behind every perfectly timed digital transaction in the country is a single, hard-working system run by PAGASA and DOST. If you’ve ever dug into your computer’s network settings, you might have spotted its digital home: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ntp.pagasa.dost.gov.ph&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Here is how this unassuming server became the ultimate authority on Philippine Standard Time (PhST), and why it matters to everyday Pinoy life.&lt;/p&gt;
+
+&lt;h2 id=&quot;what-actually-is-ntppagasadostgovph&quot;&gt;What actually is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ntp.pagasa.dost.gov.ph&lt;/code&gt;?&lt;/h2&gt;
+
+&lt;p&gt;Think of it as the country’s master clockkeeper on the internet.&lt;/p&gt;
+
+&lt;p&gt;NTP stands for Network Time Protocol, which is just tech-speak for the system computers use to align their internal clocks over a network. This specific server is maintained by the DOST-PAGASA Astronomical Observatory. When a server, smartphone, or office bundy clock needs to verify the absolute correct time, it pings this link and gets an answer back down to the millisecond.&lt;/p&gt;
+
+&lt;h2 id=&quot;paano-nga-ba-nase-set-ang-oras-pinas&quot;&gt;Paano nga ba nase-set ang “Oras Pinas”?&lt;/h2&gt;
+
+&lt;p&gt;PAGASA doesn’t just check a standard wall clock to update the country. The setup relies on world-class physics operating right here in Metro Manila:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Cesium Atomic Clocks&lt;/strong&gt;: Deep inside the PAGASA Observatory in Quezon City sits a specialized, highly climate-controlled room housing three Cesium atomic clocks. Instead of gears or quartz crystals, these systems measure time by counting the exact atomic vibrations of cesium elements. They are so accurate they will lose less than one second in millions of years.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Global Alignment&lt;/strong&gt;: To ensure our time syncs flawlessly with the rest of the world, PAGASA uses Global Navigation Satellite Systems (GNSS) to cross-reference our atomic data with Coordinated Universal Time (UTC), the global baseline maintained in France.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Stratum 1 Authority&lt;/strong&gt;: Because ntp.pagasa.dost.gov.ph is directly linked to the actual physical hardware of these atomic clocks, it holds a Stratum 1 ranking. In the IT world, that’s top-tier status—meaning there are zero middleman servers causing lag or delays.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;em&gt;The PAGASA Clock Strata&lt;/em&gt;
+&lt;img src=&quot;https://pagasa.dost.gov.ph/themes/hiraia/assets/images/astronomy/PAGASA_Clock_strata.png&quot; alt=&quot;PAGASA Clock Strata&quot; title=&quot;PAGASA Clock Strata&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;The PAGASA Time Scale System&lt;/em&gt;
+&lt;img src=&quot;https://pagasa.dost.gov.ph/themes/hiraia/assets/images/astronomy/PAGASA_atomic_clock.png&quot; alt=&quot;The PAGASA Time Scale System&quot; title=&quot;The PAGASA Time Scale System&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;5-mind-blowing-facts-about-philippine-time&quot;&gt;5 Mind-Blowing Facts About Philippine Time&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Bawal Ma-late (Seryoso, It’s the Law!)&lt;/strong&gt;
+We all joke about “Filipino Time,” but ignoring the official time is technically a legal violation for government bodies. Under &lt;a href=&quot;https://ldr.senate.gov.ph/legislative%2Bissuances/Republic%20Act%20No.%2010535#&quot;&gt;Republic Act No. 10535 (The Philippine Standard Time Act)&lt;/a&gt;, all national and local government offices, public schools, and local TV and radio networks are required by law to sync their office clocks to the PAGASA NTP server.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;The Move to “Oras Pinas”&lt;/strong&gt;
+To combat the cultural habit of showing up late, the government launched the “&lt;a href=&quot;https://tuklasinnatin.net/2026/01/03/dost-launches-oras-pinas-campaign-to-redefine-punctuality-and-boost-national-productivity/&quot;&gt;Oras Pinas&lt;/a&gt;” campaign (which you might remember by its original name, Juan Time). The goal is to rebrand the Pinoy identity into one that is fiercely punctual, encouraging everyone to sync their watches to the second.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Manila City Hall Was the Pioneer&lt;/strong&gt;
+Long before we had automated NTP servers on our laptops, the massive, iconic four-faced clock tower of the &lt;strong&gt;Manila City Hall&lt;/strong&gt; served as the ultimate visual landmark for timekeeping across the country.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Batanes to Tawi-Tawi: One Clock to Rule Them All&lt;/strong&gt;
+Even though the Philippines spans 7,641 islands and stretches quite a distance from east to west, our entire archipelago stays on a single time zone: &lt;strong&gt;UTC+08:00 (or Shanghai/Singapore time)&lt;/strong&gt;. No matter what island you step onto, the official hour never shifts.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Why We Don’t Do Daylight Saving Time&lt;/strong&gt;
+While countries like the US or parts of Europe shift their clocks forward and backward every year, the Philippines permanently dumped Daylight Saving Time. The government tried it out during energy crises in the ’70s and ’90s to maximize afternoon sun, but because we are located so close to the equator, our daylight hours barely change between seasons anyway.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;want-to-sync-your-own-device&quot;&gt;Want to sync your own device?&lt;/h2&gt;
+
+&lt;p&gt;If you’re an IT professional setting up a local office network, or just a tech enthusiast who wants their desktop PC perfectly aligned with the country’s official time, you can input &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ntp.pagasa.dost.gov.ph&lt;/code&gt; into your operating system’s NTP server settings.&lt;/p&gt;
+
+&lt;p&gt;It ensures your timestamps stay perfectly aligned with the rest of the nation—meaning you have absolutely zero excuses to be late for your next meeting!&lt;/p&gt;</content><author><name></name></author><category term="tech" /><category term="tech" /><category term="tutorial" /><summary type="html">Ever noticed how your phone always shows the exact same time as the countdown on the TV news, your bank’s mobile app, and the local ATM?</summary></entry><entry><title type="html">Haha… Worker</title><link href="http://localhost:4000/tech/2026/05/12/haha-worker.html" rel="alternate" type="text/html" title="Haha… Worker" /><published>2026-05-12T10:18:00+08:00</published><updated>2026-05-12T10:18:00+08:00</updated><id>http://localhost:4000/tech/2026/05/12/haha-worker</id><content type="html" xml:base="http://localhost:4000/tech/2026/05/12/haha-worker.html">&lt;p&gt;Just wanted to share something… a worker, yes. My first CloudFlare Worker!&lt;/p&gt;
 
 &lt;p&gt;It just serves files that is not stored there but rather from different sites.&lt;/p&gt;
 
