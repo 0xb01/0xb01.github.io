@@ -51,7 +51,6 @@
 
                     <!-- Share Section -->
                     <div class="share-section">
-                        <hr class="share-separator">
                         <div class="share-url">
                             <span>{{ page.url | prepend: site.url }}</span>
                         </div>
@@ -91,7 +90,7 @@
     <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.0/dist/mermaid.min.js"></script>
     <script>
         mermaid.initialize({ startOnLoad: false, theme: 'default' });
-        
+
         // Copy URL function
         function copyUrl() {
             const url = window.location.href;
@@ -118,7 +117,7 @@
                 document.body.removeChild(textArea);
             });
         }
-        
+
         // Initialize Mermaid on page load for direct URL access
         document.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() {
@@ -131,7 +130,7 @@
                         div.textContent = code.textContent.trim();
                         pre.parentNode.replaceChild(div, pre);
                     });
-                    
+
                     mermaid.initialize({ startOnLoad: false, theme: 'default' });
                     const mermaidDivs = document.querySelectorAll('.mermaid');
                     mermaidDivs.forEach((div, i) => {
