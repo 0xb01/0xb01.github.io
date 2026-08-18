@@ -150,6 +150,21 @@ Desktop three-column interfaces often break down on mobile screens. To solve thi
 
 ---
 
+## 6. Architectural Breakdown & Feature Comparison
+
+| Capability | Legacy Portfolio | Modern Engineering Revamp (2026) |
+| :--- | :--- | :--- |
+| **Theme System** | Standard Dark / Light | True Pitch Black OLED (`#000000`) & High-Contrast Light |
+| **Routing** | Full page reloads | Instant SPA Hash Router (`#home`, `#projects`, `#blog`, `#resume`) |
+| **Resume PDF** | Static committed PDF files | On-Demand Client-Side Synthesis (`html2pdf.js`) |
+| **Schedule / Time** | Static text label | Live 30s Manila Activity Engine (`Asia/Manila` UTC+8) |
+| **Code Snippets** | Raw code blocks | Language Badges + 1-Click Copy + Toast Notifications |
+| **Long-Form Reading** | Plain typography | Reading Time Byline + Top Scroll Progress Bar + Dynamic TOC |
+| **Diagrams & Media** | Static images | Full-Resolution Lightbox Zoom + Centered Figures |
+| **Data Separation** | Mixed HTML/Markdown | 100% Declarative YAML in `_data/*.yml` |
+
+---
+
 ## Key Takeaways
 
 1. **Vanilla is Powerful**: You don't need megabytes of framework runtime to build interactive, stateful single-page experiences.

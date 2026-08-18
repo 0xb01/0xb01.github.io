@@ -23,10 +23,11 @@
     </script>
     {% feed_meta %}
     {% seo %}
-</head>
 <body>
+    <div id="scrollProgressBar" class="scroll-progress-bar" aria-hidden="true"></div>
     <div id="toastContainer" class="toast-container" aria-live="polite"></div>
     {{ content }}
+    {% include image-lightbox.html %}
     <script src="/res/script.js"></script>
 </body>
 </html>

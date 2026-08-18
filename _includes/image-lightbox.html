@@ -1,0 +1,33 @@
+<!-- ==============================================================================
+     Full-Resolution Image & Architecture Diagram Lightbox Modal
+     ============================================================================== -->
+<div id="imageLightboxModal" class="image-lightbox-modal" aria-hidden="true" role="dialog" aria-label="Image Zoom Preview">
+    <div class="lightbox-backdrop" onclick="closeImageLightbox()"></div>
+    <div class="lightbox-container">
+        <div class="lightbox-toolbar">
+            <div class="lightbox-caption" id="lightboxCaption">
+                <i class="fas fa-image"></i> <span>Image preview</span>
+            </div>
+            <div class="lightbox-actions">
+                <button class="lightbox-btn" onclick="zoomLightboxImage(0.25)" title="Zoom in (+)" aria-label="Zoom in">
+                    <i class="fas fa-search-plus"></i>
+                </button>
+                <button class="lightbox-btn" onclick="zoomLightboxImage(-0.25)" title="Zoom out (-)" aria-label="Zoom out">
+                    <i class="fas fa-search-minus"></i>
+                </button>
+                <button class="lightbox-btn" onclick="resetLightboxZoom()" title="Reset zoom" aria-label="Reset zoom">
+                    <i class="fas fa-expand"></i>
+                </button>
+                <a id="lightboxDownloadBtn" href="" target="_blank" rel="noopener" class="lightbox-btn" title="Open in new tab" aria-label="Open original image">
+                    <i class="fas fa-arrow-up-right-from-square"></i>
+                </a>
+                <button class="lightbox-btn close-btn" onclick="closeImageLightbox()" title="Close (Esc)" aria-label="Close lightbox">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="lightbox-viewport" id="lightboxViewport" onclick="handleLightboxViewportClick(event)">
+            <img id="lightboxImage" src="" alt="Enlarged view" class="lightbox-img">
+        </div>
+    </div>
+</div>

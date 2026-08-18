@@ -125,9 +125,9 @@ socials:
 
   - platform: Twitter/X
     icon: fa-x-twitter
-    url: https://x.com/authenticegg
-    label: Twitter
-    show: false
+    url: https://x.com/AuthenticEgg
+    label: X (Twitter)
+    show: true
 
   - platform: Instagram
     icon: fa-instagram

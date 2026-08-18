@@ -374,21 +374,42 @@ const ProjectFilter = {
         }
 
         if (techFilter) {
-            const techSet = new Set();
+            const techMap = new Map();
+
+            // 1. Collect from project cards with original casing
             projectCards.forEach(card => {
-                const tags = card.dataset.tech ? card.dataset.tech.split(',') : [];
-                tags.forEach(t => {
-                    const clean = t.trim();
-                    if (clean) techSet.add(clean);
+                const tags = card.querySelectorAll('.tech-tag:not(.tech-tag-more)');
+                tags.forEach(tag => {
+                    const txt = tag.textContent.trim();
+                    if (txt && !txt.startsWith('+')) {
+                        const lower = txt.toLowerCase();
+                        if (!techMap.has(lower)) {
+                            techMap.set(lower, txt);
+                        }
+                    }
                 });
             });
 
-            const sortedTech = [...techSet].sort((a, b) => a.localeCompare(b));
+            // 2. Also collect from Column 3 skill tags for seamless cross-filtering
+            const skillTags = document.querySelectorAll('.skill-tag');
+            skillTags.forEach(tag => {
+                const txt = tag.textContent.trim();
+                if (txt) {
+                    const lower = txt.toLowerCase();
+                    if (!techMap.has(lower)) {
+                        techMap.set(lower, txt);
+                    }
+                }
+            });
+
+            // Sort alphabetically by display name
+            const sortedEntries = [...techMap.entries()].sort((a, b) => a[1].localeCompare(b[1]));
+
             techFilter.innerHTML = '<option value="all">All Technologies</option>';
-            sortedTech.forEach(t => {
+            sortedEntries.forEach(([val, label]) => {
                 const opt = document.createElement('option');
-                opt.value = t.toLowerCase();
-                opt.textContent = t.charAt(0).toUpperCase() + t.slice(1);
+                opt.value = val;
+                opt.textContent = label;
                 techFilter.appendChild(opt);
             });
         }
@@ -402,7 +423,7 @@ const ProjectFilter = {
         const emptyState = document.getElementById('projectsEmpty');
 
         const query = searchInput ? searchInput.value.trim().toLowerCase() : '';
-        const selectedTech = techFilter ? techFilter.value.toLowerCase() : 'all';
+        const selectedTech = techFilter ? techFilter.value.trim().toLowerCase() : 'all';
         const selectedYear = yearFilter ? yearFilter.value : 'all';
 
         if (searchClear) {
@@ -423,7 +444,14 @@ const ProjectFilter = {
             const desc = (card.dataset.desc || '').toLowerCase();
 
             const matchesYear = (selectedYear === 'all' || year === selectedYear);
-            const matchesTech = (selectedTech === 'all' || tech.includes(selectedTech));
+
+            // Case-insensitive & alias-aware tech matching
+            let matchesTech = (selectedTech === 'all');
+            if (!matchesTech) {
+                const cardTechs = tech.split(',').map(s => s.trim().toLowerCase());
+                matchesTech = cardTechs.some(t => t === selectedTech || selectedTech.includes(t) || t.includes(selectedTech));
+            }
+
             const matchesQuery = (!query || name.includes(query) || desc.includes(query) || tech.includes(query));
 
             if (matchesYear && matchesTech && matchesQuery) {
@@ -501,12 +529,19 @@ function resetProjectFilters() {
 function filterByTechTag(tagName) {
     AppRouter.navigate('projects');
     const techFilter = document.getElementById('techFilter');
+    const searchInput = document.getElementById('projectSearchInput');
+
+    // Clear search box so the tech dropdown filter controls the view
+    if (searchInput) searchInput.value = '';
+
     if (techFilter) {
         const tagLower = tagName.trim().toLowerCase();
         let matched = false;
 
         for (let i = 0; i < techFilter.options.length; i++) {
-            if (techFilter.options[i].value.toLowerCase() === tagLower || techFilter.options[i].text.toLowerCase() === tagLower) {
+            const optVal = techFilter.options[i].value.toLowerCase();
+            const optTxt = techFilter.options[i].text.toLowerCase();
+            if (optVal === tagLower || optTxt === tagLower || tagLower.includes(optVal) || optVal.includes(tagLower)) {
                 techFilter.selectedIndex = i;
                 matched = true;
                 break;
@@ -514,13 +549,17 @@ function filterByTechTag(tagName) {
         }
 
         if (!matched) {
-            const searchInput = document.getElementById('projectSearchInput');
-            if (searchInput) searchInput.value = tagName;
+            const newOpt = document.createElement('option');
+            newOpt.value = tagLower;
+            newOpt.textContent = tagName;
+            techFilter.appendChild(newOpt);
+            techFilter.value = tagLower;
         }
     }
 
+    closeAllMobileSidebars();
     ProjectFilter.filter();
-    ToastManager.show(`Filtered by tag: ${tagName}`, 'info', 2000);
+    ToastManager.show(`Filtered by: ${tagName}`, 'info', 2000);
 }
 
 // ====================================================================
@@ -613,6 +652,31 @@ async function loadAndRenderBlogPost(url) {
         }
 
         blogPostFull.innerHTML = fullHTML;
+
+        // Calculate and append reading time if missing
+        const text = (content ? content.innerText : blogPostFull.innerText) || '';
+        const wordCount = text.trim().split(/\s+/).filter(Boolean).length;
+        const readingMinutes = Math.max(1, Math.ceil(wordCount / 200));
+        const dateMeta = blogPostFull.querySelector('.blog-post-meta');
+        if (dateMeta && !dateMeta.querySelector('.blog-post-reading-time')) {
+            const details = dateMeta.querySelector('.blog-post-meta-details') || dateMeta;
+            const readingSpan = document.createElement('span');
+            readingSpan.className = 'blog-post-reading-time';
+            readingSpan.innerHTML = `<i class="fas fa-clock"></i> ${readingMinutes} min read`;
+            details.appendChild(readingSpan);
+        }
+
+        // Enhance code blocks with copy buttons and language badges
+        enhanceCodeBlocks(blogPostFull);
+
+        // Wrap tables in responsive horizontal scrollers
+        wrapBlogTables(blogPostFull);
+
+        // Generate Table of Contents
+        generateBlogTOC(blogPostFull);
+
+        // Setup Image & Diagram Lightbox Zoom
+        setupImageLightbox(blogPostFull);
 
         // Render Mermaid Diagrams if present
         await renderMermaidInElement(blogPostFull);
@@ -830,21 +894,166 @@ function scrollToTop() {
 
 function handleScrollEvents() {
     const btn = document.getElementById('scrollToTopBtn');
-    if (!btn) return;
+    const progressBar = document.getElementById('scrollProgressBar');
 
     const mainContent = document.getElementById('mainContent');
-    const mainScroll = mainContent ? mainContent.scrollTop : 0;
-    const windowScroll = window.scrollY || document.documentElement.scrollTop;
+    const isMainScrollable = mainContent && (mainContent.scrollHeight > mainContent.clientHeight);
 
-    if (mainScroll > 300 || windowScroll > 300) {
-        btn.classList.add('visible');
+    let scrollTop = 0;
+    let scrollHeight = 0;
+    let clientHeight = 0;
+
+    if (isMainScrollable) {
+        scrollTop = mainContent.scrollTop;
+        scrollHeight = mainContent.scrollHeight;
+        clientHeight = mainContent.clientHeight;
     } else {
-        btn.classList.remove('visible');
+        scrollTop = window.scrollY || document.documentElement.scrollTop;
+        scrollHeight = document.documentElement.scrollHeight;
+        clientHeight = window.innerHeight;
+    }
+
+    // Scroll-to-top button visibility
+    if (btn) {
+        if (scrollTop > 300) {
+            btn.classList.add('visible');
+        } else {
+            btn.classList.remove('visible');
+        }
+    }
+
+    // Reading progress bar calculation
+    if (progressBar) {
+        const totalScrollable = scrollHeight - clientHeight;
+        if (totalScrollable > 40) {
+            const progress = Math.min(100, Math.max(0, (scrollTop / totalScrollable) * 100));
+            progressBar.style.width = `${progress}%`;
+            progressBar.style.opacity = '1';
+        } else {
+            progressBar.style.width = '0%';
+            progressBar.style.opacity = '0';
+        }
+    }
+
+    // Update active TOC item based on scroll position
+    updateTocScrollSpy();
+}
+
+// ====================================================================
+// 11. Code Block Copy & Language Badge Enhancer
+// ====================================================================
+function enhanceCodeBlocks(container = document) {
+    const codeBlocks = container.querySelectorAll('pre code');
+    codeBlocks.forEach(code => {
+        const pre = code.parentElement;
+        if (!pre || pre.classList.contains('mermaid') || pre.dataset.enhanced) return;
+        pre.dataset.enhanced = 'true';
+
+        // Detect language class (e.g. language-javascript, language-yaml, language-rust)
+        let lang = 'CODE';
+        for (const cls of code.classList) {
+            if (cls.startsWith('language-')) {
+                lang = cls.replace('language-', '').toUpperCase();
+                break;
+            }
+        }
+
+        // Create container wrapper
+        const wrapper = document.createElement('div');
+        wrapper.className = 'code-block-wrapper';
+        pre.parentNode.insertBefore(wrapper, pre);
+        wrapper.appendChild(pre);
+
+        // Create header
+        const header = document.createElement('div');
+        header.className = 'code-block-header';
+        header.innerHTML = `
+            <span class="code-lang-tag">${lang}</span>
+            <button class="code-copy-btn" aria-label="Copy Code to Clipboard" title="Copy code">
+                <i class="far fa-copy"></i> <span>Copy</span>
+            </button>
+        `;
+        wrapper.insertBefore(header, pre);
+
+        const copyBtn = header.querySelector('.code-copy-btn');
+        copyBtn.addEventListener('click', async () => {
+            const rawCode = code.innerText;
+            try {
+                await navigator.clipboard.writeText(rawCode);
+                copyBtn.innerHTML = '<i class="fas fa-check"></i> <span>Copied!</span>';
+                copyBtn.classList.add('copied');
+                ToastManager.show('Code snippet copied to clipboard!', 'success', 2000);
+                setTimeout(() => {
+                    copyBtn.innerHTML = '<i class="far fa-copy"></i> <span>Copy</span>';
+                    copyBtn.classList.remove('copied');
+                }, 2000);
+            } catch (err) {
+                console.error('Clipboard copy failed:', err);
+                ToastManager.show('Failed to copy code', 'error', 2000);
+            }
+        });
+    });
+}
+
+// ====================================================================
+// 12. Live GitHub Repository Telemetry
+// ====================================================================
+async function fetchGitHubStats() {
+    const statContainers = document.querySelectorAll('[data-github-repo]');
+    if (!statContainers.length) return;
+
+    statContainers.forEach(async (container) => {
+        const repo = container.dataset.githubRepo;
+        if (!repo) return;
+
+        const cacheKey = `gh_stats_${repo}`;
+        const cachedData = sessionStorage.getItem(cacheKey);
+
+        if (cachedData) {
+            try {
+                const { stars, forks } = JSON.parse(cachedData);
+                renderStats(container, stars, forks);
+                return;
+            } catch (e) {
+                // Invalid cache, continue fetch
+            }
+        }
+
+        try {
+            const response = await fetch(`https://api.github.com/repos/${repo}`, {
+                headers: { 'Accept': 'application/vnd.github.v3+json' }
+            });
+            if (response.ok) {
+                const data = await response.json();
+                const stars = data.stargazers_count || 0;
+                const forks = data.forks_count || 0;
+                sessionStorage.setItem(cacheKey, JSON.stringify({ stars, forks }));
+                renderStats(container, stars, forks);
+            } else {
+                container.style.display = 'none';
+            }
+        } catch (err) {
+            console.warn(`Failed to fetch stats for ${repo}:`, err);
+            container.style.display = 'none';
+        }
+    });
+
+    function renderStats(container, stars, forks) {
+        container.innerHTML = `
+            <span class="gh-stat-chip" title="${stars} Stars on GitHub">
+                <i class="fas fa-star"></i> <span>${stars}</span>
+            </span>
+            ${forks > 0 ? `
+            <span class="gh-stat-chip" title="${forks} Forks on GitHub">
+                <i class="fas fa-code-fork"></i> <span>${forks}</span>
+            </span>` : ''}
+        `;
+        container.classList.add('loaded');
     }
 }
 
 // ====================================================================
-// 11. Client-Side Resume PDF Generator
+// 13. Client-Side Resume PDF Generator
 // ====================================================================
 function loadScript(src) {
     return new Promise((resolve, reject) => {
@@ -943,7 +1152,320 @@ async function downloadResumePDF() {
 }
 
 // ====================================================================
-// 12. App Initialization
+// 14. Native DOM GitHub Contribution Heatmap
+// ====================================================================
+async function renderGitHubHeatmap() {
+    const grid = document.getElementById('ghHeatmapGrid');
+    const summary = document.getElementById('ghHeatmapSummary');
+    if (!grid) return;
+
+    const username = '0xb01';
+    const totalWeeks = 16;
+    const totalDays = totalWeeks * 7;
+    const cacheKey = `gh_contrib_v4_${username}`;
+
+    let contribData = null;
+    const cached = sessionStorage.getItem(cacheKey);
+
+    if (cached) {
+        try {
+            contribData = JSON.parse(cached);
+        } catch (e) {
+            // invalid cache
+        }
+    }
+
+    if (!contribData) {
+        try {
+            // High-reliability GitHub Contributions API
+            const res = await fetch(`https://github-contributions-api.jogruber.de/v4/${username}?y=last`);
+            if (res.ok) {
+                contribData = await res.json();
+                sessionStorage.setItem(cacheKey, JSON.stringify(contribData));
+            }
+        } catch (err) {
+            console.warn('Primary contributions API failed, attempting fallback...', err);
+        }
+    }
+
+    let allDays = [];
+    let totalYear = 0;
+
+    if (contribData && Array.isArray(contribData.contributions)) {
+        allDays = contribData.contributions;
+        totalYear = contribData.total ? (contribData.total.lastYear || contribData.total[Object.keys(contribData.total)[0]] || 0) : 0;
+    }
+
+    // Take the most recent totalDays (last 16 weeks)
+    const recentDays = allDays.length >= totalDays 
+        ? allDays.slice(-totalDays) 
+        : allDays;
+
+    grid.innerHTML = '';
+
+    if (recentDays.length > 0) {
+        recentDays.forEach(day => {
+            const div = document.createElement('div');
+            const lvl = Math.min(4, Math.max(0, day.level || 0));
+            div.className = `gh-cell lvl-${lvl}`;
+            
+            // Format nice date tooltip
+            let formattedDate = day.date;
+            try {
+                const parts = day.date.split('-');
+                const d = new Date(parts[0], parts[1] - 1, parts[2]);
+                formattedDate = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+            } catch (e) {}
+
+            div.title = day.count > 0 
+                ? `${day.count} contribution${day.count > 1 ? 's' : ''} on ${formattedDate}`
+                : `No contributions on ${formattedDate}`;
+            grid.appendChild(div);
+        });
+
+        if (summary) {
+            summary.textContent = totalYear > 0 
+                ? `${totalYear} contributions / year` 
+                : `${recentDays.reduce((a, c) => a + (c.count || 0), 0)} recent activities`;
+        }
+    } else {
+        // Fallback placeholder grid so it never looks blank
+        for (let i = 0; i < totalDays; i++) {
+            const div = document.createElement('div');
+            div.className = 'gh-cell lvl-0';
+            div.title = 'Activity tracker';
+            grid.appendChild(div);
+        }
+        if (summary) summary.textContent = 'Active on GitHub';
+    }
+}
+
+// ====================================================================
+// 15. Dynamic Table of Contents (TOC) with ScrollSpy
+// ====================================================================
+function generateBlogTOC(container) {
+    const postArticle = container || document.getElementById('blogPostFull');
+    if (!postArticle) return;
+
+    // Remove existing TOC if already rendered
+    const existingToc = postArticle.querySelector('.blog-toc-card');
+    if (existingToc) existingToc.remove();
+
+    const contentArea = postArticle.querySelector('.blog-post-content');
+    if (!contentArea) return;
+
+    const headings = contentArea.querySelectorAll('h2, h3');
+    if (headings.length < 2) return; // Only show for multi-section posts
+
+    const tocCard = document.createElement('nav');
+    tocCard.className = 'blog-toc-card';
+    tocCard.setAttribute('aria-label', 'Table of Contents');
+
+    const header = document.createElement('div');
+    header.className = 'blog-toc-header';
+    header.innerHTML = `
+        <div class="blog-toc-title-wrap">
+            <i class="fas fa-list-ul"></i>
+            <span class="blog-toc-title">Table of Contents</span>
+            <span class="blog-toc-badge">${headings.length} sections</span>
+        </div>
+        <button class="blog-toc-toggle-btn" aria-label="Toggle Table of Contents" title="Collapse outline">
+            <i class="fas fa-chevron-down"></i>
+        </button>
+    `;
+
+    const list = document.createElement('ul');
+    list.className = 'blog-toc-list';
+
+    headings.forEach((heading, idx) => {
+        if (!heading.id) {
+            const cleanSlug = heading.textContent
+                .trim()
+                .toLowerCase()
+                .replace(/[^\w\s-]/g, '')
+                .replace(/\s+/g, '-');
+            heading.id = cleanSlug || `section-${idx + 1}`;
+        }
+
+        const li = document.createElement('li');
+        li.className = `blog-toc-item level-${heading.tagName.toLowerCase()}`;
+
+        const a = document.createElement('a');
+        a.href = `#${heading.id}`;
+        a.className = 'blog-toc-link';
+        a.textContent = heading.textContent.replace(/^#+\s*/, '').trim();
+        a.dataset.targetId = heading.id;
+
+        a.addEventListener('click', (e) => {
+            e.preventDefault();
+            const target = document.getElementById(heading.id);
+            if (target) {
+                const headerOffset = 80;
+                const elementPosition = target.getBoundingClientRect().top;
+                const mainContent = document.getElementById('mainContent');
+
+                if (mainContent && mainContent.scrollHeight > mainContent.clientHeight) {
+                    const offsetPosition = elementPosition + mainContent.scrollTop - headerOffset;
+                    mainContent.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                } else {
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                }
+
+                history.replaceState(null, null, `#${heading.id}`);
+                list.querySelectorAll('.blog-toc-link').forEach(link => link.classList.remove('active'));
+                a.classList.add('active');
+            }
+        });
+
+        li.appendChild(a);
+        list.appendChild(li);
+    });
+
+    tocCard.appendChild(header);
+    tocCard.appendChild(list);
+
+    header.addEventListener('click', () => {
+        tocCard.classList.toggle('collapsed');
+    });
+
+    contentArea.parentNode.insertBefore(tocCard, contentArea);
+}
+
+function updateTocScrollSpy() {
+    const tocList = document.querySelector('.blog-toc-list');
+    if (!tocList) return;
+
+    const headings = document.querySelectorAll('.blog-post-content h2, .blog-post-content h3');
+    if (!headings.length) return;
+
+    let activeId = '';
+    const mainContent = document.getElementById('mainContent');
+    const scrollPos = (mainContent?.scrollTop || window.scrollY || 0) + 120;
+
+    headings.forEach(heading => {
+        const top = heading.getBoundingClientRect().top + (mainContent?.scrollTop || window.scrollY || 0);
+        if (top <= scrollPos) {
+            activeId = heading.id;
+        }
+    });
+
+    if (activeId) {
+        const links = tocList.querySelectorAll('.blog-toc-link');
+        links.forEach(link => {
+            if (link.dataset.targetId === activeId) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        });
+    }
+}
+
+// ====================================================================
+// 16. Image & Diagram Lightbox with Zoom Controls
+// ====================================================================
+let currentLightboxZoom = 1;
+
+function setupImageLightbox(container) {
+    const root = container || document;
+    const images = root.querySelectorAll('.blog-post-content img, .blog-post-full img:not(.sidebar-avatar):not(.gh-chart-img)');
+
+    images.forEach(img => {
+        if (img.classList.contains('lightbox-enabled')) return;
+        img.classList.add('lightbox-enabled', 'zoomable-image');
+        img.title = img.title || img.alt || 'Click to zoom';
+
+        img.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            openImageLightbox(img.src, img.alt || img.title || 'Diagram / Image Preview');
+        });
+    });
+}
+
+function openImageLightbox(src, caption) {
+    const modal = document.getElementById('imageLightboxModal');
+    const img = document.getElementById('lightboxImage');
+    const captionEl = document.getElementById('lightboxCaption');
+    const downloadBtn = document.getElementById('lightboxDownloadBtn');
+
+    if (!modal || !img) return;
+
+    currentLightboxZoom = 1;
+    img.style.transform = `scale(${currentLightboxZoom})`;
+    img.src = src;
+
+    if (captionEl) {
+        captionEl.innerHTML = `<i class="fas fa-image"></i> <span>${caption || 'Image preview'}</span>`;
+    }
+    if (downloadBtn) {
+        downloadBtn.href = src;
+    }
+
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeImageLightbox() {
+    const modal = document.getElementById('imageLightboxModal');
+    if (!modal) return;
+
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+}
+
+function zoomLightboxImage(delta) {
+    const img = document.getElementById('lightboxImage');
+    if (!img) return;
+
+    currentLightboxZoom = Math.min(3.5, Math.max(0.5, currentLightboxZoom + delta));
+    img.style.transform = `scale(${currentLightboxZoom})`;
+}
+
+function resetLightboxZoom() {
+    const img = document.getElementById('lightboxImage');
+    if (!img) return;
+
+    currentLightboxZoom = 1;
+    img.style.transform = `scale(1)`;
+}
+
+function handleLightboxViewportClick(e) {
+    if (e.target.id === 'lightboxViewport' || e.target.classList.contains('lightbox-viewport')) {
+        closeImageLightbox();
+    }
+}
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        const modal = document.getElementById('imageLightboxModal');
+        if (modal && modal.classList.contains('active')) {
+            closeImageLightbox();
+        }
+    }
+});
+
+// ====================================================================
+// 17. Responsive Blog Table Wrapper
+// ====================================================================
+function wrapBlogTables(container) {
+    const root = container || document;
+    const tables = root.querySelectorAll('.blog-post-content table, .blog-post-full table');
+
+    tables.forEach(table => {
+        if (table.parentNode && table.parentNode.classList.contains('table-responsive-wrapper')) return;
+        const wrapper = document.createElement('div');
+        wrapper.className = 'table-responsive-wrapper';
+        table.parentNode.insertBefore(wrapper, table);
+        wrapper.appendChild(table);
+    });
+}
+
+// ====================================================================
+// 18. App Initialization
 // ====================================================================
 document.addEventListener('DOMContentLoaded', () => {
     ThemeManager.init();
@@ -951,6 +1473,12 @@ document.addEventListener('DOMContentLoaded', () => {
     AppRouter.init();
     updateTimezone();
     setInterval(updateTimezone, 30000); // Check every 30s
+    enhanceCodeBlocks();
+    wrapBlogTables();
+    fetchGitHubStats();
+    renderGitHubHeatmap();
+    generateBlogTOC();
+    setupImageLightbox();
 
     window.addEventListener('scroll', handleScrollEvents, { passive: true });
     const mainContent = document.getElementById('mainContent');

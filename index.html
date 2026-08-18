@@ -62,11 +62,17 @@ image: /res/me.jpg
                     <p class="blog-card-excerpt">{{ post.excerpt | strip_html | truncatewords: 25 }}</p>
                     <div class="blog-card-meta">
                         <span class="blog-card-date">
-                            <i class="fas fa-calendar"></i>
+                            <i class="fas fa-calendar-alt"></i>
                             {{ post.date | date: "%b %d, %Y" }}
                         </span>
+                        {%- assign words = post.content | strip_html | number_of_words -%}
+                        {%- assign reading_time = words | divided_by: 200 | plus: 1 -%}
+                        <span class="blog-card-reading-time">
+                            <i class="fas fa-clock"></i>
+                            {{ reading_time }} min read
+                        </span>
                         <span class="blog-card-read-more">
-                            Read Article <i class="fas fa-arrow-right"></i>
+                            Read <i class="fas fa-arrow-right"></i>
                         </span>
                     </div>
                 </article>

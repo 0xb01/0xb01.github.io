@@ -33,6 +33,10 @@
           <div class="project-info">
             <div class="project-header">
               <h4 class="project-name">{{ project.name | replace_first: project_icon, '' | strip }}</h4>
+              {%- if project.url contains "github.com/0xb01" -%}
+                {%- assign repo_slug = project.url | split: "github.com/" | last -%}
+                <div class="project-gh-stats" data-github-repo="{{ repo_slug }}"></div>
+              {%- endif -%}
             </div>
             <p class="project-description">{{ project.description }}</p>
           </div>
@@ -41,7 +45,7 @@
         <div class="project-meta">
           <div class="project-techstack" data-hidden-count="{{ hidden_count }}">
             {%- for tech in project.tech_stack limit: max_visible_tags -%}
-              <span class="tech-tag">{{ tech }}</span>
+              <span class="tech-tag" onclick="filterByTechTag('{{ tech }}')" title="Filter by {{ tech }}">{{ tech }}</span>
             {%- endfor -%}
             {%- if hidden_count > 0 -%}
               <span class="tech-tag tech-tag-more">+{{ hidden_count }}</span>
@@ -49,7 +53,7 @@
             {%- if hidden_count > 0 -%}
             <div class="tech-stack-full">
               {%- for tech in project.tech_stack -%}
-                <span class="tech-tag">{{ tech }}</span>
+                <span class="tech-tag" onclick="filterByTechTag('{{ tech }}')" title="Filter by {{ tech }}">{{ tech }}</span>
               {%- endfor -%}
             </div>
             {%- endif -%}

@@ -22,31 +22,9 @@
             }
         })();
     </script>
-    <link type="application/atom+xml" rel="alternate" href="https://banikaz.online/feed.xml" title="Banikaz" />
-    <!-- Begin Jekyll SEO tag v2.7.1 -->
-<title>Haha… Worker | Banikaz</title>
-<meta name="generator" content="Jekyll v3.9.5" />
-<meta property="og:title" content="Haha… Worker" />
-<meta name="author" content="Banikaz" />
-<meta property="og:locale" content="en_US" />
-<meta name="description" content="Just wanted to share something… a worker, yes. My first CloudFlare Worker!" />
-<meta property="og:description" content="Just wanted to share something… a worker, yes. My first CloudFlare Worker!" />
-<link rel="canonical" href="https://banikaz.online/tech/2026/05/12/haha-worker.html" />
-<meta property="og:url" content="https://banikaz.online/tech/2026/05/12/haha-worker.html" />
-<meta property="og:site_name" content="Banikaz" />
-<meta property="og:image" content="https://banikaz.online/res/me.jpg" />
-<meta property="og:type" content="article" />
-<meta property="article:published_time" content="2026-05-12T10:18:00+08:00" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta property="twitter:image" content="https://banikaz.online/res/me.jpg" />
-<meta property="twitter:title" content="Haha… Worker" />
-<meta name="twitter:site" content="@0xb01" />
-<meta name="twitter:creator" content="@0xb01" />
-<script type="application/ld+json">
-{"@type":"BlogPosting","description":"Just wanted to share something… a worker, yes. My first CloudFlare Worker!","image":"https://banikaz.online/res/me.jpg","author":{"@type":"Person","name":"Banikaz"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://banikaz.online/res/me.jpg"},"name":"Banikaz"},"headline":"Haha… Worker","dateModified":"2026-05-12T10:18:00+08:00","datePublished":"2026-05-12T10:18:00+08:00","url":"https://banikaz.online/tech/2026/05/12/haha-worker.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://banikaz.online/tech/2026/05/12/haha-worker.html"},"@context":"https://schema.org"}</script>
-<!-- End Jekyll SEO tag -->
-
+</head>
 <body class="blog-view">
+    <div id="scrollProgressBar" class="scroll-progress-bar" aria-hidden="true"></div>
     <header class="mobile-app-bar" id="mobileAppBar">
     <button class="mobile-app-bar-btn" onclick="toggleMobileSidebar('left')" aria-label="Open navigation menu">
         <i class="fas fa-bars-staggered"></i>
@@ -160,6 +138,36 @@
                     </li></ul>
     </div>
 
+    <!-- GitHub Contribution Activity Heatmap -->
+    <div class="github-activity-section" id="githubActivitySection">
+        <div class="gh-chart-header">
+            <span class="gh-chart-title">
+                <i class="fab fa-github"></i> Activity
+            </span>
+            <a href="https://github.com/0xb01" target="_blank" rel="noopener noreferrer" class="gh-chart-link" title="Open GitHub Profile">
+                <span>@0xb01</span>
+                <i class="fas fa-arrow-up-right-from-square"></i>
+            </a>
+        </div>
+        <div class="gh-heatmap-container">
+            <div class="gh-heatmap-grid" id="ghHeatmapGrid" aria-label="GitHub Contributions Heatmap">
+                <!-- Dynamically populated cells -->
+            </div>
+            <div class="gh-heatmap-footer">
+                <span class="gh-heatmap-summary" id="ghHeatmapSummary">Loading activity...</span>
+                <div class="gh-heatmap-legend">
+                    <span class="gh-legend-txt">Less</span>
+                    <span class="gh-cell lvl-0"></span>
+                    <span class="gh-cell lvl-1"></span>
+                    <span class="gh-cell lvl-2"></span>
+                    <span class="gh-cell lvl-3"></span>
+                    <span class="gh-cell lvl-4"></span>
+                    <span class="gh-legend-txt">More</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="social-section">
         <h3 class="sidebar-section-title">
             <i class="fas fa-share-nodes"></i> Connect
@@ -170,6 +178,8 @@
                         <i class="fab fa-linkedin-in"></i>
                     </a><a href="https://www.youtube.com/@JuanNicolasMe" class="social-link" aria-label="YouTube" target="_blank" rel="noopener noreferrer" title="YouTube">
                         <i class="fab fa-youtube"></i>
+                    </a><a href="https://x.com/AuthenticEgg" class="social-link" aria-label="X (Twitter)" target="_blank" rel="noopener noreferrer" title="X (Twitter)">
+                        <i class="fab fa-x-twitter"></i>
                     </a></div>
     </div>
 </div>
@@ -188,7 +198,13 @@
                 <article class="blog-post-full" id="blogPostFull">
                     <div class="blog-post-meta">
                         <h1 class="blog-post-title-single">Haha... Worker</h1>
-                        <time class="blog-post-date-full" datetime="2026-05-12T10:18:00+08:00">May 12, 2026</time>
+                        <div class="blog-post-meta-details">
+                            <time class="blog-post-date-full" datetime="2026-05-12T10:18:00+08:00">
+                                <i class="fas fa-calendar-alt"></i> May 12, 2026
+                            </time><span class="blog-post-reading-time">
+                                <i class="fas fa-clock"></i> 1 min read
+                            </span>
+                        </div>
                     </div>
                     <div class="blog-post-content">
                         <p>Just wanted to share something… a worker, yes. My first CloudFlare Worker!</p>
@@ -201,22 +217,21 @@
 
                     <!-- Share Section -->
                     <div class="share-section">
-                        <hr class="share-separator">
                         <div class="share-url">
-                            <span>https://banikaz.online/tech/2026/05/12/haha-worker.html</span>
+                            <span>http://localhost:4000/tech/2026/05/12/haha-worker.html</span>
                         </div>
                         <div class="share-buttons">
                             <span class="share-label">Share:</span>
-                            <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fbanikaz.online%2Ftech%2F2026%2F05%2F12%2Fhaha-worker.html&text=Haha...+Worker" class="share-btn" target="_blank" rel="noopener" aria-label="Share on Twitter">
-                                <i class="fab fa-twitter"></i>
+                            <a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Flocalhost%3A4000%2Ftech%2F2026%2F05%2F12%2Fhaha-worker.html&text=Haha...+Worker&via=0xb01" class="share-btn" target="_blank" rel="noopener" aria-label="Share on X">
+                                <i class="fab fa-x-twitter"></i>
                             </a>
-                            <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fbanikaz.online%2Ftech%2F2026%2F05%2F12%2Fhaha-worker.html" class="share-btn" target="_blank" rel="noopener" aria-label="Share on Facebook">
+                            <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Ftech%2F2026%2F05%2F12%2Fhaha-worker.html" class="share-btn" target="_blank" rel="noopener" aria-label="Share on Facebook">
                                 <i class="fab fa-facebook-f"></i>
                             </a>
-                            <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fbanikaz.online%2Ftech%2F2026%2F05%2F12%2Fhaha-worker.html&title=Haha...+Worker" class="share-btn" target="_blank" rel="noopener" aria-label="Share on LinkedIn">
+                            <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Ftech%2F2026%2F05%2F12%2Fhaha-worker.html&title=Haha...+Worker" class="share-btn" target="_blank" rel="noopener" aria-label="Share on LinkedIn">
                                 <i class="fab fa-linkedin-in"></i>
                             </a>
-                            <a href="https://reddit.com/submit?url=https%3A%2F%2Fbanikaz.online%2Ftech%2F2026%2F05%2F12%2Fhaha-worker.html&title=Haha...+Worker" class="share-btn" target="_blank" rel="noopener" aria-label="Share on Reddit">
+                            <a href="https://reddit.com/submit?url=http%3A%2F%2Flocalhost%3A4000%2Ftech%2F2026%2F05%2F12%2Fhaha-worker.html&title=Haha...+Worker" class="share-btn" target="_blank" rel="noopener" aria-label="Share on Reddit">
                                 <i class="fab fa-reddit-alien"></i>
                             </a>
                             <button class="share-btn" onclick="copyUrl()" aria-label="Copy link">
@@ -259,11 +274,46 @@
         <i class="fas fa-chevron-up"></i>
     </button>
 
+    <!-- ==============================================================================
+     Full-Resolution Image & Architecture Diagram Lightbox Modal
+     ============================================================================== -->
+<div id="imageLightboxModal" class="image-lightbox-modal" aria-hidden="true" role="dialog" aria-label="Image Zoom Preview">
+    <div class="lightbox-backdrop" onclick="closeImageLightbox()"></div>
+    <div class="lightbox-container">
+        <div class="lightbox-toolbar">
+            <div class="lightbox-caption" id="lightboxCaption">
+                <i class="fas fa-image"></i> <span>Image preview</span>
+            </div>
+            <div class="lightbox-actions">
+                <button class="lightbox-btn" onclick="zoomLightboxImage(0.25)" title="Zoom in (+)" aria-label="Zoom in">
+                    <i class="fas fa-search-plus"></i>
+                </button>
+                <button class="lightbox-btn" onclick="zoomLightboxImage(-0.25)" title="Zoom out (-)" aria-label="Zoom out">
+                    <i class="fas fa-search-minus"></i>
+                </button>
+                <button class="lightbox-btn" onclick="resetLightboxZoom()" title="Reset zoom" aria-label="Reset zoom">
+                    <i class="fas fa-expand"></i>
+                </button>
+                <a id="lightboxDownloadBtn" href="" target="_blank" rel="noopener" class="lightbox-btn" title="Open in new tab" aria-label="Open original image">
+                    <i class="fas fa-arrow-up-right-from-square"></i>
+                </a>
+                <button class="lightbox-btn close-btn" onclick="closeImageLightbox()" title="Close (Esc)" aria-label="Close lightbox">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="lightbox-viewport" id="lightboxViewport" onclick="handleLightboxViewportClick(event)">
+            <img id="lightboxImage" src="" alt="Enlarged view" class="lightbox-img">
+        </div>
+    </div>
+</div>
+
+
     <script src="/res/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.0/dist/mermaid.min.js"></script>
     <script>
         mermaid.initialize({ startOnLoad: false, theme: 'default' });
-        
+
         // Copy URL function
         function copyUrl() {
             const url = window.location.href;
@@ -290,7 +340,7 @@
                 document.body.removeChild(textArea);
             });
         }
-        
+
         // Initialize Mermaid on page load for direct URL access
         document.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() {
@@ -303,7 +353,7 @@
                         div.textContent = code.textContent.trim();
                         pre.parentNode.replaceChild(div, pre);
                     });
-                    
+
                     mermaid.initialize({ startOnLoad: false, theme: 'default' });
                     const mermaidDivs = document.querySelectorAll('.mermaid');
                     mermaidDivs.forEach((div, i) => {

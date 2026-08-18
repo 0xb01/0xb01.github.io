@@ -21,7 +21,7 @@
             }
         })();
     </script>
-    <link type="application/atom+xml" rel="alternate" href="https://banikaz.online/feed.xml" title="Banikaz" />
+    <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Banikaz" />
     <!-- Begin Jekyll SEO tag v2.7.1 -->
 <title>Banikaz • Principal Software Engineer | Banikaz</title>
 <meta name="generator" content="Jekyll v3.9.5" />
@@ -30,21 +30,21 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Multi-platform engineer specializing in low-level automation, desktop application architectures, and robust backend ecosystems." />
 <meta property="og:description" content="Multi-platform engineer specializing in low-level automation, desktop application architectures, and robust backend ecosystems." />
-<link rel="canonical" href="https://banikaz.online/" />
-<meta property="og:url" content="https://banikaz.online/" />
+<link rel="canonical" href="http://localhost:4000/" />
+<meta property="og:url" content="http://localhost:4000/" />
 <meta property="og:site_name" content="Banikaz" />
-<meta property="og:image" content="https://banikaz.online/res/me.jpg" />
+<meta property="og:image" content="http://localhost:4000/res/me.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta property="twitter:image" content="https://banikaz.online/res/me.jpg" />
+<meta property="twitter:image" content="http://localhost:4000/res/me.jpg" />
 <meta property="twitter:title" content="Banikaz • Principal Software Engineer" />
 <meta name="twitter:site" content="@0xb01" />
 <meta name="twitter:creator" content="@0xb01" />
 <script type="application/ld+json">
-{"name":"Banikaz","@type":"WebSite","description":"Multi-platform engineer specializing in low-level automation, desktop application architectures, and robust backend ecosystems.","image":"https://banikaz.online/res/me.jpg","author":{"@type":"Person","name":"Banikaz"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://banikaz.online/res/me.jpg"},"name":"Banikaz"},"headline":"Banikaz • Principal Software Engineer","sameAs":["https://github.com/0xb01","https://www.linkedin.com/in/jnr01"],"url":"https://banikaz.online/","@context":"https://schema.org"}</script>
+{"name":"Banikaz","@type":"WebSite","image":"http://localhost:4000/res/me.jpg","description":"Multi-platform engineer specializing in low-level automation, desktop application architectures, and robust backend ecosystems.","headline":"Banikaz • Principal Software Engineer","sameAs":["https://github.com/0xb01","https://www.linkedin.com/in/jnr01"],"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/res/me.jpg"},"name":"Banikaz"},"author":{"@type":"Person","name":"Banikaz"},"url":"http://localhost:4000/","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
-</head>
 <body>
+    <div id="scrollProgressBar" class="scroll-progress-bar" aria-hidden="true"></div>
     <div id="toastContainer" class="toast-container" aria-live="polite"></div>
     <header class="mobile-app-bar" id="mobileAppBar">
     <button class="mobile-app-bar-btn" onclick="toggleMobileSidebar('left')" aria-label="Open navigation menu">
@@ -161,6 +161,36 @@
                     </li></ul>
     </div>
 
+    <!-- GitHub Contribution Activity Heatmap -->
+    <div class="github-activity-section" id="githubActivitySection">
+        <div class="gh-chart-header">
+            <span class="gh-chart-title">
+                <i class="fab fa-github"></i> Activity
+            </span>
+            <a href="https://github.com/0xb01" target="_blank" rel="noopener noreferrer" class="gh-chart-link" title="Open GitHub Profile">
+                <span>@0xb01</span>
+                <i class="fas fa-arrow-up-right-from-square"></i>
+            </a>
+        </div>
+        <div class="gh-heatmap-container">
+            <div class="gh-heatmap-grid" id="ghHeatmapGrid" aria-label="GitHub Contributions Heatmap">
+                <!-- Dynamically populated cells -->
+            </div>
+            <div class="gh-heatmap-footer">
+                <span class="gh-heatmap-summary" id="ghHeatmapSummary">Loading activity...</span>
+                <div class="gh-heatmap-legend">
+                    <span class="gh-legend-txt">Less</span>
+                    <span class="gh-cell lvl-0"></span>
+                    <span class="gh-cell lvl-1"></span>
+                    <span class="gh-cell lvl-2"></span>
+                    <span class="gh-cell lvl-3"></span>
+                    <span class="gh-cell lvl-4"></span>
+                    <span class="gh-legend-txt">More</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="social-section">
         <h3 class="sidebar-section-title">
             <i class="fas fa-share-nodes"></i> Connect
@@ -171,6 +201,8 @@
                         <i class="fab fa-linkedin-in"></i>
                     </a><a href="https://www.youtube.com/@JuanNicolasMe" class="social-link" aria-label="YouTube" target="_blank" rel="noopener noreferrer" title="YouTube">
                         <i class="fab fa-youtube"></i>
+                    </a><a href="https://x.com/AuthenticEgg" class="social-link" aria-label="X (Twitter)" target="_blank" rel="noopener noreferrer" title="X (Twitter)">
+                        <i class="fab fa-x-twitter"></i>
                     </a></div>
     </div>
 </div>
@@ -576,14 +608,13 @@
           <div class="project-icon">📙</div>
           <div class="project-info">
             <div class="project-header">
-              <h4 class="project-name">Haha</h4>
-            </div>
+              <h4 class="project-name">Haha</h4></div>
             <p class="project-description">Worker that serves game details using Steam Web API and some other goodies.</p>
           </div>
         </div>
         
         <div class="project-meta">
-          <div class="project-techstack" data-hidden-count="0"><span class="tech-tag">Cloudflare Workers</span><span class="tech-tag">HTML5 / CSS3</span><span class="tech-tag">JavaScript</span><span class="tech-tag">TypeScript</span><span class="tech-tag">Steam Web API</span></div>
+          <div class="project-techstack" data-hidden-count="0"><span class="tech-tag" onclick="filterByTechTag('Cloudflare Workers')" title="Filter by Cloudflare Workers">Cloudflare Workers</span><span class="tech-tag" onclick="filterByTechTag('HTML5 / CSS3')" title="Filter by HTML5 / CSS3">HTML5 / CSS3</span><span class="tech-tag" onclick="filterByTechTag('JavaScript')" title="Filter by JavaScript">JavaScript</span><span class="tech-tag" onclick="filterByTechTag('TypeScript')" title="Filter by TypeScript">TypeScript</span><span class="tech-tag" onclick="filterByTechTag('Steam Web API')" title="Filter by Steam Web API">Steam Web API</span></div>
 
           <div class="project-actions"><div class="action-stack">
                 <span class="visibility-badge public">
@@ -606,14 +637,13 @@
           <div class="project-icon">🧹</div>
           <div class="project-info">
             <div class="project-header">
-              <h4 class="project-name">ADM</h4>
-            </div>
+              <h4 class="project-name">ADM</h4></div>
             <p class="project-description">AutoFill Data Cleaner for Microsoft Edge.</p>
           </div>
         </div>
         
         <div class="project-meta">
-          <div class="project-techstack" data-hidden-count="0"><span class="tech-tag">C++</span><span class="tech-tag">Qt</span></div>
+          <div class="project-techstack" data-hidden-count="0"><span class="tech-tag" onclick="filterByTechTag('C++')" title="Filter by C++">C++</span><span class="tech-tag" onclick="filterByTechTag('Qt')" title="Filter by Qt">Qt</span></div>
 
           <div class="project-actions"><div class="action-stack">
                 <span class="visibility-badge closed">
@@ -636,14 +666,13 @@
           <div class="project-icon">🎌</div>
           <div class="project-info">
             <div class="project-header">
-              <h4 class="project-name">Kana Practice</h4>
-            </div>
+              <h4 class="project-name">Kana Practice</h4></div>
             <p class="project-description">Interactive web app for practicing Japanese Hiragana and Katakana.</p>
           </div>
         </div>
         
         <div class="project-meta">
-          <div class="project-techstack" data-hidden-count="0"><span class="tech-tag">HTML5 / CSS3</span><span class="tech-tag">JavaScript</span></div>
+          <div class="project-techstack" data-hidden-count="0"><span class="tech-tag" onclick="filterByTechTag('HTML5 / CSS3')" title="Filter by HTML5 / CSS3">HTML5 / CSS3</span><span class="tech-tag" onclick="filterByTechTag('JavaScript')" title="Filter by JavaScript">JavaScript</span></div>
 
           <div class="project-actions"><div class="action-stack">
                 <span class="visibility-badge public">
@@ -666,14 +695,13 @@
           <div class="project-icon">🔎</div>
           <div class="project-info">
             <div class="project-header">
-              <h4 class="project-name">Zzzzz</h4>
-            </div>
+              <h4 class="project-name">Zzzzz</h4><div class="project-gh-stats" data-github-repo="0xb01/zzzzz"></div></div>
             <p class="project-description">Obsidian plugin that finds problematic files.</p>
           </div>
         </div>
         
         <div class="project-meta">
-          <div class="project-techstack" data-hidden-count="0"><span class="tech-tag">HTML5 / CSS3</span><span class="tech-tag">JavaScript</span><span class="tech-tag">NodeJS</span><span class="tech-tag">TypeScript</span></div>
+          <div class="project-techstack" data-hidden-count="0"><span class="tech-tag" onclick="filterByTechTag('HTML5 / CSS3')" title="Filter by HTML5 / CSS3">HTML5 / CSS3</span><span class="tech-tag" onclick="filterByTechTag('JavaScript')" title="Filter by JavaScript">JavaScript</span><span class="tech-tag" onclick="filterByTechTag('NodeJS')" title="Filter by NodeJS">NodeJS</span><span class="tech-tag" onclick="filterByTechTag('TypeScript')" title="Filter by TypeScript">TypeScript</span></div>
 
           <div class="project-actions"><div class="action-stack">
                 <span class="visibility-badge public">
@@ -696,14 +724,13 @@
           <div class="project-icon">🔒</div>
           <div class="project-info">
             <div class="project-header">
-              <h4 class="project-name">Auto Incognito</h4>
-            </div>
+              <h4 class="project-name">Auto Incognito</h4><div class="project-gh-stats" data-github-repo="0xb01/auto-incognito-filter"></div></div>
             <p class="project-description">Browser extension that automatically opens specified websites in incognito mode.</p>
           </div>
         </div>
         
         <div class="project-meta">
-          <div class="project-techstack" data-hidden-count="0"><span class="tech-tag">HTML5 / CSS3</span><span class="tech-tag">JavaScript</span><span class="tech-tag">NodeJS</span></div>
+          <div class="project-techstack" data-hidden-count="0"><span class="tech-tag" onclick="filterByTechTag('HTML5 / CSS3')" title="Filter by HTML5 / CSS3">HTML5 / CSS3</span><span class="tech-tag" onclick="filterByTechTag('JavaScript')" title="Filter by JavaScript">JavaScript</span><span class="tech-tag" onclick="filterByTechTag('NodeJS')" title="Filter by NodeJS">NodeJS</span></div>
 
           <div class="project-actions"><div class="action-stack">
                 <span class="visibility-badge public">
@@ -726,14 +753,13 @@
           <div class="project-icon">🌐</div>
           <div class="project-info">
             <div class="project-header">
-              <h4 class="project-name">Banikaz</h4>
-            </div>
+              <h4 class="project-name">Banikaz</h4><div class="project-gh-stats" data-github-repo="0xb01/0xb01.github.io"></div></div>
             <p class="project-description">Personal portfolio and blog website powered by GitHub Pages.</p>
           </div>
         </div>
         
         <div class="project-meta">
-          <div class="project-techstack" data-hidden-count="0"><span class="tech-tag">HTML5 / CSS3</span><span class="tech-tag">JavaScript</span></div>
+          <div class="project-techstack" data-hidden-count="0"><span class="tech-tag" onclick="filterByTechTag('HTML5 / CSS3')" title="Filter by HTML5 / CSS3">HTML5 / CSS3</span><span class="tech-tag" onclick="filterByTechTag('JavaScript')" title="Filter by JavaScript">JavaScript</span></div>
 
           <div class="project-actions"><div class="action-stack">
                 <span class="visibility-badge public">
@@ -756,14 +782,13 @@
           <div class="project-icon">🧮</div>
           <div class="project-info">
             <div class="project-header">
-              <h4 class="project-name">AkoCalc</h4>
-            </div>
+              <h4 class="project-name">AkoCalc</h4></div>
             <p class="project-description">In-line calculator with variables, basic arithmetic, and currency conversions.</p>
           </div>
         </div>
         
         <div class="project-meta">
-          <div class="project-techstack" data-hidden-count="0"><span class="tech-tag">C#</span></div>
+          <div class="project-techstack" data-hidden-count="0"><span class="tech-tag" onclick="filterByTechTag('C#')" title="Filter by C#">C#</span></div>
 
           <div class="project-actions"><div class="action-stack">
                 <span class="visibility-badge closed">
@@ -786,14 +811,13 @@
           <div class="project-icon">🔨</div>
           <div class="project-info">
             <div class="project-header">
-              <h4 class="project-name">StarfieldBatchMeshFix</h4>
-            </div>
+              <h4 class="project-name">StarfieldBatchMeshFix</h4><div class="project-gh-stats" data-github-repo="0xb01/StarfieldBatchMeshFix"></div></div>
             <p class="project-description">A mesh path migration tool for Starfield v1.11.36</p>
           </div>
         </div>
         
         <div class="project-meta">
-          <div class="project-techstack" data-hidden-count="0"><span class="tech-tag">VB.NET</span></div>
+          <div class="project-techstack" data-hidden-count="0"><span class="tech-tag" onclick="filterByTechTag('VB.NET')" title="Filter by VB.NET">VB.NET</span></div>
 
           <div class="project-actions"><div class="action-stack">
                 <span class="visibility-badge closed">
@@ -816,14 +840,13 @@
           <div class="project-icon">🕹️</div>
           <div class="project-info">
             <div class="project-header">
-              <h4 class="project-name">TnT</h4>
-            </div>
+              <h4 class="project-name">TnT</h4></div>
             <p class="project-description">Personal library and unified launcher for managing PC games.</p>
           </div>
         </div>
         
         <div class="project-meta">
-          <div class="project-techstack" data-hidden-count="0"><span class="tech-tag">C#</span><span class="tech-tag">Postman</span><span class="tech-tag">PowerShell</span></div>
+          <div class="project-techstack" data-hidden-count="0"><span class="tech-tag" onclick="filterByTechTag('C#')" title="Filter by C#">C#</span><span class="tech-tag" onclick="filterByTechTag('Postman')" title="Filter by Postman">Postman</span><span class="tech-tag" onclick="filterByTechTag('PowerShell')" title="Filter by PowerShell">PowerShell</span></div>
 
           <div class="project-actions"><div class="action-stack">
                 <span class="visibility-badge private">
@@ -846,14 +869,13 @@
           <div class="project-icon">🔊</div>
           <div class="project-info">
             <div class="project-header">
-              <h4 class="project-name">Bleepr</h4>
-            </div>
+              <h4 class="project-name">Bleepr</h4><div class="project-gh-stats" data-github-repo="0xb01/Bleepr"></div></div>
             <p class="project-description">Push-to-bleep now with a full soundboard, and a roulette for random sound playback.</p>
           </div>
         </div>
         
         <div class="project-meta">
-          <div class="project-techstack" data-hidden-count="0"><span class="tech-tag">C++</span><span class="tech-tag">Qt</span></div>
+          <div class="project-techstack" data-hidden-count="0"><span class="tech-tag" onclick="filterByTechTag('C++')" title="Filter by C++">C++</span><span class="tech-tag" onclick="filterByTechTag('Qt')" title="Filter by Qt">Qt</span></div>
 
           <div class="project-actions"><div class="action-stack">
                 <span class="visibility-badge public">
@@ -876,14 +898,13 @@
           <div class="project-icon">🎮</div>
           <div class="project-info">
             <div class="project-header">
-              <h4 class="project-name">Haiyan: PC Booster</h4>
-            </div>
+              <h4 class="project-name">Haiyan: PC Booster</h4></div>
             <p class="project-description">All-in-one Windows PC optimization tool.</p>
           </div>
         </div>
         
         <div class="project-meta">
-          <div class="project-techstack" data-hidden-count="0"><span class="tech-tag">Batch</span><span class="tech-tag">VB.NET</span></div>
+          <div class="project-techstack" data-hidden-count="0"><span class="tech-tag" onclick="filterByTechTag('Batch')" title="Filter by Batch">Batch</span><span class="tech-tag" onclick="filterByTechTag('VB.NET')" title="Filter by VB.NET">VB.NET</span></div>
 
           <div class="project-actions"><div class="action-stack">
                 <span class="visibility-badge private">
@@ -926,11 +947,14 @@
                     <p class="blog-card-excerpt">Every few years, developer portfolios tend to accumulate digital dust. What starts as a simple list of projects gradually turns into a patchwork of conflicting...</p>
                     <div class="blog-card-meta">
                         <span class="blog-card-date">
-                            <i class="fas fa-calendar"></i>
+                            <i class="fas fa-calendar-alt"></i>
                             Aug 18, 2026
+                        </span><span class="blog-card-reading-time">
+                            <i class="fas fa-clock"></i>
+                            5 min read
                         </span>
                         <span class="blog-card-read-more">
-                            Read Article <i class="fas fa-arrow-right"></i>
+                            Read <i class="fas fa-arrow-right"></i>
                         </span>
                     </div>
                 </article>
@@ -941,11 +965,14 @@
                     <p class="blog-card-excerpt">Ever noticed how your phone always shows the exact same time as the countdown on the TV news, your bank’s mobile app, and the local...</p>
                     <div class="blog-card-meta">
                         <span class="blog-card-date">
-                            <i class="fas fa-calendar"></i>
+                            <i class="fas fa-calendar-alt"></i>
                             Jun 30, 2026
+                        </span><span class="blog-card-reading-time">
+                            <i class="fas fa-clock"></i>
+                            4 min read
                         </span>
                         <span class="blog-card-read-more">
-                            Read Article <i class="fas fa-arrow-right"></i>
+                            Read <i class="fas fa-arrow-right"></i>
                         </span>
                     </div>
                 </article>
@@ -958,11 +985,14 @@
 </p>
                     <div class="blog-card-meta">
                         <span class="blog-card-date">
-                            <i class="fas fa-calendar"></i>
+                            <i class="fas fa-calendar-alt"></i>
                             May 12, 2026
+                        </span><span class="blog-card-reading-time">
+                            <i class="fas fa-clock"></i>
+                            1 min read
                         </span>
                         <span class="blog-card-read-more">
-                            Read Article <i class="fas fa-arrow-right"></i>
+                            Read <i class="fas fa-arrow-right"></i>
                         </span>
                     </div>
                 </article>
@@ -973,11 +1003,14 @@
                     <p class="blog-card-excerpt">For years, I’ve been using Google Keep for my notes. You know the ones — quick reminders, shopping lists, random thoughts at 2 AM. It’s...</p>
                     <div class="blog-card-meta">
                         <span class="blog-card-date">
-                            <i class="fas fa-calendar"></i>
+                            <i class="fas fa-calendar-alt"></i>
                             Mar 30, 2026
+                        </span><span class="blog-card-reading-time">
+                            <i class="fas fa-clock"></i>
+                            7 min read
                         </span>
                         <span class="blog-card-read-more">
-                            Read Article <i class="fas fa-arrow-right"></i>
+                            Read <i class="fas fa-arrow-right"></i>
                         </span>
                     </div>
                 </article>
@@ -990,11 +1023,14 @@
 </p>
                     <div class="blog-card-meta">
                         <span class="blog-card-date">
-                            <i class="fas fa-calendar"></i>
+                            <i class="fas fa-calendar-alt"></i>
                             Mar 29, 2026
+                        </span><span class="blog-card-reading-time">
+                            <i class="fas fa-clock"></i>
+                            2 min read
                         </span>
                         <span class="blog-card-read-more">
-                            Read Article <i class="fas fa-arrow-right"></i>
+                            Read <i class="fas fa-arrow-right"></i>
                         </span>
                     </div>
                 </article>
@@ -1007,11 +1043,14 @@
 </p>
                     <div class="blog-card-meta">
                         <span class="blog-card-date">
-                            <i class="fas fa-calendar"></i>
+                            <i class="fas fa-calendar-alt"></i>
                             Mar 13, 2026
+                        </span><span class="blog-card-reading-time">
+                            <i class="fas fa-clock"></i>
+                            2 min read
                         </span>
                         <span class="blog-card-read-more">
-                            Read Article <i class="fas fa-arrow-right"></i>
+                            Read <i class="fas fa-arrow-right"></i>
                         </span>
                     </div>
                 </article>
@@ -1022,11 +1061,14 @@
                     <p class="blog-card-excerpt">If you’ve heard Amira Elfeky’s track “Everything I Do Is For You,” you probably felt a massive wave of nostalgia hit you. It’s getting a...</p>
                     <div class="blog-card-meta">
                         <span class="blog-card-date">
-                            <i class="fas fa-calendar"></i>
+                            <i class="fas fa-calendar-alt"></i>
                             Mar 12, 2026
+                        </span><span class="blog-card-reading-time">
+                            <i class="fas fa-clock"></i>
+                            2 min read
                         </span>
                         <span class="blog-card-read-more">
-                            Read Article <i class="fas fa-arrow-right"></i>
+                            Read <i class="fas fa-arrow-right"></i>
                         </span>
                     </div>
                 </article>
@@ -1391,6 +1433,40 @@
 </button>
 
 <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.0/dist/mermaid.min.js"></script>
+    <!-- ==============================================================================
+     Full-Resolution Image & Architecture Diagram Lightbox Modal
+     ============================================================================== -->
+<div id="imageLightboxModal" class="image-lightbox-modal" aria-hidden="true" role="dialog" aria-label="Image Zoom Preview">
+    <div class="lightbox-backdrop" onclick="closeImageLightbox()"></div>
+    <div class="lightbox-container">
+        <div class="lightbox-toolbar">
+            <div class="lightbox-caption" id="lightboxCaption">
+                <i class="fas fa-image"></i> <span>Image preview</span>
+            </div>
+            <div class="lightbox-actions">
+                <button class="lightbox-btn" onclick="zoomLightboxImage(0.25)" title="Zoom in (+)" aria-label="Zoom in">
+                    <i class="fas fa-search-plus"></i>
+                </button>
+                <button class="lightbox-btn" onclick="zoomLightboxImage(-0.25)" title="Zoom out (-)" aria-label="Zoom out">
+                    <i class="fas fa-search-minus"></i>
+                </button>
+                <button class="lightbox-btn" onclick="resetLightboxZoom()" title="Reset zoom" aria-label="Reset zoom">
+                    <i class="fas fa-expand"></i>
+                </button>
+                <a id="lightboxDownloadBtn" href="" target="_blank" rel="noopener" class="lightbox-btn" title="Open in new tab" aria-label="Open original image">
+                    <i class="fas fa-arrow-up-right-from-square"></i>
+                </a>
+                <button class="lightbox-btn close-btn" onclick="closeImageLightbox()" title="Close (Esc)" aria-label="Close lightbox">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="lightbox-viewport" id="lightboxViewport" onclick="handleLightboxViewportClick(event)">
+            <img id="lightboxImage" src="" alt="Enlarged view" class="lightbox-img">
+        </div>
+    </div>
+</div>
+
     <script src="/res/script.js"></script>
 </body>
 </html>

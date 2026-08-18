@@ -22,9 +22,9 @@
             }
         })();
     </script>
-    {% feed_meta %}
-    {% seo %}
+</head>
 <body class="blog-view">
+    <div id="scrollProgressBar" class="scroll-progress-bar" aria-hidden="true"></div>
     {% include mobile-header.html %}
     <div class="mobile-overlay" id="mobileOverlay" onclick="closeAllMobileSidebars()"></div>
     <div id="toastContainer" class="toast-container" aria-live="polite"></div>
@@ -43,7 +43,16 @@
                 <article class="blog-post-full" id="blogPostFull">
                     <div class="blog-post-meta">
                         <h1 class="blog-post-title-single">{{ page.title }}</h1>
-                        <time class="blog-post-date-full" datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %d, %Y" }}</time>
+                        <div class="blog-post-meta-details">
+                            <time class="blog-post-date-full" datetime="{{ page.date | date_to_xmlschema }}">
+                                <i class="fas fa-calendar-alt"></i> {{ page.date | date: "%B %d, %Y" }}
+                            </time>
+                            {%- assign words = page.content | strip_html | number_of_words -%}
+                            {%- assign reading_time = words | divided_by: 200 | plus: 1 -%}
+                            <span class="blog-post-reading-time">
+                                <i class="fas fa-clock"></i> {{ reading_time }} min read
+                            </span>
+                        </div>
                     </div>
                     <div class="blog-post-content">
                         {{ content }}
@@ -56,8 +65,8 @@
                         </div>
                         <div class="share-buttons">
                             <span class="share-label">Share:</span>
-                            <a href="https://twitter.com/intent/tweet?url={{ page.url | prepend: site.url | url_encode }}&text={{ page.title | url_encode }}" class="share-btn" target="_blank" rel="noopener" aria-label="Share on Twitter">
-                                <i class="fab fa-twitter"></i>
+                            <a href="https://twitter.com/intent/tweet?url={{ page.url | prepend: site.url | url_encode }}&text={{ page.title | url_encode }}&via={{ site.twitter.username | default: 'AuthenticEgg' }}" class="share-btn" target="_blank" rel="noopener" aria-label="Share on X">
+                                <i class="fab fa-x-twitter"></i>
                             </a>
                             <a href="https://www.facebook.com/sharer/sharer.php?u={{ page.url | prepend: site.url | url_encode }}" class="share-btn" target="_blank" rel="noopener" aria-label="Share on Facebook">
                                 <i class="fab fa-facebook-f"></i>
@@ -85,6 +94,8 @@
     <button class="scroll-to-top-btn" id="scrollToTopBtn" onclick="scrollToTop()" aria-label="Scroll to top">
         <i class="fas fa-chevron-up"></i>
     </button>
+
+    {% include image-lightbox.html %}
 
     <script src="/res/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.0/dist/mermaid.min.js"></script>

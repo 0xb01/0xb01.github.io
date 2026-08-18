@@ -20,10 +20,10 @@ url: "https://banikaz.online"
 author:
   name: Banikaz
   email: banikaz@proton.me
-  twitter: "0xb01"
+  twitter: AuthenticEgg
 
 twitter:
-  username: "0xb01"
+  username: AuthenticEgg
   card: summary_large_image
 
 social:
@@ -31,6 +31,7 @@ social:
   links:
     - https://github.com/0xb01
     - https://www.linkedin.com/in/jnr01
+    - https://x.com/AuthenticEgg
 
 # ------------------------------------------------------------------------------
 # Build & Plugin Settings
