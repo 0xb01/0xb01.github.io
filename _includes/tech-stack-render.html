@@ -55,7 +55,7 @@
         </div>
         <div class="skill-card-tags">
           {%- for item in category.items -%}
-            <span class="skill-tag">{{ item }}</span>
+            <span class="skill-tag" onclick="filterByTechTag('{{ item }}')" title="Filter projects by {{ item }}">{{ item }}</span>
           {%- endfor -%}
         </div>
       </div>

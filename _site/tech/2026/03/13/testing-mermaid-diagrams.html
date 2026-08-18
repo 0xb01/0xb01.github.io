@@ -1,87 +1,178 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Testing Mermaid Diagrams | JNR</title>
+    <title>Testing Mermaid Diagrams | Banikaz</title>
     <link rel="icon" type="image/svg+xml" href="/res/icon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/res/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="JNR" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('site-theme');
+            if (savedTheme) {
+                document.documentElement.setAttribute('data-theme', savedTheme);
+            } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+                document.documentElement.setAttribute('data-theme', 'light');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+    <link type="application/atom+xml" rel="alternate" href="https://banikaz.online/feed.xml" title="Banikaz" />
     <!-- Begin Jekyll SEO tag v2.7.1 -->
-<title>Testing Mermaid Diagrams | JNR</title>
+<title>Testing Mermaid Diagrams | Banikaz</title>
 <meta name="generator" content="Jekyll v3.9.5" />
 <meta property="og:title" content="Testing Mermaid Diagrams" />
+<meta name="author" content="Banikaz" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="This is a test post to verify Mermaid diagram support." />
 <meta property="og:description" content="This is a test post to verify Mermaid diagram support." />
-<link rel="canonical" href="http://localhost:4000/tech/2026/03/13/testing-mermaid-diagrams.html" />
-<meta property="og:url" content="http://localhost:4000/tech/2026/03/13/testing-mermaid-diagrams.html" />
-<meta property="og:site_name" content="JNR" />
+<link rel="canonical" href="https://banikaz.online/tech/2026/03/13/testing-mermaid-diagrams.html" />
+<meta property="og:url" content="https://banikaz.online/tech/2026/03/13/testing-mermaid-diagrams.html" />
+<meta property="og:site_name" content="Banikaz" />
+<meta property="og:image" content="https://banikaz.online/res/me.jpg" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2026-03-13T00:00:00+08:00" />
-<meta name="twitter:card" content="summary" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://banikaz.online/res/me.jpg" />
 <meta property="twitter:title" content="Testing Mermaid Diagrams" />
+<meta name="twitter:site" content="@0xb01" />
+<meta name="twitter:creator" content="@0xb01" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","description":"This is a test post to verify Mermaid diagram support.","headline":"Testing Mermaid Diagrams","dateModified":"2026-03-13T00:00:00+08:00","datePublished":"2026-03-13T00:00:00+08:00","url":"http://localhost:4000/tech/2026/03/13/testing-mermaid-diagrams.html","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/tech/2026/03/13/testing-mermaid-diagrams.html"},"@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","description":"This is a test post to verify Mermaid diagram support.","image":"https://banikaz.online/res/me.jpg","author":{"@type":"Person","name":"Banikaz"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://banikaz.online/res/me.jpg"},"name":"Banikaz"},"headline":"Testing Mermaid Diagrams","dateModified":"2026-03-13T00:00:00+08:00","datePublished":"2026-03-13T00:00:00+08:00","url":"https://banikaz.online/tech/2026/03/13/testing-mermaid-diagrams.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://banikaz.online/tech/2026/03/13/testing-mermaid-diagrams.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
-</head>
-<body>
+<body class="blog-view">
+    <header class="mobile-app-bar" id="mobileAppBar">
+    <button class="mobile-app-bar-btn" onclick="toggleMobileSidebar('left')" aria-label="Open navigation menu">
+        <i class="fas fa-bars-staggered"></i>
+    </button>
+    
+    <div class="mobile-brand-wrapper" onclick="navigateToRoute('home')">
+        <div class="mobile-brand-avatar-wrap">
+            <img src="/res/me.jpg" alt="John Nichols Ranara" class="mobile-brand-avatar">
+            <span class="status-dot mobile-status-dot availability-dot"></span>
+        </div>
+        <div class="mobile-brand-meta">
+            <span class="mobile-brand-name">Banikaz</span>
+            <span class="mobile-brand-status-label">Open to opportunities</span>
+        </div>
+    </div>
+
+    <div class="mobile-app-bar-actions">
+        <button class="mobile-app-bar-btn" onclick="toggleTheme()" aria-label="Toggle light/dark theme" title="Toggle Theme">
+            <i class="fas fa-moon" id="themeIconMobile"></i>
+        </button>
+        <button class="mobile-app-bar-btn mobile-tech-btn" onclick="toggleMobileSidebar('right')" aria-label="Open tech stack and skills" title="Tech Stack">
+            <i class="fas fa-layer-group"></i>
+        </button>
+    </div>
+</header>
+
+    <div class="mobile-overlay" id="mobileOverlay" onclick="closeAllMobileSidebars()"></div>
+    <div id="toastContainer" class="toast-container" aria-live="polite"></div>
     <div class="container">
         <!-- Column 1: Personal Info -->
 <aside class="column column-1">
-    <div class="profile-section">
-    <div class="profile-left">
-        <div class="profile-image">
+    <div class="mobile-drawer-header">
+        <span class="drawer-title"><i class="fas fa-user"></i> Navigation</span>
+        <button class="drawer-close-btn" onclick="closeAllMobileSidebars()" aria-label="Close menu">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+    <div class="sidebar-header-bar">
+    <div class="brand-tag-wrapper">
+        <span class="brand-tag-prefix">~/</span>
+        <span class="brand-tag-text">banikaz</span>
+    </div>
+    <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" aria-label="Toggle Theme" title="Toggle Light/Dark Theme">
+        <i class="fas fa-moon" id="themeIcon"></i>
+    </button>
+</div>
+
+<div class="profile-section">
+    <div class="profile-card">
+        <div class="profile-avatar-container">
             <img src="/res/me.jpg" alt="John Nichols Ranara" class="profile-photo">
+            <div class="avatar-glow"></div>
         </div>
-        <div class="profile-text">
+        <div class="profile-info-block">
             <h1 class="name">John Nichols Ranara</h1>
-            <div class="location-info">
+            <div class="location-badge">
                 <i class="fas fa-map-marker-alt"></i>
                 <span>Tacloban City, Leyte</span>
             </div>
-            <div class="status-box">
-                Open to opportunities
+            <div class="status-indicator-wrapper availability-status-pill" title="Work Availability">
+                <span class="status-dot availability-dot"></span>
+                <span class="status-text">Open to opportunities</span>
             </div>
         </div>
     </div>
-    <div class="nav-buttons">
-        <hr class="separator"><button class="nav-btn active" id="homeBtn" onclick="showHome()"><i class="fas fa-home"></i><span>Home</span>
-            </button><button class="nav-btn" id="workExpBtn" onclick="showWorkExperience()"><i class="fas fa-briefcase"></i><span>Work Experience</span>
-            </button><button class="nav-btn" id="blogBtn" onclick="showBlog()"><i class="fas fa-pen-fancy"></i><span>Blog</span>
-            </button><button class="nav-btn" id="contactBtn" onclick="showContact()"><i class="fas fa-envelope"></i><span>Contact</span>
-            </button><button class="nav-btn" id="resumeBtn" onclick="showResume()"><i class="fas fa-file-alt"></i><span>Resume</span>
-            </button></div>
+
+    <nav class="nav-buttons" aria-label="Main Navigation"><button class="nav-btn active" id="homeBtn" data-route="home" onclick="navigateToRoute('home')"><i class="fas fa-terminal"></i><span>Home</span>
+                <span class="nav-active-pill"></span>
+            </button><button class="nav-btn" id="workExpBtn" data-route="experience" onclick="navigateToRoute('experience')"><i class="fas fa-briefcase"></i><span>Work Experience</span>
+                <span class="nav-active-pill"></span>
+            </button><button class="nav-btn" id="projectsBtn" data-route="projects" onclick="navigateToRoute('projects')"><i class="fas fa-cubes"></i><span>Projects</span>
+                <span class="nav-active-pill"></span>
+            </button><button class="nav-btn" id="blogBtn" data-route="blog" onclick="navigateToRoute('blog')"><i class="fas fa-pen-fancy"></i><span>Blog</span>
+                <span class="nav-active-pill"></span>
+            </button><button class="nav-btn" id="contactBtn" data-route="contact" onclick="navigateToRoute('contact')"><i class="fas fa-paper-plane"></i><span>Contact</span>
+                <span class="nav-active-pill"></span>
+            </button><button class="nav-btn" id="resumeBtn" data-route="resume" onclick="navigateToRoute('resume')"><i class="fas fa-file-lines"></i><span>Resume</span>
+                <span class="nav-active-pill"></span>
+            </button></nav>
 </div>
 
-    <div class="contact-and-socials">
-        <div class="contact-section" style="padding-top: 15px; padding-bottom: 10px;">
-            <h3>Contact</h3>
-            <ul class="contact-list"><li>
-                            <i class="fas fa-envelope"></i>
-                            <a href="javascript:void(0)" onclick="showContact(); return false;">banikaz@proton.me</a>
-                        </li><li>
-                            <i class="fas fa-phone"></i>
-                            <a href="javascript:void(0)" onclick="showContact(); return false;">(+63) 976-002-8684</a>
-                        </li><li class="timezone-contact" onclick="showContact()">
-                            <i class="fas fa-clock"></i>
-                            <span id="timezoneText" data-timezone="Asia/Manila" data-location="Tacloban City, Leyte">Loading...</span>
-                        </li></ul>
-        </div>
-
-        <div class="social-section">
-            <h3>Socials</h3>
-            <div class="social-links"><a href="https://github.com/0xb01" class="social-link" aria-label="GitHub" target="_blank">
-                            <i class="fab fa-github"></i>
-                        </a><a href="https://www.linkedin.com/in/jnr01" class="social-link" aria-label="LinkedIn" target="_blank">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a><a href="https://www.youtube.com/@JuanNicolasMe" class="social-link" aria-label="YouTube" target="_blank">
-                            <i class="fab fa-youtube"></i>
-                        </a></div>
-        </div>
+<div class="contact-and-socials">
+    <div class="contact-section">
+        <h3 class="sidebar-section-title">
+            <i class="fas fa-address-card"></i> Contact
+        </h3>
+        <ul class="contact-list"><li class="contact-item email-item" onclick="copyToClipboard('banikaz@proton.me', 'Email copied!')" title="Click to copy email">
+                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                        <div class="contact-detail">
+                            <span class="contact-label">Email (Click to copy)</span>
+                            <span class="contact-val">banikaz@proton.me</span>
+                        </div>
+                        <button class="quick-copy-btn" aria-label="Copy Email" tabindex="-1">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </li><li class="contact-item phone-item" onclick="copyToClipboard('(+63) 976-002-8684', 'Phone number copied!')" title="Click to copy phone">
+                        <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                        <div class="contact-detail">
+                            <span class="contact-label">Phone (Click to copy)</span>
+                            <span class="contact-val">(+63) 976-002-8684</span>
+                        </div>
+                        <button class="quick-copy-btn" aria-label="Copy Phone" tabindex="-1">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </li><li class="contact-item timezone-item" onclick="navigateToRoute('contact')" title="Click to view contact info">
+                        <div class="contact-icon"><i class="fas fa-clock"></i></div>
+                        <div class="contact-detail">
+                            <span class="contact-label">Timezone</span>
+                            <span id="timezoneText" class="contact-val" data-timezone="Asia/Manila" data-location="Tacloban City, Leyte" data-schedule='[{"start":"22:00","end":"05:00","status":"Sleeping","emoji":"😴","type":"sleep"},{"start":"05:00","end":"06:00","status":"Exercising","emoji":"🏃","type":"exercise"},{"start":"06:00","end":"08:00","status":"Offline","emoji":"☕","type":"offline"},{"start":"08:00","end":"11:30","status":"Working","emoji":"💻","type":"working"},{"start":"11:30","end":"12:30","status":"Lunch","emoji":"🍲","type":"lunch"},{"start":"12:30","end":"13:00","status":"Offline","emoji":"🚶","type":"offline"},{"start":"13:00","end":"18:00","status":"Working","emoji":"💻","type":"working"},{"start":"18:00","end":"22:00","status":"Relaxing","emoji":"🎮","type":"relax"}]'>Loading...</span>
+                        </div>
+                    </li></ul>
     </div>
+
+    <div class="social-section">
+        <h3 class="sidebar-section-title">
+            <i class="fas fa-share-nodes"></i> Connect
+        </h3>
+        <div class="social-links"><a href="https://github.com/0xb01" class="social-link" aria-label="GitHub" target="_blank" rel="noopener noreferrer" title="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a><a href="https://www.linkedin.com/in/jnr01" class="social-link" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a><a href="https://www.youtube.com/@JuanNicolasMe" class="social-link" aria-label="YouTube" target="_blank" rel="noopener noreferrer" title="YouTube">
+                        <i class="fab fa-youtube"></i>
+                    </a></div>
+    </div>
+</div>
 
 </aside>
 
@@ -260,20 +351,20 @@
                     <div class="share-section">
                         <hr class="share-separator">
                         <div class="share-url">
-                            <span>http://localhost:4000/tech/2026/03/13/testing-mermaid-diagrams.html</span>
+                            <span>https://banikaz.online/tech/2026/03/13/testing-mermaid-diagrams.html</span>
                         </div>
                         <div class="share-buttons">
                             <span class="share-label">Share:</span>
-                            <a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Flocalhost%3A4000%2Ftech%2F2026%2F03%2F13%2Ftesting-mermaid-diagrams.html&text=Testing+Mermaid+Diagrams" class="share-btn" target="_blank" rel="noopener" aria-label="Share on Twitter">
+                            <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fbanikaz.online%2Ftech%2F2026%2F03%2F13%2Ftesting-mermaid-diagrams.html&text=Testing+Mermaid+Diagrams" class="share-btn" target="_blank" rel="noopener" aria-label="Share on Twitter">
                                 <i class="fab fa-twitter"></i>
                             </a>
-                            <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Ftech%2F2026%2F03%2F13%2Ftesting-mermaid-diagrams.html" class="share-btn" target="_blank" rel="noopener" aria-label="Share on Facebook">
+                            <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fbanikaz.online%2Ftech%2F2026%2F03%2F13%2Ftesting-mermaid-diagrams.html" class="share-btn" target="_blank" rel="noopener" aria-label="Share on Facebook">
                                 <i class="fab fa-facebook-f"></i>
                             </a>
-                            <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Ftech%2F2026%2F03%2F13%2Ftesting-mermaid-diagrams.html&title=Testing+Mermaid+Diagrams" class="share-btn" target="_blank" rel="noopener" aria-label="Share on LinkedIn">
+                            <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fbanikaz.online%2Ftech%2F2026%2F03%2F13%2Ftesting-mermaid-diagrams.html&title=Testing+Mermaid+Diagrams" class="share-btn" target="_blank" rel="noopener" aria-label="Share on LinkedIn">
                                 <i class="fab fa-linkedin-in"></i>
                             </a>
-                            <a href="https://reddit.com/submit?url=http%3A%2F%2Flocalhost%3A4000%2Ftech%2F2026%2F03%2F13%2Ftesting-mermaid-diagrams.html&title=Testing+Mermaid+Diagrams" class="share-btn" target="_blank" rel="noopener" aria-label="Share on Reddit">
+                            <a href="https://reddit.com/submit?url=https%3A%2F%2Fbanikaz.online%2Ftech%2F2026%2F03%2F13%2Ftesting-mermaid-diagrams.html&title=Testing+Mermaid+Diagrams" class="share-btn" target="_blank" rel="noopener" aria-label="Share on Reddit">
                                 <i class="fab fa-reddit-alien"></i>
                             </a>
                             <button class="share-btn" onclick="copyUrl()" aria-label="Copy link">
@@ -284,97 +375,32 @@
                 </article>
             </section>
         </main>
-
-        <!-- Column 3: Hobbies & Tech Stack -->
-<aside class="column column-3">
-    <section class="hobbies-section">
-        <h3 class="section-title">Hobbies</h3>
-        <div class="hobbies-grid"><div class="hobby-badge" title="Modding Games">
-      <div class="hobby-badge-icon">
-        <i class="fas fa-hammer"></i>
-      </div>
-      <span class="hobby-badge-name">Modding Games</span>
-    </div><div class="hobby-badge" title="Music">
-      <div class="hobby-badge-icon">
-        <i class="fas fa-headphones"></i>
-      </div>
-      <span class="hobby-badge-name">Music</span>
-    </div><div class="hobby-badge" title="Learning Tech">
-      <div class="hobby-badge-icon">
-        <i class="fas fa-code"></i>
-      </div>
-      <span class="hobby-badge-name">Learning Tech</span>
-    </div><div class="hobby-badge" title="Japanese">
-      <div class="hobby-badge-icon">
-        <i class="fas fa-language"></i>
-      </div>
-      <span class="hobby-badge-name">Japanese</span>
-    </div><div class="hobby-badge" title="Gaming">
-      <div class="hobby-badge-icon">
-        <i class="fas fa-gamepad"></i>
-      </div>
-      <span class="hobby-badge-name">Gaming</span>
-    </div><div class="hobby-badge" title="Reading">
-      <div class="hobby-badge-icon">
-        <i class="fas fa-book"></i>
-      </div>
-      <span class="hobby-badge-name">Reading</span>
-    </div></div>
-
-    </section>
-
-    <section class="tech-stack-section">
-        <h3 class="section-title">Tech Stack</h3>
-        <!-- Sidebar View -->
-      <div class="skill-card">
-        <div class="skill-card-header">
-          <i class="fas fa-desktop skill-card-icon"></i>
-          <h4 class="skill-card-title">Frontend</h4>
-        </div>
-        <div class="skill-card-tags"><span class="skill-tag">HTML5</span><span class="skill-tag">CSS3</span><span class="skill-tag">JavaScript</span><span class="skill-tag">TypeScript</span></div>
-      </div><!-- Sidebar View -->
-      <div class="skill-card">
-        <div class="skill-card-header">
-          <i class="fas fa-server skill-card-icon"></i>
-          <h4 class="skill-card-title">Backend</h4>
-        </div>
-        <div class="skill-card-tags"><span class="skill-tag">Bash</span><span class="skill-tag">C/C++</span><span class="skill-tag">C#</span><span class="skill-tag">Java</span><span class="skill-tag">Python</span><span class="skill-tag">PHP</span><span class="skill-tag">Lua</span><span class="skill-tag">NodeJS</span><span class="skill-tag">Qt</span><span class="skill-tag">VB.NET</span><span class="skill-tag">Xojo</span></div>
-      </div><!-- Sidebar View -->
-      <div class="skill-card">
-        <div class="skill-card-header">
-          <i class="fas fa-database skill-card-icon"></i>
-          <h4 class="skill-card-title">Database</h4>
-        </div>
-        <div class="skill-card-tags"><span class="skill-tag">MySQL</span><span class="skill-tag">PostgreSQL</span><span class="skill-tag">SQLite</span></div>
-      </div><!-- Sidebar View -->
-      <div class="skill-card">
-        <div class="skill-card-header">
-          <i class="fas fa-tools skill-card-icon"></i>
-          <h4 class="skill-card-title">Tools & Platforms</h4>
-        </div>
-        <div class="skill-card-tags"><span class="skill-tag">Docker</span><span class="skill-tag">Git</span><span class="skill-tag">GitHub/GitLab/Bitbucket</span><span class="skill-tag">GitHub Actions</span><span class="skill-tag">Make/Integromat/n8n</span><span class="skill-tag">Alibaba/Google Cloud</span><span class="skill-tag">Gemini CLI/LM Studio/Pi.Dev</span></div>
-      </div><!-- Sidebar View -->
-      <div class="skill-card">
-        <div class="skill-card-header">
-          <i class="fas fa-palette skill-card-icon"></i>
-          <h4 class="skill-card-title">Creative</h4>
-        </div>
-        <div class="skill-card-tags"><span class="skill-tag">Camtasia Studio</span><span class="skill-tag">DaVinci Resolve</span><span class="skill-tag">Final Cut</span><span class="skill-tag">OBS/SLOBS</span><span class="skill-tag">Photoshop</span><span class="skill-tag">Premiere</span><span class="skill-tag">Bethesda Creation Kit</span></div>
-      </div>
-    </section>
-
-    <div class="quote-section">
-        <div class="quote-card">
-  <div class="quote-card-icon">
-    <i class="fas fa-quote-left"></i>
-  </div>
-  <p class="quote-card-text">Never let your fear decide your fate.</p>
-  <span class="quote-card-author">— “Kill Your Heroes”, AWOLNATION</span>
-</div>
-
     </div>
-</aside>
-    </div>
+
+    <!-- Mobile Bottom Navigation Bar -->
+    <nav class="mobile-bottom-bar" id="mobileBottomBar" aria-label="Mobile Bottom Navigation">
+    <button class="mobile-tab-btn active" data-tab="home" onclick="navigateToRoute('home')" aria-label="Home">
+        <i class="fas fa-terminal"></i>
+        <span>Home</span>
+    </button>
+    <button class="mobile-tab-btn" data-tab="experience" onclick="navigateToRoute('experience')" aria-label="Experience">
+        <i class="fas fa-briefcase"></i>
+        <span>Work</span>
+    </button>
+    <button class="mobile-tab-btn" data-tab="projects" onclick="navigateToRoute('projects')" aria-label="Projects">
+        <i class="fas fa-cubes"></i>
+        <span>Projects</span>
+    </button>
+    <button class="mobile-tab-btn" data-tab="blog" onclick="navigateToRoute('blog')" aria-label="Blog">
+        <i class="fas fa-pen-fancy"></i>
+        <span>Blog</span>
+    </button>
+    <button class="mobile-tab-btn" data-tab="resume" onclick="navigateToRoute('resume')" aria-label="Resume">
+        <i class="fas fa-file-lines"></i>
+        <span>Resume</span>
+    </button>
+</nav>
+
 
     <!-- Scroll to Top Button -->
     <button class="scroll-to-top-btn" id="scrollToTopBtn" onclick="scrollToTop()" aria-label="Scroll to top">

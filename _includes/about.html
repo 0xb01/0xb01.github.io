@@ -1,13 +1,14 @@
 {%- comment -%}
   About Section Include
   Renders about content from _data/profile.yml
-  
-  Usage: {% include about.html %}
+  Design: Modern terminal-style about container
 {%- endcomment -%}
 
-<div class="about-container">
-    <h3>{{ site.data.profile.about.title }}</h3>
-    <div class="about-bubble">
+<div class="about-card">
+    <div class="about-card-header">
+        <h3 class="section-title-clean"><i class="fas fa-user-astronaut"></i> {{ site.data.profile.about.title }}</h3>
+    </div>
+    <div class="about-body">
         <p>{{ site.data.profile.about.content }}</p>
     </div>
 </div>

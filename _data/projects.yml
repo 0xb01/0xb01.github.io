@@ -1,6 +1,16 @@
-# Projects Data
-# Single source of truth for Recent / Fun Projects section
-# Edit here - changes reflect automatically
+# ==============================================================================
+# Projects Showcase Data (_data/projects.yml)
+# ==============================================================================
+# Single source of truth for all projects shown in the Projects grid & search.
+#
+# FIELDS FOR EACH ENTRY:
+# - name: Project title (prefix with an emoji for automatic card icon)
+# - year: Release or active development year (used in year filter)
+# - description: Summary of features, purpose, or problem solved
+# - tech_stack: List of technologies used (used in live search & filter dropdowns)
+# - url: Live deployment URL or repository link (leave "" if closed/internal)
+# - visibility: 'public' (shows View button), 'private' (work), or 'closed' (personal/internal)
+# ==============================================================================
 
 - name: "📙 Haha"
   year: 2026

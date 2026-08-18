@@ -1,16 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title }} | {{ site.title }}</title>
     <link rel="icon" type="image/svg+xml" href="{{ site.favicon }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/res/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('site-theme');
+            if (savedTheme) {
+                document.documentElement.setAttribute('data-theme', savedTheme);
+            } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+                document.documentElement.setAttribute('data-theme', 'light');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
     {% feed_meta %}
     {% seo %}
-</head>
-<body>
+<body class="blog-view">
+    {% include mobile-header.html %}
+    <div class="mobile-overlay" id="mobileOverlay" onclick="closeAllMobileSidebars()"></div>
+    <div id="toastContainer" class="toast-container" aria-live="polite"></div>
     <div class="container">
         {% include sidebar.html %}
 
@@ -60,9 +77,10 @@
                 </article>
             </section>
         </main>
-
-        {% include tech-stack.html %}
     </div>
+
+    <!-- Mobile Bottom Navigation Bar -->
+    {% include mobile-bottom-nav.html %}
 
     <!-- Scroll to Top Button -->
     <button class="scroll-to-top-btn" id="scrollToTopBtn" onclick="scrollToTop()" aria-label="Scroll to top">

@@ -1,16 +1,10 @@
 ---
 layout: v2
-title: Portfolio
+title: "Banikaz • Principal Software Engineer"
+description: "Multi-platform engineer specializing in low-level automation, desktop application architectures, and robust backend ecosystems."
+image: /res/me.jpg
 ---
 {% include mobile-header.html %}
-
-<!-- Mobile Burger Buttons -->
-<button class="mobile-burger mobile-burger-left" id="mobileBurgerLeft" onclick="toggleMobileSidebar('left')" aria-label="Open menu">
-    <i class="fas fa-bars"></i>
-</button>
-<button class="mobile-burger mobile-burger-right" id="mobileBurgerRight" onclick="toggleMobileSidebar('right')" aria-label="Open tech stack">
-    <i class="fas fa-ellipsis-v"></i>
-</button>
 
 <!-- Mobile Overlay -->
 <div class="mobile-overlay" id="mobileOverlay" onclick="closeAllMobileSidebars()"></div>
@@ -20,11 +14,13 @@ title: Portfolio
 
     <!-- Column 2: Main Content -->
     <main class="column column-2" id="mainContent">
+        <!-- Home / Overview View -->
         <div class="home-content" id="homeContent">
             {% include hero.html %}
             {% include about.html %}
         </div>
 
+        <!-- Work Experience Section -->
         <section class="section work-experience" id="workExperienceSection">
             {% include calculate-total-experience.html context='work' %}
             <div class="timeline">
@@ -32,25 +28,23 @@ title: Portfolio
             </div>
         </section>
 
+        <!-- Education Section -->
         <section class="section education" id="educationSection">
-            <h3 class="section-title">Education</h3>
-
+            <h3 class="section-title-clean"><i class="fas fa-graduation-cap"></i> Education</h3>
             <div class="timeline">
                 {% include education-items.html context='work' %}
             </div>
         </section>
 
+        <!-- Projects Section -->
         {% include projects.html %}
 
         <!-- Blog Section -->
         <section class="section blog-section hidden" id="blogSection">
             <div class="blog-header-new">
                 <div class="blog-header-content">
-                    <h2 class="blog-headline">Latest Writing</h2>
-                    <p class="blog-subheadline">Thoughts, tutorials, and technical deep-dives.</p>
-                </div>
-                <div class="blog-header-icon">
-                    <i class="fas fa-pen-fancy"></i>
+                    <h2 class="blog-headline"><i class="fas fa-pen-fancy"></i> Technical Notes & Deep Dives</h2>
+                    <p class="blog-subheadline">Engineering articles, tutorials, system design notes, and software investigations.</p>
                 </div>
             </div>
 
@@ -72,7 +66,7 @@ title: Portfolio
                             {{ post.date | date: "%b %d, %Y" }}
                         </span>
                         <span class="blog-card-read-more">
-                            Read More <i class="fas fa-arrow-right"></i>
+                            Read Article <i class="fas fa-arrow-right"></i>
                         </span>
                     </div>
                 </article>
@@ -82,17 +76,17 @@ title: Portfolio
             {% if site.posts.size == 0 %}
             <div class="blog-empty">
                 <i class="fas fa-inbox"></i>
-                <p>No blog posts yet. Check back soon!</p>
+                <p>No blog posts published yet. Check back soon!</p>
             </div>
             {% endif %}
         </section>
 
-        <!-- Single Blog Post Content -->
+        <!-- Single Blog Post Dynamic Reader View -->
         <section class="section blog-post-section hidden" id="blogPostContent">
             <div class="blog-header-new">
                 <button class="back-btn-new" onclick="goBackToBlog()">
                     <i class="fas fa-arrow-left"></i>
-                    <span>Back to Posts</span>
+                    <span>Back to Writing</span>
                 </button>
             </div>
             <article class="blog-post-full" id="blogPostFull">
@@ -100,16 +94,21 @@ title: Portfolio
             </article>
         </section>
 
+        <!-- Contact Section -->
         {% include contact.html %}
 
+        <!-- Resume Section -->
         {% include resume.html %}
     </main>
 
     {% include tech-stack.html %}
 </div>
 
+<!-- Mobile Bottom Navigation Bar -->
+{% include mobile-bottom-nav.html %}
+
 <!-- Resume Back Button -->
-<button class="resume-back-btn" id="resumeBackBtn" onclick="showHome()" aria-label="Back to Home">
+<button class="resume-back-btn" id="resumeBackBtn" onclick="navigateToRoute('home')" aria-label="Back to Home">
     <i class="fas fa-times"></i>
 </button>
 
@@ -119,37 +118,3 @@ title: Portfolio
 </button>
 
 <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.0/dist/mermaid.min.js"></script>
-<script>
-    mermaid.initialize({ startOnLoad: false, theme: 'default' });
-
-    // Populate year filter dropdown
-    function populateYearFilter() {
-        const projectCards = document.querySelectorAll('.project-card');
-        const years = [...new Set([...projectCards].map(card => card.dataset.year))].sort((a, b) => b - a);
-        const yearFilter = document.getElementById('yearFilter');
-
-        years.forEach(year => {
-            const option = document.createElement('option');
-            option.value = year;
-            option.textContent = year;
-            yearFilter.appendChild(option);
-        });
-    }
-
-    // Filter projects by year
-    function filterProjectsByYear() {
-        const selectedYear = document.getElementById('yearFilter').value;
-        const projectCards = document.querySelectorAll('.project-card');
-
-        projectCards.forEach(card => {
-            if (selectedYear === 'all' || card.dataset.year === selectedYear) {
-                card.style.display = 'block';
-            } else {
-                card.style.display = 'none';
-            }
-        });
-    }
-
-    // Initialize year filter when DOM is ready
-    document.addEventListener('DOMContentLoaded', populateYearFilter);
-</script>

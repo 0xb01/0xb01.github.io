@@ -1,220 +1,194 @@
-# Banikaz Portfolio
+# Banikaz • Engineering Portfolio & Terminal
 
-Personal portfolio website of **John Nichols Ranara** — a solution-oriented programmer with 10 years of experience in desktop platforms, mobile development, and hardware. Built with Jekyll and hosted on GitHub Pages.
+> Modern, high-performance portfolio & technical journal of **John Nichols Ranara (Banikaz)** — Principal Software Engineer specializing in low-level automation, desktop application architectures, and robust backend systems.
 
-**Live Site:** [banikaz.online](http://banikaz.online)
+[![Live Site](https://img.shields.io/badge/Live%20Site-banikaz.online-10b981?style=for-the-badge&logo=googlechrome&logoColor=white)](https://banikaz.online)
+[![GitHub](https://img.shields.io/badge/GitHub-0xb01-38bdf8?style=for-the-badge&logo=github&logoColor=white)](https://github.com/0xb01)
+[![License: MIT](https://img.shields.io/badge/License-MIT-fbbf24?style=for-the-badge)](LICENSE)
 
-## Features
+---
 
-- Responsive single-page portfolio with smooth navigation
-- Work experience timeline with expandable sections
-- Projects showcase with flip cards
-- Blog section with Mermaid diagram support
-- Contact form with CAPTCHA
-- Mobile-friendly sidebar navigation
-- SEO optimized with Open Graph tags
-- RSS feed and sitemap auto-generation
+## ⚡ Key Highlights & Architecture
 
-## Tech Stack
+- **Option A Terminal Design System**: High-contrast OLED true pitch black (`#000000`) and clean light minimalist theme tokens powered by Vanilla CSS Custom Properties.
+- **Modular SPA Hash Router**: Fast client-side routing supporting `#home`, `#experience`, `#projects`, `#blog`, `#post:<url>`, `#contact`, and full-width `#resume`.
+- **Dynamic Client-Side PDF Generation**: Generates and downloads a clean, printable A4 resume PDF on demand (`John_Nichols_Ranara_Resume.pdf`) with zero static PDF upload requirements.
+- **Live Activity Schedule Engine**: Evaluates active routines (e.g. *Working*, *Exercising*, *Lunch*, *Relaxing*, *Sleeping*) against `Asia/Manila` time with dynamic status indicators.
+- **Real-Time Project Search & Filters**: Live search input with instant tag-based filtering and release year selectors.
+- **Interactive Markdown & Mermaid**: Native diagram rendering for engineering deep-dives, architecture schemas, and workflow sequences.
+- **Mobile First UX**: Sticky top app bar with avatar brand tag, slide-in drawer sidebars, and native-style bottom navigation tab dock.
+- **Data-Driven Architecture**: 100% content separation into structured YAML data files under `_data/` for zero-code modifications.
 
-- **Jekyll** (~3.9.0) - Static site generator
-- **HTML5, CSS3, JavaScript** - Frontend
-- **Font Awesome** - Icons
-- **Mermaid** - Diagram rendering
-- **ProggyVector** - Monospace font
+---
 
-### Ruby Gems
+## 🛠️ Tech Stack
 
-| Gem | Version | Purpose |
-|-----|---------|---------|
-| jekyll | ~3.9.0 | Static site generator |
-| webrick | ~1.7 | Web server for local development |
-| jekyll-feed | ~0.15.0 | RSS feed generator |
-| jekyll-sitemap | ~1.4.0 | Sitemap generator |
-| jekyll-seo-tag | ~2.7.0 | SEO metadata tags |
-| kramdown-parser-gfm | ~1.1.0 | GitHub Flavored Markdown parser |
+| Domain | Technologies |
+|---|---|
+| **Core Engine** | Jekyll (Static Site Generator), Liquid Templating |
+| **Frontend** | Vanilla HTML5, Vanilla CSS3 (Design Tokens), Vanilla JS (ES6+) |
+| **Typography** | Inter, JetBrains Mono |
+| **Icons & Media** | Font Awesome 6.5+, Custom SVG Badges |
+| **Diagrams & PDF** | Mermaid.js 10.9+, html2pdf.js (Dynamic Loader) |
+| **Hosting & CI/CD** | GitHub Pages, Custom Domain (`banikaz.online`) |
 
-## Project Structure
+---
 
-```
+## 📁 Repository Structure
+
+```text
 0xb01.github.io/
-├── _config.yml          # Site configuration
-├── _data/               # Content data files (edit these!)
-│   ├── profile.yml      # Personal info, socials, quote, contact form
-│   ├── experience.yml   # Work experience & education
-│   ├── projects.yml     # Projects showcase
-│   └── techstack.yml    # Tech stack & hobbies
-├── _includes/           # Reusable components
-│   ├── about.html
-│   ├── contact.html
-│   ├── experience-items.html
-│   ├── hero.html
-│   ├── hobbies-render.html
-│   ├── mobile-header.html
-│   ├── projects-grid.html
-│   ├── quote-render.html
-│   ├── resume.html
-│   ├── sidebar.html
-│   ├── sidebar-profile.html
-│   ├── tech-stack.html
-│   └── tech-stack-render.html
-├── _layouts/            # Page layouts
-│   ├── v2.html          # Main portfolio layout
-│   ├── v2-default.html  # Default layout
-│   └── v2-post.html     # Blog post layout
-├── _posts/              # Blog posts
-├── _site/               # Generated site (gitignored)
-├── kana/                # Kana practice web app
-├── res/                 # Resources/assets
-│   ├── me.jpg           # Profile photo
-│   ├── Ranara-Resume.pdf
-│   ├── script.js        # Main JavaScript
-│   └── style.css        # Main stylesheet
-├── index.html           # Home page (SPA)
-├── Gemfile              # Ruby dependencies
-└── README.md            # This file
+├── _config.yml              # Site metadata, permalinks, and build configurations
+├── _data/                   # Single source of truth for all content
+│   ├── profile.yml          # Personal info, daily schedule, socials, and contact settings
+│   ├── experience.yml       # Work experience timeline and references
+│   ├── education.yml        # Academic history and achievements
+│   ├── projects.yml         # Project showcase items, tech stacks, and repo links
+│   └── techstack.yml        # Categorized technical skills, tools, and hobbies
+├── _includes/               # Reusable modular UI components
+│   ├── about.html           # About biography card
+│   ├── contact.html         # Contact form and communication channels
+│   ├── hero.html            # Terminal shell hero component
+│   ├── experience-items.html# Expandable work experience timeline items
+│   ├── education-items.html # Education history cards
+│   ├── projects.html        # Projects showcase container and filters
+│   ├── projects-grid.html   # Projects card grid with tag badges
+│   ├── resume.html          # Full-width printable resume view
+│   ├── sidebar.html         # Desktop and mobile profile navigation drawer
+│   ├── sidebar-profile.html # Profile card, terminal brand tag, and contact list
+│   ├── tech-stack.html      # Desktop and mobile tech stack drawer
+│   ├── tech-stack-render.html # Clickable skill chips
+│   ├── hobbies-render.html  # Hobbies grid cards
+│   ├── quote-render.html    # Engineering quote card
+│   ├── mobile-header.html   # Sticky mobile top app bar
+│   └── mobile-bottom-nav.html # Mobile bottom navigation tab dock
+├── _layouts/                # HTML layout shells
+│   ├── v2.html              # Main portfolio SPA layout
+│   ├── v2-default.html      # Default fallback layout
+│   └── v2-post.html         # Technical blog article layout
+├── _posts/                  # Markdown technical journal entries
+├── res/                     # Static assets & scripts
+│   ├── script.js            # Router, theme manager, filters, PDF engine & clock
+│   ├── style.css            # Complete design system & responsive styling
+│   └── me.jpg               # Profile avatar
+├── index.html               # Main SPA entry point
+├── Gemfile                  # Ruby gems and dependencies
+└── README.md                # Repository documentation
 ```
 
-## Development Setup
+---
+
+## ⚙️ Content Configuration Guide
+
+All content is configured through YAML files in `_data/` without editing core HTML structure:
+
+### 1. Profile & Daily Schedule (`_data/profile.yml`)
+```yaml
+name: John Nichols Ranara
+location: Tacloban City, Leyte
+status: Open to opportunities
+profile_image: /res/me.jpg
+
+# Activity Schedule (Calculated in Asia/Manila)
+schedule_config:
+  timezone: Asia/Manila
+  schedule:
+    - start: "08:00"
+      end: "11:30"
+      status: "Working"
+      emoji: "💻"
+      type: "working"
+    - start: "11:30"
+      end: "12:30"
+      status: "Lunch"
+      emoji: "🍲"
+      type: "lunch"
+    - start: "18:00"
+      end: "22:00"
+      status: "Relaxing"
+      emoji: "🎮"
+      type: "relax"
+    - start: "22:00"
+      end: "05:00"
+      status: "Sleeping"
+      emoji: "😴"
+      type: "sleep"
+```
+
+### 2. Work Experience (`_data/experience.yml`)
+```yaml
+experiences:
+  - position: Principal Software Engineer
+    company: Autonomous Systems Lab
+    period: 2021 - Present
+    present: true
+    responsibilities:
+      - Architected distributed low-latency automation pipelines.
+      - Developed cross-platform desktop interfaces with real-time telemetry.
+    tech_stack:
+      - Go
+      - Python
+      - C++
+```
+
+### 3. Projects Showcase (`_data/projects.yml`)
+```yaml
+- name: "⚡ Syncthing Manager"
+  year: 2026
+  description: "Cross-platform daemon manager with system tray integration."
+  visibility: public
+  url: "https://github.com/0xb01/syncthing-manager"
+  tech_stack:
+    - Rust
+    - GTK
+    - SQLite
+```
+
+---
+
+## 💻 Local Development Setup
 
 ### Prerequisites
+- **Ruby** (2.7 or higher)
+- **Bundler** (`gem install bundler`)
 
-- Ruby 2.7+
-- Bundler
+### Quick Start
 
-### Installation
-
-1. **Install Bundler** (if not already installed):
+1. **Clone the repository:**
    ```bash
-   gem install bundler
+   git clone https://github.com/0xb01/0xb01.github.io.git
+   cd 0xb01.github.io
    ```
 
-2. **Install dependencies**:
+2. **Install dependencies:**
    ```bash
    bundle install
    ```
 
-3. **Run development server**:
+3. **Start local Jekyll development server:**
    ```bash
-   bundle exec jekyll serve
+   bundle exec jekyll serve --livereload
    ```
 
-4. **Open in browser**: http://localhost:4000
-
-## Usage
-
-### Using This Template
-
-This portfolio is designed to be easily customizable! You can fork this repository and make it your own by editing the **`_data/`** YAML files—no need to dig through HTML. All your personal information, work experience, projects, and more are stored in structured data files.
-
-### Data Files Overview
-
-All content is managed through `_data/` YAML files:
-
-| File | Purpose | What to Edit |
-|------|---------|--------------|
-| `_data/profile.yml` | Personal info | Name, location, hero text, about me, contact info, socials, navigation, quote, resume PDF |
-| `_data/experience.yml` | Work history | Job positions, companies, dates, responsibilities, tech stack, references |
-| `_data/projects.yml` | Projects | Project name, year, description, tech stack, URLs, visibility |
-| `_data/techstack.yml` | Skills & hobbies | Tech categories, skills, hobbies (max 4), icons |
-
-### Quick Start Customization
-
-1. **Fork this repository** to your GitHub account
-2. **Edit `_data/profile.yml`**:
-   ```yaml
-   name: Your Name
-   location: Your City, Country
-   status: Your Status
-   hero:
-     title: Your Title
-     headline: Your Headline
-   socials:
-     - platform: GitHub
-       url: https://github.com/yourusername
-       show: true
-   resume:
-     pdf_path: /res/Your-Resume.pdf
-   quote:
-     text: "Your favorite quote..."
-     author: "Quote Author"
-   contact_form:
-     note_signature: "Your Name"
-   ```
-3. **Update `_data/experience.yml`** with your work history
-4. **Update `_data/projects.yml`** with your projects
-5. **Replace assets** in `/res/` (profile photo, resume PDF)
-6. **Update `_config.yml`** with your domain and email
-
-### Navigation
-
-The portfolio uses a single-page application (SPA) design with the following sections:
-
-- **Home** - Introduction and hero section
-- **Work** - Work experience and education timeline
-- **Blog** - Blog posts list
-- **Contact** - Contact form and social links
-- **Resume** - Full resume view
-
-### Adding Blog Posts
-
-1. Create a new file in `_posts/` with the format: `YYYY-MM-DD-post-title.md`
-2. Add front matter:
-   ```yaml
-   ---
-   layout: v2-post
-   title: "Your Post Title"
-   date: 2026-03-28 12:00:00 -0800
-   categories: [Category]
-   tags: [tag1, tag2]
-   author: John Nichols Ranara
-   ---
-   ```
-3. Write content in Markdown. Mermaid diagrams are supported:
-   ````markdown
-   ```mermaid
-   graph TD
-       A --> B
-   ```
-   ````
-
-### Customization
-
-- **Site config**: Edit `_config.yml` for site metadata, domain, and build settings
-- **Styling**: Modify `/res/style.css` CSS variables for theme colors
-- **Content**: Edit `_data/` YAML files—all your content lives here!
-- **Components**: Edit files in `_includes/` for reusable sections
-- **Layouts**: Modify `_layouts/` for page structure changes
-
-### Contact Form Setup
-
-1. Go to [Formspree.io](https://formspree.io) and create a free account
-2. Create a new form and get your endpoint URL
-3. Update `_data/profile.yml`:
-   ```yaml
-   contact_form:
-     formspree_url: https://formspree.io/f/your-form-id
+4. **Open in browser:**
+   ```text
+   http://127.0.0.1:4000/
    ```
 
-### Resume PDF
+---
 
-Place your resume PDF in `/res/` and update the path in `_data/profile.yml`:
-```yaml
-resume:
-  pdf_path: /res/Your-Name-Resume.pdf
+## 🚀 Deployment
+
+The site automatically builds and deploys to **GitHub Pages** upon pushing commits to the `master` / `main` branch.
+
+```bash
+git add .
+git commit -m "feat: modernize portfolio design and mobile architecture"
+git push origin master
 ```
 
-## Deployment
+---
 
-This site is automatically deployed to GitHub Pages when changes are pushed to the `main` branch.
+## 📄 License
 
-## Contact
-
-- **Email:** [banikaz@proton.me](mailto:banikaz@proton.me)
-- **GitHub:** [@0xb01](https://github.com/0xb01)
-- **LinkedIn:** [John Nicolas Ranara](https://www.linkedin.com/in/jnr01)
-- **Location:** Tacloban City, Leyte, Philippines
-
-## License
-
-This project is open source and available under the [MIT License](LICENSE).
+Open-source under the [MIT License](LICENSE).

@@ -1,5 +1,12 @@
 <!-- Column 3: Hobbies & Tech Stack -->
 <aside class="column column-3">
+    <div class="mobile-drawer-header">
+        <span class="drawer-title"><i class="fas fa-layer-group"></i> Stack & Hobbies</span>
+        <button class="drawer-close-btn" onclick="closeAllMobileSidebars()" aria-label="Close panel">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
     <section class="hobbies-section">
         <h3 class="section-title">Hobbies</h3>
         {% include hobbies-render.html %}

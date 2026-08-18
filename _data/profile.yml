@@ -1,12 +1,66 @@
-# Profile Data
-# Single source of truth for personal/profile information
-# Edit here - changes reflect automatically everywhere
+# ==============================================================================
+# Profile Data & Personal Information (_data/profile.yml)
+# ==============================================================================
+# Single source of truth for personal details, daily routines, hero text,
+# biography, navigation tabs, contact channels, socials, and contact form settings.
+#
+# QUICK EDIT GUIDE:
+# 1. Basic Info: Name, location, availability status, and profile photo path.
+# 2. Schedule Config: Timezone (e.g. Asia/Manila, America/New_York) and 24h routine slots.
+# 3. Hero & About: Introduction headline, role subtitle, and biography text.
+# 4. Contact & Socials: Email, phone, GitHub/LinkedIn links, and Formspree endpoint.
+# ==============================================================================
 
 # Basic Info
 name: John Nichols Ranara
 location: Tacloban City, Leyte
 status: Open to opportunities
 profile_image: /res/me.jpg
+
+# Activity Schedule & Timezone Configuration
+schedule_config:
+  timezone: Asia/Manila
+  schedule:
+    - start: "22:00"
+      end: "05:00"
+      status: "Sleeping"
+      emoji: "😴"
+      type: "sleep"
+    - start: "05:00"
+      end: "06:00"
+      status: "Exercising"
+      emoji: "🏃"
+      type: "exercise"
+    - start: "06:00"
+      end: "08:00"
+      status: "Offline"
+      emoji: "☕"
+      type: "offline"
+    - start: "08:00"
+      end: "11:30"
+      status: "Working"
+      emoji: "💻"
+      type: "working"
+    - start: "11:30"
+      end: "12:30"
+      status: "Lunch"
+      emoji: "🍲"
+      type: "lunch"
+    - start: "12:30"
+      end: "13:00"
+      status: "Offline"
+      emoji: "🚶"
+      type: "offline"
+    - start: "13:00"
+      end: "18:00"
+      status: "Working"
+      emoji: "💻"
+      type: "working"
+    - start: "18:00"
+      end: "22:00"
+      status: "Relaxing"
+      emoji: "🎮"
+      type: "relax"
 
 # Hero Section (Home page)
 hero:
@@ -86,26 +140,37 @@ navigation:
   - label: Home
     id: homeBtn
     action: showHome
+    route: home
     active: true
 
   - label: Work Experience
     id: workExpBtn
     action: showWorkExperience
+    route: experience
+    active: false
+
+  - label: Projects
+    id: projectsBtn
+    action: showProjects
+    route: projects
     active: false
 
   - label: Blog
     id: blogBtn
     action: showBlog
+    route: blog
     active: false
 
   - label: Contact
     id: contactBtn
     action: showContact
+    route: contact
     active: false
 
   - label: Resume
     id: resumeBtn
     action: showResume
+    route: resume
     active: false
 
 # Quote (for sidebar)
@@ -122,7 +187,3 @@ contact_form:
 
       I typically respond within 24-48 hours. For project inquiries, please include as much detail as possible about your requirements, timeline, and budget.
   note_signature: "Niks"
-
-# Resume
-resume:
-  pdf_path: /res/Ranara-Resume_6-22-2026.pdf  # Path to your resume PDF file

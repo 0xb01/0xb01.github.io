@@ -1,15 +1,25 @@
-{%- comment -%}
-  Mobile Header Include
-  Renders mobile header from _data/profile.yml
-  
-  Usage: {% include mobile-header.html %}
-{%- endcomment -%}
-
-<div class="mobile-header" id="mobileHeader">
-    <div class="mobile-header-name">{{ site.data.profile.name }}</div>
-    <div class="mobile-header-info">
-        <span><i class="fas fa-map-marker-alt"></i> {{ site.data.profile.location }}</span>
-        <span><i class="fas fa-envelope"></i> {{ site.data.profile.contact[0].value }}</span>
-        <span><i class="fas fa-phone"></i> {{ site.data.profile.contact[1].value }}</span>
+<header class="mobile-app-bar" id="mobileAppBar">
+    <button class="mobile-app-bar-btn" onclick="toggleMobileSidebar('left')" aria-label="Open navigation menu">
+        <i class="fas fa-bars-staggered"></i>
+    </button>
+    
+    <div class="mobile-brand-wrapper" onclick="navigateToRoute('home')">
+        <div class="mobile-brand-avatar-wrap">
+            <img src="{{ site.data.profile.profile_image }}" alt="{{ site.data.profile.name }}" class="mobile-brand-avatar">
+            <span class="status-dot mobile-status-dot availability-dot"></span>
+        </div>
+        <div class="mobile-brand-meta">
+            <span class="mobile-brand-name">Banikaz</span>
+            <span class="mobile-brand-status-label">{{ site.data.profile.status | default: 'Open to opportunities' }}</span>
+        </div>
     </div>
-</div>
+
+    <div class="mobile-app-bar-actions">
+        <button class="mobile-app-bar-btn" onclick="toggleTheme()" aria-label="Toggle light/dark theme" title="Toggle Theme">
+            <i class="fas fa-moon" id="themeIconMobile"></i>
+        </button>
+        <button class="mobile-app-bar-btn mobile-tech-btn" onclick="toggleMobileSidebar('right')" aria-label="Open tech stack and skills" title="Tech Stack">
+            <i class="fas fa-layer-group"></i>
+        </button>
+    </div>
+</header>

@@ -1,14 +1,34 @@
 {%- comment -%}
   Hero Section Include
   Renders hero content from _data/profile.yml
-  
-  Usage: {% include hero.html %}
+  Design: Modern Engineering Terminal hero with quick CTAs
 {%- endcomment -%}
 
-<div class="work-info">
-    <p class="work-title">{{ site.data.profile.hero.title }}</p>
-    <h2 class="hero-text">{{ site.data.profile.hero.headline }}</h2>
-    <p class="hero-description">
-        {{ site.data.profile.hero.description }}
-    </p>
+<div class="hero-terminal-card">
+    <div class="hero-terminal-header">
+        <div class="terminal-dots">
+            <span class="terminal-dot dot-red"></span>
+            <span class="terminal-dot dot-yellow"></span>
+            <span class="terminal-dot dot-green"></span>
+        </div>
+        <span class="terminal-path">~ / developer / niks.sh</span>
+    </div>
+    <div class="hero-body">
+        <div class="hero-badge-row">
+            <span class="terminal-prompt-badge"><i class="fas fa-terminal"></i> {{ site.data.profile.hero.title }}</span>
+        </div>
+        <h2 class="hero-headline">{{ site.data.profile.hero.headline }}</h2>
+        <p class="hero-description">{{ site.data.profile.hero.description }}</p>
+        <div class="hero-actions">
+            <button class="hero-btn primary" onclick="navigateToRoute('projects')">
+                <i class="fas fa-cubes"></i> View Projects
+            </button>
+            <button class="hero-btn secondary" onclick="navigateToRoute('resume')">
+                <i class="fas fa-file-lines"></i> View Resume
+            </button>
+            <button class="hero-btn outline" onclick="navigateToRoute('contact')">
+                <i class="fas fa-paper-plane"></i> Get in Touch
+            </button>
+        </div>
+    </div>
 </div>

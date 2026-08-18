@@ -25,7 +25,7 @@
       {%- assign hidden_count = 0 -%}
     {%- endif -%}
 
-    <article class="project-card" data-visibility="{{ project.visibility }}" data-year="{{ project.year }}">
+    <article class="project-card" data-visibility="{{ project.visibility }}" data-year="{{ project.year }}" data-tech="{{ project.tech_stack | join: ',' | downcase }}" data-name="{{ project.name | downcase }}" data-desc="{{ project.description | downcase }}">
       <div class="project-year-ribbon">{{ project.year }}</div>
       <div class="project-card-content">
         <div class="project-main">

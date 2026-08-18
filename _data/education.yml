@@ -1,6 +1,9 @@
-# Education Data
-# Single source of truth for Education page and Resume
-# Edit here - changes reflect everywhere automatically
+# ==============================================================================
+# Academic Education Data (_data/education.yml)
+# ==============================================================================
+# Single source of truth for degrees, universities, and academic achievements.
+# Rendered in the Education section and Resume view.
+# ==============================================================================
 
 - degree: BS Computer Science
   school: ACLC College, Tacloban City, Leyte

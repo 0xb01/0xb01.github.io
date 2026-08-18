@@ -1,6 +1,19 @@
-# Work Experience Data
-# Single source of truth for Work Experience page and Resume
-# Edit here - changes reflect everywhere automatically
+# ==============================================================================
+# Work Experience Data (_data/experience.yml)
+# ==============================================================================
+# Single source of truth for work history displayed in the Experience timeline
+# and in the generated Resume view.
+#
+# FIELDS FOR EACH ENTRY:
+# - position: Job title / role name
+# - company: Company name, location, or work model (e.g. Remote)
+# - period: Date range (e.g. "Jul 2019 – Present")
+# - present: Set true if current active position
+# - show_in: Display target: 'work' (portfolio only), 'resume' (resume only), or 'both'
+# - responsibilities: List of key technical accomplishments and duties
+# - tech_stack: List of technologies used for clickable tags
+# - references: (Optional) List of live URLs or portfolio proof links
+# ==============================================================================
 
 # Global setting: controls where total experience is displayed
 # Options: work, resume, both

@@ -1,23 +1,50 @@
-title: JNR
-email: banikaz@proton.me
-description: >-
-  Solution-oriented programmer with 10 years of experience in creating software
-  for desktop platforms, mobile development, and hardware.
-favicon: /res/icon.svg
-baseurl: ""
-url: "http://banikaz.online"
+# ==============================================================================
+# Site Configuration (_config.yml)
+# ==============================================================================
+# Single source of truth for global site metadata, plugins, and build options.
+# ==============================================================================
 
-# Build settings
+title: Banikaz
+tagline: Principal Software Engineer
+email: banikaz@proton.me
+description: "Multi-platform engineer with over a decade of professional experience specializing in low-level automation, desktop application architectures, and robust backend ecosystems."
+favicon: /res/icon.svg
+image: /res/me.jpg
+logo: /res/me.jpg
+baseurl: ""
+url: "https://banikaz.online"
+
+# ------------------------------------------------------------------------------
+# Author & Social Graph Metadata (Open Graph / Twitter Cards / SEO)
+# ------------------------------------------------------------------------------
+author:
+  name: Banikaz
+  email: banikaz@proton.me
+  twitter: "0xb01"
+
+twitter:
+  username: "0xb01"
+  card: summary_large_image
+
+social:
+  name: Banikaz
+  links:
+    - https://github.com/0xb01
+    - https://www.linkedin.com/in/jnr01
+
+# ------------------------------------------------------------------------------
+# Build & Plugin Settings
+# ------------------------------------------------------------------------------
 markdown: kramdown
 plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-seo-tag
 
-# Permalink settings for clean URLs
+# Permalink schema for blog posts
 permalink: /:categories/:year/:month/:day/:title.html
 
-# Exclude from processing
+# Excluded folders and files from final build output
 exclude:
   - .sass-cache/
   - .jekyll-cache/
@@ -30,18 +57,20 @@ exclude:
   - vendor/gems/
   - vendor/ruby/
 
-# Collections
+# ------------------------------------------------------------------------------
+# Collections & Layout Defaults
+# ------------------------------------------------------------------------------
 collections:
   projects:
     output: true
 
-# Defaults
 defaults:
   - scope:
       path: ""
       type: "posts"
     values:
       layout: "v2-post"
+      image: "/res/me.jpg"
   - scope:
       path: ""
       type: "projects"

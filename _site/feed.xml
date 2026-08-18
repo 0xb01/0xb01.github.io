@@ -1,4 +1,162 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-06-30T11:59:55+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">JNR</title><subtitle>Solution-oriented programmer with 10 years of experience in creating software for desktop platforms, mobile development, and hardware.</subtitle><entry><title type="html">Say Goodbye to ‘Filipino Time’: Inside the Server Keeping the Philippines Synced</title><link href="http://localhost:4000/tech/2026/06/30/inside-ph-synced.html" rel="alternate" type="text/html" title="Say Goodbye to ‘Filipino Time’: Inside the Server Keeping the Philippines Synced" /><published>2026-06-30T11:43:50+08:00</published><updated>2026-06-30T11:43:50+08:00</updated><id>http://localhost:4000/tech/2026/06/30/inside-ph-synced</id><content type="html" xml:base="http://localhost:4000/tech/2026/06/30/inside-ph-synced.html">&lt;p&gt;Ever noticed how your phone always shows the exact same time as the countdown on the TV news, your bank’s mobile app, and the local ATM?&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://banikaz.online/feed.xml" rel="self" type="application/atom+xml" /><link href="https://banikaz.online/" rel="alternate" type="text/html" /><updated>2026-08-18T17:42:42+08:00</updated><id>https://banikaz.online/feed.xml</id><title type="html">Banikaz</title><subtitle>Multi-platform engineer with over a decade of professional experience specializing in low-level automation, desktop application architectures, and robust backend ecosystems.</subtitle><author><name>Banikaz</name><email>banikaz@proton.me</email></author><entry><title type="html">Rebuilding My Portfolio: From Cluttered Pages to a Modern Engineering Terminal</title><link href="https://banikaz.online/tech/2026/08/18/modern-portfolio-revamp-architecture.html" rel="alternate" type="text/html" title="Rebuilding My Portfolio: From Cluttered Pages to a Modern Engineering Terminal" /><published>2026-08-18T17:40:00+08:00</published><updated>2026-08-18T17:40:00+08:00</updated><id>https://banikaz.online/tech/2026/08/18/modern-portfolio-revamp-architecture</id><content type="html" xml:base="https://banikaz.online/tech/2026/08/18/modern-portfolio-revamp-architecture.html">&lt;p&gt;Every few years, developer portfolios tend to accumulate digital dust. What starts as a simple list of projects gradually turns into a patchwork of conflicting CSS rules, rigid layouts, and outdated dependencies.&lt;/p&gt;
+
+&lt;p&gt;I recently decided to give my personal portfolio and engineering hub (&lt;a href=&quot;https://banikaz.online&quot;&gt;banikaz.online&lt;/a&gt;) a complete ground-up redesign. The goal was simple: &lt;strong&gt;build a blazing-fast, terminal-inspired engineering workspace with zero bloat, true OLED dark mode, and seamless mobile ergonomics.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Here is an architectural breakdown of what changed, how it was built, and the lessons learned along the way.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;1-the-design-philosophy-option-a-engineering-terminal&quot;&gt;1. The Design Philosophy: “Option A” Engineering Terminal&lt;/h2&gt;
+
+&lt;p&gt;Most modern portfolio templates lean heavily into generic tropes: purple glow on dark slate backgrounds, cluttered bento boxes, and heavy JavaScript frameworks for what is essentially static content.&lt;/p&gt;
+
+&lt;p&gt;For this revamp, I wanted an interface that feels like an engineer’s native desktop environment:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;True OLED Pitch Black (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;#000000&lt;/code&gt;)&lt;/strong&gt;: Deep contrast with zinc borders (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;rgba(255, 255, 255, 0.12)&lt;/code&gt;) and clean emerald/cyan terminal accents.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Monospace Typography&lt;/strong&gt;: Pairings of &lt;strong&gt;Inter&lt;/strong&gt; for comfortable prose reading and &lt;strong&gt;JetBrains Mono&lt;/strong&gt; for code, tags, and telemetry data.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Modular 3-Column Desktop Grid&lt;/strong&gt;:
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;Left Column&lt;/strong&gt;: Personal identity, live availability pill, quick navigation, and instant-copy contact badges.&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;Center Column&lt;/strong&gt;: Dynamic content stream (Overview, Timeline, Project Search, Journal, and Resume).&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;Right Column&lt;/strong&gt;: Clickable technical skill chips, categorized tools, and personal hobbies.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-mermaid&quot;&gt;graph TD
+    subgraph &quot;Data Layer (_data/)&quot;
+        A[profile.yml] --&amp;gt; D[Liquid Templating]
+        B[experience.yml] --&amp;gt; D
+        C[projects.yml] --&amp;gt; D
+        E[techstack.yml] --&amp;gt; D
+    end
+
+    subgraph &quot;Presentation Layer&quot;
+        D --&amp;gt; F[Column 1: Profile &amp;amp; Nav]
+        D --&amp;gt; G[Column 2: Dynamic Main View]
+        D --&amp;gt; H[Column 3: Tech Stack &amp;amp; Hobbies]
+    end
+
+    subgraph &quot;Client Runtime (res/script.js)&quot;
+        I[SPA Hash Router] --&amp;gt; G
+        J[Live Schedule Engine] --&amp;gt; F
+        K[Instant Project Filter] --&amp;gt; G
+        L[Client-Side PDF Generator] --&amp;gt; G
+    end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;2-dynamic-client-side-hash-router&quot;&gt;2. Dynamic Client-Side Hash Router&lt;/h2&gt;
+
+&lt;p&gt;Rather than reloading entire HTML documents on every navigation click, the new architecture uses a lightweight, dependency-free &lt;strong&gt;SPA Hash Router&lt;/strong&gt; in vanilla JavaScript.&lt;/p&gt;
+
+&lt;h3 id=&quot;deep-link-permalinks--direct-url-sync&quot;&gt;Deep Link Permalinks &amp;amp; Direct URL Sync&lt;/h3&gt;
+&lt;p&gt;The router parses the hash fragment to activate views without losing browser history:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;#home&lt;/code&gt; ➔ System overview &amp;amp; biography&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;#experience&lt;/code&gt; ➔ Interactive career timeline with collapsible cards&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;#projects&lt;/code&gt; ➔ Live search and filtered grid&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;#blog&lt;/code&gt; ➔ Writing journal&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;#post:&amp;lt;url&amp;gt;&lt;/code&gt; ➔ Inlines full markdown articles and renders dynamic Mermaid diagrams&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;#resume&lt;/code&gt; ➔ Full-screen single-column reading view&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;When viewing articles or the full resume, the layout automatically transforms—hiding auxiliary sidebars and maximizing reading width.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;3-real-time-daily-schedule--timezone-engine&quot;&gt;3. Real-Time Daily Schedule &amp;amp; Timezone Engine&lt;/h2&gt;
+
+&lt;p&gt;Instead of a static “Online/Offline” indicator, the sidebar now features a live routine evaluator linked to Philippine Standard Time (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Asia/Manila&lt;/code&gt;, UTC+08:00).&lt;/p&gt;
+
+&lt;p&gt;The schedule is completely defined in YAML:&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;schedule_config&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;timezone&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Asia/Manila&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;schedule&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;08:00&quot;&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;11:30&quot;&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Working&quot;&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;emoji&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;💻&quot;&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;working&quot;&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;11:30&quot;&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;12:30&quot;&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Lunch&quot;&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;emoji&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;🍲&quot;&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;lunch&quot;&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;18:00&quot;&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;22:00&quot;&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Relaxing&quot;&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;emoji&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;🎮&quot;&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;relax&quot;&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;22:00&quot;&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;05:00&quot;&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Sleeping&quot;&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;emoji&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;😴&quot;&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;sleep&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Every 30 seconds, client-side JavaScript converts current time to minutes from midnight and updates the &lt;strong&gt;Timezone&lt;/strong&gt; badge under Contact with accurate routine emojis and color-coded status pulses. Meanwhile, the top bio badge remains cleanly pinned to &lt;strong&gt;“Open to opportunities”&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;4-zero-dependency-client-side-pdf-generation&quot;&gt;4. Zero-Dependency Client-Side PDF Generation&lt;/h2&gt;
+
+&lt;p&gt;Maintaining static uploaded PDF copies of a resume is notorious for falling out of sync with your live portfolio website.&lt;/p&gt;
+
+&lt;p&gt;In this revamp, pressing &lt;strong&gt;“Download PDF”&lt;/strong&gt; synthesizes a crisp, high-DPI A4 document directly in the browser using dynamic on-demand library loading:&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;downloadResumePDF&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;ToastManager&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;show&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;Preparing PDF generator...&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;// Dynamically load html2pdf only when clicked&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;typeof&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;html2pdf&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;undefined&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;await&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;loadScript&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;resumeSection&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getElementById&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;resumeSection&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;clone&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;resumeSection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cloneNode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;clone&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;querySelector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;.resume-top-nav&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)?.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;remove&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;opt&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;margin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;filename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;John_Nichols_Ranara_Resume.pdf&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;html2canvas&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;scale&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;useCORS&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;logging&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;jsPDF&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;unit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;mm&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;a4&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;orientation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;portrait&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;await&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;html2pdf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;opt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;from&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;clone&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;save&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;ToastManager&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;show&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;Resume PDF downloaded!&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;success&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This guarantees that whenever experience or project details are updated in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_data/&lt;/code&gt;, the downloaded PDF reflects the exact same changes immediately.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;5-native-grade-mobile-ergonomics&quot;&gt;5. Native-Grade Mobile Ergonomics&lt;/h2&gt;
+
+&lt;p&gt;Desktop three-column interfaces often break down on mobile screens. To solve this, the mobile view was rebuilt with app-like ergonomics:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Sticky Top App Bar&lt;/strong&gt;: Displays a mini avatar, brand tag (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Banikaz&lt;/code&gt;), availability indicator, theme switcher, and side drawer toggles.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Slide-in Drawers&lt;/strong&gt;: Profile navigation and tech stack drawers slide in smoothly from left and right with backdrop blur.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Fixed Bottom Tab Dock&lt;/strong&gt;: A 5-tab dock at the bottom of the screen allows 1-tap switching between Home, Work, Projects, Blog, and Resume.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Responsive Layout Isolation&lt;/strong&gt;: Enforced block-level container isolation preventing horizontal bleeding across mobile viewports (e.g. Galaxy S20 Ultra, iPhone 15).&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;key-takeaways&quot;&gt;Key Takeaways&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Vanilla is Powerful&lt;/strong&gt;: You don’t need megabytes of framework runtime to build interactive, stateful single-page experiences.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Data-First Architecture&lt;/strong&gt;: Separating 100% of the content into structured &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_data/*.yml&lt;/code&gt; files makes ongoing maintenance effortless.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Performance Matters&lt;/strong&gt;: Fast page loads and instant tab switching make portfolio exploration a joy rather than a chore.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Feel free to explore the live implementation at &lt;a href=&quot;https://banikaz.online&quot;&gt;banikaz.online&lt;/a&gt; or check out the open-source code on &lt;a href=&quot;https://github.com/0xb01&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;</content><author><name>Banikaz</name><email>banikaz@proton.me</email></author><category term="Tech" /><category term="tech" /><category term="webdev" /><category term="jekyll" /><category term="design-system" /><category term="architecture" /><summary type="html">Every few years, developer portfolios tend to accumulate digital dust. What starts as a simple list of projects gradually turns into a patchwork of conflicting CSS rules, rigid layouts, and outdated dependencies.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://banikaz.online/res/me.jpg" /><media:content medium="image" url="https://banikaz.online/res/me.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Say Goodbye to ‘Filipino Time’: Inside the Server Keeping the Philippines Synced</title><link href="https://banikaz.online/tech/2026/06/30/inside-ph-synced.html" rel="alternate" type="text/html" title="Say Goodbye to ‘Filipino Time’: Inside the Server Keeping the Philippines Synced" /><published>2026-06-30T11:43:50+08:00</published><updated>2026-06-30T11:43:50+08:00</updated><id>https://banikaz.online/tech/2026/06/30/inside-ph-synced</id><content type="html" xml:base="https://banikaz.online/tech/2026/06/30/inside-ph-synced.html">&lt;p&gt;Ever noticed how your phone always shows the exact same time as the countdown on the TV news, your bank’s mobile app, and the local ATM?&lt;/p&gt;
 
 &lt;p&gt;That isn’t a coincidence. Behind every perfectly timed digital transaction in the country is a single, hard-working system run by PAGASA and DOST. If you’ve ever dug into your computer’s network settings, you might have spotted its digital home: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ntp.pagasa.dost.gov.ph&lt;/code&gt;.&lt;/p&gt;
 
@@ -55,11 +213,11 @@ While countries like the US or parts of Europe shift their clocks forward and ba
 
 &lt;p&gt;If you’re an IT professional setting up a local office network, or just a tech enthusiast who wants their desktop PC perfectly aligned with the country’s official time, you can input &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ntp.pagasa.dost.gov.ph&lt;/code&gt; into your operating system’s NTP server settings.&lt;/p&gt;
 
-&lt;p&gt;It ensures your timestamps stay perfectly aligned with the rest of the nation—meaning you have absolutely zero excuses to be late for your next meeting!&lt;/p&gt;</content><author><name></name></author><category term="tech" /><category term="tech" /><category term="tutorial" /><summary type="html">Ever noticed how your phone always shows the exact same time as the countdown on the TV news, your bank’s mobile app, and the local ATM?</summary></entry><entry><title type="html">Haha… Worker</title><link href="http://localhost:4000/tech/2026/05/12/haha-worker.html" rel="alternate" type="text/html" title="Haha… Worker" /><published>2026-05-12T10:18:00+08:00</published><updated>2026-05-12T10:18:00+08:00</updated><id>http://localhost:4000/tech/2026/05/12/haha-worker</id><content type="html" xml:base="http://localhost:4000/tech/2026/05/12/haha-worker.html">&lt;p&gt;Just wanted to share something… a worker, yes. My first CloudFlare Worker!&lt;/p&gt;
+&lt;p&gt;It ensures your timestamps stay perfectly aligned with the rest of the nation—meaning you have absolutely zero excuses to be late for your next meeting!&lt;/p&gt;</content><author><name>Banikaz</name><email>banikaz@proton.me</email></author><category term="tech" /><category term="tech" /><category term="tutorial" /><summary type="html">Ever noticed how your phone always shows the exact same time as the countdown on the TV news, your bank’s mobile app, and the local ATM?</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://banikaz.online/res/me.jpg" /><media:content medium="image" url="https://banikaz.online/res/me.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Haha… Worker</title><link href="https://banikaz.online/tech/2026/05/12/haha-worker.html" rel="alternate" type="text/html" title="Haha… Worker" /><published>2026-05-12T10:18:00+08:00</published><updated>2026-05-12T10:18:00+08:00</updated><id>https://banikaz.online/tech/2026/05/12/haha-worker</id><content type="html" xml:base="https://banikaz.online/tech/2026/05/12/haha-worker.html">&lt;p&gt;Just wanted to share something… a worker, yes. My first CloudFlare Worker!&lt;/p&gt;
 
 &lt;p&gt;It just serves files that is not stored there but rather from different sites.&lt;/p&gt;
 
-&lt;p&gt;Can’t really tell more because it’s just for personal use but you’re free to explore the &lt;a href=&quot;https://haha.n1kk0.workers.dev/&quot;&gt;worker&lt;/a&gt;!&lt;/p&gt;</content><author><name></name></author><category term="tech" /><category term="dev" /><summary type="html">Just wanted to share something… a worker, yes. My first CloudFlare Worker!</summary></entry><entry><title type="html">A Good Alternative to Google Keep</title><link href="http://localhost:4000/tech/2026/03/30/sync-obsidian-with-syncthing.html" rel="alternate" type="text/html" title="A Good Alternative to Google Keep" /><published>2026-03-30T08:00:00+08:00</published><updated>2026-03-30T08:00:00+08:00</updated><id>http://localhost:4000/tech/2026/03/30/sync-obsidian-with-syncthing</id><content type="html" xml:base="http://localhost:4000/tech/2026/03/30/sync-obsidian-with-syncthing.html">&lt;p&gt;For years, I’ve been using &lt;strong&gt;Google Keep&lt;/strong&gt; for my notes. You know the ones — quick reminders, shopping lists, random thoughts at 2 AM. It’s simple, fast, and just works. If you’re like me, you probably have hundreds of notes sitting there.&lt;/p&gt;
+&lt;p&gt;Can’t really tell more because it’s just for personal use but you’re free to explore the &lt;a href=&quot;https://haha.n1kk0.workers.dev/&quot;&gt;worker&lt;/a&gt;!&lt;/p&gt;</content><author><name>Banikaz</name><email>banikaz@proton.me</email></author><category term="tech" /><category term="dev" /><summary type="html">Just wanted to share something… a worker, yes. My first CloudFlare Worker!</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://banikaz.online/res/me.jpg" /><media:content medium="image" url="https://banikaz.online/res/me.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">A Good Alternative to Google Keep</title><link href="https://banikaz.online/tech/2026/03/30/sync-obsidian-with-syncthing.html" rel="alternate" type="text/html" title="A Good Alternative to Google Keep" /><published>2026-03-30T08:00:00+08:00</published><updated>2026-03-30T08:00:00+08:00</updated><id>https://banikaz.online/tech/2026/03/30/sync-obsidian-with-syncthing</id><content type="html" xml:base="https://banikaz.online/tech/2026/03/30/sync-obsidian-with-syncthing.html">&lt;p&gt;For years, I’ve been using &lt;strong&gt;Google Keep&lt;/strong&gt; for my notes. You know the ones — quick reminders, shopping lists, random thoughts at 2 AM. It’s simple, fast, and just works. If you’re like me, you probably have hundreds of notes sitting there.&lt;/p&gt;
 
 &lt;p&gt;But here’s the thing: this is just my opinion, and it might not be yours. Google Keep is great for quick notes, but I started feeling limited. I wanted more control over my notes, better organization, and the ability to link ideas together. That’s when I discovered &lt;strong&gt;Obsidian&lt;/strong&gt;.&lt;/p&gt;
 
@@ -423,7 +581,7 @@ While countries like the US or parts of Europe shift their clocks forward and ba
 
 &lt;p&gt;Syncthing takes a bit of setup (maybe 10-15 minutes), but once it’s running, you won’t notice any difference from paid sync services. Your notes stay in sync, your wallet stays happy, and your data stays private.&lt;/p&gt;
 
-&lt;p&gt;Give it a try! Your future self will thank you.&lt;/p&gt;</content><author><name></name></author><category term="Tech" /><category term="tech" /><category term="obsidian" /><category term="syncthing" /><category term="sync" /><category term="tutorial" /><category term="google-keep" /><summary type="html">For years, I’ve been using Google Keep for my notes. You know the ones — quick reminders, shopping lists, random thoughts at 2 AM. It’s simple, fast, and just works. If you’re like me, you probably have hundreds of notes sitting there.</summary></entry><entry><title type="html">This Portfolio is Customizable</title><link href="http://localhost:4000/tech/2026/03/29/customizable.html" rel="alternate" type="text/html" title="This Portfolio is Customizable" /><published>2026-03-29T07:15:00+08:00</published><updated>2026-03-29T07:15:00+08:00</updated><id>http://localhost:4000/tech/2026/03/29/customizable</id><content type="html" xml:base="http://localhost:4000/tech/2026/03/29/customizable.html">&lt;p&gt;Yeah, it is!&lt;/p&gt;
+&lt;p&gt;Give it a try! Your future self will thank you.&lt;/p&gt;</content><author><name>Banikaz</name><email>banikaz@proton.me</email></author><category term="Tech" /><category term="tech" /><category term="obsidian" /><category term="syncthing" /><category term="sync" /><category term="tutorial" /><category term="google-keep" /><summary type="html">For years, I’ve been using Google Keep for my notes. You know the ones — quick reminders, shopping lists, random thoughts at 2 AM. It’s simple, fast, and just works. If you’re like me, you probably have hundreds of notes sitting there.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://banikaz.online/res/me.jpg" /><media:content medium="image" url="https://banikaz.online/res/me.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">This Portfolio is Customizable</title><link href="https://banikaz.online/tech/2026/03/29/customizable.html" rel="alternate" type="text/html" title="This Portfolio is Customizable" /><published>2026-03-29T07:15:00+08:00</published><updated>2026-03-29T07:15:00+08:00</updated><id>https://banikaz.online/tech/2026/03/29/customizable</id><content type="html" xml:base="https://banikaz.online/tech/2026/03/29/customizable.html">&lt;p&gt;Yeah, it is!&lt;/p&gt;
 
 &lt;h2 id=&quot;how-it-works&quot;&gt;How It Works&lt;/h2&gt;
 
@@ -503,7 +661,7 @@ While countries like the US or parts of Europe shift their clocks forward and ba
 
 &lt;p&gt;The portfolio also supports &lt;strong&gt;Mermaid diagrams&lt;/strong&gt; in blog posts (like this one!). Perfect for technical writing and documentation.&lt;/p&gt;
 
-&lt;p&gt;Feel free to explore the &lt;a href=&quot;https://github.com/0xb01/0xb01.github.io&quot;&gt;repository&lt;/a&gt; and make it your own!&lt;/p&gt;</content><author><name></name></author><category term="Tech" /><category term="tech" /><category term="portfolio" /><summary type="html">Yeah, it is!</summary></entry><entry><title type="html">Testing Mermaid Diagrams</title><link href="http://localhost:4000/tech/2026/03/13/testing-mermaid-diagrams.html" rel="alternate" type="text/html" title="Testing Mermaid Diagrams" /><published>2026-03-13T00:00:00+08:00</published><updated>2026-03-13T00:00:00+08:00</updated><id>http://localhost:4000/tech/2026/03/13/testing-mermaid-diagrams</id><content type="html" xml:base="http://localhost:4000/tech/2026/03/13/testing-mermaid-diagrams.html">&lt;p&gt;This is a test post to verify Mermaid diagram support.&lt;/p&gt;
+&lt;p&gt;Feel free to explore the &lt;a href=&quot;https://github.com/0xb01/0xb01.github.io&quot;&gt;repository&lt;/a&gt; and make it your own!&lt;/p&gt;</content><author><name>Banikaz</name><email>banikaz@proton.me</email></author><category term="Tech" /><category term="tech" /><category term="portfolio" /><summary type="html">Yeah, it is!</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://banikaz.online/res/me.jpg" /><media:content medium="image" url="https://banikaz.online/res/me.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Testing Mermaid Diagrams</title><link href="https://banikaz.online/tech/2026/03/13/testing-mermaid-diagrams.html" rel="alternate" type="text/html" title="Testing Mermaid Diagrams" /><published>2026-03-13T00:00:00+08:00</published><updated>2026-03-13T00:00:00+08:00</updated><id>https://banikaz.online/tech/2026/03/13/testing-mermaid-diagrams</id><content type="html" xml:base="https://banikaz.online/tech/2026/03/13/testing-mermaid-diagrams.html">&lt;p&gt;This is a test post to verify Mermaid diagram support.&lt;/p&gt;
 
 &lt;h2 id=&quot;flowchart-graph-td&quot;&gt;Flowchart (Graph TD)&lt;/h2&gt;
 
@@ -655,7 +813,7 @@ While countries like the US or parts of Europe shift their clocks forward and ba
 
 &lt;hr /&gt;
 
-&lt;p&gt;If you can see all the diagrams rendered above, Mermaid support is working correctly!&lt;/p&gt;</content><author><name></name></author><category term="Tech" /><category term="tech" /><category term="test" /><summary type="html">This is a test post to verify Mermaid diagram support.</summary></entry><entry><title type="html">The Amira Elfeky Blend</title><link href="http://localhost:4000/music/2026/03/12/amira-elfeky-blend.html" rel="alternate" type="text/html" title="The Amira Elfeky Blend" /><published>2026-03-12T07:26:00+08:00</published><updated>2026-03-12T07:26:00+08:00</updated><id>http://localhost:4000/music/2026/03/12/amira-elfeky-blend</id><content type="html" xml:base="http://localhost:4000/music/2026/03/12/amira-elfeky-blend.html">&lt;p&gt;If you’ve heard &lt;strong&gt;Amira Elfeky’s&lt;/strong&gt; track &lt;em&gt;“Everything I Do Is For You,”&lt;/em&gt; you probably felt a massive wave of nostalgia hit you. It’s getting a lot of buzz lately, and for good reason—it sounds like the perfect “lost track” from the early 2000s.&lt;/p&gt;
+&lt;p&gt;If you can see all the diagrams rendered above, Mermaid support is working correctly!&lt;/p&gt;</content><author><name>Banikaz</name><email>banikaz@proton.me</email></author><category term="Tech" /><category term="tech" /><category term="test" /><summary type="html">This is a test post to verify Mermaid diagram support.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://banikaz.online/res/me.jpg" /><media:content medium="image" url="https://banikaz.online/res/me.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">The Amira Elfeky Blend</title><link href="https://banikaz.online/music/2026/03/12/amira-elfeky-blend.html" rel="alternate" type="text/html" title="The Amira Elfeky Blend" /><published>2026-03-12T07:26:00+08:00</published><updated>2026-03-12T07:26:00+08:00</updated><id>https://banikaz.online/music/2026/03/12/amira-elfeky-blend</id><content type="html" xml:base="https://banikaz.online/music/2026/03/12/amira-elfeky-blend.html">&lt;p&gt;If you’ve heard &lt;strong&gt;Amira Elfeky’s&lt;/strong&gt; track &lt;em&gt;“Everything I Do Is For You,”&lt;/em&gt; you probably felt a massive wave of nostalgia hit you. It’s getting a lot of buzz lately, and for good reason—it sounds like the perfect “lost track” from the early 2000s.&lt;/p&gt;
 
 &lt;p&gt;Here’s why it feels so much like a mix of &lt;strong&gt;Evanescence&lt;/strong&gt; and &lt;strong&gt;Linkin Park&lt;/strong&gt;:&lt;/p&gt;
 
@@ -674,4 +832,4 @@ While countries like the US or parts of Europe shift their clocks forward and ba
 
 &lt;p&gt;It’s the kind of song that’s perfect for a late-night drive or just staring out the window when you’re feeling a bit deep. If you grew up listening to Nu-Metal or Alt-Rock, this song is going to feel like home.&lt;/p&gt;
 
-&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/dEU90cHWKMk?si=_USel0IdaNMKO0MI&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&quot; referrerpolicy=&quot;strict-origin-when-cross-origin&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;</content><author><name></name></author><category term="Music" /><category term="music" /><category term="thoughts" /><summary type="html">If you’ve heard Amira Elfeky’s track “Everything I Do Is For You,” you probably felt a massive wave of nostalgia hit you. It’s getting a lot of buzz lately, and for good reason—it sounds like the perfect “lost track” from the early 2000s.</summary></entry></feed>
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/dEU90cHWKMk?si=_USel0IdaNMKO0MI&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&quot; referrerpolicy=&quot;strict-origin-when-cross-origin&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;</content><author><name>Banikaz</name><email>banikaz@proton.me</email></author><category term="Music" /><category term="music" /><category term="thoughts" /><summary type="html">If you’ve heard Amira Elfeky’s track “Everything I Do Is For You,” you probably felt a massive wave of nostalgia hit you. It’s getting a lot of buzz lately, and for good reason—it sounds like the perfect “lost track” from the early 2000s.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://banikaz.online/res/me.jpg" /><media:content medium="image" url="https://banikaz.online/res/me.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>

@@ -1,6 +1,17 @@
-# Tech Stack Data
-# Single source of truth for Tech Stack (sidebar + resume)
-# Edit here - changes reflect automatically in both locations
+# ==============================================================================
+# Technical Skills & Hobbies Data (_data/techstack.yml)
+# ==============================================================================
+# Single source of truth for skill categories in the right sidebar drawer and resume.
+#
+# FIELDS FOR EACH CATEGORY:
+# - name: Category title (e.g. Languages, Frontend, Backend, DevOps, Hardware)
+# - icon: Font Awesome icon class (e.g. fa-desktop, fa-server, fa-cube)
+# - show_in: Display target: 'sidebar' (panel only), 'resume' (resume only), or 'both'
+# - items: List of skills / tools (clicking tags in the sidebar filters projects)
+#
+# HOBBIES SECTION:
+# - Rendered in the sidebar drawer with custom icons and labels.
+# ==============================================================================
 
 categories:
   - name: Languages

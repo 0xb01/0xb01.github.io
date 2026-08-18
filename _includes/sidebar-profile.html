@@ -1,77 +1,117 @@
 {%- comment -%}
   Sidebar Profile Include
   Renders profile info from _data/profile.yml
-  
-  Usage: {% include sidebar-profile.html %}
+  Design: Modern Engineering Terminal sidebar with theme toggle and live status
 {%- endcomment -%}
 
+<div class="sidebar-header-bar">
+    <div class="brand-tag-wrapper">
+        <span class="brand-tag-prefix">~/</span>
+        <span class="brand-tag-text">banikaz</span>
+    </div>
+    <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" aria-label="Toggle Theme" title="Toggle Light/Dark Theme">
+        <i class="fas fa-moon" id="themeIcon"></i>
+    </button>
+</div>
+
 <div class="profile-section">
-    <div class="profile-left">
-        <div class="profile-image">
+    <div class="profile-card">
+        <div class="profile-avatar-container">
             <img src="{{ site.data.profile.profile_image }}" alt="{{ site.data.profile.name }}" class="profile-photo">
+            <div class="avatar-glow"></div>
         </div>
-        <div class="profile-text">
+        <div class="profile-info-block">
             <h1 class="name">{{ site.data.profile.name }}</h1>
-            <div class="location-info">
+            <div class="location-badge">
                 <i class="fas fa-map-marker-alt"></i>
                 <span>{{ site.data.profile.location }}</span>
             </div>
-            <div class="status-box">
-                {{ site.data.profile.status }}
+            <div class="status-indicator-wrapper availability-status-pill" title="Work Availability">
+                <span class="status-dot availability-dot"></span>
+                <span class="status-text">{{ site.data.profile.status | default: 'Open to opportunities' }}</span>
             </div>
         </div>
     </div>
-    <div class="nav-buttons">
-        <hr class="separator">
+
+    <nav class="nav-buttons" aria-label="Main Navigation">
         {%- for nav in site.data.profile.navigation -%}
-            <button class="nav-btn{% if nav.active %} active{% endif %}" id="{{ nav.id }}" onclick="{{ nav.action }}()">
-                {%- if nav.label == 'Home' -%}<i class="fas fa-home"></i>
+            <button class="nav-btn{% if nav.active %} active{% endif %}" id="{{ nav.id }}" data-route="{{ nav.route | default: 'home' }}" onclick="navigateToRoute('{{ nav.route | default: 'home' }}')">
+                {%- if nav.label == 'Home' -%}<i class="fas fa-terminal"></i>
                 {%- elsif nav.label == 'Work Experience' -%}<i class="fas fa-briefcase"></i>
+                {%- elsif nav.label == 'Projects' -%}<i class="fas fa-cubes"></i>
                 {%- elsif nav.label == 'Blog' -%}<i class="fas fa-pen-fancy"></i>
-                {%- elsif nav.label == 'Contact' -%}<i class="fas fa-envelope"></i>
-                {%- elsif nav.label == 'Resume' -%}<i class="fas fa-file-alt"></i>
+                {%- elsif nav.label == 'Contact' -%}<i class="fas fa-paper-plane"></i>
+                {%- elsif nav.label == 'Resume' -%}<i class="fas fa-file-lines"></i>
+                {%- else -%}<i class="fas fa-circle-dot"></i>
                 {%- endif -%}
                 <span>{{ nav.label }}</span>
+                <span class="nav-active-pill"></span>
             </button>
         {%- endfor -%}
-    </div>
+    </nav>
 </div>
 
-    <div class="contact-and-socials">
-        <div class="contact-section" style="padding-top: 15px; padding-bottom: 10px;">
-            <h3>Contact</h3>
-            <ul class="contact-list">
-                {%- for contact in site.data.profile.contact -%}
-                    {%- if contact.type == 'timezone' -%}
-                        <li class="timezone-contact" onclick="{{ contact.action }}()">
-                            <i class="fas {{ contact.icon }}"></i>
-                            <span id="timezoneText" data-timezone="{{ contact.timezone }}" data-location="{{ site.data.profile.location }}">Loading...</span>
-                        </li>
-                    {%- elsif contact.clickable -%}
-                        <li>
-                            <i class="fas {{ contact.icon }}"></i>
-                            <a href="javascript:void(0)" onclick="{{ contact.action }}(); return false;">{{ contact.value }}</a>
-                        </li>
-                    {%- else -%}
-                        <li>
-                            <i class="fas {{ contact.icon }}"></i>
-                            <span>{{ contact.value }}</span>
-                        </li>
-                    {%- endif -%}
-                {%- endfor -%}
-            </ul>
-        </div>
+<div class="contact-and-socials">
+    <div class="contact-section">
+        <h3 class="sidebar-section-title">
+            <i class="fas fa-address-card"></i> Contact
+        </h3>
+        <ul class="contact-list">
+            {%- for contact in site.data.profile.contact -%}
+                {%- if contact.type == 'timezone' -%}
+                    <li class="contact-item timezone-item" onclick="navigateToRoute('contact')" title="Click to view contact info">
+                        <div class="contact-icon"><i class="fas {{ contact.icon }}"></i></div>
+                        <div class="contact-detail">
+                            <span class="contact-label">Timezone</span>
+                            <span id="timezoneText" class="contact-val" data-timezone="{{ site.data.profile.schedule_config.timezone | default: contact.timezone }}" data-location="{{ site.data.profile.location }}" data-schedule='{{ site.data.profile.schedule_config.schedule | jsonify }}'>Loading...</span>
+                        </div>
+                    </li>
+                {%- elsif contact.type == 'email' -%}
+                    <li class="contact-item email-item" onclick="copyToClipboard('{{ contact.value }}', 'Email copied!')" title="Click to copy email">
+                        <div class="contact-icon"><i class="fas {{ contact.icon }}"></i></div>
+                        <div class="contact-detail">
+                            <span class="contact-label">Email (Click to copy)</span>
+                            <span class="contact-val">{{ contact.value }}</span>
+                        </div>
+                        <button class="quick-copy-btn" aria-label="Copy Email" tabindex="-1">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </li>
+                {%- elsif contact.type == 'phone' -%}
+                    <li class="contact-item phone-item" onclick="copyToClipboard('{{ contact.value }}', 'Phone number copied!')" title="Click to copy phone">
+                        <div class="contact-icon"><i class="fas {{ contact.icon }}"></i></div>
+                        <div class="contact-detail">
+                            <span class="contact-label">Phone (Click to copy)</span>
+                            <span class="contact-val">{{ contact.value }}</span>
+                        </div>
+                        <button class="quick-copy-btn" aria-label="Copy Phone" tabindex="-1">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </li>
+                {%- else -%}
+                    <li class="contact-item">
+                        <div class="contact-icon"><i class="fas {{ contact.icon }}"></i></div>
+                        <div class="contact-detail">
+                            <span class="contact-val">{{ contact.value }}</span>
+                        </div>
+                    </li>
+                {%- endif -%}
+            {%- endfor -%}
+        </ul>
+    </div>
 
-        <div class="social-section">
-            <h3>Socials</h3>
-            <div class="social-links">
-                {%- for social in site.data.profile.socials -%}
-                    {%- if social.show != false -%}
-                        <a href="{{ social.url }}" class="social-link" aria-label="{{ social.label }}" target="_blank">
-                            <i class="fab {{ social.icon }}"></i>
-                        </a>
-                    {%- endif -%}
-                {%- endfor -%}
-            </div>
+    <div class="social-section">
+        <h3 class="sidebar-section-title">
+            <i class="fas fa-share-nodes"></i> Connect
+        </h3>
+        <div class="social-links">
+            {%- for social in site.data.profile.socials -%}
+                {%- if social.show != false -%}
+                    <a href="{{ social.url }}" class="social-link" aria-label="{{ social.label }}" target="_blank" rel="noopener noreferrer" title="{{ social.label }}">
+                        <i class="fab {{ social.icon }}"></i>
+                    </a>
+                {%- endif -%}
+            {%- endfor -%}
         </div>
     </div>
+</div>

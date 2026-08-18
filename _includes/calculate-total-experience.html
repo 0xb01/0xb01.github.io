@@ -93,7 +93,17 @@
 
 {%- if should_display -%}
 {%- if include.context == 'work' -%}
-<h3 class="section-title">Work Experience ({{ total_years }} {% if total_years == 1 %}year{% else %}years{% endif %}{% if remaining_months > 0 %}, {{ remaining_months }} {% if remaining_months == 1 %}month{% else %}months{% endif %}{% endif %})</h3>
+<div class="section-header-row">
+  <h3 class="section-title-clean">
+    <i class="fas fa-briefcase"></i> Work Experience
+    <span class="count-badge">{{ total_years }}y{% if remaining_months > 0 %} {{ remaining_months }}m{% endif %}</span>
+  </h3>
+  <div class="timeline-controls">
+    <button class="timeline-control-btn" id="expandAllBtn" onclick="toggleAllTimelineCards()" title="Expand or collapse all items">
+      <i class="fas fa-arrows-up-down"></i> <span>Toggle All</span>
+    </button>
+  </div>
+</div>
 {%- elsif include.context == 'resume' -%}
 <h3>Experience ({{ total_years }} {% if total_years == 1 %}year{% else %}years{% endif %}{% if remaining_months > 0 %}, {{ remaining_months }} {% if remaining_months == 1 %}month{% else %}months{% endif %}{% endif %})</h3>
 {%- endif -%}
