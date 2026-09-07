@@ -38,12 +38,15 @@ experiences:
       - category: "Languages & Frameworks"
         items:
           - Python
-          - C/C#
+          - C++
+          - C#
           - Xojo
       - category: "Automation & DevOps"
         items:
           - Docker
-          - Make
+          - Make / Integromat
+          - n8n
+          - Node-RED
           - Bash
       - category: "Creative & Media"
         items:
