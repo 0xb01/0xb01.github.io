@@ -2984,6 +2984,7 @@ table.data-table td code {
 .skill-card-icon {
     color: var(--accent-cyan);
     font-size: 0.8rem;
+    transform: translateY(-3px);
 }
 
 .skill-card-title {

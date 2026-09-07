@@ -4,8 +4,8 @@
 # Single source of truth for skill categories in the right sidebar drawer and resume.
 #
 # FIELDS FOR EACH CATEGORY:
-# - name: Category title (e.g. Languages, Frontend, Backend, DevOps, Hardware)
-# - icon: Font Awesome icon class (e.g. fa-desktop, fa-server, fa-cube)
+# - name: Category title (e.g. Languages, Desktop & Systems, Backend, Frontend)
+# - icon: Font Awesome icon class (e.g. fa-desktop, fa-server, fa-code, fa-database, fa-tools, fa-palette)
 # - show_in: Display target: 'sidebar' (panel only), 'resume' (resume only), or 'both'
 # - items: List of skills / tools (clicking tags in the sidebar filters projects)
 #
@@ -23,30 +23,57 @@ categories:
       - Waray-waray (Dialect)
       - Cebuano (Dialect)
 
-  - name: Frontend
+  - name: Desktop & Systems
     icon: fa-desktop
+    show_in: both
+    items:
+      - C/C++
+      - C#
+      - Qt Framework
+      - VB.NET
+      - Xojo
+      - Batch
+      - PowerShell
+
+  - name: Backend & APIs
+    icon: fa-server
+    show_in: both
+    items:
+      - NodeJS
+      - Python
+      - PHP
+      - Java
+      - Lua
+      - REST APIs
+      - Cloudflare Workers
+
+  - name: Frontend & Web
+    icon: fa-code
     show_in: both
     items:
       - HTML5
       - CSS3
       - JavaScript
       - TypeScript
+      - WordPress
 
-  - name: Backend
-    icon: fa-server
+  - name: Mobile & Extensions
+    icon: fa-puzzle-piece
     show_in: both
     items:
-      - Bash
-      - C/C++
-      - C#
-      - Java
-      - Python
-      - PHP
-      - Lua
-      - NodeJS
-      - Qt
-      - VB.NET
-      - Xojo
+      - Android SDK
+      - Android Studio
+      - WebExtensions API
+      - Obsidian API
+
+  - name: IoT & Hardware
+    icon: fa-microchip
+    show_in: both
+    items:
+      - Raspberry Pi
+      - Industrial Automation
+      - Device Provisioning
+      - Embedded Linux
 
   - name: Database
     icon: fa-database
@@ -56,28 +83,29 @@ categories:
       - PostgreSQL
       - SQLite
 
-  - name: Tools & Platforms
+  - name: DevOps & Automation
     icon: fa-tools
     show_in: both
     items:
       - Docker
       - Git
-      - GitHub/GitLab/Bitbucket
       - GitHub Actions
-      - Make/Integromat/n8n
-      - Alibaba/Google Cloud
-      - Gemini CLI/LM Studio/Pi.Dev
+      - Make (Integromat)
+      - n8n
+      - Bash / Shell
+      - Google Cloud
+      - Alibaba Cloud
 
-  - name: Creative
+  - name: Creative & Media
     icon: fa-palette
     show_in: both
     items:
-      - Camtasia Studio
-      - DaVinci Resolve
-      - Final Cut
-      - OBS/SLOBS
       - Photoshop
       - Premiere
+      - DaVinci Resolve
+      - Final Cut
+      - OBS Studio
+      - Camtasia Studio
       - Bethesda Creation Kit
 
 # Hobbies (max 6 items)

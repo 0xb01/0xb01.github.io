@@ -4,6 +4,7 @@
   Design: Modern terminal-style about container
 {%- endcomment -%}
 
+{%- if site.data.profile.about.show -%}
 <div class="about-card">
     <div class="about-card-header">
         <h3 class="section-title-clean"><i class="fas fa-user-astronaut"></i> {{ site.data.profile.about.title }}</h3>
@@ -12,3 +13,4 @@
         <p>{{ site.data.profile.about.content }}</p>
     </div>
 </div>
+{%- endif -%}

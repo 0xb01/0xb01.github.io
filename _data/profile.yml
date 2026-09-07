@@ -66,10 +66,11 @@ schedule_config:
 hero:
   title: Full-Stack Developer • Principal Software Engineer
   headline: I'm up for any challenge.
-  description: Multi-platform engineer with over a decade of professional experience specializing in low-level automation, desktop application architectures, and robust backend ecosystems.
+  description: I'm Banikaz (or Niks), a multi-platform engineer with over a decade of professional experience specializing in low-level automation, desktop application architectures, and robust backend ecosystems.
 
 # About Section
 about:
+  show: false
   title: About Me
   content: Hi, I'm Niks! My passion for building software started early and evolved into a professional engineering career in 2016. I specialize in designing desktop environments and building resilient backend architectures, with a proven history of shipping end-to-end software solutions. My expertise ranges from native mobile application deployment to complex IoT device management and industrial automation pipelines. Operating remotely, I focus on engineering highly efficient, clean systems and tackling the unique edge cases inherent to desktop and distributed software.
 
