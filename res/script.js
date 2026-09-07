@@ -589,9 +589,13 @@ function toggleAllTimelineCards() {
         if (someCollapsed) {
             card.classList.remove('collapsed');
             card.classList.add('expanded');
+            card.querySelectorAll('.tech-category-group').forEach(d => d.open = true);
+            card.querySelectorAll('.tech-category-toggle-btn span').forEach(s => s.textContent = 'Collapse All');
         } else {
             card.classList.remove('expanded');
             card.classList.add('collapsed');
+            card.querySelectorAll('.tech-category-group').forEach(d => d.open = false);
+            card.querySelectorAll('.tech-category-toggle-btn span').forEach(s => s.textContent = 'Expand All');
         }
     });
 
@@ -601,7 +605,24 @@ function toggleAllTimelineCards() {
         if (span) span.textContent = someCollapsed ? 'Collapse All' : 'Expand All';
     }
 
-    ToastManager.show(someCollapsed ? 'Expanded all positions' : 'Collapsed all positions', 'info', 1500);
+    ToastManager.show(someCollapsed ? 'Expanded all positions & tech stacks' : 'Collapsed all positions & tech stacks', 'info', 1500);
+}
+
+function toggleTechCategories(btn) {
+    const card = btn.closest('.experience-card');
+    if (!card) return;
+    const detailsList = card.querySelectorAll('.tech-category-group');
+    if (!detailsList.length) return;
+
+    const anyClosed = Array.from(detailsList).some(d => !d.open);
+    detailsList.forEach(d => {
+        d.open = anyClosed;
+    });
+
+    const span = btn.querySelector('span');
+    if (span) {
+        span.textContent = anyClosed ? 'Collapse All' : 'Expand All';
+    }
 }
 
 // ====================================================================

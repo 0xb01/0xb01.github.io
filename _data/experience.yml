@@ -35,14 +35,20 @@ experiences:
       - Designed and developed automated chatbots, workflow pipelines, and professional client web platforms.
       - Produced technical promotional assets and digital media materials for diverse business clients.
     tech_stack:
-      - Bash
-      - C/C#
-      - Docker
-      - Make
-      - Photoshop
-      - Premiere
-      - Python
-      - Xojo
+      - category: "Languages & Frameworks"
+        items:
+          - Python
+          - C/C#
+          - Xojo
+      - category: "Automation & DevOps"
+        items:
+          - Docker
+          - Make
+          - Bash
+      - category: "Creative & Media"
+        items:
+          - Photoshop
+          - Premiere
     references:
       - title: "Article: PIIOX"
         url: https://www.elektormagazine.com/labs/piiox-raspberry-pi-io-box
@@ -58,12 +64,18 @@ experiences:
       - Developed WordPress site.
       - Designed posters for social media.
     tech_stack:
-      - Camtasia Studio
-      - HTML5/CSS3
-      - Photoshop
-      - Premiere
-      - WordPress
-      - Technical Support
+      - category: "Web Development"
+        items:
+          - WordPress
+          - HTML5/CSS3
+      - category: "Creative & Media"
+        items:
+          - Photoshop
+          - Premiere
+          - Camtasia Studio
+      - category: "Operations & Support"
+        items:
+          - Technical Support
     references:
       - title: "Facebook: Comradeship Philippines"
         url: https://www.facebook.com/comradeshipphilippines
@@ -82,13 +94,19 @@ experiences:
       - Delivered comprehensive technical support documentation and training frameworks for deployment teams.
       - Developed web interfaces, established application hosting environments, and managed distribution assets.
     tech_stack:
-      - Android Studio
-      - Batch
-      - Camtasia Studio
-      - HTML5/CSS3
-      - Java
-      - PHP
-      - Photoshop
+      - category: "Mobile Development"
+        items:
+          - Java
+          - Android Studio
+      - category: "Web & Scripting"
+        items:
+          - PHP
+          - HTML5/CSS3
+          - Batch
+      - category: "Creative & Media"
+        items:
+          - Photoshop
+          - Camtasia Studio
     references:
       - title: "Video: School Watching Application (SWApp)"
         url: https://www.youtube.com/watch?v=svQEpxnNP8c
@@ -106,13 +124,19 @@ experiences:
       - Cultivated active player communities and implemented structural strategies to boost long-term player engagement.
       - Developed automated workflow pipelines to sync, cross-post, and distribute content seamlessly across social networks.
     tech_stack:
-      - Community Management
-      - Integromat/Make
-      - n8n
-      - OBS Studio
-      - Photoshop
-      - Premiere
-      - Technical Support
+      - category: "Automation & DevOps"
+        items:
+          - Integromat/Make
+          - n8n
+      - category: "Creative & Media"
+        items:
+          - Photoshop
+          - Premiere
+          - OBS Studio
+      - category: "Operations & Support"
+        items:
+          - Community Management
+          - Technical Support
     references:
       - title: "Trailer: Special Force is Back!"
         url: https://www.youtube.com/watch?v=WIDFrM0a2_s
@@ -131,9 +155,11 @@ experiences:
       - Executed data migration strategies to extract records from old storage systems into the new relational architecture.
       - Provided post-deployment technical support, system maintenance, and performance tuning during the rollout phase.
     tech_stack:
-      - CSS
-      - HTML
-      - JavaScript
-      - NodeJS
-      - PHP
+      - category: "Full-Stack Development"
+        items:
+          - PHP
+          - NodeJS
+          - JavaScript
+          - HTML
+          - CSS
     references: []
