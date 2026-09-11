@@ -1,56 +1,82 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-09-10T17:13:48+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Banikaz</title><subtitle>Multi-platform engineer with over a decade of professional experience specializing in low-level automation, desktop application architectures, and robust backend ecosystems.</subtitle><author><name>Banikaz</name><email>banikaz@proton.me</email></author><entry><title type="html">Building NativeXYPlot: High-Performance 2D Charting in Pure Xojo</title><link href="http://localhost:4000/tech/2026/09/10/nativexyplot.html" rel="alternate" type="text/html" title="Building NativeXYPlot: High-Performance 2D Charting in Pure Xojo" /><published>2026-09-10T17:10:00+08:00</published><updated>2026-09-10T17:10:00+08:00</updated><id>http://localhost:4000/tech/2026/09/10/nativexyplot</id><content type="html" xml:base="http://localhost:4000/tech/2026/09/10/nativexyplot.html">&lt;p&gt;Zero-dependency time-series, telemetry, and digital signal charting with decoupled 60 FPS interactive hover tracking.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-09-11T15:53:35+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Banikaz</title><subtitle>Multi-platform engineer with over a decade of professional experience specializing in low-level automation, desktop application architectures, and robust backend ecosystems.</subtitle><author><name>Banikaz</name><email>banikaz@proton.me</email></author><entry><title type="html">Building NativeXYPlot: High-Performance 2D Charting &amp;amp; Multi-Plot Matrix in Pure Xojo</title><link href="http://localhost:4000/tech/2026/09/10/nativexyplot.html" rel="alternate" type="text/html" title="Building NativeXYPlot: High-Performance 2D Charting &amp;amp; Multi-Plot Matrix in Pure Xojo" /><published>2026-09-10T17:10:00+08:00</published><updated>2026-09-10T17:10:00+08:00</updated><id>http://localhost:4000/tech/2026/09/10/nativexyplot</id><content type="html" xml:base="http://localhost:4000/tech/2026/09/10/nativexyplot.html">&lt;p&gt;Zero-dependency time-series, telemetry, multi-plot grid matrix layouts, and digital signal charting with decoupled 60 FPS interactive hover tracking and vector PDF export.&lt;/p&gt;
 
 &lt;hr /&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/0xb01/NativeXYPlot/refs/heads/master/docs/Screenshot.png&quot; alt=&quot;screenshot&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/0xb01/NativeXYPlot/refs/heads/master/docs/Screenshot.png&quot; alt=&quot;NativeXYPlot Showcase Demo&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;motivation-zero-external-dependencies&quot;&gt;Motivation: Zero External Dependencies&lt;/h2&gt;
 
-&lt;p&gt;Visualizing telemetry, IoT metrics, scientific data, and device states often comes with external baggage. Many charting tools require third-party libraries, binary dependencies, or restrictive licensing terms.&lt;/p&gt;
+&lt;p&gt;Visualizing telemetry, IoT metrics, scientific data, and device states in desktop and web applications often comes with external baggage. Many charting tools require third-party plugins, external C/C++ libraries, or restrictive licensing terms.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;NativeXYPlot&lt;/strong&gt; is a 100% native 2D plotting engine built strictly with Xojo core primitives (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Graphics&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Picture&lt;/code&gt;). It provides complete control over rendering, smooth canvas interactivity, and clean cross-platform compatibility across Windows, macOS, and Linux.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;NativeXYPlot&lt;/strong&gt; is a 100% native 2D plotting engine and multi-plot grid system built strictly with Xojo core primitives (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Graphics&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Picture&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PDFDocument&lt;/code&gt;). It provides complete control over rendering, smooth canvas interactivity, and clean cross-platform compatibility across macOS, Windows, and Linux.&lt;/p&gt;
 
 &lt;hr /&gt;
 
-&lt;h2 id=&quot;core-architecture-decoupled-60-fps-interaction&quot;&gt;Core Architecture: Decoupled 60 FPS Interaction&lt;/h2&gt;
+&lt;h2 id=&quot;core-architecture-decoupled-2-layer-60-fps-rendering&quot;&gt;Core Architecture: Decoupled 2-Layer 60 FPS Rendering&lt;/h2&gt;
 
 &lt;p&gt;Redrawing complex line charts with thousands of data points on every mouse movement causes canvas stutter. NativeXYPlot solves this with a two-layer decoupled rendering architecture:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&quot;language-mermaid&quot;&gt;flowchart TD
-    A[&quot;Raw Data (DateTime / Double Arrays)&quot;] --&amp;gt; B[&quot;NativeXYPlot Instance&quot;]
-    B --&amp;gt; C[&quot;Configure Scales &amp;amp; Layout&quot;]
-    C --&amp;gt; D[&quot;Add Data Series &amp;amp; Annotations&quot;]
-    
-    subgraph S1[&quot;Layer 1: Static Buffer (Compute Once)&quot;]
-        D --&amp;gt; E[&quot;MakeChartPicture()&quot;]
-        E --&amp;gt; F[&quot;Offscreen Picture (Grid, Ticks, Curves)&quot;]
+    subgraph Data [&quot;1. Data Sources&quot;]
+        D1[&quot;Numbers (Double Arrays)&quot;]
+        D2[&quot;Time-Series (DateTime Arrays)&quot;]
+        D3[&quot;Digital States (Boolean Arrays)&quot;]
     end
 
-    subgraph S2[&quot;Layer 2: Interactive Overlay (60 FPS)&quot;]
-        G[&quot;Canvas.MouseMove(X, Y)&quot;] --&amp;gt; H[&quot;Canvas.Paint Event&quot;]
-        F --&amp;gt; H
-        H --&amp;gt; I[&quot;DrawTrackingOverlay(g, X, Y)&quot;]
-        I --&amp;gt; J[&quot;Crosshair Guide + Value Badges&quot;]
+    subgraph StaticLayer [&quot;2. Layer 1: Static Picture Buffer (Compute Once)&quot;]
+        S1[&quot;NativeXYPlot / NativeXYPlotGrid&quot;]
+        S2[&quot;Rasterizes background, grid lines, tick labels, thresholds, and curves&quot;]
+        S3[&quot;Rendered into offscreen Picture bitmap (mBasePicture)&quot;]
     end
+
+    subgraph FastOverlay [&quot;3. Layer 2: Interactive Overlay (60 FPS Vector Pass)&quot;]
+        O1[&quot;Canvas.MouseMove / MouseDrag / MouseWheel&quot;]
+        O2[&quot;Paints mBasePicture to Graphics context&quot;]
+        O3[&quot;Draws vertical crosshair guide, snapped curve badges, &amp;amp; legend card&quot;]
+    end
+
+    Data --&amp;gt; StaticLayer
+    StaticLayer --&amp;gt; FastOverlay
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;ol&gt;
-  &lt;li&gt;&lt;strong&gt;Static Buffer&lt;/strong&gt;: Compute curves, grid lines, and axis ticks once into an offscreen &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Picture&lt;/code&gt; bitmap via &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MakeChartPicture()&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Interactive Overlay&lt;/strong&gt;: When user hovers over canvas, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DrawTrackingOverlay()&lt;/code&gt; draws only vertical guide line, snapped curve points, and leader-line value badges directly onto active &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Graphics&lt;/code&gt; context without re-rasterizing background curves.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Static Picture Buffer (Layer 1)&lt;/strong&gt;: All heavy curve math, axis transformations, grid lines, and labels are rendered once into an offscreen &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Picture&lt;/code&gt; bitmap via &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MakeChartPicture()&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Interactive Overlay (Layer 2)&lt;/strong&gt;: When moving the cursor, panning, or zooming, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DrawTrackingOverlay()&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DrawTrackingOverlayByValue()&lt;/code&gt; draws only the crosshair guide, snapped curve points, and value badges directly onto the active &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Graphics&lt;/code&gt; context without re-rasterizing background curves.&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;hr /&gt;
 
 &lt;h2 id=&quot;key-capabilities&quot;&gt;Key Capabilities&lt;/h2&gt;
 
-&lt;h3 id=&quot;1-multi-mode-x-scaling-time-series--numeric&quot;&gt;1. Multi-Mode X Scaling (Time-Series &amp;amp; Numeric)&lt;/h3&gt;
+&lt;h3 id=&quot;1-multi-mode-x-scaling--auto-scaling&quot;&gt;1. Multi-Mode X Scaling &amp;amp; Auto-Scaling&lt;/h3&gt;
 &lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;Time-Series (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DateTime&lt;/code&gt;)&lt;/strong&gt;: Automatic Unix epoch conversion and adaptive date formatting (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dd/MM&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dd/MM HH:mm&lt;/code&gt; based on visible span).&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Linear Numeric&lt;/strong&gt;: Dynamic power-of-10 step calculation with clean round grid numbers.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Time-Series (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DateTime&lt;/code&gt;)&lt;/strong&gt;: Automatic Unix epoch conversion with adaptive date formatting (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dd/MM&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dd/MM HH:mm&lt;/code&gt; based on visible span).&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Linear Numeric&lt;/strong&gt;: Dynamic power-of-10 step calculation with clean, rounded grid divisions.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Auto-Fit (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AutoScale&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AutoScaleX&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AutoScaleY&lt;/code&gt;)&lt;/strong&gt;: Automatically fits scale boundaries to active data with configurable margin padding.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;2-digital-signals--relay-step-lines&quot;&gt;2. Digital Signals &amp;amp; Relay Step-Lines&lt;/h3&gt;
-&lt;p&gt;Plotting binary state transitions (e.g. Pump ON/OFF, valve actuation) with standard linear curves creates misleading diagonal ramps. NativeXYPlot provides dedicated step-curve renderers (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AddStepSeries&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AddBooleanSeries&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AddDateBooleanSeries&lt;/code&gt;) and discrete categorical Y labels:&lt;/p&gt;
+&lt;h3 id=&quot;2-multi-plot-grid-matrix-nativexyplotgrid&quot;&gt;2. Multi-Plot Grid Matrix (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NativeXYPlotGrid&lt;/code&gt;)&lt;/h3&gt;
+&lt;p&gt;Organize multiple subplots into rows and columns on a single canvas with flexible cell spacing and outer margins:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;+---------------------------------------------------+
+|  NativeXYPlotGrid (e.g. 2 Rows x 2 Columns)       |
+|                                                   |
+|  [ Cell (0, 0): Plot A ]   [ Cell (0, 1): Plot B ]|
+|  (Live Stream Sensor)      (Harmonic Waveform)    |
+|                                                   |
+|  [ Cell (1, 0): Plot C ]   [ Cell (1, 1): Plot D ]|
+|  (IoT Climate 7-Days)      (Digital I/O Tracks)   |
++---------------------------------------------------+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Independent Zoom &amp;amp; Pan&lt;/strong&gt;: Scroll mouse wheel or drag to adjust specific subplots independently.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Linked Axes (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LinkAllX&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LinkColumnX&lt;/code&gt;)&lt;/strong&gt;: Synchronize X-axis zooming and scrolling across rows or columns.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Synchronized Scrubbing (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SyncCrosshair&lt;/code&gt;)&lt;/strong&gt;: Broadcast hover crosshairs across all subplots simultaneously.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;3-digital-signals--categorical-step-lines&quot;&gt;3. Digital Signals &amp;amp; Categorical Step-Lines&lt;/h3&gt;
+&lt;p&gt;Plotting binary state transitions (e.g., Pump ON/OFF, valve actuation) with standard linear curves creates misleading diagonal slopes. NativeXYPlot provides dedicated step-curve renderers (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AddStepSeries&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AddBooleanSeries&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AddDateBooleanSeries&lt;/code&gt;) and discrete categorical Y labels:&lt;/p&gt;
 
 &lt;div class=&quot;language-vb highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Discrete&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;axis&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;OFF&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ON&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SetYDiscreteLabels&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;OFF&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;ON&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
@@ -61,16 +87,112 @@
 &lt;span class=&quot;n&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;AddDateBooleanSeries&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;timestamps&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pumpStates&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cE63946&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Coolant Pump&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;3-tolerance-bands--vertical-event-markers&quot;&gt;3. Tolerance Bands &amp;amp; Vertical Event Markers&lt;/h3&gt;
+&lt;h3 id=&quot;4-tolerance-bands--event-markers&quot;&gt;4. Tolerance Bands &amp;amp; Event Markers&lt;/h3&gt;
 &lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;Threshold Zones (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AddThreshold&lt;/code&gt;)&lt;/strong&gt;: Highlight safe operating bands (e.g. 20°C - 24°C) with background shading and limit lines.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Event Markers (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AddMarker&lt;/code&gt;)&lt;/strong&gt;: Pinpoint specific maintenance timestamps, threshold breaches, or system alerts with vertical lines and text labels.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Threshold Zones (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AddThreshold&lt;/code&gt;)&lt;/strong&gt;: Highlight safe operating bands (e.g., 20°C – 24°C) with background shading and boundary lines.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Event Markers (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AddMarker&lt;/code&gt;)&lt;/strong&gt;: Pinpoint specific maintenance timestamps, alerts, or threshold breaches with vertical lines and label badges.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;5-vector-pdf--high-res-png-export&quot;&gt;5. Vector PDF &amp;amp; High-Res PNG Export&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Vector PDF (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MakePDFDocument&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ExportPDF&lt;/code&gt;)&lt;/strong&gt;: Generates scalable vector PDF documents using Xojo &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PDFDocument&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;High-Resolution PNG (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MakeChartPicture(w, h)&lt;/code&gt;)&lt;/strong&gt;: Exports crisp offscreen raster images at arbitrary pixel dimensions.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;hr /&gt;
 
-&lt;h2 id=&quot;quickstart-example&quot;&gt;Quickstart Example&lt;/h2&gt;
+&lt;h2 id=&quot;interactive-demo-showcase&quot;&gt;Interactive Demo Showcase&lt;/h2&gt;
 
+&lt;p&gt;The included demo project (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;demo/Sample.xojo_project&lt;/code&gt;) features 6 built-in recipe modes:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Tab&lt;/th&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;Demo Mode&lt;/th&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;Description&lt;/th&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;Key Features&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;strong&gt;0&lt;/strong&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;IoT Telemetry&lt;/strong&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Multi-sensor climate monitoring over a 7-day timeline.&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Date axis (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SetXDateScale&lt;/code&gt;), comfort zone shading (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AddThreshold&lt;/code&gt;), milestone markers (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AddMarker&lt;/code&gt;).&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;strong&gt;1&lt;/strong&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Waveforms&lt;/strong&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;High-frequency harmonic sine waves &amp;amp; damped cosine decays.&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Dual-polarity linear scales (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-10V..+10V&lt;/code&gt;), math functions, multi-series styling.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;strong&gt;2&lt;/strong&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Live Feed&lt;/strong&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Real-time sensor stream updating on a 250ms interval timer.&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Dynamic rolling ring buffer (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mLiveX&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mLiveY&lt;/code&gt;), auto-scrolling linear scale.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;strong&gt;3&lt;/strong&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Digital I/O&lt;/strong&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Multi-channel actuator &amp;amp; relay timeline with discrete logic states.&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Discrete categorical Y labels (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SetYDiscreteLabels&lt;/code&gt;), stacked boolean digital lanes (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AddDateBooleanSeries&lt;/code&gt;).&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;strong&gt;4&lt;/strong&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Synced 3-Plot&lt;/strong&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;3 stacked subplots linked to a unified time axis.&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Synchronized scrubbing cursor (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DrawTrackingOverlayByValue&lt;/code&gt;), linked timeline crosshairs.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;strong&gt;5&lt;/strong&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;2x2 Multi-Grid&lt;/strong&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;$2 \times 2$ heterogeneous matrix layout with mixed scales.&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Matrix container (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NativeXYPlotGrid&lt;/code&gt;), independent zoom/pan, broadcast crosshair sync.&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;canvas-interactivity--keyboard-shortcuts&quot;&gt;Canvas Interactivity &amp;amp; Keyboard Shortcuts&lt;/h3&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Key / Input&lt;/th&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;Action&lt;/th&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;Description&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;P&lt;/code&gt;&lt;/strong&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Toggle Data Point Dots&lt;/strong&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Toggles point markers on/off. Switches between clean lines and lines with circular dots at each data point.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;L&lt;/code&gt;&lt;/strong&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Toggle Legend Badge&lt;/strong&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Shows or hides floating dark legend summary box during hover tracking.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;strong&gt;Mouse Drag&lt;/strong&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Pan Viewport&lt;/strong&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Click and drag horizontally to pan/scroll across the data domain.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;strong&gt;Mouse Wheel&lt;/strong&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Zoom In / Out&lt;/strong&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Scroll mouse wheel to zoom centered at cursor position.&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;code-examples&quot;&gt;Code Examples&lt;/h2&gt;
+
+&lt;h3 id=&quot;1-single-plot-quickstart&quot;&gt;1. Single Plot Quickstart&lt;/h3&gt;
 &lt;div class=&quot;language-vb highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Initialize&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;layout&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;Var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;plot&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;As&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;New&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;NativeXYPlot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Canvas1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Canvas1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;AddTitle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;HVAC Temperature Log&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
@@ -94,24 +216,77 @@
 
 &lt;hr /&gt;
 
-&lt;h2 id=&quot;implementing-60-fps-hover-tracking-in-canvas&quot;&gt;Implementing 60 FPS Hover Tracking in Canvas&lt;/h2&gt;
+&lt;h3 id=&quot;2-multi-plot-matrix-setup-nativexyplotgrid&quot;&gt;2. Multi-Plot Matrix Setup (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NativeXYPlotGrid&lt;/code&gt;)&lt;/h3&gt;
+&lt;div class=&quot;language-vb highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;Var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grid&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;As&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;New&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;NativeXYPlotGrid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Canvas1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Canvas1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;grid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SetSpacing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;45&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;30&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;38&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;38&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;25&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;30&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
+&lt;span class=&quot;o&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Cell&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Live&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Pressure&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Sensor&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p00&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;As&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;NativeXYPlot&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;p00&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SetXLinearScale&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;p00&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SetYLinearScale&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot; psi&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;p00&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SetYTitle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Pressure&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;p00&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;AddSeries&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xVals&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;yPress&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c0077B6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Feed A&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Cell&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Voltage&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Waveform&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p01&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;As&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;NativeXYPlot&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;p01&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SetXLinearScale&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;p01&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SetYLinearScale&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot; V&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;p01&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SetYTitle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Voltage&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;p01&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;AddSeries&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xVals&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;yVolt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c3185FC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Sine&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Render&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Canvas1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Backdrop&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MakeChartPicture&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;3-wiring-60-fps-interactivity--panzoom-in-canvas&quot;&gt;3. Wiring 60 FPS Interactivity &amp;amp; Pan/Zoom in Canvas&lt;/h3&gt;
 &lt;div class=&quot;language-vb highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Canvas&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Properties&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mPlot&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;As&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;NativeXYPlot&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mGrid&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;As&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;NativeXYPlotGrid&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mBasePicture&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;As&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Picture&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mMouseX&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;As&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Integer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mMouseY&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;As&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Integer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
-
-&lt;span class=&quot;o&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;In&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Canvas&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Data&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Load&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Update&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;mBasePicture&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mPlot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MakeChartPicture&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;Canvas1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Refresh&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mStartX&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;As&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Integer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mStartY&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;As&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Integer&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mIsDragging&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;As&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Boolean&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mActiveHitPlot&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;As&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;NativeXYPlot&lt;/span&gt;
 
 &lt;span class=&quot;o&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;In&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Canvas&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MouseMove&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;Sub&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;MouseMove&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;As&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Integer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Y&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;As&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Integer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
   &lt;span class=&quot;n&quot;&gt;mMouseX&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;
   &lt;span class=&quot;n&quot;&gt;mMouseY&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Y&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;Self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Refresh&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Fast&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;repaint&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;without&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;regenerating&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;base&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;picture&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;Self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Refresh&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;End&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;Sub&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;In&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Canvas&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MouseDown&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;Function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;MouseDown&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;As&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Integer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Y&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;As&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Integer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;As&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Boolean&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;mStartX&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;mStartY&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Y&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;mIsDragging&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;True&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;mActiveHitPlot&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mGrid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;GetPlotAt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;Return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;True&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;End&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;Function&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;In&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Canvas&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MouseDrag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;Sub&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;MouseDrag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;As&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Integer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Y&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;As&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Integer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;If&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mIsDragging&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;And&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mActiveHitPlot&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Nil&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;Then&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;deltaX&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;As&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Integer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mStartX&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;Call&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mGrid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;HandleMouseDrag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;deltaX&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mActiveHitPlot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;mStartX&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;mStartY&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Y&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;mBasePicture&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mGrid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MakeChartPicture&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Refresh&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;End&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;If&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;End&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;Sub&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;In&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Canvas&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MouseWheel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;Function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;MouseWheel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;As&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Integer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Y&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;As&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Integer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;deltaX&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;As&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Integer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;deltaY&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;As&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Integer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;As&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Boolean&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;If&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mGrid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;HandleMouseWheel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;deltaX&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;deltaY&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;Then&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;mBasePicture&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mGrid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MakeChartPicture&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Refresh&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;Return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;True&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;End&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;If&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;Return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;False&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;End&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;Function&lt;/span&gt;
 
 &lt;span class=&quot;o&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;In&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Canvas&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Paint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;Sub&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Paint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;g&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;As&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Graphics&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;areas&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;As&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Rect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
@@ -119,10 +294,51 @@
     &lt;span class=&quot;n&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DrawPicture&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mBasePicture&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;End&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;If&lt;/span&gt;
   
-  &lt;span class=&quot;k&quot;&gt;If&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mPlot&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Nil&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;And&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mMouseX&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;Then&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;mPlot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DrawTrackingOverlay&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mMouseX&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mMouseY&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;If&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mGrid&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Nil&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;And&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mMouseX&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;Then&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;mGrid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DrawTrackingOverlay&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mMouseX&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mMouseY&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;End&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;If&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;End&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;Sub&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;4-real-time-streaming-ring-buffer-250ms-timer&quot;&gt;4. Real-Time Streaming Ring Buffer (250ms Timer)&lt;/h3&gt;
+&lt;div class=&quot;language-vb highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;Sub&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;SimTimer_Action&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;mStep&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mStep&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;Var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nowSec&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;As&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Double&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DateTime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Now&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SecondsFrom1970&lt;/span&gt;
+  
+  &lt;span class=&quot;o&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Append&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reading&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ring&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;buffer&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;mBufTime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nowSec&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;mBufPsi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;50.0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Sin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mStep&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;15.0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Rnd&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;4.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;mBufFlow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;120.0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Cos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mStep&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.15&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;20.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  
+  &lt;span class=&quot;o&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;2.&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Retain&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rolling&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;window&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;last&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;60&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;points&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;If&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mBufTime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Count&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;60&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;Then&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;mBufTime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;RemoveAt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;mBufPsi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;RemoveAt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;mBufFlow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;RemoveAt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;End&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;If&lt;/span&gt;
+  
+  &lt;span class=&quot;o&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;3.&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Update&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;plot&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;Var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pLive&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;As&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;NativeXYPlot&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mGrid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;pLive&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ClearSeries&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;pLive&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;AddDateSeries&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mBufTime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mBufPsi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c0077B6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Pressure&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;pLive&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;AddDateSeries&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mBufTime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mBufFlow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cF77F00&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Flow&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;pLive&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SetXDateScale&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mBufTime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mBufTime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mBufTime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;LastIndex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+  
+  &lt;span class=&quot;o&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;4.&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Redraw&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;mBasePicture&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mGrid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MakeChartPicture&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Canvas1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Canvas1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;Canvas1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Refresh&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;End&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;Sub&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;5-exporting-vector-pdf&quot;&gt;5. Exporting Vector PDF&lt;/h3&gt;
+&lt;div class=&quot;language-vb highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;Var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;As&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FolderItem&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FolderItem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ShowSaveFileDialog&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;.pdf&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;TelemetryReport.pdf&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;If&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Nil&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;Then&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;grid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ExportPDF&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fitPage&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;landscape&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;End&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;If&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;hr /&gt;
@@ -134,26 +350,28 @@
 ├── README.md                    # Project overview &amp;amp; quickstart
 ├── docs/
 │   ├── DOCUMENTATION.md         # Full API &amp;amp; architecture reference
-│   ├── BLOGPOST.md              # Project announcement &amp;amp; technical breakdown
 │   └── Screenshot.png           # Showcase screenshot
 ├── src/
-│   └── NativeXYPlot.xojo_code   # Core plot engine class
+│   ├── NativeXYPlot.xojo_code     # Core single-plot engine class
+│   └── NativeXYPlotGrid.xojo_code # Multi-plot matrix container class
 └── demo/
     ├── Sample.xojo_project      # Showcase desktop demo project
-    └── ...
+    ├── NativeXYPlot.xojo_code
+    ├── NativeXYPlotGrid.xojo_code
+    └── Window1.xojo_window      # Demo UI with segmented tabs &amp;amp; 2x2 grid
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;hr /&gt;
 
 &lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
 
-&lt;p&gt;NativeXYPlot proves responsive, feature-complete 2D charting achievable in pure Xojo without external dependencies.&lt;/p&gt;
+&lt;p&gt;NativeXYPlot provides a pure native Xojo charting and matrix layout solution with zero third-party dependencies:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Drop &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;src/NativeXYPlot.xojo_code&lt;/code&gt; into desktop or web project.&lt;/li&gt;
-  &lt;li&gt;Open &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;demo/Sample.xojo_project&lt;/code&gt; to test interactive features.&lt;/li&gt;
-  &lt;li&gt;See &lt;a href=&quot;https://github.com/0xb01/NativeXYPlot/blob/master/docs/DOCUMENTATION.md&quot;&gt;docs/DOCUMENTATION.md&lt;/a&gt; for full API reference.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Banikaz</name><email>banikaz@proton.me</email></author><category term="Tech" /><category term="xojo" /><category term="programming" /><category term="code" /><category term="opensource" /><summary type="html">Zero-dependency time-series, telemetry, and digital signal charting with decoupled 60 FPS interactive hover tracking.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/res/me.jpg" /><media:content medium="image" url="http://localhost:4000/res/me.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Rebuilding My Portfolio: From Cluttered Pages to a Modern Engineering Terminal</title><link href="http://localhost:4000/tech/2026/08/18/modern-portfolio-revamp-architecture.html" rel="alternate" type="text/html" title="Rebuilding My Portfolio: From Cluttered Pages to a Modern Engineering Terminal" /><published>2026-08-18T17:40:00+08:00</published><updated>2026-08-18T17:40:00+08:00</updated><id>http://localhost:4000/tech/2026/08/18/modern-portfolio-revamp-architecture</id><content type="html" xml:base="http://localhost:4000/tech/2026/08/18/modern-portfolio-revamp-architecture.html">&lt;p&gt;Every few years, developer portfolios tend to accumulate digital dust. What starts as a simple list of projects gradually turns into a patchwork of conflicting CSS rules, rigid layouts, and outdated dependencies.&lt;/p&gt;
+  &lt;li&gt;Drop &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;src/NativeXYPlot.xojo_code&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;src/NativeXYPlotGrid.xojo_code&lt;/code&gt; into desktop or web projects.&lt;/li&gt;
+  &lt;li&gt;Explore &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;demo/Sample.xojo_project&lt;/code&gt; to test the 6 interactive demo modes.&lt;/li&gt;
+  &lt;li&gt;Refer to &lt;a href=&quot;https://github.com/0xb01/NativeXYPlot/blob/master/docs/DOCUMENTATION.md&quot;&gt;docs/DOCUMENTATION.md&lt;/a&gt; for full API reference.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Banikaz</name><email>banikaz@proton.me</email></author><category term="Tech" /><category term="xojo" /><category term="programming" /><category term="code" /><category term="opensource" /><summary type="html">Zero-dependency time-series, telemetry, multi-plot grid matrix layouts, and digital signal charting with decoupled 60 FPS interactive hover tracking and vector PDF export.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/res/me.jpg" /><media:content medium="image" url="http://localhost:4000/res/me.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Rebuilding My Portfolio: From Cluttered Pages to a Modern Engineering Terminal</title><link href="http://localhost:4000/tech/2026/08/18/modern-portfolio-revamp-architecture.html" rel="alternate" type="text/html" title="Rebuilding My Portfolio: From Cluttered Pages to a Modern Engineering Terminal" /><published>2026-08-18T17:40:00+08:00</published><updated>2026-08-18T17:40:00+08:00</updated><id>http://localhost:4000/tech/2026/08/18/modern-portfolio-revamp-architecture</id><content type="html" xml:base="http://localhost:4000/tech/2026/08/18/modern-portfolio-revamp-architecture.html">&lt;p&gt;Every few years, developer portfolios tend to accumulate digital dust. What starts as a simple list of projects gradually turns into a patchwork of conflicting CSS rules, rigid layouts, and outdated dependencies.&lt;/p&gt;
 
 &lt;p&gt;I recently decided to give my personal portfolio and engineering hub (&lt;a href=&quot;https://banikaz.online&quot;&gt;banikaz.online&lt;/a&gt;) a complete ground-up redesign. The goal was simple: &lt;strong&gt;build a blazing-fast, terminal-inspired engineering workspace with zero bloat, true OLED dark mode, and seamless mobile ergonomics.&lt;/strong&gt;&lt;/p&gt;
 
