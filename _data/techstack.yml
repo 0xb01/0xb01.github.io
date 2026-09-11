@@ -27,13 +27,26 @@ categories:
     icon: fa-desktop
     show_in: both
     items:
-      - C/C++
+      - C++
       - C#
-      - Qt Framework
+      - Qt
       - VB.NET
       - Xojo
       - Batch
       - PowerShell
+      - Black Box Reverse Engineering
+
+  - name: AI
+    icon: fa-brain
+    show_in: both
+    items:
+      - Gemini
+      - Qwen
+      - Hermes
+      - Pi
+      - LM Studio
+      - Ollama
+      - OpenCode
 
   - name: Backend & APIs
     icon: fa-server
@@ -46,6 +59,8 @@ categories:
       - Lua
       - REST APIs
       - Cloudflare Workers
+      - Steam Web API
+      - Postman
 
   - name: Frontend & Web
     icon: fa-code
@@ -56,6 +71,20 @@ categories:
       - JavaScript
       - TypeScript
       - WordPress
+
+  - name: DevOps & Automation
+    icon: fa-tools
+    show_in: both
+    items:
+      - Docker
+      - Git
+      - GitHub Actions
+      - Make (Integromat)
+      - n8n
+      - Node-RED
+      - Bash / Shell
+      - Google Cloud
+      - Alibaba Cloud
 
   - name: Mobile & Extensions
     icon: fa-puzzle-piece
@@ -82,19 +111,6 @@ categories:
       - MySQL
       - PostgreSQL
       - SQLite
-
-  - name: DevOps & Automation
-    icon: fa-tools
-    show_in: both
-    items:
-      - Docker
-      - Git
-      - GitHub Actions
-      - Make (Integromat)
-      - n8n
-      - Bash / Shell
-      - Google Cloud
-      - Alibaba Cloud
 
   - name: Creative & Media
     icon: fa-palette

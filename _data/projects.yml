@@ -4,7 +4,7 @@
 # Single source of truth for all projects shown in the Projects grid & search.
 #
 # FIELDS FOR EACH ENTRY:
-# - name: Project title (prefix with an emoji for automatic card icon)
+# - name: Project title
 # - year: Release or active development year (used in year filter)
 # - description: Summary of features, purpose, or problem solved
 # - tech_stack: List of technologies used (used in live search & filter dropdowns)
@@ -12,23 +12,34 @@
 # - visibility: 'public' (shows View button), 'private' (work), or 'closed' (personal/internal)
 # ==============================================================================
 
-- name: "📙 Haha"
+- name: "NativeXYPlot"
+  year: 2026
+  description: "Native Xojo API 2 Graph & Chart Engine"
+  tech_stack:
+    - category: "Desktop Application"
+      items:
+        - Xojo
+  url: "https://github.com/0xb01/NativeXYPlot"
+  visibility: public # public, private, closed
+
+- name: "Haha"
   year: 2026
   description: Worker that serves game details using Steam Web API and some other goodies.
   tech_stack:
-    - category: "Cloud & API"
+    - category: "Backend & APIs"
       items:
         - Cloudflare Workers
         - Steam Web API
-    - category: "Frontend"
+    - category: "Frontend & Web"
       items:
         - TypeScript
         - JavaScript
-        - HTML5 / CSS3
+        - HTML5
+        - CSS3
   url: "https://haha.n1kk0.workers.dev/"
   visibility: public
 
-- name: "🧹 ADM"
+- name: "ADM"
   year: 2026
   description: AutoFill Data Cleaner for Microsoft Edge.
   tech_stack:
@@ -37,56 +48,60 @@
         - C++
         - Qt
   url: ""
-  visibility: closed # public, private, closed
+  visibility: closed
 
-- name: "🎌 Kana Practice"
+- name: "Kana Practice"
   year: 2026
   description: Interactive web app for practicing Japanese Hiragana and Katakana.
   tech_stack:
-    - category: "Frontend Web"
+    - category: "Frontend & Web"
       items:
         - JavaScript
-        - HTML5 / CSS3
+        - HTML5
+        - CSS3
   url: /kana/
   visibility: public
 
-- name: "🔎 Zzzzz"
+- name: "Zzzzz"
   year: 2026
   description: Obsidian plugin that finds problematic files.
   tech_stack:
-    - category: "Plugin Development"
+    - category: "Extensions & Plugins"
       items:
         - NodeJS
         - TypeScript
         - JavaScript
-        - HTML5 / CSS3
+        - HTML5
+        - CSS3
   url: https://github.com/0xb01/zzzzz
   visibility: public
 
-- name: "🔒 Auto Incognito"
+- name: "Auto Incognito"
   year: 2026
   description: Browser extension that automatically opens specified websites in incognito mode.
   tech_stack:
-    - category: "Browser Extension"
+    - category: "Extensions & Plugins"
       items:
         - NodeJS
         - JavaScript
-        - HTML5 / CSS3
+        - HTML5
+        - CSS3
   url: https://github.com/0xb01/auto-incognito-filter
   visibility: public
 
-- name: "🌐 Banikaz"
+- name: "Banikaz"
   year: 2026
   description: Personal portfolio and blog website powered by GitHub Pages.
   tech_stack:
-    - category: "Static Web Architecture"
+    - category: "Frontend & Web"
       items:
         - JavaScript
-        - HTML5 / CSS3
+        - HTML5
+        - CSS3
   url: https://github.com/0xb01/0xb01.github.io
   visibility: public
 
-- name: "🧮 AkoCalc"
+- name: "AkoCalc"
   year: 2025
   description: In-line calculator with variables, basic arithmetic, and currency conversions.
   tech_stack:
@@ -96,21 +111,22 @@
   url: ""
   visibility: closed
 
-- name: "🔨 StarfieldBatchMeshFix"
+- name: "StarfieldBatchMeshFix"
   year: 2024
   description: A mesh path migration tool for Starfield v1.11.36
   tech_stack:
-    - category: "Desktop Utility"
+    - category: "Desktop Application"
       items:
         - VB.NET
+        - Black Box Reverse Engineering
   url: https://github.com/0xb01/StarfieldBatchMeshFix
   visibility: closed
 
-- name: "🕹️ TnT"
+- name: "TnT"
   year: 2023
   description: Personal library and unified launcher for managing PC games.
   tech_stack:
-    - category: "Core Application"
+    - category: "Desktop Application"
       items:
         - C#
     - category: "Tooling & Scripting"
@@ -120,7 +136,7 @@
   url: ""
   visibility: private
 
-- name: "🔊 Bleepr"
+- name: "Bleepr"
   year: 2019
   description: Push-to-bleep now with a full soundboard, and a roulette for random sound playback.
   tech_stack:
@@ -131,13 +147,13 @@
   url: https://github.com/0xb01/Bleepr
   visibility: public
 
-- name: "🎮 Haiyan: PC Booster"
+- name: "Haiyan: PC Booster"
   year: 2017
   description: "All-in-one Windows PC optimization tool."
   tech_stack:
-    - category: "System Optimization"
+    - category: "Desktop Application"
       items:
-        - Batch
         - VB.NET
+        - Batch
   url: ""
   visibility: private

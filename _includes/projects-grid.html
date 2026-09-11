@@ -8,16 +8,6 @@
 
 <div class="projects-grid">
   {%- for project in site.data.projects -%}
-    {%- comment -%}
-      Extract emoji icon from project name (first 1-2 characters).
-    {%- endcomment -%}
-    {%- assign project_icon = project.name | slice: 0, 2 -%}
-    {%- if project_icon contains "️" -%}
-      {%- comment -%} Emoji with variation selector (2 chars) {%- endcomment -%}
-    {%- else -%}
-      {%- assign project_icon = project.name | slice: 0, 1 -%}
-    {%- endif -%}
-    
     {%- assign first_tech = project.tech_stack | first -%}
     {%- assign all_tech_items = "" | split: "" -%}
     {%- if first_tech.items -%}
@@ -41,10 +31,9 @@
       <div class="project-year-ribbon">{{ project.year }}</div>
       <div class="project-card-content">
         <div class="project-main">
-          <div class="project-icon">{{ project_icon }}</div>
           <div class="project-info">
             <div class="project-header">
-              <h4 class="project-name">{{ project.name | replace_first: project_icon, '' | strip }}</h4>
+              <h4 class="project-name">{{ project.name }}</h4>
               {%- if project.url contains "github.com/0xb01" -%}
                 {%- assign repo_slug = project.url | split: "github.com/" | last -%}
                 <div class="project-gh-stats" data-github-repo="{{ repo_slug }}"></div>

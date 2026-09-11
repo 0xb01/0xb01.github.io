@@ -20,7 +20,7 @@
 show_experience: work
 
 experiences:
-  - position: Software Developer
+  - position: Principal Software Engineer
     company: Climeo Solutions, Switzerland (Remote)
     period: Jul 2019 – Present
     present: true
@@ -35,7 +35,7 @@ experiences:
       - Designed and developed automated chatbots, workflow pipelines, and professional client web platforms.
       - Produced technical promotional assets and digital media materials for diverse business clients.
     tech_stack:
-      - category: "Languages & Frameworks"
+      - category: "Desktop & Systems"
         items:
           - Python
           - C++
@@ -44,7 +44,7 @@ experiences:
       - category: "Automation & DevOps"
         items:
           - Docker
-          - Make / Integromat
+          - Make (Integromat)
           - n8n
           - Node-RED
           - Bash
@@ -67,10 +67,11 @@ experiences:
       - Developed WordPress site.
       - Designed posters for social media.
     tech_stack:
-      - category: "Web Development"
+      - category: "Frontend & Web"
         items:
           - WordPress
-          - HTML5/CSS3
+          - HTML5
+          - CSS3
       - category: "Creative & Media"
         items:
           - Photoshop
@@ -101,10 +102,11 @@ experiences:
         items:
           - Java
           - Android Studio
-      - category: "Web & Scripting"
+      - category: "Frontend & Web"
         items:
           - PHP
-          - HTML5/CSS3
+          - HTML5
+          - CSS3
           - Batch
       - category: "Creative & Media"
         items:
@@ -129,7 +131,7 @@ experiences:
     tech_stack:
       - category: "Automation & DevOps"
         items:
-          - Integromat/Make
+          - Make (Integromat)
           - n8n
       - category: "Creative & Media"
         items:
@@ -163,6 +165,6 @@ experiences:
           - PHP
           - NodeJS
           - JavaScript
-          - HTML
-          - CSS
+          - HTML5
+          - CSS3
     references: []

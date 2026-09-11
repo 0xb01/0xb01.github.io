@@ -1111,8 +1111,9 @@ async function downloadResumePDF() {
         return;
     }
 
-    // Build dedicated clean print container
+    // Build dedicated clean print container attached to DOM
     const printWrapper = document.createElement('div');
+    printWrapper.id = 'resumePdfRenderClone';
     printWrapper.className = 'resume-pdf-container';
     printWrapper.innerHTML = resumeSection.innerHTML;
 
@@ -1120,43 +1121,186 @@ async function downloadResumePDF() {
     const topNav = printWrapper.querySelector('.resume-top-nav');
     if (topNav) topNav.remove();
 
-    // Inline print styling for crisp vector/raster rendering
-    printWrapper.style.padding = '24px 32px';
+    // Perfectly calibrated 1-page A4 dimensions (740px width x ~1010px height)
+    printWrapper.style.display = 'block';
+    printWrapper.style.width = '740px';
     printWrapper.style.backgroundColor = '#ffffff';
     printWrapper.style.color = '#0f172a';
-    printWrapper.style.fontFamily = "'Inter', -apple-system, BlinkMacSystemFont, sans-serif";
-    printWrapper.style.width = '800px';
+    printWrapper.style.fontFamily = "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
     printWrapper.style.boxSizing = 'border-box';
+    printWrapper.style.padding = '16px 20px';
+    printWrapper.style.margin = '0 auto';
+    printWrapper.style.overflow = 'visible';
 
-    // Style elements for clean printable contrast
+    // Style elements for clean printable contrast & perfect column sizing
+    printWrapper.querySelectorAll('*').forEach(el => {
+        el.style.boxSizing = 'border-box';
+    });
     printWrapper.querySelectorAll('h1, h2, h3, h4, strong').forEach(el => {
         el.style.color = '#0f172a';
     });
     printWrapper.querySelectorAll('.resume-name').forEach(el => {
         el.style.color = '#000000';
-        el.style.fontSize = '24px';
+        el.style.fontSize = '20px';
         el.style.fontWeight = '800';
+        el.style.marginBottom = '1px';
+        el.style.lineHeight = '1.15';
     });
     printWrapper.querySelectorAll('.resume-title').forEach(el => {
         el.style.color = '#0284c7';
+        el.style.fontSize = '11px';
         el.style.fontWeight = '600';
+        el.style.marginBottom = '3px';
     });
-    printWrapper.querySelectorAll('.resume-period, .resume-contact, .resume-company').forEach(el => {
+    printWrapper.querySelectorAll('.resume-contact').forEach(el => {
         el.style.color = '#475569';
+        el.style.fontSize = '9.5px';
+        el.style.display = 'flex';
+        el.style.flexWrap = 'wrap';
+        el.style.gap = '12px';
+        el.style.marginTop = '2px';
+    });
+    printWrapper.querySelectorAll('.resume-header').forEach(el => {
+        el.style.borderBottom = '2px solid #0f172a';
+        el.style.paddingBottom = '6px';
+        el.style.marginBottom = '8px';
+    });
+    printWrapper.querySelectorAll('.resume-summary').forEach(el => {
+        el.style.marginBottom = '8px';
+    });
+    printWrapper.querySelectorAll('.resume-summary h3, .resume-section-content h3').forEach(el => {
+        el.style.color = '#0284c7';
+        el.style.fontSize = '10.5px';
+        el.style.fontWeight = '700';
+        el.style.textTransform = 'uppercase';
+        el.style.letterSpacing = '0.05em';
+        el.style.borderBottom = '1px solid #e2e8f0';
+        el.style.paddingBottom = '2px';
+        el.style.marginBottom = '5px';
+    });
+    printWrapper.querySelectorAll('.resume-summary p').forEach(el => {
+        el.style.color = '#334155';
+        el.style.fontSize = '9.5px';
+        el.style.lineHeight = '1.38';
+        el.style.margin = '0';
+    });
+
+    // 2-Column layout formatted to fit 740px width without right cutoff
+    const layout = printWrapper.querySelector('.resume-layout');
+    if (layout) {
+        layout.style.display = 'grid';
+        layout.style.gridTemplateColumns = '1.35fr 1fr';
+        layout.style.gap = '14px';
+        layout.style.width = '100%';
+        layout.style.marginTop = '4px';
+        layout.style.alignItems = 'start';
+    }
+
+    printWrapper.querySelectorAll('.resume-column').forEach(el => {
+        el.style.display = 'flex';
+        el.style.flexDirection = 'column';
+        el.style.gap = '8px';
+        el.style.minWidth = '0';
+        el.style.width = '100%';
+    });
+
+    printWrapper.querySelectorAll('.resume-item').forEach(el => {
+        el.style.marginBottom = '6px';
+    });
+    printWrapper.querySelectorAll('.resume-item-header').forEach(el => {
+        el.style.display = 'flex';
+        el.style.justifyContent = 'space-between';
+        el.style.alignItems = 'baseline';
+        el.style.gap = '4px';
+        el.style.flexWrap = 'wrap';
+    });
+    printWrapper.querySelectorAll('.resume-item-header h4').forEach(el => {
+        el.style.color = '#0f172a';
+        el.style.fontSize = '10.5px';
+        el.style.fontWeight = '700';
+        el.style.margin = '0';
+    });
+    printWrapper.querySelectorAll('.resume-period').forEach(el => {
+        el.style.color = '#64748b';
+        el.style.fontSize = '8.5px';
+        el.style.fontFamily = 'monospace';
+        el.style.whiteSpace = 'nowrap';
+    });
+    printWrapper.querySelectorAll('.resume-company').forEach(el => {
+        el.style.color = '#475569';
+        el.style.fontSize = '9.5px';
+        el.style.fontWeight = '500';
+        el.style.margin = '1px 0 2px 0';
+    });
+    printWrapper.querySelectorAll('.resume-highlights').forEach(el => {
+        el.style.listStyle = 'none';
+        el.style.padding = '0';
+        el.style.margin = '0';
+        el.style.display = 'flex';
+        el.style.flexDirection = 'column';
+        el.style.gap = '2px';
+    });
+    printWrapper.querySelectorAll('.resume-highlights li').forEach(el => {
+        el.style.color = '#334155';
+        el.style.fontSize = '8.8px';
+        el.style.lineHeight = '1.32';
+        el.style.position = 'relative';
+        el.style.paddingLeft = '9px';
+    });
+
+    printWrapper.querySelectorAll('.resume-skills-grid-compact').forEach(el => {
+        el.style.display = 'flex';
+        el.style.flexDirection = 'column';
+        el.style.gap = '4px';
+        el.style.width = '100%';
+    });
+    printWrapper.querySelectorAll('.resume-skill-category').forEach(el => {
+        el.style.marginBottom = '2px';
+        el.style.width = '100%';
+    });
+    printWrapper.querySelectorAll('.resume-skill-category h4').forEach(el => {
+        el.style.color = '#0f172a';
+        el.style.fontSize = '9px';
+        el.style.fontWeight = '600';
+        el.style.margin = '0 0 1.5px 0';
+        el.style.display = 'flex';
+        el.style.alignItems = 'center';
+        el.style.gap = '3px';
+    });
+    printWrapper.querySelectorAll('.resume-tags').forEach(el => {
+        el.style.display = 'flex';
+        el.style.flexWrap = 'wrap';
+        el.style.gap = '2px';
+        el.style.width = '100%';
     });
     printWrapper.querySelectorAll('.resume-tag').forEach(el => {
         el.style.border = '1px solid #cbd5e1';
         el.style.backgroundColor = '#f1f5f9';
-        el.style.color = '#334155';
-        el.style.padding = '2px 6px';
-        el.style.borderRadius = '3px';
+        el.style.color = '#1e293b';
+        el.style.padding = '0.8px 3.5px';
+        el.style.borderRadius = '2.5px';
+        el.style.fontSize = '8px';
+        el.style.fontFamily = 'monospace';
+        el.style.lineHeight = '1.15';
+        el.style.whiteSpace = 'normal';
+        el.style.wordBreak = 'break-word';
+    });
+    printWrapper.querySelectorAll('.resume-education').forEach(el => {
+        el.style.marginTop = '6px';
+        el.style.width = '100%';
     });
 
+    document.body.appendChild(printWrapper);
+
     const opt = {
-        margin: [10, 12, 10, 12],
+        margin: [6, 6, 6, 6],
         filename: 'John_Nichols_Ranara_Resume.pdf',
         image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2, useCORS: true, logging: false },
+        html2canvas: {
+            scale: 2,
+            useCORS: true,
+            logging: false
+        },
         jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
     };
 
@@ -1169,6 +1313,10 @@ async function downloadResumePDF() {
         console.error('PDF generation failed:', e);
         ToastManager.show('Opening print dialog...', 'info', 2000);
         window.print();
+    } finally {
+        if (printWrapper && printWrapper.parentNode) {
+            printWrapper.parentNode.removeChild(printWrapper);
+        }
     }
 }
 
